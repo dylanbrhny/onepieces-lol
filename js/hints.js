@@ -17,7 +17,6 @@
       explain: "Initials are the first letters of each part of a name: Roronoa Zoro is R and Z. The “D.” in names like Monkey D. Luffy is skipped." },
     { re: /letters? in their (full )?name/i, note: "letters only; spaces, dots and numbers don't count" },
     { re: /the letter [A-Z] in their name/i, note: "anywhere in their full name" },
-    { re: /star sign is (\w+)/i, note: m => ZODIAC[m[1]] ? `born ${ZODIAC[m[1]]}` : "from their birthday" },
     { re: /Conqueror'?s/i, explain: "Conqueror's Haki (Supreme King Haki) is the rare kind: the user's willpower can knock weaker people out cold." },
     { re: /Armament/i, explain: "Armament Haki (Busoshoku) turns willpower into invisible armour, often blackening the skin or a weapon." },
     { re: /Observation/i, explain: "Observation Haki (Kenbunshoku) lets the user sense people around them, and at its best see a moment into the future." },

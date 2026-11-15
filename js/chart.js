@@ -169,7 +169,7 @@
     // power: how good the answer was (0 rookie .. 4 top tier). 2 = a fast surge with speed lines;
     // 3+ = BURST: the ship charges, blasts off from the stern, flies and lands with a splash.
     sailTo(nmi, done, opts = {}) {
-      const from = this.ship, dist = Math.max(0, nmi - from), power = opts.power || 0;
+      const from = this.ship, dist = Math.abs(nmi - from), power = opts.power || 0;   // can sail back too (Wanted)
       if (reduceMotion || dist === 0) { this.passStops(from, nmi); this.ship = nmi; done && done(); return; }
       const now = performance.now();
       if (power >= 4) {

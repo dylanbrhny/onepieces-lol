@@ -11,6 +11,10 @@
   --straw-deep: #a8761c;
   --red: #e0533d;
   --red-deep: #8e2a1c;
+  --d-supereasy: #6fe3ff;
+  --d-easy: #5fd35a;
+  --d-medium: #f1c04a;
+  --d-hard: #ff5a46;
   --cyan: #6fe3ff;
   --paper: #ead9b0;
   --paper-dark: #b99c62;
@@ -261,7 +265,8 @@ img, canvas { image-rendering: pixelated; }
 .prompt-head { display: flex; justify-content: space-between; font: 400 9px/1 var(--pixel); letter-spacing: 0.1em; color: var(--ink-dim); }
 .lives { color: var(--red); letter-spacing: 0.2em; font-size: 12px; }
 .prompt { margin: 0; text-align: center; font: 400 clamp(15px, 2.6vw, 22px)/1.5 var(--pixel); text-wrap: balance; text-shadow: 3px 3px 0 var(--edge); }
-.guess { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; }
+.guess { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; position: relative; }
+.glist { z-index: 12; }
 .guess input {
   min-width: 0; width: 100%;
   font: 400 26px/1 var(--body); color: var(--ink);
@@ -529,6 +534,14 @@ img, canvas { image-rendering: pixelated; }
 .seg { display: flex; gap: 6px; flex-wrap: wrap; }
 .seg-btn { font: 400 10px/1 var(--pixel); text-transform: uppercase; color: var(--ink); background: var(--panel-2); border: 3px solid var(--ink-faint); padding: 9px 12px; cursor: pointer; box-shadow: 0 3px 0 var(--edge); }
 .seg-btn[aria-pressed="true"] { background: var(--straw); color: #241500; border-color: #fff1c2; }
+/* difficulty colours: Easy green, Medium yellow, Hard red */
+.seg-btn[data-diff="supereasy"] { --dc: var(--d-supereasy); }
+.seg-btn[data-diff="easy"]   { --dc: var(--d-easy); }
+.seg-btn[data-diff="medium"] { --dc: var(--d-medium); }
+.seg-btn[data-diff="hard"]   { --dc: var(--d-hard); }
+.seg-btn[data-diff] { color: var(--dc); border-color: color-mix(in srgb, var(--dc) 45%, var(--ink-faint)); }
+.seg-btn[data-diff][aria-pressed="true"] { background: var(--dc); color: #1a1205; border-color: color-mix(in srgb, var(--dc) 55%, #fff); }
+.dtag.d-supereasy { color: var(--d-supereasy); } .dtag.d-easy { color: var(--d-easy); } .dtag.d-medium { color: var(--d-medium); } .dtag.d-hard { color: var(--d-hard); }
 .seg-btn:focus-visible, .set-select:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
 .set-select { flex: 1; min-width: 0; font: 400 20px/1 var(--body); color: var(--ink); background: var(--edge); border: 3px solid var(--ink-faint); padding: 6px 8px; }
 .set-note { margin: 0; font-size: 18px; line-height: 1.05; color: var(--ink-dim); }
@@ -573,3 +586,31 @@ img, canvas { image-rendering: pixelated; }
 
 .credits { margin: 6px auto 0; max-width: 60ch; font-size: 16px; line-height: 1.15; color: var(--ink-dim); text-align: center; text-shadow: 2px 2px 0 var(--edge); }
 .credits a { color: var(--ink); }
+
+/* ---------- Wanted difficulty picker ---------- */
+.wpick { position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; padding: 16px;
+  background: rgba(5, 8, 24, 0.82); overflow-y: auto; }
+.wpick[hidden] { display: none; }
+.wpick-panel { width: min(760px, 100%); max-height: 100%; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 18px 18px 16px;
+  background: var(--panel); border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--edge); animation: rise 0.25s steps(4); }
+.wpick-kicker { margin: 0; font: 400 9px/1 var(--pixel); letter-spacing: 0.1em; color: var(--ink-dim); text-align: center; }
+.wpick-title { margin: 0; font: 400 20px/1.2 var(--pixel); color: var(--ink); text-align: center; }
+.wpick-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 620px) { .wpick-cards { grid-template-columns: 1fr; } }
+.wpick-card { --dc: var(--d-medium); display: flex; flex-direction: column; gap: 8px; text-align: left; cursor: pointer; padding: 12px;
+  color: var(--ink); background: var(--panel-2); border: 3px solid color-mix(in srgb, var(--dc) 55%, var(--ink-faint)); box-shadow: 0 4px 0 var(--edge); }
+.wpick-card.d-easy { --dc: var(--d-easy); } .wpick-card.d-hard { --dc: var(--d-hard); }
+.wpick-card:hover, .wpick-card:focus-visible { border-color: var(--dc); transform: translateY(-2px); box-shadow: 0 6px 0 var(--edge); outline: none; }
+.wpick-card[aria-pressed="true"] { border-color: var(--dc); box-shadow: 0 4px 0 var(--edge), inset 0 0 0 2px color-mix(in srgb, var(--dc) 35%, transparent); }
+.wpick-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.wpick-name { font: 400 12px/1 var(--pixel); text-transform: uppercase; color: #1a1205; background: var(--dc); padding: 6px 8px; }
+.wpick-status { font: 400 7px/1.2 var(--pixel); color: var(--ink-dim); text-transform: uppercase; text-align: right; }
+.wpick-head { font: 400 10px/1.3 var(--pixel); color: var(--dc); text-transform: uppercase; }
+.wpick-body { font: 400 19px/1.05 var(--body); color: var(--ink); }
+.wpick-body b { color: var(--dc); font-weight: 400; }
+.wpick-best { margin-top: auto; font: 400 17px/1 var(--body); color: var(--ink-dim); }
+.wpick-note { margin: 0; font: 400 18px/1.05 var(--body); color: var(--ink-dim); text-align: center; }
+.wpick-back { align-self: center; }
+
+/* four difficulty buttons: let them wrap on narrow screens */
+.seg { flex-wrap: wrap; }

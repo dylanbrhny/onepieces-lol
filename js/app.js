@@ -24,6 +24,8 @@
   // Difficulty picks WHO counts: easy = characters everyone knows, medium adds the well-known cast,
   // hard = every named character. It also sets how tricky the 7 daily prompts get (easy first).
   const DIFF = {
+    supereasy: { label: "Super Easy", note: "The most famous names, the simplest prompts and 45 seconds each. A search list opens under the answer box: type part of a name or a trait (fishman, straw hat, zoan) and pick from the pictures.",
+              characters: ["easy"], prompts: ["easy"], plan: ["easy", "easy", "easy", "easy", "easy", "easy", "easy"], seconds: 45, search: true },
     easy:   { label: "Easy",   note: "Only the famous names: main characters, big islands, well-known fruits and crews. Plain prompts like “Name a giant”.", characters: ["easy"],
               prompts: ["easy"], plan: ["easy", "easy", "easy", "easy", "easy", "medium", "medium"] },
     medium: { label: "Medium", note: "Adds well-known side characters, places, ships and fruits. Some prompts mix two facts.", characters: ["easy", "medium"],
@@ -242,7 +244,12 @@
   const charName = id => (data.byId.get(id) || {}).name || id;
 
   // ---------- screens ----------
+  const SUNNY_AT = chart.sunnyAt;
   function show(screen) {
+    // Wanted moves the ship back and forth as a hot/cold meter, so it keeps the first ship (no burn and swap)
+    const wantedish = screen === "wanted" || (screen === "result" && WS && app.dataset.screen === "wanted");
+    chart.sunnyAt = wantedish ? null : SUNNY_AT;
+    if (wantedish) chart.onSunny = false;
     app.dataset.screen = screen;
     for (const s of ["title", "play", "wanted", "result", "debug"]) $(`#screen-${s}`).hidden = s !== screen;
     $("#hud").hidden = screen !== "play" && screen !== "wanted";
@@ -285,8 +292,8 @@
         card.innerHTML = `<svg class="mode-icon" viewBox="0 0 8 8" aria-hidden="true">${MODE_ICONS.wanted}</svg><span class="mode-name">${m.name}</span><span class="mode-blurb">${m.blurb}</span>` +
           `<span class="mode-tag">${wDone ? (w.won ? `Caught in ${w.guesses.length}` : "Escaped") : (w && w.guesses && w.guesses.length ? `${w.guesses.length} guessed` : "One a day")}</span>` +
           `<span class="mode-btns"><button type="button" class="btn btn-mini btn-straw" data-w="daily">${wDone ? "Poster" : "Daily"}</button><button type="button" class="btn btn-mini" data-w="practice">Practice</button></span>`;
-        card.querySelector('[data-w="daily"]').addEventListener("click", () => startWanted(false));
-        card.querySelector('[data-w="practice"]').addEventListener("click", () => startWanted(true));
+        card.querySelector('[data-w="daily"]').addEventListener("click", () => openWantedPick(false));
+        card.querySelector('[data-w="practice"]').addEventListener("click", () => openWantedPick(true));
         if (!wPool.length) card.querySelectorAll("button").forEach(x => { x.disabled = true; });
         wrap.appendChild(card);
         return;
@@ -378,7 +385,7 @@
   let timer = null;
 
   function startMode(id) {
-    if (id === "wanted") return startWanted(false);
+    if (id === "wanted") return openWantedPick(false);
     if (!playable.length) return;
     $("#hudNmiLabel").textContent = "Sailed";
     $("#hudBountyLabel").textContent = "Bounty";
@@ -433,8 +440,8 @@
   function nextPrompt() {
     if (S.mode === "endless") S.qs[S.i] = endlessQuestion();
     const q = S.qs[S.i];
-    $("#promptNo").textContent = (S.mode === "rarefind" ? `PROMPT ${S.i + 1} OF ${S.qs.length}` : `PROMPT ${S.i + 1}`) +
-      (q.difficulty ? ` · ${q.difficulty.toUpperCase()}` : "");
+    $("#promptNo").innerHTML = (S.mode === "rarefind" ? `PROMPT ${S.i + 1} OF ${S.qs.length}` : `PROMPT ${S.i + 1}`) +
+      (DIFF[q.difficulty] ? ` · <span class="dtag d-${q.difficulty}">${q.difficulty.toUpperCase()}</span>` : "");
     $("#promptText").textContent = q.text;
     // help: an always-visible note in brackets, and a "?" with an explanation
     const h = window.hintFor ? window.hintFor(q) : { note: "", explain: "" };
@@ -460,6 +467,7 @@
     $("#reveal").hidden = true;
     $("#guessForm").hidden = false;
     $("#hint").innerHTML = "";
+    closeGuessList();
     const input = $("#guessInput");
     input.value = "";
     input.disabled = false;
@@ -471,9 +479,10 @@
 
   function startTimer() {
     stopTimer();
-    const total = C.secondsPerPrompt * 1000, start = performance.now();
+    const SECS = diff.seconds || C.secondsPerPrompt;
+    const total = SECS * 1000, start = performance.now();
     const secs = $("#lpSecs"), lp = $("#logpose"), lpCtx = $("#lpCanvas").getContext("2d");
-    let lastSec = C.secondsPerPrompt;
+    let lastSec = SECS;
     const tick = () => {
       const left = Math.max(0, total - (performance.now() - start));
       const sec = Math.ceil(left / 1000);
@@ -563,6 +572,8 @@
   $("#guessForm").addEventListener("submit", e => {
     e.preventDefault();
     if (!$("#reveal").hidden || $("#guessInput").disabled) return; // already answered
+    if (gActive >= 0 && gResults[gActive] && !gResults[gActive].header) { const id = gResults[gActive].id; closeGuessList(); return tryAnswer(id); }
+    closeGuessList();
     const raw = $("#guessInput").value;
     if (!raw.trim()) return;
     const q = S.qs[S.i], kd = dataFor(q);
@@ -631,6 +642,7 @@
   }
 
   function finishPrompt(id) {
+    closeGuessList();
     stopTimer();
     $("#guessInput").disabled = true;
     const q = S.qs[S.i];
@@ -659,7 +671,64 @@
       chart.sailTo(target, null, { power });
     }
   }
-  $("#guessInput").addEventListener("input", () => S_.type());
+  $("#guessInput").addEventListener("input", () => { S_.type(); renderGuessList(); });
+
+  // ---- Super Easy: a search list under the answer box, like Wanted's (names with pictures + trait groups).
+  // It lists anyone who matches what you typed, right or wrong; a wrong pick is still turned away.
+  const gList = $("#guessList"), gInput = $("#guessInput");
+  let gResults = [], gActive = -1;
+  function closeGuessList() { gList.hidden = true; gList.innerHTML = ""; gResults = []; gActive = -1; gInput.setAttribute("aria-expanded", "false"); }
+  function renderGuessList() {
+    if (!diff.search || !S || !$("#reveal").hidden) return closeGuessList();
+    const q = S.qs[S.i], kd = dataFor(q), raw = gInput.value;
+    if (!raw.trim()) return closeGuessList();
+    const isChar = !q.kind || q.kind === "character";
+    const names = E.searchCharacters(raw, kd, 8);
+    const traits = isChar ? E.searchTraits(raw, kd, W_TRAITS, { displayNames: C.displayNames }).slice(0, 3) : [];
+    gResults = traits.length ? names.slice(0, 4) : names;
+    const shown = new Set(gResults.map(r => r.id));
+    for (const t of traits) {
+      gResults.push({ header: true, text: `${t.value} · ${t.label}`, count: t.ids.length });
+      for (const id of t.ids.slice(0, 80)) if (!shown.has(id)) { shown.add(id); gResults.push({ id, via: groupLineIn(kd, id, t.field) }); }
+    }
+    if (!gResults.length) return closeGuessList();
+    gActive = gResults.findIndex(r => !r.header);
+    gList.innerHTML = gResults.map((r, i) => r.header
+      ? `<li class="wgroup" role="presentation"><span>${esc(r.text)}</span><b>${r.count}</b></li>`
+      : `<li role="option" id="gopt${i}" data-i="${i}" aria-selected="${i === gActive}">
+          ${isChar ? `<span class="portrait wmini" data-id="${esc(r.id)}"></span>` : ""}
+          <span class="wopt-name">${esc(nameIn(q, r.id))}${r.via ? `<small>${esc(r.via)}</small>` : ""}</span></li>`).join("");
+    if (isChar) for (const el of gList.querySelectorAll(".wmini")) setPortrait(el, kd.byId.get(el.dataset.id));
+    gList.hidden = false; gInput.setAttribute("aria-expanded", "true");
+  }
+  function groupLineIn(kd, id, field) {
+    const c = kd.byId.get(id) || {};
+    const g = E.asList(c.primary_group)[0] || E.asList(c.organizations)[0] || "";
+    const r = E.asList(c.race).filter(x => x !== "Human" && x !== "Unknown")[0] || "";
+    return /group|organizations/.test(field) ? (r || E.asList(c.affiliation_type)[0] || "") : g;
+  }
+  function moveGuess(step) {
+    if (!gResults.length) return;
+    let i = gActive;
+    for (let k = 0; k < gResults.length; k++) { i = (i + step + gResults.length) % gResults.length; if (!gResults[i].header) { gActive = i; break; } }
+    [...gList.children].forEach((li, j) => li.setAttribute("aria-selected", String(j === gActive)));
+    const li = gList.children[gActive];
+    if (li.offsetTop < gList.scrollTop) gList.scrollTop = li.offsetTop;
+    else if (li.offsetTop + li.offsetHeight > gList.scrollTop + gList.clientHeight) gList.scrollTop = li.offsetTop + li.offsetHeight - gList.clientHeight;
+  }
+  gInput.addEventListener("keydown", e => {
+    if (gList.hidden) return;
+    if (e.key === "ArrowDown") { e.preventDefault(); moveGuess(1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); moveGuess(-1); }
+    else if (e.key === "Escape") closeGuessList();
+  });
+  gInput.addEventListener("blur", () => setTimeout(() => { if (document.activeElement !== gInput) closeGuessList(); }, 150));
+  gList.addEventListener("mousedown", e => e.preventDefault());
+  gList.addEventListener("click", e => {
+    const li = e.target.closest("li[data-i]");
+    const r = li && gResults[+li.dataset.i];
+    if (r && !r.header) { S_.click(); closeGuessList(); tryAnswer(r.id); }
+  });
 
   function renderReveal(q, res) {
     $("#guessForm").hidden = true;
@@ -746,25 +815,95 @@
   };
   // The poster pool follows the difficulty: Easy = only famous faces (and the search lists only them),
   // Hard = a much wider net. Each difficulty / spoiler setting has its own daily poster.
-  const wPool = E.wantedPool(data, { ...W, minFame: (W.minFameBy || {})[diffId] ?? W.minFame });
-  const wDailyId = E.wantedDaily(wPool, `${C.storageKey}:wanted${settingKey === "medium" ? "" : ":" + settingKey}`, dayNo);
-  const wKey = `wanted:${dateKey}${settingKey === "medium" ? "" : ":" + settingKey}`;
+  // Wanted has its own difficulty (picked on the screen after you click Wanted), separate from the daily voyage's.
+  const wDataCache = {};
+  const wantedData = id => wDataCache[id] || (wDataCache[id] = id === diffId ? data
+    : E.prepare(allRows.filter(c => DIFF[id].characters.includes(c.difficulty || "hard") && seenBy(c)), charCfg));
+  const wPoolFor = id => E.wantedPool(wantedData(id), { ...W, minFame: (W.minFameBy || {})[id] ?? W.minFame });
+  const wKeyFor = id => { const k = id + (spoiler ? ":" + spoiler.last_ep : ""); return `wanted:${dateKey}${k === "medium" ? "" : ":" + k}`; };
+  const W_LEVELS = ["easy", "medium", "hard"];
+  let wDiffId = W_LEVELS.includes(store.get("wantedDifficulty", "")) ? store.get("wantedDifficulty", "") : W_LEVELS.includes(diffId) ? diffId : "easy";
+  let WD, wPool, wDailyId, wKey;
+  function setWantedDiff(id) {
+    wDiffId = id; store.set("wantedDifficulty", id);
+    WD = wantedData(id); wPool = wPoolFor(id);
+    const k = id + (spoiler ? ":" + spoiler.last_ep : "");
+    wDailyId = E.wantedDaily(wPool, `${C.storageKey}:wanted${k === "medium" ? "" : ":" + k}`, dayNo);
+    wKey = wKeyFor(id);
+  }
+  setWantedDiff(wDiffId);
+  if (window.LogPoseDebug) window.LogPoseDebug.wantedTarget = () => WS && WS.targetId;   // for testing only
   // search by trait: "fishman", "marine", "zoan", "red hair" lists everyone with it
   const W_TRAITS = W.searchFields || [["race", "Race"], ["primary_group", "Group"], ["organizations", "Group"], ["affiliation_type", "Side"],
     ["devil_fruit_types", "Fruit"], ["haki", "Haki"], ["hair_color", "Hair"], ["origin_sea", "From"], ["debut_arc", "Debut"], ["fighting_style", "Style"]];
   let WS = null;          // the hunt in progress: { practice, targetId, guesses: [ids], done, won, nmi }
   let wActive = -1, wResults = [];
 
+  const wName = id => (WD.byId.get(id) || {}).name || id;
+  // How close a guess is: matching traits count 1, partly matching ½, traits we don't know about are left out.
+  // The ship sits that far along the route (up to 90%); catching them sails it the rest of the way.
+  function wCloseness(id) {
+    const res = E.compareCharacters(WD.byId.get(id), WD.byId.get(WS.targetId), W.columns).filter(r => r.state !== "unknown");
+    const same = res.filter(r => r.state === "same").length, near = res.filter(r => r.state === "near").length;
+    return { same, near, of: res.length, f: res.length ? (same + near / 2) / res.length : 0 };
+  }
+  const wShipAt = () => {
+    if (!WS || !WS.guesses.length) return 0;
+    if (WS.won) return C.route.length;
+    return Math.round(wCloseness(WS.guesses[WS.guesses.length - 1]).f * 0.9 * C.route.length);
+  };
   const wSail = n => n ? (W.sailByGuesses[Math.min(n, W.sailByGuesses.length) - 1] || 0) : 0;
   const wCap = () => W.maxGuesses > 0 ? W.maxGuesses : Infinity;
+
+  // ---- difficulty picker: shown after you click Wanted (Daily or Practice) ----
+  const W_PICK = {
+    easy:   { head: "Famous faces", body: n => `Today's poster is one of <b>${n.pool}</b> big names, and the search only lists the <b>${n.chars}</b> best-known characters, so finding who you mean is quick.`, best: "New fans and casual watchers" },
+    medium: { head: "The usual crew", body: n => `One of <b>${n.pool}</b> posters, from the main cast to well-known side characters. The search covers <b>${n.chars}</b> characters.`, best: "Anyone keeping up with the anime" },
+    hard:   { head: "Deep cuts", body: n => `One of <b>${n.pool}</b> posters, including side characters most fans forget. The search covers all <b>${n.chars}</b> named characters.`, best: "Manga readers and wiki divers" }
+  };
+  function openWantedPick(practice) {
+    let pick = document.getElementById("wpick");
+    if (!pick) {
+      pick = document.createElement("div");
+      pick.id = "wpick"; pick.className = "wpick"; pick.setAttribute("role", "dialog"); pick.setAttribute("aria-modal", "true"); pick.setAttribute("aria-labelledby", "wpickTitle");
+      document.body.appendChild(pick);
+      pick.addEventListener("click", e => { if (e.target === pick) closeWantedPick(); });
+      document.addEventListener("keydown", e => { if (e.key === "Escape" && !pick.hidden) closeWantedPick(); });
+    }
+    const cards = W_LEVELS.map(id => {
+      const n = { pool: fmt(wPoolFor(id).length), chars: fmt(wantedData(id).chars.length) }, t = W_PICK[id];
+      const w = practice ? null : store.get(wKeyFor(id), null);
+      const status = !w ? "" : w.done ? (w.won ? `Caught in ${w.guesses.length}` : "Escaped") : w.guesses && w.guesses.length ? `${w.guesses.length} guessed` : "";
+      return `<button type="button" class="wpick-card d-${id}" data-pick="${id}" aria-pressed="${id === wDiffId}">
+        <span class="wpick-top"><span class="wpick-name">${DIFF[id].label}</span>${status ? `<span class="wpick-status">${status}</span>` : ""}</span>
+        <span class="wpick-head">${t.head}</span>
+        <span class="wpick-body">${t.body(n)}</span>
+        <span class="wpick-best">Best for: ${t.best}</span></button>`;
+    }).join("");
+    pick.innerHTML = `<div class="wpick-panel">
+      <p class="wpick-kicker">WANTED · ${practice ? "PRACTICE" : `DAILY #${dayNo}`}</p>
+      <h2 class="wpick-title" id="wpickTitle">Pick your hunt</h2>
+      <div class="wpick-cards">${cards}</div>
+      <p class="wpick-note">Catch them in fewer guesses to sail further. ${practice ? "Practice posters are random and unlimited." : "Each difficulty has its own daily poster."} This doesn't change the daily voyage's difficulty.</p>
+      <button type="button" class="btn btn-mini wpick-back">Back to port</button></div>`;
+    pick.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => {
+      S_.click(); closeWantedPick();
+      setWantedDiff(b.dataset.pick);
+      startWanted(practice);
+    }));
+    pick.querySelector(".wpick-back").addEventListener("click", closeWantedPick);
+    pick.hidden = false;
+    setTimeout(() => (pick.querySelector('[aria-pressed="true"]') || pick.querySelector("[data-pick]")).focus({ preventScroll: true }), 30);
+  }
+  function closeWantedPick() { const p = document.getElementById("wpick"); if (p) p.hidden = true; }
 
   function startWanted(practice) {
     if (!wPool.length) return;
     if (!practice) {
       const saved = store.get(wKey, null);
-      if (saved && saved.done && data.byId.has(saved.targetId)) return showResult(wantedRecord(saved));
-      WS = saved && data.byId.has(saved.targetId)
-        ? { ...saved, practice: false, guesses: saved.guesses.filter(id => data.byId.has(id)) }
+      if (saved && saved.done && WD.byId.has(saved.targetId)) return showResult(wantedRecord(saved));
+      WS = saved && WD.byId.has(saved.targetId)
+        ? { ...saved, practice: false, guesses: saved.guesses.filter(id => WD.byId.has(id)) }
         : { practice: false, targetId: wDailyId, guesses: [], done: false, won: false, dayNo, dateKey };
     } else {
       const last = WS && WS.practice ? WS.targetId : null;
@@ -772,9 +911,10 @@
       const from = pick.length ? pick : wPool;
       WS = { practice: true, targetId: from[Math.floor(Math.random() * from.length)], guesses: [], done: false, won: false };
     }
-    chart.setShip(0);
+    show("wanted");
+    chart.setShip(wShipAt());
     $("#hud").hidden = false;
-    $("#wantedHead").textContent = (WS.practice ? "WANTED · PRACTICE" : `WANTED #${dayNo}`) + ` · ${diff.label.toUpperCase()}`;
+    $("#wantedHead").innerHTML = (WS.practice ? "WANTED · PRACTICE" : `WANTED #${dayNo}`) + ` · <span class="dtag d-${wDiffId}">${DIFF[wDiffId].label.toUpperCase()}</span>`;
     $("#wantedPrompt").textContent = WS.practice ? "Who is on this poster?" : "Who is on today's poster?";
     $("#wantedHint").textContent = "";
     $("#wantedDone").hidden = true;
@@ -784,7 +924,6 @@
     const input = $("#wantedInput");
     input.value = ""; input.disabled = false;
     closeList();
-    show("wanted");
     renderBoard(false);
     paintWantedHud();
     setTimeout(() => input.focus({ preventScroll: true }), 50);
@@ -794,8 +933,10 @@
     const n = WS.guesses.length, cap = wCap();
     $("#hudNmiLabel").textContent = "Guesses";
     $("#hudNmi").textContent = cap === Infinity ? String(n) : `${n} / ${cap}`;
-    $("#hudBountyLabel").textContent = WS.done ? "Sailed" : "Catch now";
-    $("#hudBounty").textContent = `${fmt(WS.done ? WS.nmi || 0 : wSail(n + 1))} nmi`;
+    const last = n ? wCloseness(WS.guesses[n - 1]) : null;
+    $("#hudBountyLabel").textContent = "Closeness";
+    const half = v => `${Math.floor(v) || (v % 1 ? "" : 0)}${v % 1 ? "½" : ""}`;
+    $("#hudBounty").textContent = WS.won ? "CAUGHT" : last ? `${half(last.same + last.near / 2)} / ${last.of}` : "—";
     $("#wantedLeft").textContent = WS.done ? "" : cap === Infinity ? "" : `${cap - n} LEFT`;
     const p = $("#pips");
     p.innerHTML = "";
@@ -810,7 +951,7 @@
 
   // One row of tiles: the guess vs the hidden character.
   function rowHtml(id, animate) {
-    const g = data.byId.get(id), target = data.byId.get(WS.targetId);
+    const g = WD.byId.get(id), target = WD.byId.get(WS.targetId);
     const res = E.compareCharacters(g, target, W.columns);
     const win = id === WS.targetId;
     const tiles = res.map((r, i) => `<div class="wtile${animate ? "" : " still"}" data-state="${r.state}" style="--i:${i}">
@@ -823,18 +964,18 @@
     const board = $("#wantedBoard");
     const ids = [...WS.guesses].reverse(); // newest on top
     board.innerHTML = ids.map((id, i) => rowHtml(id, animateLatest && i === 0).html).join("");
-    for (const el of board.querySelectorAll(".wport")) setPortrait(el, data.byId.get(el.dataset.id));
+    for (const el of board.querySelectorAll(".wport")) setPortrait(el, WD.byId.get(el.dataset.id));
     $("#wantedKey").hidden = !ids.length;
   }
 
   function wantedGuess(id) {
-    if (!WS || WS.done || !data.byId.has(id)) return;
+    if (!WS || WS.done || !WD.byId.has(id)) return;
     const hint = $("#wantedHint");
-    if (WS.guesses.includes(id)) { S_.nope(); hint.textContent = `Already guessed ${charName(id)}.`; return; }
+    if (WS.guesses.includes(id)) { S_.nope(); hint.textContent = `Already guessed ${wName(id)}.`; return; }
     hint.textContent = "";
     WS.guesses.push(id);
     const n = WS.guesses.length, won = id === WS.targetId, lost = !won && n >= wCap();
-    if (won || lost) { WS.done = true; WS.won = won; WS.nmi = won ? wSail(n) : 0; }
+    if (won || lost) { WS.done = true; WS.won = won; WS.nmi = wShipAt(); }
     if (!WS.practice) store.set(wKey, WS);
 
     const input = $("#wantedInput");
@@ -842,24 +983,27 @@
     closeList();
     renderBoard(true);
     paintWantedHud();
-    const res = E.compareCharacters(data.byId.get(id), data.byId.get(WS.targetId), W.columns);
+    const res = E.compareCharacters(WD.byId.get(id), WD.byId.get(WS.targetId), W.columns);
     res.forEach((r, i) => S_.tile(r.state, 0.09 * i + 0.12));
     const flipEnd = W.columns.length * 90 + 350;
-    if (!WS.done) { setTimeout(() => input.focus({ preventScroll: true }), 30); return; }
+    if (!WS.done) {
+      setTimeout(() => input.focus({ preventScroll: true }), 30);
+      setTimeout(() => { if (WS && !WS.done) chart.sailTo(wShipAt()); }, flipEnd);   // closer = further along
+      return;
+    }
 
     input.disabled = true;
     $("#wantedForm").hidden = true;
     $("#wantedGiveUp").hidden = true;
     setTimeout(() => {
-      showCaught();
-      if (won) { S_.good(4); S_.splash(); chart.sailTo(WS.nmi); }
-      else S_.bad();
-      setTimeout(() => S_.stamp(), 260);
+      const reveal = () => { showCaught(); setTimeout(() => S_.stamp(), 260); };
+      if (won) { S_.good(4); S_.splash(); chart.sailTo(C.route.length, reveal, { power: 3 }); }   // all the way, then the reveal
+      else { S_.bad(); chart.sailTo(WS.nmi); reveal(); }
     }, flipEnd);
   }
 
   function showCaught() {
-    const target = data.byId.get(WS.targetId), n = WS.guesses.length;
+    const target = WD.byId.get(WS.targetId), n = WS.guesses.length;
     const box = $("#wantedDone");
     box.hidden = false;
     box.dataset.tier = WS.won ? "king" : "wreck";
@@ -869,8 +1013,8 @@
     setPortrait($("#wantedPortrait"), target);
     $("#wantedName").textContent = target.name;
     $("#wantedLine").textContent = WS.won
-      ? `Caught in ${n} ${n === 1 ? "guess" : "guesses"}. Sailing ${fmt(WS.nmi)} nmi to ${chart.lastStop(WS.nmi).name}.`
-      : (WS.gaveUp ? "Revealed. The ship stays in port." : `Got away after ${n} guesses. The ship stays in port.`);
+      ? `Caught in ${n} ${n === 1 ? "guess" : "guesses"}. The ship made it to the end of the route.`
+      : (WS.gaveUp ? "Revealed. The trail went cold here." : `Got away after ${n} guesses. The trail went cold here.`);
     setTimeout(() => $("#wantedPortBtn").focus({ preventScroll: true }), 60);
   }
 
@@ -879,8 +1023,8 @@
   function closeList() { wList.hidden = true; wList.innerHTML = ""; wResults = []; wActive = -1; wInput.setAttribute("aria-expanded", "false"); wInput.removeAttribute("aria-activedescendant"); }
   function renderList() {
     const q = wInput.value;
-    const names = q.trim() ? E.searchCharacters(q, data, 8) : [];
-    const traits = q.trim() ? E.searchTraits(q, data, W_TRAITS, { displayNames: C.displayNames }).slice(0, 3) : [];
+    const names = q.trim() ? E.searchCharacters(q, WD, 8) : [];
+    const traits = q.trim() ? E.searchTraits(q, WD, W_TRAITS, { displayNames: C.displayNames }).slice(0, 3) : [];
     // name matches first (fewer when a trait matched), then each trait with everyone in it, most famous first
     wResults = traits.length ? names.slice(0, 4) : names;
     const shown = new Set(wResults.map(r => r.id));
@@ -891,7 +1035,7 @@
     if (!wResults.length) {
       closeList();
       if (q.trim().length >= 3) {
-        const close = E.suggestNames ? E.suggestNames(q, data, 4) : [];
+        const close = E.suggestNames ? E.suggestNames(q, WD, 4) : [];
         if (close.length) { wResults = close.map(id => ({ id, via: "", fuzzy: true })); }
         else { $("#wantedHint").textContent = `No "${q.trim()}" in the ship's log.`; return; }
       } else { $("#wantedHint").textContent = ""; return; }
@@ -903,17 +1047,17 @@
       const used = WS.guesses.includes(r.id);
       return `<li role="option" id="wopt${i}" data-i="${i}" class="${used ? "used" : ""}" aria-disabled="${used}" aria-selected="${i === wActive}">
         <span class="portrait wmini" data-id="${esc(r.id)}"></span>
-        <span class="wopt-name">${esc(charName(r.id))}${r.via ? `<small>${esc(r.via)}</small>` : r.fuzzy ? "<small>did you mean?</small>" : ""}</span>
+        <span class="wopt-name">${esc(wName(r.id))}${r.via ? `<small>${esc(r.via)}</small>` : r.fuzzy ? "<small>did you mean?</small>" : ""}</span>
         ${used ? '<span class="wopt-tag">GUESSED</span>' : ""}</li>`;
     }).join("");
-    for (const el of wList.querySelectorAll(".wmini")) setPortrait(el, data.byId.get(el.dataset.id));
+    for (const el of wList.querySelectorAll(".wmini")) setPortrait(el, WD.byId.get(el.dataset.id));
     wList.hidden = false;
     wInput.setAttribute("aria-expanded", "true");
     paintActive();
   }
   // the small line under a name in a trait list: their crew, or their race when searching a crew
   function groupLine(id, field) {
-    const c = data.byId.get(id) || {};
+    const c = WD.byId.get(id) || {};
     const g = E.asList(c.primary_group)[0] || E.asList(c.organizations)[0] || "";
     const r = E.asList(c.race).filter(x => x !== "Human" && x !== "Unknown")[0] || "";
     return /group|organizations/.test(field) ? (r || E.asList(c.affiliation_type)[0] || "") : g;
@@ -956,7 +1100,7 @@
     if (wActive >= 0 && wResults[wActive] && !wResults[wActive].header) return wantedGuess(wResults[wActive].id);
     const raw = wInput.value;
     if (!raw.trim()) return;
-    const r = E.resolveGuess(raw, data);
+    const r = E.resolveGuess(raw, WD);
     if (r.status === "match") return wantedGuess(r.id);
     S_.nope();
     const form = $("#wantedForm");
@@ -989,7 +1133,7 @@
   }
 
   function showWantedResult(rec) {
-    const target = data.byId.get(rec.targetId);
+    const target = WD.byId.get(rec.targetId);
     chart.setShip(rec.nmi);
     show("result");
     if (rec.won) S_.fanfare();
@@ -1005,14 +1149,14 @@
     nameEl.value = target.name; nameEl.readOnly = true; nameEl.oninput = null;
     const streak = rec.practice ? "" : ` · streak ${wantedStreak()}`;
     $("#logReach").textContent = rec.won
-      ? `Caught in ${n} of ${wCap() === Infinity ? "unlimited" : wCap()} guesses · sailed ${fmt(rec.nmi)} of ${fmt(C.route.length)} nmi · last landfall: ${chart.lastStop(rec.nmi).name}${streak}`
-      : `${rec.gaveUp ? "Revealed" : "Escaped"} after ${n} ${n === 1 ? "guess" : "guesses"} · the ship stayed in port${streak}`;
+      ? `Caught in ${n} of ${wCap() === Infinity ? "unlimited" : wCap()} guesses · the ship reached the end of the route${streak}`
+      : `${rec.gaveUp ? "Revealed" : "Escaped"} after ${n} ${n === 1 ? "guess" : "guesses"} · the trail went cold near ${chart.lastStop(rec.nmi).name}${streak}`;
     $("#log").hidden = true;
     const mini = $("#resultBoard");
     mini.hidden = false;
     mini.innerHTML = rec.guesses.map((id, i) => {
-      const res = E.compareCharacters(data.byId.get(id), target, W.columns);
-      return `<div class="wmrow"><span class="n">${i + 1}</span><span class="wsq">${res.map(r => `<i data-state="${r.state}"></i>`).join("")}</span><span class="a">${esc(charName(id))}</span></div>`;
+      const res = E.compareCharacters(WD.byId.get(id), target, W.columns);
+      return `<div class="wmrow"><span class="n">${i + 1}</span><span class="wsq">${res.map(r => `<i data-state="${r.state}"></i>`).join("")}</span><span class="a">${esc(wName(id))}</span></div>`;
     }).join("");
     $("#endlessBtn").hidden = true;
     const pb = $("#practiceBtn");
@@ -1024,8 +1168,8 @@
   function wantedShare(rec, target) {
     const cap = wCap() === Infinity ? "" : `/${wCap()}`;
     const head = rec.practice ? `${C.name} · Wanted practice` : `${C.name} · Wanted #${rec.dayNo}`;
-    const line = rec.won ? `Caught in ${rec.guesses.length}${cap} · ${fmt(rec.nmi)} nmi` : `Escaped · X${cap}`;
-    const rows = rec.guesses.map(id => E.compareCharacters(data.byId.get(id), target, W.columns).map(r => W_EMOJI[r.state]).join(""));
+    const line = rec.won ? `Caught in ${rec.guesses.length}${cap}` : `Escaped · X${cap}`;
+    const rows = rec.guesses.map(id => E.compareCharacters(WD.byId.get(id), target, W.columns).map(r => W_EMOJI[r.state]).join(""));
     return `${head}\n${line}\n${rows.join("\n")}`;
   }
   $("#practiceBtn").addEventListener("click", () => startWanted(true));

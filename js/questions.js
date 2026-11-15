@@ -65,8 +65,6 @@ window.QUESTION_TEMPLATES.push(
   { field: "name_initials", text: "Name a character with {value} in their initials", group: "name-initial" },
   { field: "name_letters",  text: "Name a character with the letter {value} in their name", group: "name-letter" },
   { field: "birth_month",   text: "Name a character born in {value}", group: "birthday" },
-  { field: "zodiac",        text: "Name a character whose star sign is {value}", group: "birthday" },
-  { field: "blood_type",    text: "Name a character with blood type {value}", group: "blood" },
   { field: "sex",           text: "Name a {lower} character", group: "sex", skip: ["Male"] },
   { field: "status",        text: "Name a character whose status is {lower}", group: "status", skip: ["Alive", "Deceased"] }
 );

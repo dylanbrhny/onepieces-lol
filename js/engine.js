@@ -511,6 +511,13 @@
   // Search-as-you-type over name + aliases. Best first: exact name or alias, then any name, alias or
   // name word that starts with the text, then text anywhere in a name, then typos (via resolveGuess).
   // Within each group the more famous character comes first, so "lu" finds Luffy before Lulis.
+  // Why a name came up, in a few words: their fruit, their epithet, or another name they go by.
+  function aliasWhy(c, alias) {
+    const a = norm(alias);
+    if (asList(c.devil_fruit_names).some(f => norm(f) === a) || /\bno mi\b|\bfruit\b/.test(a)) return `Fruit: ${alias}`;
+    if (c.epithet && norm(c.epithet).includes(a)) return `“${c.epithet}”`;
+    return `Also called ${alias}`;
+  }
   function searchCharacters(query, data, limit = 8) {
     const q = norm(query);
     if (!q) return [];
@@ -521,25 +528,34 @@
       names.forEach((n, i) => {
         const k = norm(n);
         if (!k) return;
-        const via = i === 0 || norm(c.name).includes(k) ? "" : n; // show an alias only when it adds something
+        const via = i === 0 || norm(c.name).includes(k) ? "" : aliasWhy(c, n); // explain an alias only when it adds something
         if (k === q) put(c.id, 0, via);
         else if (k.startsWith(q) || k.split(" ").some(w => w.startsWith(q))) put(c.id, 1, via);
         else if (q.length >= 3 && k.includes(q)) put(c.id, 2, via);
       });
     }
-    if (hits.size < limit && q.length >= 4) {
-      const r = resolveGuess(query, data);
-      const ids = r.status === "match" ? [r.id] : r.status === "ambiguous" ? r.ids : [];
-      ids.forEach(id => put(id, 3, ""));
+    // nothing matched at all: allow one typo, and say what it was close to
+    if (!hits.size && q.length >= 5) {
+      for (const c of data.chars) for (const n of [c.name, ...asList(c.aliases)]) {
+        const k = norm(n);
+        if (Math.abs(k.length - q.length) <= 1 && levenshtein(q, k) <= 1) put(c.id, 3, `Close to “${n}”`);
+      }
     }
     return [...hits].sort((a, b) => a[1].rank - b[1].rank || data.byId.get(b[0])._fame - data.byId.get(a[0])._fame)
       .slice(0, limit).map(([id, h]) => ({ id, via: h.via }));
   }
-
-  // Who can be the hidden character: everyone with a name and fame >= minFame (falls back to everyone).
-  // Skips non-canon rows (canon = no). Characters with neither fame nor appearances filled are left out
-  // too once anyone has them, so a big scraped list doesn't hand out unknown extras as the daily target.
-  // Everyone can still be guessed.
+  // Other words players use for a trait (keys are the normalised value). "fishman" also finds merfolk,
+  // since fans lump them together; "yonko" finds the Four Emperors.
+  const TRAIT_ALSO = {
+    "merfolk": ["mermaid", "mermaids", "merman", "mermen", "fishman", "fishmen", "fish man", "fish men"],
+    "fish man": ["merman", "mermen"],
+    "four emperors": ["yonko", "emperor", "emperors"],
+    "seven warlords of the sea": ["warlord", "warlords", "shichibukai"],
+    "marines": ["navy"], "marine": ["navy"],
+    "revolutionary army": ["revolutionaries", "revs"],
+    "worst generation": ["supernova", "supernovas"],
+    "cyborg": ["robot"]
+  };
   // Search by trait for Wanted: "fishman", "marine", "zoan", "red hair" -> everyone with that trait.
   // fields = [[field, label], ...]. Plurals and missing spaces/hyphens are forgiven (fishmen = Fish-Man).
   function searchTraits(query, data, fields, opts = {}) {
@@ -553,13 +569,26 @@
         const key = label + "|" + k;            // same label = one group (crew in two columns)
         if (!idx.has(key)) {
           const alt = opts.displayNames && opts.displayNames[v] ? norm(opts.displayNames[v]) : "";
-          idx.set(key, { field, label, value: v, ids: new Set(), keys: [k.replace(/ /g, ""), alt.replace(/ /g, "")].filter(Boolean), words: (k + " " + alt).split(" ").filter(Boolean) });
+          const also = (TRAIT_ALSO[k] || []).map(x => x.replace(/ /g, ""));
+          idx.set(key, { field, label, value: v, ids: new Set(), keys: [k.replace(/ /g, ""), alt.replace(/ /g, ""), ...also].filter(Boolean), words: (k + " " + alt).split(" ").filter(Boolean), phrases: [k, alt].filter(Boolean) });
         }
         idx.get(key).ids.add(c.id);
       }
       data._traitIndex = [...idx.values()];
     }
-    const tries = [...new Set([q, q.replace(/men$/, "man"), q.replace(/ies$/, "y"), q.replace(/es$/, ""), q.replace(/s$/, "")])].filter(t => t.length >= 3);
+    const variants = w => [...new Set([w, w.replace(/men$/, "man"), w.replace(/ies$/, "y"), w.replace(/es$/, ""), w.replace(/s$/, "")])].filter(Boolean);
+    const tries = variants(q).filter(t => t.length >= 3);
+    // "beast pir" -> every typed word starts a word of the name, in order ("Beasts Pirates")
+    const qWords = raw.split(" ").filter(Boolean);
+    const wordsMatch = phrase => {
+      const pw = phrase.split(" "); let at = 0;
+      for (const w of qWords) {
+        const vs = variants(w);
+        while (at < pw.length && !vs.some(v => pw[at].startsWith(v))) at++;
+        if (at++ >= pw.length) return false;
+      }
+      return true;
+    };
     const out = [];
     for (const t of data._traitIndex) {
       let rank = 9;
@@ -571,6 +600,7 @@
         else if (t.keys.some(k => k.startsWith(x))) rank = Math.min(rank, 1);
         else if (raw.length >= 3 && t.words.some(w => w.startsWith(x))) rank = Math.min(rank, 2);
       }
+      if (rank > 1 && qWords.length > 1 && t.phrases.some(wordsMatch)) rank = 1;
       if (rank < 9 && t.ids.size >= (opts.minMembers || 2)) out.push({ ...t, rank, fit: q.length / Math.max(...t.keys.map(k => k.length)) });
     }
     const fame = id => data.byId.get(id)._fame || 0;
