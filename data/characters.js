@@ -115,13 +115,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Absa",
    "Abusaromu",
-   "of the Graveyard",
-   "Suke Suke no Mi",
-   "Suke Suke",
-   "Suke no Mi",
-   "Clear-Clear Fruit",
-   "Clear Fruit",
-   "Clear Clear Fruit"
+   "of the Graveyard"
   ],
   "image": "assets/characters/absalom.png",
   "image_full": "",
@@ -369,13 +363,7 @@ window.CHARACTER_DATA = [
   "name": "Adio Suerte",
   "aliases": [
    "Adio Suerute",
-   "Master of the Gun",
-   "Kote Kote no Mi",
-   "Kote Kote",
-   "Kote no Mi",
-   "Grab-Grab Fruit",
-   "Grab Fruit",
-   "Grab Grab Fruit"
+   "Master of the Gun"
   ],
   "image": "assets/characters/adio-suerte.png",
   "image_full": "",
@@ -838,17 +826,7 @@ window.CHARACTER_DATA = [
  {
   "id": "ain",
   "name": "Ain",
-  "aliases": [
-   "Modo Modo no Mi",
-   "Modo Modo",
-   "Modo no Mi",
-   "Return-Return Fruit",
-   "Return Fruit",
-   "Return Return Fruit",
-   "Back-Back Fruit",
-   "Back Fruit",
-   "Back Back Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/ain.png",
   "image_full": "",
   "epithet": "",
@@ -1555,16 +1533,7 @@ window.CHARACTER_DATA = [
   "name": "Alvida",
   "aliases": [
    "Arubida",
-   "Iron Mace",
-   "Sube Sube no Mi",
-   "Sube Sube",
-   "Sube no Mi",
-   "Slip-Slip Fruit",
-   "Slip Fruit",
-   "Slip Slip Fruit",
-   "Smooth-Smooth Fruit",
-   "Smooth Fruit",
-   "Smooth Smooth Fruit"
+   "Iron Mace"
   ],
   "image": "assets/characters/alvida.png",
   "image_full": "",
@@ -2258,13 +2227,7 @@ window.CHARACTER_DATA = [
   "id": "aramaki",
   "name": "Aramaki",
   "aliases": [
-   "Ryokugyu",
-   "Mori Mori no Mi",
-   "Mori Mori",
-   "Mori no Mi",
-   "Woods-Woods Fruit",
-   "Woods Fruit",
-   "Woods Woods Fruit"
+   "Ryokugyu"
   ],
   "image": "assets/characters/aramaki.png",
   "image_full": "",
@@ -2490,13 +2453,7 @@ window.CHARACTER_DATA = [
   "id": "artur-bacca",
   "name": "Artur Bacca",
   "aliases": [
-   "Arutūru Bakka",
-   "Dero Dero no Mi",
-   "Dero Dero",
-   "Dero no Mi",
-   "Melt-Melt Fruit",
-   "Melt Fruit",
-   "Melt Melt Fruit"
+   "Arutūru Bakka"
   ],
   "image": "assets/characters/artur-bacca.png",
   "image_full": "",
@@ -3121,13 +3078,7 @@ window.CHARACTER_DATA = [
   "name": "Avalo Pizarro",
   "aliases": [
    "Abaro Pisaro",
-   "Corrupt King",
-   "Shima Shima no Mi",
-   "Shima Shima",
-   "Shima no Mi",
-   "Isle-Isle Fruit",
-   "Isle Fruit",
-   "Isle Isle Fruit"
+   "Corrupt King"
   ],
   "image": "assets/characters/avalo-pizarro.png",
   "image_full": "",
@@ -3520,12 +3471,6 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Baby Five",
    "Bebī Faibu",
-   "Buki Buki no Mi",
-   "Buki Buki",
-   "Buki no Mi",
-   "Arms-Arms Fruit",
-   "Arms Fruit",
-   "Arms Arms Fruit",
    "Baby"
   ],
   "image": "assets/characters/baby-5.png",
@@ -3600,16 +3545,7 @@ window.CHARACTER_DATA = [
   "id": "baccarat",
   "name": "Baccarat",
   "aliases": [
-   "Bakara",
-   "Raki Raki no Mi",
-   "Raki Raki",
-   "Raki no Mi",
-   "Luck-Luck Fruit",
-   "Luck Fruit",
-   "Luck Luck Fruit",
-   "Lucky-Lucky Fruit",
-   "Lucky Fruit",
-   "Lucky Lucky Fruit"
+   "Bakara"
   ],
   "image": "assets/characters/baccarat.png",
   "image_full": "",
@@ -4326,14 +4262,8 @@ window.CHARACTER_DATA = [
    "Kumachi",
    "Bāsoromyū Kuma",
    "Tyrant",
-   "Nikyu Nikyu no Mi",
-   "Nikyu Nikyu",
-   "Nikyu no Mi",
-   "Paw-Paw Fruit",
-   "Paw Fruit",
-   "Paw Paw Fruit",
-   "Bartholomew",
-   "Soromy"
+   "Soromy",
+   "Bartholomew"
   ],
   "image": "assets/characters/bartholomew-kuma.png",
   "image_full": "",
@@ -4410,16 +4340,7 @@ window.CHARACTER_DATA = [
   "name": "Bartolomeo",
   "aliases": [
    "Barutoromeo",
-   "the Cannibal",
-   "Bari Bari no Mi",
-   "Bari Bari",
-   "Bari no Mi",
-   "Barrier-Barrier Fruit",
-   "Barrier Fruit",
-   "Barrier Barrier Fruit",
-   "Bari-Bari Fruit",
-   "Bari Fruit",
-   "Bari Bari Fruit"
+   "the Cannibal"
   ],
   "image": "assets/characters/bartolomeo.png",
   "image_full": "",
@@ -4487,13 +4408,7 @@ window.CHARACTER_DATA = [
   "name": "Basil Hawkins",
   "aliases": [
    "Bajiru Hōkinsu",
-   "Magician",
-   "Wara Wara no Mi",
-   "Wara Wara",
-   "Wara no Mi",
-   "Straw-Straw Fruit",
-   "Straw Fruit",
-   "Straw Straw Fruit"
+   "Magician"
   ],
   "image": "assets/characters/basil-hawkins.png",
   "image_full": "",
@@ -4612,7 +4527,8 @@ window.CHARACTER_DATA = [
    "And",
    "Kerville",
    "Basukabiru",
-   "Three-Headed"
+   "Three-Headed",
+   "Headed"
   ],
   "image": "assets/characters/baskerville.png",
   "image_full": "",
@@ -5281,16 +5197,7 @@ window.CHARACTER_DATA = [
   "name": "Bellamy",
   "aliases": [
    "Beramī",
-   "the Hyena",
-   "Bane Bane no Mi",
-   "Bane Bane",
-   "Bane no Mi",
-   "Boing-Boing Fruit",
-   "Boing Fruit",
-   "Boing Boing Fruit",
-   "Spring-Spring Fruit",
-   "Spring Fruit",
-   "Spring Spring Fruit"
+   "the Hyena"
   ],
   "image": "assets/characters/bellamy.png",
   "image_full": "",
@@ -5405,14 +5312,7 @@ window.CHARACTER_DATA = [
   "id": "belo-betty",
   "name": "Belo Betty",
   "aliases": [
-   "Bero Beti",
-   "Kobu Kobu no Mi",
-   "Kobu Kobu",
-   "Kobu no Mi",
-   "Pump-Pump Fruit",
-   "Pump Fruit",
-   "Pump Pump Fruit",
-   "Pump"
+   "Bero Beti"
   ],
   "image": "assets/characters/belo-betty.png",
   "image_full": "",
@@ -5576,13 +5476,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Mr. 2 Bon Kurei",
    "Bensamu",
-   "of the Wild",
-   "Mane Mane no Mi",
-   "Mane Mane",
-   "Mane no Mi",
-   "Clone-Clone Fruit",
-   "Clone Fruit",
-   "Clone Clone Fruit"
+   "of the Wild"
   ],
   "image": "assets/characters/bentham.png",
   "image_full": "",
@@ -5753,16 +5647,7 @@ window.CHARACTER_DATA = [
  {
   "id": "bian",
   "name": "Bian",
-  "aliases": [
-   "Mushi Mushi no Mi",
-   "Mushi Mushi",
-   "Mushi no Mi",
-   "Mushi Mushi no Mi, Model: Suzumebachi",
-   "Bug-Bug Fruit, Model: Hornet",
-   "Bug-Bug Fruit",
-   "Bug Fruit",
-   "Bug Bug Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/bian.png",
   "image_full": "",
   "epithet": "",
@@ -5818,13 +5703,7 @@ window.CHARACTER_DATA = [
   "id": "biblo",
   "name": "Biblo",
   "aliases": [
-   "Biburo",
-   "Iku Iku no Mi",
-   "Iku Iku",
-   "Iku no Mi",
-   "Grow-Grow Fruit",
-   "Grow Fruit",
-   "Grow Grow Fruit"
+   "Biburo"
   ],
   "image": "assets/characters/biblo.png",
   "image_full": "",
@@ -6108,14 +5987,7 @@ window.CHARACTER_DATA = [
   "name": "Binz",
   "aliases": [
    "Bins",
-   "Binzu",
-   "Mosa Mosa no Mi",
-   "Mosa Mosa",
-   "Mosa no Mi",
-   "Grow-Grow Fruit",
-   "Grow Fruit",
-   "Grow Grow Fruit",
-   "Mosa"
+   "Binzu"
   ],
   "image": "assets/characters/binz.png",
   "image_full": "",
@@ -6558,12 +6430,7 @@ window.CHARACTER_DATA = [
   "id": "black-maria",
   "name": "Black Maria",
   "aliases": [
-   "Burakkumaria",
-   "Kumo Kumo no Mi, Model: Rosamygale Grauvogeli",
-   "Kumo Kumo no Mi",
-   "Kumo Kumo",
-   "Kumo no Mi",
-   "Spider-Spider Fruit, Rosamygale grauvogeli Model"
+   "Burakkumaria"
   ],
   "image": "assets/characters/black-maria.png",
   "image_full": "",
@@ -6779,13 +6646,7 @@ window.CHARACTER_DATA = [
   "id": "blamenco",
   "name": "Blamenco",
   "aliases": [
-   "Buramenko",
-   "Poke Poke no Mi",
-   "Poke Poke",
-   "Poke no Mi",
-   "Pocket-Pocket Fruit",
-   "Pocket Fruit",
-   "Pocket Pocket Fruit"
+   "Buramenko"
   ],
   "image": "assets/characters/blamenco.png",
   "image_full": "",
@@ -7042,13 +6903,7 @@ window.CHARACTER_DATA = [
   "id": "bluegrass",
   "name": "Bluegrass",
   "aliases": [
-   "Burūgurasu",
-   "Nori Nori no Mi",
-   "Nori Nori",
-   "Nori no Mi",
-   "Ride-Ride Fruit",
-   "Ride Fruit",
-   "Ride Ride Fruit"
+   "Burūgurasu"
   ],
   "image": "assets/characters/bluegrass.png",
   "image_full": "",
@@ -7157,13 +7012,7 @@ window.CHARACTER_DATA = [
   "id": "blueno",
   "name": "Blueno",
   "aliases": [
-   "Burūno",
-   "Doa Doa no Mi",
-   "Doa Doa",
-   "Doa no Mi",
-   "Door-Door Fruit",
-   "Door Fruit",
-   "Door Door Fruit"
+   "Burūno"
   ],
   "image": "assets/characters/blueno.png",
   "image_full": "",
@@ -7282,13 +7131,7 @@ window.CHARACTER_DATA = [
   "name": "Boa Hancock",
   "aliases": [
    "Boa Hankokku",
-   "Snake Princess",
-   "Mero Mero no Mi",
-   "Mero Mero",
-   "Mero no Mi",
-   "Love-Love Fruit",
-   "Love Fruit",
-   "Love Love Fruit"
+   "Snake Princess"
   ],
   "image": "assets/characters/boa-hancock.png",
   "image_full": "",
@@ -7367,13 +7210,7 @@ window.CHARACTER_DATA = [
   "id": "boa-marigold",
   "name": "Boa Marigold",
   "aliases": [
-   "Boa Marīgōrudo",
-   "Hebi Hebi no Mi, Model: King Cobra",
-   "Hebi Hebi no Mi",
-   "Hebi Hebi",
-   "Hebi no Mi",
-   "Snake-Snake Fruit King Cobra Model",
-   "Snake-Snake Fruit: Model King Cobra"
+   "Boa Marīgōrudo"
   ],
   "image": "assets/characters/boa-marigold.png",
   "image_full": "",
@@ -7442,13 +7279,7 @@ window.CHARACTER_DATA = [
   "id": "boa-sandersonia",
   "name": "Boa Sandersonia",
   "aliases": [
-   "Boa Sandāsonia",
-   "Hebi Hebi no Mi",
-   "Hebi Hebi",
-   "Hebi no Mi",
-   "Hebi Hebi no Mi, Model: Anaconda",
-   "Snake-Snake Fruit Anaconda Model",
-   "Snake-Snake Fruit: Model Anaconda"
+   "Boa Sandāsonia"
   ],
   "image": "assets/characters/boa-sandersonia.png",
   "image_full": "",
@@ -8105,13 +7936,7 @@ window.CHARACTER_DATA = [
   "name": "Borsalino",
   "aliases": [
    "Kizaru",
-   "Borusarīno",
-   "Pika Pika no Mi",
-   "Pika Pika",
-   "Pika no Mi",
-   "Glint-Glint Fruit",
-   "Glint Fruit",
-   "Glint Glint Fruit"
+   "Borusarīno"
   ],
   "image": "assets/characters/borsalino.png",
   "image_full": "",
@@ -8588,13 +8413,7 @@ window.CHARACTER_DATA = [
    "Hone-kichi",
    "The Starving Skeleton",
    "Burukku",
-   "Humming",
-   "Yomi Yomi no Mi",
-   "Yomi Yomi",
-   "Yomi no Mi",
-   "Revive-Revive Fruit",
-   "Revive Fruit",
-   "Revive Revive Fruit"
+   "Humming"
   ],
   "image": "assets/characters/brook.png",
   "image_full": "",
@@ -8878,13 +8697,7 @@ window.CHARACTER_DATA = [
   "id": "buffalo",
   "name": "Buffalo",
   "aliases": [
-   "Baffarō",
-   "Guru Guru no Mi",
-   "Guru Guru",
-   "Guru no Mi",
-   "Spin-Spin Fruit",
-   "Spin Fruit",
-   "Spin Spin Fruit"
+   "Baffarō"
   ],
   "image": "assets/characters/buffalo.png",
   "image_full": "",
@@ -8950,13 +8763,7 @@ window.CHARACTER_DATA = [
   "name": "Buggy",
   "aliases": [
    "Bagī",
-   "the Clown",
-   "Bara Bara no Mi",
-   "Bara Bara",
-   "Bara no Mi",
-   "Chop-Chop Fruit",
-   "Chop Fruit",
-   "Chop Chop Fruit"
+   "the Clown"
   ],
   "image": "assets/characters/buggy.png",
   "image_full": "",
@@ -9201,12 +9008,7 @@ window.CHARACTER_DATA = [
   "id": "bunbuku",
   "name": "Bunbuku",
   "aliases": [
-   "Bunbuku-kun",
-   "Inu Inu no Mi, Model: Tanuki",
-   "Inu Inu no Mi",
-   "Inu Inu",
-   "Inu no Mi",
-   "Dog-Dog Fruit, Model Tanuki"
+   "Bunbuku-kun"
   ],
   "image": "assets/characters/bunbuku.png",
   "image_full": "",
@@ -9587,13 +9389,7 @@ window.CHARACTER_DATA = [
    "Cedar",
    "'Gangster' Gastino",
    "Shīzā Kuraun",
-   "Master",
-   "Gasu Gasu no Mi",
-   "Gasu Gasu",
-   "Gasu no Mi",
-   "Gas-Gas Fruit",
-   "Gas Fruit",
-   "Gas Gas Fruit"
+   "Master"
   ],
   "image": "assets/characters/caesar-clown.png",
   "image_full": "",
@@ -10065,13 +9861,7 @@ window.CHARACTER_DATA = [
   "name": "Capone Bege",
   "aliases": [
    "Kapone Bejji",
-   "Gang",
-   "Shiro Shiro no Mi",
-   "Shiro Shiro",
-   "Shiro no Mi",
-   "Castle-Castle Fruit",
-   "Castle Fruit",
-   "Castle Castle Fruit"
+   "Gang"
   ],
   "image": "assets/characters/capone-bege.png",
   "image_full": "",
@@ -10284,13 +10074,7 @@ window.CHARACTER_DATA = [
   "name": "Caribou",
   "aliases": [
    "Karibū",
-   "Wet-Haired",
-   "Numa Numa no Mi",
-   "Numa Numa",
-   "Numa no Mi",
-   "Swamp-Swamp Fruit",
-   "Swamp Fruit",
-   "Swamp Swamp Fruit"
+   "Wet-Haired"
   ],
   "image": "assets/characters/caribou.png",
   "image_full": "",
@@ -10404,13 +10188,7 @@ window.CHARACTER_DATA = [
    "Sister Carmel",
    "Mountain Witch",
    "Karumeru",
-   "Holy Mother",
-   "Soru Soru no Mi",
-   "Soru Soru",
-   "Soru no Mi",
-   "Soul-Soul Fruit",
-   "Soul Fruit",
-   "Soul Soul Fruit"
+   "Holy Mother"
   ],
   "image": "assets/characters/carmel.png",
   "image_full": "",
@@ -10726,15 +10504,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Catalina Devon",
    "Katarīna Debon",
-   "Crescent Moon Hunter",
-   "Inu Inu no Mi",
-   "Inu Inu",
-   "Inu no Mi",
-   "Inu Inu no Mi, Model: Kyubi no Kitsune",
-   "Dog-Dog Fruit",
-   "Dog Fruit",
-   "Dog Dog Fruit",
-   "Dog-Dog Fruit, Model: Nine Tailed Fox"
+   "Crescent Moon Hunter"
   ],
   "image": "assets/characters/catarina-devon.png",
   "image_full": "",
@@ -11190,17 +10960,7 @@ window.CHARACTER_DATA = [
   "id": "chaka",
   "name": "Chaka",
   "aliases": [
-   "the Jackal",
-   "Inu Inu no Mi, Model: Jackal",
-   "Inu Inu no Mi",
-   "Inu Inu",
-   "Inu no Mi",
-   "Dog-Dog Fruit",
-   "Dog Fruit",
-   "Dog Dog Fruit",
-   "Dog-Dog Fruit, Model: Jackal",
-   "Mutt Mutt Fruit: Jackal Mode",
-   "Mutt-Mutt Fruit: Jackal Strike"
+   "the Jackal"
   ],
   "image": "assets/characters/chaka.png",
   "image_full": "",
@@ -11965,13 +11725,7 @@ window.CHARACTER_DATA = [
   "name": "Charlotte Brûlée",
   "aliases": [
    "Charlotte Brulee",
-   "Shārotto Buryure",
-   "Mira Mira no Mi",
-   "Mira Mira",
-   "Mira no Mi",
-   "Mirror-Mirror Fruit",
-   "Mirror Fruit",
-   "Mirror Mirror Fruit"
+   "Shārotto Buryure"
   ],
   "image": "assets/characters/charlotte-brulee.png",
   "image_full": "",
@@ -12535,13 +12289,7 @@ window.CHARACTER_DATA = [
   "name": "Charlotte Cracker",
   "aliases": [
    "Shārotto Kurakkā",
-   "Thousand Arms",
-   "Bisu Bisu no Mi",
-   "Bisu Bisu",
-   "Bisu no Mi",
-   "Bis-Bis Fruit",
-   "Bis Fruit",
-   "Bis Bis Fruit"
+   "Thousand Arms"
   ],
   "image": "assets/characters/charlotte-cracker.png",
   "image_full": "",
@@ -12707,13 +12455,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-daifuku",
   "name": "Charlotte Daifuku",
   "aliases": [
-   "Shārotto Daifuku",
-   "Hoya Hoya no Mi",
-   "Hoya Hoya",
-   "Hoya no Mi",
-   "Puff-Puff Fruit",
-   "Puff Fruit",
-   "Puff Puff Fruit"
+   "Shārotto Daifuku"
   ],
   "image": "assets/characters/charlotte-daifuku.png",
   "image_full": "",
@@ -13177,13 +12919,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-galette",
   "name": "Charlotte Galette",
   "aliases": [
-   "Shārotto Garetto",
-   "Bata Bata no Mi",
-   "Bata Bata",
-   "Bata no Mi",
-   "Butter-Butter Fruit",
-   "Butter Fruit",
-   "Butter Butter Fruit"
+   "Shārotto Garetto"
   ],
   "image": "assets/characters/charlotte-galette.png",
   "image_full": "",
@@ -13555,14 +13291,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-katakuri",
   "name": "Charlotte Katakuri",
   "aliases": [
-   "Shārotto Katakuri",
-   "Mochi Mochi no Mi",
-   "Mochi Mochi",
-   "Mochi no Mi",
-   "Mochi-Mochi Fruit",
-   "Mochi Fruit",
-   "Mochi Mochi Fruit",
-   "Mochi"
+   "Shārotto Katakuri"
   ],
   "image": "assets/characters/charlotte-katakuri.png",
   "image_full": "",
@@ -13744,13 +13473,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "O-Lin",
    "Shārotto Rinrin",
-   "Big Mom",
-   "Soru Soru no Mi",
-   "Soru Soru",
-   "Soru no Mi",
-   "Soul-Soul Fruit",
-   "Soul Fruit",
-   "Soul Soul Fruit"
+   "Big Mom"
   ],
   "image": "assets/characters/charlotte-linlin.png",
   "image_full": "",
@@ -14313,13 +14036,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Charlotte Montd'Or",
    "Shārotto Mondōru",
-   "Scribe",
-   "Buku Buku no Mi",
-   "Buku Buku",
-   "Buku no Mi",
-   "Book-Book Fruit",
-   "Book Fruit",
-   "Book Book Fruit"
+   "Scribe"
   ],
   "image": "assets/characters/charlotte-mont-d-or.png",
   "image_full": "",
@@ -14560,13 +14277,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-newshi",
   "name": "Charlotte Newshi",
   "aliases": [
-   "Shārotto Nyūshi",
-   "Gocha Gocha no Mi",
-   "Gocha Gocha",
-   "Gocha no Mi",
-   "Pile-Pile Fruit",
-   "Pile Fruit",
-   "Pile Pile Fruit"
+   "Shārotto Nyūshi"
   ],
   "image": "assets/characters/charlotte-newshi.png",
   "image_full": "",
@@ -14886,13 +14597,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-opera",
   "name": "Charlotte Opera",
   "aliases": [
-   "Shārotto Opera",
-   "Kuri Kuri no Mi",
-   "Kuri Kuri",
-   "Kuri no Mi",
-   "Cream-Cream Fruit",
-   "Cream Fruit",
-   "Cream Cream Fruit"
+   "Shārotto Opera"
   ],
   "image": "assets/characters/charlotte-opera.png",
   "image_full": "",
@@ -14951,13 +14656,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-oven",
   "name": "Charlotte Oven",
   "aliases": [
-   "Shārotto Ōbun",
-   "Netsu Netsu no Mi",
-   "Netsu Netsu",
-   "Netsu no Mi",
-   "Heat-Heat Fruit",
-   "Heat Fruit",
-   "Heat Heat Fruit"
+   "Shārotto Ōbun"
   ],
   "image": "assets/characters/charlotte-oven.png",
   "image_full": "",
@@ -15067,13 +14766,7 @@ window.CHARACTER_DATA = [
   "name": "Charlotte Perospero",
   "aliases": [
    "Charlotte Perosperaw",
-   "Shārotto Perosuperō",
-   "Pero Pero no Mi",
-   "Pero Pero",
-   "Pero no Mi",
-   "Lick-Lick Fruit",
-   "Lick Fruit",
-   "Lick Lick Fruit"
+   "Shārotto Perosuperō"
   ],
   "image": "assets/characters/charlotte-perospero.png",
   "image_full": "",
@@ -15294,13 +14987,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-pudding",
   "name": "Charlotte Pudding",
   "aliases": [
-   "Shārotto Purin",
-   "Memo Memo no Mi",
-   "Memo Memo",
-   "Memo no Mi",
-   "Memo-Memo Fruit",
-   "Memo Fruit",
-   "Memo Memo Fruit"
+   "Shārotto Purin"
   ],
   "image": "assets/characters/charlotte-pudding.png",
   "image_full": "",
@@ -15473,13 +15160,7 @@ window.CHARACTER_DATA = [
   "id": "charlotte-smoothie",
   "name": "Charlotte Smoothie",
   "aliases": [
-   "Shārotto Sumūjī",
-   "Shibo Shibo no Mi",
-   "Shibo Shibo",
-   "Shibo no Mi",
-   "Wring-Wring Fruit",
-   "Wring Fruit",
-   "Wring Wring Fruit"
+   "Shārotto Sumūjī"
   ],
   "image": "assets/characters/charlotte-smoothie.png",
   "image_full": "",
@@ -18362,13 +18043,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Mr. 0",
    "Kurokodairu",
-   "Sir",
-   "Suna Suna no Mi",
-   "Suna Suna",
-   "Suna no Mi",
-   "Sand-Sand Fruit",
-   "Sand Fruit",
-   "Sand Sand Fruit"
+   "Sir"
   ],
   "image": "assets/characters/crocodile.png",
   "image_full": "",
@@ -19310,16 +18985,7 @@ window.CHARACTER_DATA = [
   "name": "Dalton",
   "aliases": [
    "Dolton",
-   "Doruton",
-   "Ushi Ushi no Mi, Model: Bison",
-   "Ushi Ushi no Mi",
-   "Ushi Ushi",
-   "Ushi no Mi",
-   "Ox-Ox Fruit, Bison Model",
-   "Ox-Ox Fruit",
-   "Ox Fruit",
-   "Ox Ox Fruit",
-   "Ox-Ox Fruit, Bison Form"
+   "Doruton"
   ],
   "image": "assets/characters/dalton.png",
   "image_full": "",
@@ -19659,13 +19325,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Mr. 1",
    "Dazu Bōnesu",
-   "The Killer",
-   "Supa Supa no Mi",
-   "Supa Supa",
-   "Supa no Mi",
-   "Dice-Dice Fruit",
-   "Dice Fruit",
-   "Dice Dice Fruit"
+   "The Killer"
   ],
   "image": "assets/characters/daz-bonez.png",
   "image_full": "",
@@ -20186,14 +19846,7 @@ window.CHARACTER_DATA = [
  {
   "id": "diamante",
   "name": "Diamante",
-  "aliases": [
-   "Hira Hira no Mi",
-   "Hira Hira",
-   "Hira no Mi",
-   "Ripple-Ripple Fruit",
-   "Ripple Fruit",
-   "Ripple Ripple Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/diamante.png",
   "image_full": "",
   "epithet": "",
@@ -20804,13 +20457,7 @@ window.CHARACTER_DATA = [
   "name": "Doc Q",
   "aliases": [
    "Doku Kyū",
-   "Death God",
-   "Shiku Shiku no Mi",
-   "Shiku Shiku",
-   "Shiku no Mi",
-   "Sick-Sick Fruit",
-   "Sick Fruit",
-   "Sick Sick Fruit"
+   "Death God"
   ],
   "image": "assets/characters/doc-q.png",
   "image_full": "",
@@ -21436,13 +21083,7 @@ window.CHARACTER_DATA = [
    "Don Quixote Doflamingo",
    "Joker",
    "Donkihōte Dofuramingo",
-   "Heavenly Yaksha",
-   "Ito Ito no Mi",
-   "Ito Ito",
-   "Ito no Mi",
-   "String-String Fruit",
-   "String Fruit",
-   "String String Fruit"
+   "Heavenly Yaksha"
   ],
   "image": "assets/characters/donquixote-doflamingo.png",
   "image_full": "",
@@ -21624,13 +21265,7 @@ window.CHARACTER_DATA = [
    "Don Quixote Rocinante",
    "Don Quixote Rosinante",
    "Corazon",
-   "Donkihōte Roshinante",
-   "Nagi Nagi no Mi",
-   "Nagi Nagi",
-   "Nagi no Mi",
-   "Calm-Calm Fruit",
-   "Calm Fruit",
-   "Calm Calm Fruit"
+   "Donkihōte Roshinante"
   ],
   "image": "assets/characters/donquixote-rosinante.png",
   "image_full": "",
@@ -22346,16 +21981,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Miss Merry Christmas",
    "Dorofī",
-   "Town-Collapser",
-   "Mogu Mogu no Mi",
-   "Mogu Mogu",
-   "Mogu no Mi",
-   "Mole-Mole Fruit",
-   "Mole Fruit",
-   "Mole Mole Fruit",
-   "Diggy-Diggy Fruit",
-   "Diggy Fruit",
-   "Diggy Diggy Fruit"
+   "Town-Collapser"
   ],
   "image": "assets/characters/drophy.png",
   "image_full": "",
@@ -22622,13 +22248,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Ward Newgate",
    "Edowādo Nyūgēto",
-   "Whitebeard",
-   "Gura Gura no Mi",
-   "Gura Gura",
-   "Gura no Mi",
-   "Tremor-Tremor Fruit",
-   "Tremor Fruit",
-   "Tremor Tremor Fruit"
+   "Whitebeard"
   ],
   "image": "assets/characters/edward-newgate.png",
   "image_full": "",
@@ -23223,16 +22843,7 @@ window.CHARACTER_DATA = [
   "name": "Emporio Ivankov",
   "aliases": [
    "Enporio Iwankofu",
-   "Okama King",
-   "Horu Horu no Mi",
-   "Horu Horu",
-   "Horu no Mi",
-   "Horm-Horm Fruit",
-   "Horm Fruit",
-   "Horm Horm Fruit",
-   "Hor-Hor Fruit",
-   "Hor Fruit",
-   "Hor Hor Fruit"
+   "Okama King"
   ],
   "image": "assets/characters/emporio-ivankov.png",
   "image_full": "",
@@ -23311,13 +22922,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Eneru",
    "Crunchyroll",
-   "God",
-   "Goro Goro no Mi",
-   "Goro Goro",
-   "Goro no Mi",
-   "Rumble-Rumble Fruit",
-   "Rumble Fruit",
-   "Rumble Rumble Fruit"
+   "God"
   ],
   "image": "assets/characters/enel.png",
   "image_full": "",
@@ -23900,13 +23505,7 @@ window.CHARACTER_DATA = [
   "name": "Eustass Kid",
   "aliases": [
    "Yūsutasu Kiddo",
-   "Captain",
-   "Jiki Jiki no Mi",
-   "Jiki Jiki",
-   "Jiki no Mi",
-   "Magnet-Magnet Fruit",
-   "Magnet Fruit",
-   "Magnet Magnet Fruit"
+   "Captain"
   ],
   "image": "assets/characters/eustass-kid.png",
   "image_full": "",
@@ -24910,13 +24509,7 @@ window.CHARACTER_DATA = [
   "name": "Foxy",
   "aliases": [
    "Fokushī",
-   "Silver Fox",
-   "Noro Noro no Mi",
-   "Noro Noro",
-   "Noro no Mi",
-   "Slow-Slow Fruit",
-   "Slow Fruit",
-   "Slow Slow Fruit"
+   "Silver Fox"
   ],
   "image": "assets/characters/foxy.png",
   "image_full": "",
@@ -25688,16 +25281,7 @@ window.CHARACTER_DATA = [
   "name": "Funkfreed",
   "aliases": [
    "Funk Freed",
-   "Fankufurīdo",
-   "Zou Zou no Mi",
-   "Zou Zou",
-   "Zou no Mi",
-   "Elephant-Elephant Fruit",
-   "Elephant Fruit",
-   "Elephant Elephant Fruit",
-   "Eleph-Eleph Fruit",
-   "Eleph Fruit",
-   "Eleph Eleph Fruit"
+   "Fankufurīdo"
   ],
   "image": "assets/characters/funkfreed.png",
   "image_full": "",
@@ -26202,13 +25786,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Mr. 3",
    "Gyarudīno",
-   "Loan Shark",
-   "Doru Doru no Mi",
-   "Doru Doru",
-   "Doru no Mi",
-   "Wax-Wax Fruit",
-   "Wax Fruit",
-   "Wax Wax Fruit"
+   "Loan Shark"
   ],
   "image": "assets/characters/galdino.png",
   "image_full": "",
@@ -26821,17 +26399,7 @@ window.CHARACTER_DATA = [
  {
   "id": "ganzui",
   "name": "Ganzui",
-  "aliases": [
-   "Bomu Bomu no Mi",
-   "Bomu Bomu",
-   "Bomu no Mi",
-   "Bomb-Bomb Fruit",
-   "Bomb Fruit",
-   "Bomb Bomb Fruit",
-   "Boom-Boom Fruit",
-   "Boom Fruit",
-   "Boom Boom Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/ganzui.png",
   "image_full": "",
   "epithet": "",
@@ -27144,13 +26712,7 @@ window.CHARACTER_DATA = [
   "name": "Gecko Moria",
   "aliases": [
    "Kouzuki Moria",
-   "Gekkō Moria",
-   "Kage Kage no Mi",
-   "Kage Kage",
-   "Kage no Mi",
-   "Shadow-Shadow Fruit",
-   "Shadow Fruit",
-   "Shadow Shadow Fruit"
+   "Gekkō Moria"
   ],
   "image": "assets/characters/gecko-moria.png",
   "image_full": "",
@@ -27281,16 +26843,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Mr. 5",
    "Jemu",
-   "of the Border",
-   "Bomu Bomu no Mi",
-   "Bomu Bomu",
-   "Bomu no Mi",
-   "Bomb-Bomb Fruit",
-   "Bomb Fruit",
-   "Bomb Bomb Fruit",
-   "Boom-Boom Fruit",
-   "Boom Fruit",
-   "Boom Boom Fruit"
+   "of the Border"
   ],
   "image": "assets/characters/gem.png",
   "image_full": "",
@@ -27735,13 +27288,7 @@ window.CHARACTER_DATA = [
    "Guild Tesoro",
    "Gildo Tesoro",
    "Girudo Tezōro",
-   "Golden Emperor",
-   "Goru Goru no Mi",
-   "Goru Goru",
-   "Goru no Mi",
-   "Gol-Gol Fruit",
-   "Gol Fruit",
-   "Gol Gol Fruit"
+   "Golden Emperor"
   ],
   "image": "assets/characters/gild-tesoro.png",
   "image_full": "",
@@ -27812,13 +27359,7 @@ window.CHARACTER_DATA = [
   "id": "gill-bastar",
   "name": "Gill Bastar",
   "aliases": [
-   "Giru Basutā",
-   "Horo Horo no Mi",
-   "Horo Horo",
-   "Horo no Mi",
-   "Hollow-Hollow Fruit",
-   "Hollow Fruit",
-   "Hollow Hollow Fruit"
+   "Giru Basutā"
   ],
   "image": "assets/characters/gill-bastar.png",
   "image_full": "",
@@ -28209,13 +27750,7 @@ window.CHARACTER_DATA = [
   "id": "giolla",
   "name": "Giolla",
   "aliases": [
-   "Jōra",
-   "Ato Ato no Mi",
-   "Ato Ato",
-   "Ato no Mi",
-   "Art-Art Fruit",
-   "Art Fruit",
-   "Art Art Fruit"
+   "Jōra"
   ],
   "image": "assets/characters/giolla.png",
   "image_full": "",
@@ -28466,14 +28001,7 @@ window.CHARACTER_DATA = [
   "id": "gladius",
   "name": "Gladius",
   "aliases": [
-   "Guradiusu",
-   "Pamu Pamu no Mi",
-   "Pamu Pamu",
-   "Pamu no Mi",
-   "Pop-Pop Fruit",
-   "Pop Fruit",
-   "Pop Pop Fruit",
-   "Pop"
+   "Guradiusu"
   ],
   "image": "assets/characters/gladius.png",
   "image_full": "",
@@ -32547,16 +32075,7 @@ window.CHARACTER_DATA = [
   "id": "hina",
   "name": "Hina",
   "aliases": [
-   "Black Cage",
-   "Ori Ori no Mi",
-   "Ori Ori",
-   "Ori no Mi",
-   "Bind-Bind Fruit",
-   "Bind Fruit",
-   "Bind Bind Fruit",
-   "Cage-Cage Fruit",
-   "Cage Fruit",
-   "Cage Cage Fruit"
+   "Black Cage"
   ],
   "image": "assets/characters/hina.png",
   "image_full": "",
@@ -34058,15 +33577,7 @@ window.CHARACTER_DATA = [
   "id": "hound",
   "name": "Hound",
   "aliases": [
-   "Haundo",
-   "Inu Inu no Mi, Model: Hound",
-   "Inu Inu no Mi",
-   "Inu Inu",
-   "Inu no Mi",
-   "Dog-Dog Fruit",
-   "Dog Fruit",
-   "Dog Dog Fruit",
-   "Dog-Dog Fruit, Model: Hound"
+   "Haundo"
   ],
   "image": "assets/characters/hound.png",
   "image_full": "",
@@ -35077,17 +34588,7 @@ window.CHARACTER_DATA = [
  {
   "id": "inazuma",
   "name": "Inazuma",
-  "aliases": [
-   "Choki Choki no Mi",
-   "Choki Choki",
-   "Choki no Mi",
-   "Snip-Snip Fruit",
-   "Snip Fruit",
-   "Snip Snip Fruit",
-   "Shear-Shear Fruit",
-   "Shear Fruit",
-   "Shear Shear Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/inazuma.png",
   "image_full": "",
   "epithet": "",
@@ -35871,13 +35372,7 @@ window.CHARACTER_DATA = [
   "name": "Issho",
   "aliases": [
    "Fujitora",
-   "Isshō",
-   "Zushi Zushi no Mi",
-   "Zushi Zushi",
-   "Zushi no Mi",
-   "Press-Press Fruit",
-   "Press Fruit",
-   "Press Press Fruit"
+   "Isshō"
   ],
   "image": "assets/characters/issho.png",
   "image_full": "",
@@ -36291,12 +35786,7 @@ window.CHARACTER_DATA = [
   "id": "jabra",
   "name": "Jabra",
   "aliases": [
-   "Jabura",
-   "Inu Inu no Mi, Model: Wolf",
-   "Inu Inu no Mi",
-   "Inu Inu",
-   "Inu no Mi",
-   "Mutt-Mutt Fruit Wolf Model"
+   "Jabura"
   ],
   "image": "assets/characters/jabra.png",
   "image_full": "",
@@ -36371,13 +35861,7 @@ window.CHARACTER_DATA = [
   "name": "Jack",
   "aliases": [
    "Jakku",
-   "the Drought",
-   "Zou Zou no Mi, Model: Mammoth",
-   "Zou Zou no Mi",
-   "Zou Zou",
-   "Zou no Mi",
-   "Elephant-Elephant Fruit, Ancient Zoan Model: Mammoth, Eleph-Eleph Fruit Ancient Zoan Model Mammoth",
-   "Elephant-Elephant Fruit, Ancient Zoan"
+   "the Drought"
   ],
   "image": "assets/characters/jack.png",
   "image_full": "",
@@ -37373,13 +36857,7 @@ window.CHARACTER_DATA = [
    "G. Zass Burgess",
    "Mr. Store",
    "Jīzasu Bājesu",
-   "Champion",
-   "Riki Riki no Mi",
-   "Riki Riki",
-   "Riki no Mi",
-   "Strong-Strong Fruit",
-   "Strong Fruit",
-   "Strong Strong Fruit"
+   "Champion"
   ],
   "image": "assets/characters/jesus-burgess.png",
   "image_full": "",
@@ -37444,13 +36922,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Conney",
    "Juerī Bonī",
-   "Big Eater",
-   "Toshi Toshi no Mi",
-   "Toshi Toshi",
-   "Toshi no Mi",
-   "Age-Age Fruit",
-   "Age Fruit",
-   "Age Age Fruit"
+   "Big Eater"
   ],
   "image": "assets/characters/jewelry-bonney.png",
   "image_full": "",
@@ -38055,13 +37527,7 @@ window.CHARACTER_DATA = [
   "name": "John",
   "aliases": [
    "Jon",
-   "Captain",
-   "Jiki Jiki no Mi",
-   "Jiki Jiki",
-   "Jiki no Mi",
-   "Magnet-Magnet Fruit",
-   "Magnet Fruit",
-   "Magnet Magnet Fruit"
+   "Captain"
   ],
   "image": "assets/characters/john.png",
   "image_full": "",
@@ -38426,15 +37892,7 @@ window.CHARACTER_DATA = [
   "name": "Joy Boy",
   "aliases": [
    "Joyboy",
-   "Joi Bōi",
-   "Hito Hito no Mi",
-   "Hito Hito",
-   "Hito no Mi",
-   "Hito Hito no Mi, Model: Nika",
-   "Human-Human Fruit, Model: Nika",
-   "Human-Human Fruit",
-   "Human Fruit",
-   "Human Human Fruit"
+   "Joi Bōi"
   ],
   "image": "assets/characters/joy-boy.png",
   "image_full": "",
@@ -38493,13 +37951,7 @@ window.CHARACTER_DATA = [
   "id": "jozu",
   "name": "Jozu",
   "aliases": [
-   "Diamond",
-   "Kira Kira no Mi",
-   "Kira Kira",
-   "Kira no Mi",
-   "Twinkle-Twinkle Fruit",
-   "Twinkle Fruit",
-   "Twinkle Twinkle Fruit"
+   "Diamond"
   ],
   "image": "assets/characters/jozu.png",
   "image_full": "",
@@ -38924,15 +38376,7 @@ window.CHARACTER_DATA = [
   "id": "kabu",
   "name": "Kabu",
   "aliases": [
-   "Cub",
-   "Mushi Mushi no Mi",
-   "Mushi Mushi",
-   "Mushi no Mi",
-   "Mushi Mushi no Mi, Model: Kabutomushi",
-   "Bug-Bug Fruit",
-   "Bug Fruit",
-   "Bug Bug Fruit",
-   "Bug-Bug Fruit, Model: Rhinoceros beetle"
+   "Cub"
   ],
   "image": "assets/characters/kabu.png",
   "image_full": "",
@@ -39144,16 +38588,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Kaido",
    "Kaidō",
-   "of the Beasts",
-   "Uo Uo no Mi",
-   "Uo Uo",
-   "Uo no Mi",
-   "Uo Uo no Mi, Model: Seiryu",
-   "Fish-Fish Fruit, Model: Azure Dragon",
-   "Fish-Fish Fruit",
-   "Fish Fruit",
-   "Fish Fish Fruit",
-   "Fish-Fish Fruit, Azure Dragon Model"
+   "of the Beasts"
   ],
   "image": "assets/characters/kaidou.png",
   "image_full": "",
@@ -39377,12 +38812,7 @@ window.CHARACTER_DATA = [
   "id": "kaku",
   "name": "Kaku",
   "aliases": [
-   "Mountain Wind",
-   "Ushi Ushi no Mi",
-   "Ushi Ushi",
-   "Ushi no Mi",
-   "Ushi Ushi no Mi, Model: Giraffe",
-   "Ox-Ox Fruit Giraffe Model"
+   "Mountain Wind"
   ],
   "image": "assets/characters/kaku.png",
   "image_full": "",
@@ -39652,13 +39082,7 @@ window.CHARACTER_DATA = [
   "id": "kalifa",
   "name": "Kalifa",
   "aliases": [
-   "Karifa",
-   "Awa Awa no Mi",
-   "Awa Awa",
-   "Awa no Mi",
-   "Bubble-Bubble Fruit",
-   "Bubble Fruit",
-   "Bubble Bubble Fruit"
+   "Karifa"
   ],
   "image": "assets/characters/kalifa.png",
   "image_full": "",
@@ -40109,14 +39533,7 @@ window.CHARACTER_DATA = [
  {
   "id": "karasu",
   "name": "Karasu",
-  "aliases": [
-   "Susu Susu no Mi",
-   "Susu Susu",
-   "Susu no Mi",
-   "Soot-Soot Fruit",
-   "Soot Fruit",
-   "Soot Soot Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/karasu.png",
   "image_full": "",
   "epithet": "",
@@ -40959,13 +40376,7 @@ window.CHARACTER_DATA = [
   "id": "kelly-funk",
   "name": "Kelly Funk",
   "aliases": [
-   "Kerī Fanku",
-   "Jake Jake no Mi",
-   "Jake Jake",
-   "Jake no Mi",
-   "Jacket-Jacket Fruit",
-   "Jacket Fruit",
-   "Jacket Jacket Fruit"
+   "Kerī Fanku"
   ],
   "image": "assets/characters/kelly-funk.png",
   "image_full": "",
@@ -41685,14 +41096,7 @@ window.CHARACTER_DATA = [
   "id": "kin-emon",
   "name": "Kin'emon",
   "aliases": [
-   "Foxfire",
-   "Fuku Fuku no Mi",
-   "Fuku Fuku",
-   "Fuku no Mi",
-   "Garb-Garb Jutsu",
-   "Garb-Garb Fruit",
-   "Garb Fruit",
-   "Garb Garb Fruit"
+   "Foxfire"
   ],
   "image": "assets/characters/kin-emon.png",
   "image_full": "",
@@ -41861,15 +41265,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Arber",
    "Kingu",
-   "the Conflagration",
-   "Ryu Ryu no Mi, Model: Pteranodon",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Model: Pteranodon",
-   "Dragon-Dragon Fruit",
-   "Dragon Fruit",
-   "Dragon Dragon Fruit"
+   "the Conflagration"
   ],
   "image": "assets/characters/king.png",
   "image_full": "",
@@ -43285,16 +42681,7 @@ window.CHARACTER_DATA = [
   "name": "Kouzuki Momonosuke",
   "aliases": [
    "Kozuki Momonosuke",
-   "Kōzuki Momonosuke",
-   "Uo Uo no Mi",
-   "Uo Uo",
-   "Uo no Mi",
-   "Uo Uo no Mi, Model: Seiryu",
-   "Fish-Fish Fruit, Model: Azure Dragon",
-   "Fish-Fish Fruit",
-   "Fish Fruit",
-   "Fish Fish Fruit",
-   "Fish-Fish Fruit, Azure Dragon Model"
+   "Kōzuki Momonosuke"
   ],
   "image": "assets/characters/kouzuki-momonosuke.png",
   "image_full": "",
@@ -43514,14 +42901,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Kozuki Toki",
    "Amatsuki Toki",
-   "Kōzuki Toki",
-   "Toki Toki no Mi",
-   "Toki Toki",
-   "Toki no Mi",
-   "Time-Time Ability",
-   "Time-Time Fruit",
-   "Time Fruit",
-   "Time Time Fruit"
+   "Kōzuki Toki"
   ],
   "image": "assets/characters/kouzuki-toki.png",
   "image_full": "",
@@ -43835,13 +43215,7 @@ window.CHARACTER_DATA = [
   "id": "kujaku",
   "name": "Kujaku",
   "aliases": [
-   "Kujyaku",
-   "Muchi Muchi no Mi",
-   "Muchi Muchi",
-   "Muchi no Mi",
-   "Whip-Whip Fruit",
-   "Whip Fruit",
-   "Whip Whip Fruit"
+   "Kujyaku"
   ],
   "image": "assets/characters/kujaku.png",
   "image_full": "",
@@ -44647,14 +44021,7 @@ window.CHARACTER_DATA = [
  {
   "id": "kurozumi-higurashi",
   "name": "Kurozumi Higurashi",
-  "aliases": [
-   "Mane Mane no Mi",
-   "Mane Mane",
-   "Mane no Mi",
-   "Clone-Clone Fruit",
-   "Clone Fruit",
-   "Clone Clone Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/kurozumi-higurashi.png",
   "image_full": "",
   "epithet": "",
@@ -44713,13 +44080,7 @@ window.CHARACTER_DATA = [
   "name": "Kurozumi Kanjuro",
   "aliases": [
    "Kurozumi Kanjūrō",
-   "Evening Shower",
-   "Fude Fude no Mi",
-   "Fude Fude",
-   "Fude no Mi",
-   "Brush-Brush Fruit",
-   "Brush Fruit",
-   "Brush Brush Fruit"
+   "Evening Shower"
   ],
   "image": "assets/characters/kurozumi-kanjuro.png",
   "image_full": "",
@@ -44792,16 +44153,7 @@ window.CHARACTER_DATA = [
  {
   "id": "kurozumi-orochi",
   "name": "Kurozumi Orochi",
-  "aliases": [
-   "Hebi Hebi no Mi",
-   "Hebi Hebi",
-   "Hebi no Mi",
-   "Hebi Hebi no Mi, Model: Yamata no Orochi",
-   "Snake-Snake Fruit",
-   "Snake Fruit",
-   "Snake Snake Fruit",
-   "Snake-Snake Fruit, Model: Eight Headed Serpent"
-  ],
+  "aliases": [],
   "image": "assets/characters/kurozumi-orochi.png",
   "image_full": "",
   "epithet": "",
@@ -44869,14 +44221,7 @@ window.CHARACTER_DATA = [
  {
   "id": "kurozumi-semimaru",
   "name": "Kurozumi Semimaru",
-  "aliases": [
-   "Bari Bari no Mi",
-   "Bari Bari",
-   "Bari no Mi",
-   "Barrier-Barrier Fruit",
-   "Barrier Fruit",
-   "Barrier Barrier Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/kurozumi-semimaru.png",
   "image_full": "",
   "epithet": "",
@@ -44936,14 +44281,7 @@ window.CHARACTER_DATA = [
  {
   "id": "kurozumi-tama",
   "name": "Kurozumi Tama",
-  "aliases": [
-   "Kibi Kibi no Mi",
-   "Kibi Kibi",
-   "Kibi no Mi",
-   "Millet-Millet Fruit",
-   "Millet Fruit",
-   "Millet Millet Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/kurozumi-tama.png",
   "image_full": "",
   "epithet": "",
@@ -45094,16 +44432,7 @@ window.CHARACTER_DATA = [
   "id": "kuzan",
   "name": "Kuzan",
   "aliases": [
-   "Aokiji",
-   "Hie Hie no Mi",
-   "Hie Hie",
-   "Hie no Mi",
-   "Ice-Ice Fruit",
-   "Ice Fruit",
-   "Ice Ice Fruit",
-   "Chilly-Chilly Fruit",
-   "Chilly Fruit",
-   "Chilly Chilly Fruit"
+   "Aokiji"
   ],
   "image": "assets/characters/kuzan.png",
   "image_full": "",
@@ -45832,16 +45161,7 @@ window.CHARACTER_DATA = [
   "id": "lassoo",
   "name": "Lassoo",
   "aliases": [
-   "Rassū",
-   "Inu Inu no Mi",
-   "Inu Inu",
-   "Inu no Mi",
-   "Inu Inu no Mi, Model: Dachshund",
-   "Mutt-Mutt Fruit, Dachshund Type",
-   "Mutt-Mutt Fruit",
-   "Mutt Fruit",
-   "Mutt Mutt Fruit",
-   "Mutt-Mutt Fruit Fruit, Dachshund Variety"
+   "Rassū"
   ],
   "image": "assets/characters/lassoo.png",
   "image_full": "",
@@ -46039,14 +45359,7 @@ window.CHARACTER_DATA = [
   "name": "Leo",
   "aliases": [
    "Reo",
-   "Warrior",
-   "Nui Nui no Mi",
-   "Nui Nui",
-   "Nui no Mi",
-   "Stitch-Stitch Power",
-   "Sew-Sew Fruit",
-   "Sew Fruit",
-   "Sew Sew Fruit"
+   "Warrior"
   ],
   "image": "assets/characters/leo.png",
   "image_full": "",
@@ -46573,10 +45886,7 @@ window.CHARACTER_DATA = [
   "id": "lip-shark",
   "name": "Lip Shark",
   "aliases": [
-   "Rippushāku",
-   "Kyara Kyara no Mi",
-   "Kyara Kyara",
-   "Kyara no Mi"
+   "Rippushāku"
   ],
   "image": "assets/characters/lip-shark.png",
   "image_full": "",
@@ -46683,15 +45993,7 @@ window.CHARACTER_DATA = [
   "name": "Loki",
   "aliases": [
    "Roki",
-   "Accursed Prince",
-   "Ryu Ryu no Mi, Model: Nidhöggr",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Model: Nidhöggr",
-   "Dragon-Dragon Fruit",
-   "Dragon Fruit",
-   "Dragon Dragon Fruit"
+   "Accursed Prince"
   ],
   "image": "assets/characters/loki.png",
   "image_full": "",
@@ -46914,10 +46216,10 @@ window.CHARACTER_DATA = [
    "Local Sea Monster",
    "Master of the Near Sea",
    "Kinkai no Nushi",
-   "Coast",
-   "Kinkai",
+   "Local",
    "Nushi",
-   "Local"
+   "Coast",
+   "Kinkai"
   ],
   "image": "assets/characters/lord-of-the-coast.png",
   "image_full": "",
@@ -47291,13 +46593,7 @@ window.CHARACTER_DATA = [
   "name": "Machvise",
   "aliases": [
    "Mach Vise",
-   "Mahhabaisu",
-   "Ton Ton no Mi",
-   "Ton Ton",
-   "Ton no Mi",
-   "Ton-Ton Fruit",
-   "Ton Fruit",
-   "Ton Ton Fruit"
+   "Mahhabaisu"
   ],
   "image": "assets/characters/machvise.png",
   "image_full": "",
@@ -47558,13 +46854,7 @@ window.CHARACTER_DATA = [
   "id": "magellan",
   "name": "Magellan",
   "aliases": [
-   "Mazeran",
-   "Doku Doku no Mi",
-   "Doku Doku",
-   "Doku no Mi",
-   "Venom-Venom Fruit",
-   "Venom Fruit",
-   "Venom Venom Fruit"
+   "Mazeran"
   ],
   "image": "assets/characters/magellan.png",
   "image_full": "",
@@ -48172,13 +47462,7 @@ window.CHARACTER_DATA = [
    "Saint Manmayer Gunko",
    "Shuri",
    "Manmaiyā Gunko Gū",
-   "Father-Killing Princess",
-   "Aro Aro no Mi",
-   "Aro Aro",
-   "Aro no Mi",
-   "Arrow-Arrow Fruit",
-   "Arrow Fruit",
-   "Arrow Arrow Fruit"
+   "Father-Killing Princess"
   ],
   "image": "assets/characters/manmayer-gunko.png",
   "image_full": "",
@@ -48293,13 +47577,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Mancherie",
    "Manshelly",
-   "Mansherī",
-   "Chiyu Chiyu no Mi",
-   "Chiyu Chiyu",
-   "Chiyu no Mi",
-   "Heal-Heal Fruit",
-   "Heal Fruit",
-   "Heal Heal Fruit"
+   "Mansherī"
   ],
   "image": "assets/characters/mansherry.png",
   "image_full": "",
@@ -48982,19 +48260,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Marshall D. Teech",
    "Māsharu Dī Tīchi",
-   "Blackbeard",
-   "Yami Yami no Mi",
-   "Yami Yami",
-   "Yami no Mi",
-   "Gura Gura no Mi",
-   "Gura Gura",
-   "Gura no Mi",
-   "Dark-Dark Fruit",
-   "Dark Fruit",
-   "Dark Dark Fruit",
-   "Tremor-Tremor Fruit",
-   "Tremor Fruit",
-   "Tremor Tremor Fruit"
+   "Blackbeard"
   ],
   "image": "assets/characters/marshall-d-teach.png",
   "image_full": "",
@@ -50540,13 +49806,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Miss Valentine",
    "Mikīta",
-   "Courier",
-   "Kiro Kiro no Mi",
-   "Kiro Kiro",
-   "Kiro no Mi",
-   "Kilo-Kilo Fruit",
-   "Kilo Fruit",
-   "Kilo Kilo Fruit"
+   "Courier"
   ],
   "image": "assets/characters/mikita.png",
   "image_full": "",
@@ -52698,14 +51958,7 @@ window.CHARACTER_DATA = [
   "id": "monet",
   "name": "Monet",
   "aliases": [
-   "Mone",
-   "Yuki Yuki no Mi",
-   "Yuki Yuki",
-   "Yuki no Mi",
-   "Snow-Snow Fruit",
-   "Snow Fruit",
-   "Snow Snow Fruit",
-   "Yuki"
+   "Mone"
   ],
   "image": "assets/characters/monet.png",
   "image_full": "",
@@ -53007,20 +52260,10 @@ window.CHARACTER_DATA = [
    "Joy Boy",
    "Monkī Dī Rufi",
    "Straw Hat",
-   "Gomu Gomu no Mi",
-   "Gomu Gomu",
-   "Gomu no Mi",
-   "Hito Hito no Mi",
-   "Hito Hito",
-   "Hito no Mi",
-   "Hito Hito no Mi, Model: Nika",
-   "Gum-Gum Fruit",
-   "Gum Fruit",
-   "Gum Gum Fruit",
-   "Umi",
-   "Rufi",
+   "Hat",
    "Luffy",
-   "Hat"
+   "Rufi",
+   "Umi"
   ],
   "image": "assets/characters/monkey-d-luffy.png",
   "image_full": "",
@@ -53539,16 +52782,7 @@ window.CHARACTER_DATA = [
   "name": "Morgans",
   "aliases": [
    "Moruganzu",
-   "Big News",
-   "Tori Tori no Mi",
-   "Tori Tori",
-   "Tori no Mi",
-   "Tori Tori no Mi, Model: Albatross",
-   "Tweet-Tweet Fruit, Albatross Model",
-   "Bird-Bird Fruit, Model: Albatross",
-   "Bird-Bird Fruit",
-   "Bird Fruit",
-   "Bird Bird Fruit"
+   "Big News"
   ],
   "image": "assets/characters/morgans.png",
   "image_full": "",
@@ -53661,13 +52895,7 @@ window.CHARACTER_DATA = [
   "name": "Morley",
   "aliases": [
    "Mōrī",
-   "of Fur",
-   "Oshi Oshi no Mi",
-   "Oshi Oshi",
-   "Oshi no Mi",
-   "Push-Push Fruit",
-   "Push Fruit",
-   "Push Push Fruit"
+   "of Fur"
   ],
   "image": "assets/characters/morley.png",
   "image_full": "",
@@ -56971,10 +56199,7 @@ window.CHARACTER_DATA = [
   "name": "Nerona Imu",
   "aliases": [
    "St. Nerona Imu",
-   "Nerona Imu Sei",
-   "Akuma no Mi",
-   "Akuma",
-   "The Devil's Fruit"
+   "Nerona Imu Sei"
   ],
   "image": "assets/characters/nerona-imu.png",
   "image_full": "",
@@ -57148,15 +56373,6 @@ window.CHARACTER_DATA = [
    "O-Robi",
    "Niko Robin",
    "Devil Child",
-   "Hana Hana no Mi",
-   "Hana Hana",
-   "Hana no Mi",
-   "Hana-Hana Fruit",
-   "Hana Fruit",
-   "Hana Hana Fruit",
-   "Flower-Flower Fruit",
-   "Flower Fruit",
-   "Flower Flower Fruit",
    "Child"
   ],
   "image": "assets/characters/nico-robin.png",
@@ -58924,11 +58140,7 @@ window.CHARACTER_DATA = [
   "name": "Onimaru",
   "aliases": [
    "Gyukimaru",
-   "Gyukimaru on Oihagi Bridge",
-   "Hito Hito no Mi",
-   "Hito Hito",
-   "Hito no Mi",
-   "Hito Hito no Mi, Model: Onyudo"
+   "Gyukimaru on Oihagi Bridge"
   ],
   "image": "assets/characters/onimaru.png",
   "image_full": "",
@@ -59373,15 +58585,7 @@ window.CHARACTER_DATA = [
   "id": "page-one",
   "name": "Page One",
   "aliases": [
-   "Pējiwan",
-   "Ryu Ryu no Mi, Model: Spinosaurus",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Model: Spinosaurus",
-   "Dragon-Dragon Fruit",
-   "Dragon Fruit",
-   "Dragon Dragon Fruit"
+   "Pējiwan"
   ],
   "image": "assets/characters/page-one.png",
   "image_full": "",
@@ -60392,13 +59596,7 @@ window.CHARACTER_DATA = [
   "name": "Pekoms",
   "aliases": [
    "Nazoms",
-   "Pekomuzu",
-   "Kame Kame no Mi",
-   "Kame Kame",
-   "Kame no Mi",
-   "Turtle-Turtle Fruit",
-   "Turtle Fruit",
-   "Turtle Turtle Fruit"
+   "Pekomuzu"
   ],
   "image": "assets/characters/pekoms.png",
   "image_full": "",
@@ -60463,19 +59661,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Pelu",
    "Peru",
-   "the Falcon",
-   "Tori Tori no Mi, Model: Falcon",
-   "Tori Tori no Mi",
-   "Tori Tori",
-   "Tori no Mi",
-   "Tweet-Tweet Fruit Falcon Type",
-   "Tweet-Tweet Fruit",
-   "Tweet Fruit",
-   "Tweet Tweet Fruit",
-   "Bird-Bird Fruit",
-   "Bird Fruit",
-   "Bird Bird Fruit",
-   "Bird-Bird Fruit, Model: Falcon"
+   "the Falcon"
   ],
   "image": "assets/characters/pell.png",
   "image_full": "",
@@ -60684,13 +59870,7 @@ window.CHARACTER_DATA = [
   "name": "Perona",
   "aliases": [
    "Perōna",
-   "Ghost Princess",
-   "Horo Horo no Mi",
-   "Horo Horo",
-   "Horo no Mi",
-   "Hollow-Hollow Fruit",
-   "Hollow Fruit",
-   "Hollow Hollow Fruit"
+   "Ghost Princess"
   ],
   "image": "assets/characters/perona.png",
   "image_full": "",
@@ -60845,13 +60025,7 @@ window.CHARACTER_DATA = [
   "id": "pica",
   "name": "Pica",
   "aliases": [
-   "Pīka",
-   "Ishi Ishi no Mi",
-   "Ishi Ishi",
-   "Ishi no Mi",
-   "Stone-Stone Fruit",
-   "Stone Fruit",
-   "Stone Stone Fruit"
+   "Pīka"
   ],
   "image": "assets/characters/pica.png",
   "image_full": "",
@@ -60971,13 +60145,7 @@ window.CHARACTER_DATA = [
   "id": "pierre",
   "name": "Pierre",
   "aliases": [
-   "Piēru",
-   "Uma Uma no Mi",
-   "Uma Uma",
-   "Uma no Mi",
-   "Horse-Horse Fruit",
-   "Horse Fruit",
-   "Horse Horse Fruit"
+   "Piēru"
   ],
   "image": "assets/characters/pierre.png",
   "image_full": "",
@@ -61638,16 +60806,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Marco",
    "Pōro Maruko",
-   "the Phoenix",
-   "Tori Tori no Mi",
-   "Tori Tori",
-   "Tori no Mi",
-   "Tori Tori no Mi, Model: Phoenix",
-   "Tweet-Tweet Fruit, Phoenix Model",
-   "Bird-Bird Fruit, Model: Phoenix",
-   "Bird-Bird Fruit",
-   "Bird Fruit",
-   "Bird Bird Fruit"
+   "the Phoenix"
   ],
   "image": "assets/characters/polo-marco.png",
   "image_full": "",
@@ -61804,13 +60963,7 @@ window.CHARACTER_DATA = [
   "id": "pomsky",
   "name": "Pomsky",
   "aliases": [
-   "Ponsukī",
-   "Rako Rako no Mi",
-   "Rako Rako",
-   "Rako no Mi",
-   "Ott-Ott Fruit",
-   "Ott Fruit",
-   "Ott Ott Fruit"
+   "Ponsukī"
   ],
   "image": "assets/characters/pomsky.png",
   "image_full": "",
@@ -62115,15 +61268,6 @@ window.CHARACTER_DATA = [
    "Gol D. Ace",
    "Pōtogasu Dī Ēsu",
    "Fire Fist",
-   "Mera Mera no Mi",
-   "Mera Mera",
-   "Mera no Mi",
-   "Flame-Flame Fruit",
-   "Flame Fruit",
-   "Flame Flame Fruit",
-   "Flare-Flare Fruit",
-   "Flare Fruit",
-   "Flare Flare Fruit",
    "Togasu",
    "Portgaz",
    "Portgas"
@@ -62439,13 +61583,7 @@ window.CHARACTER_DATA = [
   "id": "prince-grus",
   "name": "Prince Grus",
   "aliases": [
-   "Purinsu Gurusu",
-   "Gunyo Gunyo no Mi",
-   "Gunyo Gunyo",
-   "Gunyo no Mi",
-   "Glorp-Glorp Fruit",
-   "Glorp Fruit",
-   "Glorp Glorp Fruit"
+   "Purinsu Gurusu"
   ],
   "image": "assets/characters/prince-grus.png",
   "image_full": "",
@@ -62802,15 +61940,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Scien",
    "Kuīn",
-   "the Plague",
-   "Ryu Ryu no Mi, Model: Brachiosaurus",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Model: Brachiosaurus",
-   "Dragon-Dragon Fruit",
-   "Dragon Fruit",
-   "Dragon Dragon Fruit"
+   "the Plague"
   ],
   "image": "assets/characters/queen.png",
   "image_full": "",
@@ -63155,15 +62285,7 @@ window.CHARACTER_DATA = [
   "id": "ragnir",
   "name": "Ragnir",
   "aliases": [
-   "Raguniru",
-   "Risu Risu no Mi",
-   "Risu Risu",
-   "Risu no Mi",
-   "Risu Risu no Mi, Model: Ratatoskr",
-   "Squirrel-Squirrel Fruit",
-   "Squirrel Fruit",
-   "Squirrel Squirrel Fruit",
-   "Squirrel-Squirrel Fruit, Model: Ratatoskr"
+   "Raguniru"
   ],
   "image": "assets/characters/ragnir.png",
   "image_full": "",
@@ -63410,15 +62532,7 @@ window.CHARACTER_DATA = [
   "name": "Raizo",
   "aliases": [
    "Raizō",
-   "of the Mist",
-   "Maki Maki no Mi",
-   "Maki Maki",
-   "Maki no Mi",
-   "Scrolling Jutsu",
-   "Scroll-Scroll Fruit",
-   "Scroll Fruit",
-   "Scroll Scroll Fruit",
-   "Maki"
+   "of the Mist"
   ],
   "image": "assets/characters/raizo.png",
   "image_full": "",
@@ -64651,15 +63765,7 @@ window.CHARACTER_DATA = [
   "name": "Rimoshifu Killingham",
   "aliases": [
    "Saint Rimoshifu Killingham",
-   "Rimoshifu Kiringamu Sei",
-   "Ryu Ryu no Mi, Model: Kirin",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Model: Kirin",
-   "Dragon-Dragon Fruit",
-   "Dragon Fruit",
-   "Dragon Dragon Fruit"
+   "Rimoshifu Kiringamu Sei"
   ],
   "image": "assets/characters/rimoshifu-killingham.png",
   "image_full": "",
@@ -65148,16 +64254,7 @@ window.CHARACTER_DATA = [
   "name": "Rob Lucci",
   "aliases": [
    "Robu Rutchi",
-   "Massacre Weapon",
-   "Neko Neko no Mi",
-   "Neko Neko",
-   "Neko no Mi",
-   "Neko Neko no Mi, Model: Leopard",
-   "Cat-Cat Fruit Leopard Model",
-   "Cat-Cat Fruit",
-   "Cat Fruit",
-   "Cat Cat Fruit",
-   "Cat-Cat Fruit, Model: Leopard"
+   "Massacre Weapon"
   ],
   "image": "assets/characters/rob-lucci.png",
   "image_full": "",
@@ -66733,13 +65830,7 @@ window.CHARACTER_DATA = [
   "id": "s-bear",
   "name": "S-Bear",
   "aliases": [
-   "Esu-Bea",
-   "Nikyu Nikyu no Mi",
-   "Nikyu Nikyu",
-   "Nikyu no Mi",
-   "Paw-Paw Fruit",
-   "Paw Fruit",
-   "Paw Paw Fruit"
+   "Esu-Bea"
   ],
   "image": "assets/characters/s-bear.png",
   "image_full": "",
@@ -66797,13 +65888,7 @@ window.CHARACTER_DATA = [
   "id": "s-hawk",
   "name": "S-Hawk",
   "aliases": [
-   "Esu-Hōku",
-   "Supa Supa no Mi",
-   "Supa Supa",
-   "Supa no Mi",
-   "Dice-Dice Fruit",
-   "Dice Fruit",
-   "Dice Dice Fruit"
+   "Esu-Hōku"
   ],
   "image": "assets/characters/s-hawk.png",
   "image_full": "",
@@ -66866,13 +65951,7 @@ window.CHARACTER_DATA = [
   "id": "s-shark",
   "name": "S-Shark",
   "aliases": [
-   "Esu-Shāku",
-   "Sui Sui no Mi",
-   "Sui Sui",
-   "Sui no Mi",
-   "Swim-Swim Fruit",
-   "Swim Fruit",
-   "Swim Swim Fruit"
+   "Esu-Shāku"
   ],
   "image": "assets/characters/s-shark.png",
   "image_full": "",
@@ -66930,13 +66009,7 @@ window.CHARACTER_DATA = [
   "id": "s-snake",
   "name": "S-Snake",
   "aliases": [
-   "Esu-Sunēku",
-   "Mero Mero no Mi",
-   "Mero Mero",
-   "Mero no Mi",
-   "Love-Love Fruit",
-   "Love Fruit",
-   "Love Love Fruit"
+   "Esu-Sunēku"
   ],
   "image": "assets/characters/s-snake.png",
   "image_full": "",
@@ -67041,16 +66114,7 @@ window.CHARACTER_DATA = [
   "name": "Sabo",
   "aliases": [
    "Lucy",
-   "Flame Emperor",
-   "Mera Mera no Mi",
-   "Mera Mera",
-   "Mera no Mi",
-   "Flame-Flame Fruit",
-   "Flame Fruit",
-   "Flame Flame Fruit",
-   "Flare-Flare Fruit",
-   "Flare Fruit",
-   "Flare Flare Fruit"
+   "Flame Emperor"
   ],
   "image": "assets/characters/sabo.png",
   "image_full": "",
@@ -67332,18 +66396,7 @@ window.CHARACTER_DATA = [
   "id": "sakazuki",
   "name": "Sakazuki",
   "aliases": [
-   "Akainu",
-   "Magu Magu no Mi",
-   "Magu Magu",
-   "Magu no Mi",
-   "Mag-Mag Fruit",
-   "Mag Fruit",
-   "Mag Mag Fruit",
-   "Magma-Magma Fruit",
-   "Magma Fruit",
-   "Magma Magma Fruit",
-   "Magu",
-   "Mag"
+   "Akainu"
   ],
   "image": "assets/characters/sakazuki.png",
   "image_full": "",
@@ -67905,13 +66958,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "San Juan Wolf",
    "Sanfan Urufu",
-   "Colossal Battleship",
-   "Deka Deka no Mi",
-   "Deka Deka",
-   "Deka no Mi",
-   "Huge-Huge Fruit",
-   "Huge Fruit",
-   "Huge Huge Fruit"
+   "Colossal Battleship"
   ],
   "image": "assets/characters/sanjuan-wolf.png",
   "image_full": "",
@@ -68015,9 +67062,7 @@ window.CHARACTER_DATA = [
  {
   "id": "sarahebi",
   "name": "Sarahebi",
-  "aliases": [
-   "Snake SMILE"
-  ],
+  "aliases": [],
   "image": "assets/characters/sarahebi.png",
   "image_full": "",
   "epithet": "",
@@ -68354,12 +67399,7 @@ window.CHARACTER_DATA = [
   "id": "sasaki",
   "name": "Sasaki",
   "aliases": [
-   "Overflowing",
-   "Ryu Ryu no Mi, Model: Triceratops",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Triceratops Model"
+   "Overflowing"
   ],
   "image": "assets/characters/sasaki.png",
   "image_full": "",
@@ -69129,13 +68169,7 @@ window.CHARACTER_DATA = [
   "name": "Scratchmen Apoo",
   "aliases": [
    "Sukuratchimen Apū",
-   "Roar of the Sea",
-   "Oto Oto no Mi",
-   "Oto Oto",
-   "Oto no Mi",
-   "Tone-Tone Fruit",
-   "Tone Fruit",
-   "Tone Tone Fruit"
+   "Roar of the Sea"
   ],
   "image": "assets/characters/scratchmen-apoo.png",
   "image_full": "",
@@ -69517,15 +68551,7 @@ window.CHARACTER_DATA = [
   "id": "sengoku",
   "name": "Sengoku",
   "aliases": [
-   "the Buddha",
-   "Hito Hito no Mi",
-   "Hito Hito",
-   "Hito no Mi",
-   "Hito Hito no Mi, Model: Daibutsu",
-   "Human-Human Fruit, Model: Buddha",
-   "Human-Human Fruit",
-   "Human Fruit",
-   "Human Human Fruit"
+   "the Buddha"
   ],
   "image": "assets/characters/sengoku.png",
   "image_full": "",
@@ -69647,13 +68673,7 @@ window.CHARACTER_DATA = [
   "name": "Senor Pink",
   "aliases": [
    "Señor Pink",
-   "Senyōru Pinku",
-   "Sui Sui no Mi",
-   "Sui Sui",
-   "Sui no Mi",
-   "Swim-Swim Fruit",
-   "Swim Fruit",
-   "Swim Swim Fruit"
+   "Senyōru Pinku"
   ],
   "image": "assets/characters/senor-pink.png",
   "image_full": "",
@@ -70190,13 +69210,7 @@ window.CHARACTER_DATA = [
   "id": "sharinguru",
   "name": "Sharinguru",
   "aliases": [
-   "Sharingle",
-   "Shari Shari no Mi",
-   "Shari Shari",
-   "Shari no Mi",
-   "Wheel-Wheel Fruit",
-   "Wheel Fruit",
-   "Wheel Wheel Fruit"
+   "Sharingle"
   ],
   "image": "assets/characters/sharinguru.png",
   "image_full": "",
@@ -70414,13 +69428,7 @@ window.CHARACTER_DATA = [
   "name": "Shepherd Sommers",
   "aliases": [
    "Saint Shepherd Sommers",
-   "Shepādo Somāzu Sei",
-   "Iba Iba no Mi",
-   "Iba Iba",
-   "Iba no Mi",
-   "Thorn-Thorn Fruit",
-   "Thorn Fruit",
-   "Thorn Thorn Fruit"
+   "Shepādo Somāzu Sei"
   ],
   "image": "assets/characters/shepherd-sommers.png",
   "image_full": "",
@@ -70574,13 +69582,7 @@ window.CHARACTER_DATA = [
   "id": "shiki",
   "name": "Shiki",
   "aliases": [
-   "the Golden Lion",
-   "Fuwa Fuwa no Mi",
-   "Fuwa Fuwa",
-   "Fuwa no Mi",
-   "Float-Float Fruit",
-   "Float Fruit",
-   "Float Float Fruit"
+   "the Golden Lion"
   ],
   "image": "assets/characters/shiki.png",
   "image_full": "",
@@ -71242,14 +70244,7 @@ window.CHARACTER_DATA = [
   "id": "shinobu",
   "name": "Shinobu",
   "aliases": [
-   "Bewitching Kunoichi",
-   "Juku Juku no Mi",
-   "Juku Juku",
-   "Juku no Mi",
-   "Ripe-Ripe Enticement Jutsu",
-   "Ripe-Ripe Fruit",
-   "Ripe Fruit",
-   "Ripe Ripe Fruit"
+   "Bewitching Kunoichi"
   ],
   "image": "assets/characters/shinobu.png",
   "image_full": "",
@@ -71550,13 +70545,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Shiliew",
    "Shiryū",
-   "of the Rain",
-   "Suke Suke no Mi",
-   "Suke Suke",
-   "Suke no Mi",
-   "Clear-Clear Fruit",
-   "Clear Fruit",
-   "Clear Clear Fruit"
+   "of the Rain"
   ],
   "image": "assets/characters/shiryu.png",
   "image_full": "",
@@ -71629,7 +70618,8 @@ window.CHARACTER_DATA = [
   "name": "Shishilian",
   "aliases": [
    "Shishirian",
-   "Full Power"
+   "Full Power",
+   "Power"
   ],
   "image": "assets/characters/shishilian.png",
   "image_full": "",
@@ -71736,13 +70726,7 @@ window.CHARACTER_DATA = [
   "id": "shu",
   "name": "Shu",
   "aliases": [
-   "Shū",
-   "Sabi Sabi no Mi",
-   "Sabi Sabi",
-   "Sabi no Mi",
-   "Rust-Rust Fruit",
-   "Rust Fruit",
-   "Rust Rust Fruit"
+   "Shū"
   ],
   "image": "assets/characters/shu.png",
   "image_full": "",
@@ -72305,15 +71289,7 @@ window.CHARACTER_DATA = [
   "id": "smiley",
   "name": "Smiley",
   "aliases": [
-   "Sumairī",
-   "Sara Sara no Mi",
-   "Sara Sara",
-   "Sara no Mi",
-   "Sara Sara no Mi, Model: Axolotl",
-   "Sala-Sala Fruit, Model: Axolotl",
-   "Sala-Sala Fruit",
-   "Sala Fruit",
-   "Sala Sala Fruit"
+   "Sumairī"
   ],
   "image": "assets/characters/smiley.png",
   "image_full": "",
@@ -72371,19 +71347,7 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Chaser",
    "Sumōkā",
-   "the White Hunter",
-   "Moku Moku no Mi",
-   "Moku Moku",
-   "Moku no Mi",
-   "Smoke-Smoke Fruit",
-   "Smoke Fruit",
-   "Smoke Smoke Fruit",
-   "Plume-Plume Fruit",
-   "Plume Fruit",
-   "Plume Plume Fruit",
-   "Steam-Steam Fruit",
-   "Steam Fruit",
-   "Steam Steam Fruit"
+   "the White Hunter"
   ],
   "image": "assets/characters/smoker.png",
   "image_full": "",
@@ -73902,13 +72866,7 @@ window.CHARACTER_DATA = [
   "name": "Streusen",
   "aliases": [
    "Shutoroizen",
-   "Gourmet Knight",
-   "Kuku Kuku no Mi",
-   "Kuku Kuku",
-   "Kuku no Mi",
-   "Cook-Cook Fruit",
-   "Cook Fruit",
-   "Cook Cook Fruit"
+   "Gourmet Knight"
   ],
   "image": "assets/characters/streusen.png",
   "image_full": "",
@@ -74023,12 +72981,7 @@ window.CHARACTER_DATA = [
   "name": "Stronger",
   "aliases": [
    "Strongheart",
-   "Sutorongā",
-   "Uma Uma no Mi, Model: Pegasus",
-   "Uma Uma no Mi",
-   "Uma Uma",
-   "Uma no Mi",
-   "Horse-Horse Fruit, Pegasus Model"
+   "Sutorongā"
   ],
   "image": "assets/characters/stronger.png",
   "image_full": "",
@@ -74085,13 +73038,7 @@ window.CHARACTER_DATA = [
   "name": "Stussy",
   "aliases": [
    "Sutyūshī",
-   "Queen of the Pleasure District",
-   "Batto Batto no Mi",
-   "Batto Batto",
-   "Batto no Mi",
-   "Bat-Bat Fruit",
-   "Bat Fruit",
-   "Bat Bat Fruit"
+   "Queen of the Pleasure District"
   ],
   "image": "assets/characters/stussy.png",
   "image_full": "",
@@ -74250,13 +73197,7 @@ window.CHARACTER_DATA = [
   "id": "sugar",
   "name": "Sugar",
   "aliases": [
-   "Shugā",
-   "Hobi Hobi no Mi",
-   "Hobi Hobi",
-   "Hobi no Mi",
-   "Hobby-Hobby Fruit",
-   "Hobby Fruit",
-   "Hobby Hobby Fruit"
+   "Shugā"
   ],
   "image": "assets/characters/sugar.png",
   "image_full": "",
@@ -75285,13 +74226,7 @@ window.CHARACTER_DATA = [
   "id": "tamago",
   "name": "Tamago",
   "aliases": [
-   "Baron",
-   "Tama Tama no Mi",
-   "Tama Tama",
-   "Tama no Mi",
-   "Egg-Egg Fruit",
-   "Egg Fruit",
-   "Egg Egg Fruit"
+   "Baron"
   ],
   "image": "assets/characters/tamago.png",
   "image_full": "",
@@ -75547,16 +74482,7 @@ window.CHARACTER_DATA = [
   "id": "tanaka",
   "name": "Tanaka",
   "aliases": [
-   "Tanaka-san",
-   "Nuke Nuke no Mi",
-   "Nuke Nuke",
-   "Nuke no Mi",
-   "Through-Through Fruit",
-   "Through Fruit",
-   "Through Through Fruit",
-   "Phase-Phase Fruit",
-   "Phase Fruit",
-   "Phase Phase Fruit"
+   "Tanaka-san"
   ],
   "image": "assets/characters/tanaka.png",
   "image_full": "",
@@ -77267,13 +76193,8 @@ window.CHARACTER_DATA = [
    "Chopa-emon",
    "Tonī Tonī Choppā",
    "Cotton Candy Lover",
-   "Hito Hito no Mi",
-   "Hito Hito",
-   "Hito no Mi",
-   "Human-Human Fruit",
-   "Human Fruit",
-   "Human Human Fruit",
-   "Cotton"
+   "Cotton",
+   "Ton"
   ],
   "image": "assets/characters/tony-tony-chopper.png",
   "image_full": "",
@@ -77719,14 +76640,8 @@ window.CHARACTER_DATA = [
   "aliases": [
    "Torafarugā Dī Wāteru Rō",
    "Surgeon of Death",
-   "Ope Ope no Mi",
-   "Ope Ope",
-   "Ope no Mi",
-   "Op-Op Fruit",
-   "Op Fruit",
-   "Op Op Fruit",
-   "Trafalgar",
-   "Torafarug"
+   "Torafarug",
+   "Trafalgar"
   ],
   "image": "assets/characters/trafalgar-d-water-law.png",
   "image_full": "",
@@ -77854,16 +76769,7 @@ window.CHARACTER_DATA = [
   "id": "trebol",
   "name": "Trebol",
   "aliases": [
-   "Torēboru",
-   "Beta Beta no Mi",
-   "Beta Beta",
-   "Beta no Mi",
-   "Stick-Stick Fruit",
-   "Stick Fruit",
-   "Stick Stick Fruit",
-   "Sticky-Sticky Fruit",
-   "Sticky Fruit",
-   "Sticky Sticky Fruit"
+   "Torēboru"
   ],
   "image": "assets/characters/trebol.png",
   "image_full": "",
@@ -78407,13 +77313,7 @@ window.CHARACTER_DATA = [
   "id": "tsuru",
   "name": "Tsuru",
   "aliases": [
-   "Great Staff Officer",
-   "Woshu Woshu no Mi",
-   "Woshu Woshu",
-   "Woshu no Mi",
-   "Wash-Wash Fruit",
-   "Wash Fruit",
-   "Wash Wash Fruit"
+   "Great Staff Officer"
   ],
   "image": "assets/characters/tsuru.png",
   "image_full": "",
@@ -79021,12 +77921,7 @@ window.CHARACTER_DATA = [
   "id": "ulti",
   "name": "Ulti",
   "aliases": [
-   "Uruti",
-   "Ryu Ryu no Mi, Model: Pachycephalosaurus",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Pachycephalosaurus Model"
+   "Uruti"
   ],
   "image": "assets/characters/ulti.png",
   "image_full": "",
@@ -79543,13 +78438,7 @@ window.CHARACTER_DATA = [
   "id": "urban",
   "name": "Urban",
   "aliases": [
-   "Uruban",
-   "Tsutsu Tsutsu no Mi",
-   "Tsutsu Tsutsu",
-   "Tsutsu no Mi",
-   "Barrel-Barrel Fruit",
-   "Barrel Fruit",
-   "Barrel Barrel Fruit"
+   "Uruban"
   ],
   "image": "assets/characters/urban.png",
   "image_full": "",
@@ -79828,6 +78717,7 @@ window.CHARACTER_DATA = [
    "Uso-hachi",
    "Usoppu",
    "King of Snipers",
+   "Hana",
    "Usopp"
   ],
   "image": "assets/characters/usopp.png",
@@ -79951,14 +78841,7 @@ window.CHARACTER_DATA = [
  {
   "id": "uta",
   "name": "Uta",
-  "aliases": [
-   "Uta Uta no Mi",
-   "Uta Uta",
-   "Uta no Mi",
-   "Sing-Sing Fruit",
-   "Sing Fruit",
-   "Sing Sing Fruit"
-  ],
+  "aliases": [],
   "image": "assets/characters/uta.png",
   "image_full": "",
   "epithet": "",
@@ -80279,13 +79162,7 @@ window.CHARACTER_DATA = [
    "Van Ogre",
    "Van Auger",
    "Van Ōgā",
-   "The Supersonic",
-   "Wapu Wapu no Mi",
-   "Wapu Wapu",
-   "Wapu no Mi",
-   "Warp-Warp Fruit",
-   "Warp Fruit",
-   "Warp Warp Fruit"
+   "The Supersonic"
   ],
   "image": "assets/characters/van-augur.png",
   "image_full": "",
@@ -80389,13 +79266,7 @@ window.CHARACTER_DATA = [
   "id": "vander-decken-ix",
   "name": "Vander Decken IX",
   "aliases": [
-   "Bandā Dekken Kyūsei",
-   "Mato Mato no Mi",
-   "Mato Mato",
-   "Mato no Mi",
-   "Mark-Mark Fruit",
-   "Mark Fruit",
-   "Mark Mark Fruit"
+   "Bandā Dekken Kyūsei"
   ],
   "image": "assets/characters/vander-decken-ix.png",
   "image_full": "",
@@ -80459,13 +79330,7 @@ window.CHARACTER_DATA = [
   "name": "Vasco Shot",
   "aliases": [
    "Basuko Shotto",
-   "Heavy Drinker",
-   "Gabu Gabu no Mi",
-   "Gabu Gabu",
-   "Gabu no Mi",
-   "Glug-Glug Fruit",
-   "Glug Fruit",
-   "Glug Glug Fruit"
+   "Heavy Drinker"
   ],
   "image": "assets/characters/vasco-shot.png",
   "image_full": "",
@@ -80607,12 +79472,6 @@ window.CHARACTER_DATA = [
    "Stella",
    "Dokutā Begapanku",
    "The Man With the Best Brain in the World",
-   "Nomi Nomi no Mi",
-   "Nomi Nomi",
-   "Nomi no Mi",
-   "Brain-Brain Fruit",
-   "Brain Fruit",
-   "Brain Brain Fruit",
    "With",
    "Stella"
   ],
@@ -80743,13 +79602,7 @@ window.CHARACTER_DATA = [
   "name": "Very Good",
   "aliases": [
    "Berry Good",
-   "Berīguddo",
-   "Beri Beri no Mi",
-   "Beri Beri",
-   "Beri no Mi",
-   "Berry-Berry Fruit",
-   "Berry Fruit",
-   "Berry Berry Fruit"
+   "Berīguddo"
   ],
   "image": "assets/characters/very-good.png",
   "image_full": "",
@@ -81297,13 +80150,7 @@ window.CHARACTER_DATA = [
   "name": "Viola",
   "aliases": [
    "Violet",
-   "Viora",
-   "Giro Giro no Mi",
-   "Giro Giro",
-   "Giro no Mi",
-   "Glare-Glare Fruit",
-   "Glare Fruit",
-   "Glare Glare Fruit"
+   "Viora"
   ],
   "image": "assets/characters/viola.png",
   "image_full": "",
@@ -81964,13 +80811,7 @@ window.CHARACTER_DATA = [
   "name": "Wapol",
   "aliases": [
    "Waporu",
-   "Tin-Plate",
-   "Baku Baku no Mi",
-   "Baku Baku",
-   "Baku no Mi",
-   "Munch-Munch Fruit",
-   "Munch Fruit",
-   "Munch Munch Fruit"
+   "Tin-Plate"
   ],
   "image": "assets/characters/wapol.png",
   "image_full": "",
@@ -82087,12 +80928,7 @@ window.CHARACTER_DATA = [
   "id": "warrior-god",
   "name": "Warrior God",
   "aliases": [
-   "Ikusagami",
-   "Ryu Ryu no Mi, Model: Nidhöggr",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Nidhöggr Model"
+   "Ikusagami"
   ],
   "image": "assets/characters/warrior-god.png",
   "image_full": "",
@@ -82325,12 +81161,7 @@ window.CHARACTER_DATA = [
   "name": "Who's-Who",
   "aliases": [
    "Fūzu Fū",
-   "Who of the Droplets",
-   "Neko Neko no Mi",
-   "Neko Neko",
-   "Neko no Mi",
-   "Neko Neko no Mi, Model: Saber Tiger",
-   "Cat-Cat Fruit, Saber-Toothed Tiger Model"
+   "Who of the Droplets"
   ],
   "image": "assets/characters/who-s-who.png",
   "image_full": "",
@@ -82708,15 +81539,7 @@ window.CHARACTER_DATA = [
    "X. Drake",
    "Dory",
    "Diesu Dorēku",
-   "Red Flag",
-   "Ryu Ryu no Mi, Model: Allosaurus",
-   "Ryu Ryu no Mi",
-   "Ryu Ryu",
-   "Ryu no Mi",
-   "Dragon-Dragon Fruit, Model: Allosaurus",
-   "Dragon-Dragon Fruit",
-   "Dragon Fruit",
-   "Dragon Dragon Fruit"
+   "Red Flag"
   ],
   "image": "assets/characters/x-drake.png",
   "image_full": "",
@@ -83036,15 +81859,7 @@ window.CHARACTER_DATA = [
   "name": "Yamato",
   "aliases": [
    "Kouzuki Oden",
-   "Oni Princess",
-   "Inu Inu no Mi, Model: Okuchi no Makami",
-   "Inu Inu no Mi",
-   "Inu Inu",
-   "Inu no Mi",
-   "Dog-Dog Fruit, Model: Okuchi-no-Makami",
-   "Dog-Dog Fruit",
-   "Dog Fruit",
-   "Dog Dog Fruit"
+   "Oni Princess"
   ],
   "image": "assets/characters/yamato.png",
   "image_full": "",
@@ -84388,13 +83203,7 @@ window.CHARACTER_DATA = [
    "Miss Doublefinger",
    "Paula",
    "Zara",
-   "Poison Spider",
-   "Toge Toge no Mi",
-   "Toge Toge",
-   "Toge no Mi",
-   "Spike-Spike Fruit",
-   "Spike Fruit",
-   "Spike Spike Fruit"
+   "Poison Spider"
   ],
   "image": "assets/characters/zala.png",
   "image_full": "",

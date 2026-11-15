@@ -217,12 +217,11 @@ def main():
                 if not rec.get("debut_saga"):
                     rec["debut_saga"] = saga
 
-            # Devil Fruit names count as answers: "Mera Mera no Mi", "Mera Mera", "Flame-Flame Fruit", "Flame Fruit"
-            extra = []
-            for fruit in rec.get("devil_fruits", []) + rec.get("devil_fruit_names", []):
-                extra += fruit_variants(fruit)
-            if extra:
-                rec["aliases"] = list(dict.fromkeys(rec.get("aliases", []) + extra))
+            # Devil Fruit names are NOT character answers: "Spring" must not count as Bellamy.
+            # (Fruit prompts have their own name variants in data/things.js.)
+            fruit_keys = {v.lower() for f in rec.get("devil_fruits", []) + rec.get("devil_fruit_names", []) for v in fruit_variants(f)}
+            if fruit_keys:
+                rec["aliases"] = [a for a in rec.get("aliases", []) if a.lower() not in fruit_keys]
 
             img = rec.get("image", "")
             if not img:
