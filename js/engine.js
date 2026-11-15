@@ -156,6 +156,23 @@
     return hits.size === 1 ? { status: "match", id: [...hits][0] } : { status: "ambiguous", ids: [...hits] };
   }
 
+  // resolveGuess, but the prompt breaks ties: when a name could mean several things (an alias that is
+  // also someone else's name, "Inu Inu no Mi" for every Inu Inu model, a shared first name) and only one
+  // of them is a right answer, that's the one; when several are, only the right ones are offered.
+  function resolveFor(input, data, q) {
+    const r = resolveGuess(input, data);
+    if (!q || r.status === "unknown") return r;
+    const right = id => (q.answers || []).includes(id);
+    if (r.status === "match" && right(r.id)) return r;
+    const k = norm(input);
+    const keyIds = [...(data.index.get(k) || data.index.get(k.replace(/\b(d|the|of)\b/g, " ").replace(/\s+/g, " ").trim()) || [])];
+    const ids = r.status === "ambiguous" ? [...new Set([...keyIds, ...r.ids])] : keyIds;
+    const fitting = ids.filter(right).sort((a, b) => (data.byId.get(b)._fame || 0) - (data.byId.get(a)._fame || 0));
+    if (fitting.length === 1) return { status: "match", id: fitting[0] };
+    if (fitting.length > 1) return { status: "ambiguous", ids: fitting };
+    return r;
+  }
+
   // Flatten spelling that sounds alike: doubled letters, ph/f, ck/k, c/k/s, z/s, y/i.
   function soundKey(s) {
     return norm(s)
@@ -630,7 +647,7 @@
     return v.toLocaleString("en-US") + (col.unit || "");
   }
 
-  const api = { searchTraits, rateDifficulty, norm, asList, levenshtein, prepare, resolveGuess, soundKey, suggestNames, testCond, fits, buildQuestions, tierAnswers,
+  const api = { searchTraits, rateDifficulty, norm, asList, levenshtein, prepare, resolveGuess, resolveFor, soundKey, suggestNames, testCond, fits, buildQuestions, tierAnswers,
     scoreGuess, rarestAnswers, hashString, rng, shuffle, pickQuestions, localDateKey, dayNumber,
     searchCharacters, wantedPool, wantedDaily, compareTrait, compareCharacters, formatNumber, comboQuestions };
   if (typeof module !== "undefined" && module.exports) module.exports = api;

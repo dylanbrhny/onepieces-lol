@@ -66,12 +66,19 @@
   C.mode = diffId === "supereasy" ? "easy" : diffId;   // whose answers set the tiers (config modeTiers)
   const charCfg = { ...C, listFields: [...linkLists] };
   const data = E.prepare(rows.length ? rows : allRows, charCfg);
+  // Every right answer counts on every difficulty. The difficulty only picks the prompts (from its own
+  // pool) and how rare each answer is; guesses are checked against everyone the spoiler filter allows,
+  // so a less famous right answer on Easy scores as a deep cut instead of being turned away.
+  const seenRows = allRows.filter(seenBy);
+  const allData = seenRows.length === rows.length || !seenRows.length ? data : E.prepare(seenRows, charCfg);
   let fullData = null;   // everyone, built only when needed to explain a filtered-out name
   const { playable, tooSmall } = E.buildQuestions(data, window.QUESTION_TEMPLATES || [], window.QUESTIONS || [], C);
 
   // ---------- other tables: Devil Fruits, places, weapons, ships, crews... (data/things.js) ----------
   // Same difficulty + spoiler filters. Each prompt has a "kind" saying which table its answers come from.
-  const KIND_DATA = { character: data };
+  const KIND_DATA = { character: data };      // the difficulty's pool: prompts are built from this
+  const ANSWER_DATA = { character: allData }; // every right answer (spoiler filter only): guesses check this
+  const THING_ALL = {};                       // everything per table, to explain a spoiler-hidden name
   const kindCfg = list => {
     const lists = new Set(C.listFields), nums = new Set(C.numberFields);
     for (const t of list) for (const [k, v] of Object.entries(t)) { if (Array.isArray(v)) lists.add(k); else if (typeof v === "number") nums.add(k); }
@@ -80,9 +87,12 @@
   for (const [kind, list] of Object.entries(window.THING_DATA || {})) {
     const keep = list.filter(t => diff.characters.includes(t.difficulty || "hard") && seenBy(t));
     if (keep.length) KIND_DATA[kind] = E.prepare(keep, kindCfg(keep));
+    const seen = list.filter(seenBy);
+    if (seen.length) ANSWER_DATA[kind] = seen.length === keep.length ? KIND_DATA[kind] : E.prepare(seen, kindCfg(seen));
+    THING_ALL[kind] = list;
   }
   const thingCount = Object.entries(KIND_DATA).reduce((n, [k, kd]) => n + (k === "character" ? 0 : kd.chars.length), 0);
-  const dataFor = q => KIND_DATA[(q && q.kind) || "character"] || data;
+  const dataFor = q => ANSWER_DATA[(q && q.kind) || "character"] || allData;
   const nameIn = (q, id) => (dataFor(q).byId.get(id) || {}).name || id;
   {
     // templates with "labels" become one hand-written prompt per label
@@ -97,6 +107,18 @@
       const r = E.buildQuestions(kd, templates.filter(mine), manual.filter(mine), kind === "character" ? { ...charCfg, noCombos: true } : kindCfg(kd.chars));
       for (const q of r.playable) { q.kind = kind; q.id = `${kind}:${q.id}`; if (!playable.some(p => p.text === q.text)) playable.push(q); }
     }
+  }
+  // Re-check each prompt against every right answer, not just the difficulty's pool. Prompt difficulty and
+  // which prompts are playable stay as the pool decided; answers from outside the pool sit at the rare
+  // end of the tiers (config modeTiers caps still apply).
+  for (const q of playable) {
+    const kind = q.kind || "character", ad = dataFor(q), pool = KIND_DATA[kind] || data;
+    if (ad === pool || (!q.where && !q.anyOf)) continue;
+    const extra = ad.chars.filter(c => !pool.byId.has(c.id) && E.fits(c, q)).map(c => c.id);
+    if (!extra.length) continue;
+    q.answers = [...q.answers, ...extra];
+    let cache = null;
+    Object.defineProperty(q, "tierById", { get() { return cache || (cache = E.tierAnswers(q.answers, ad, kind === "character" ? charCfg : C, q)); }, configurable: true });
   }
   const today = new Date();
   const dateKey = E.localDateKey(today);
@@ -431,7 +453,7 @@
           if (!cq) return;
           const kings = cq.answers.filter(id => cq.tierById[id] && cq.tierById[id].tier.id === "king");
           const pick = kings[Math.floor(Math.random() * kings.length)] || cq.answers[0];
-          if (pick) { $("#guessInput").value = charName(pick); $("#guessInput").focus(); }
+          if (pick) { $("#guessInput").value = nameIn(cq, pick); $("#guessInput").focus(); }
         });
       }
     }
@@ -562,13 +584,17 @@
     if (r.status === "ambiguous") return offer("Which one? ", r.ids.slice(0, 8));
     const close = E.suggestNames(raw, kd, 3);
     if (close.length) return offer("Did you mean ", close);
-    // a real character who is only left out by the difficulty or spoiler setting
-    if (kd === data && rows.length !== allRows.length) {
-      fullData = fullData || E.prepare(allRows, C);
-      const f = E.resolveGuess(raw, fullData);
-      if (f.status === "match") {
-        hint.textContent = `${fullData.byId.get(f.id).name} isn't in play on ${diff.label}${spoiler ? " with your spoiler filter" : ""}. Try someone else.`;
-        return;
+    // a real name that is only hidden by the spoiler filter (every difficulty accepts every right answer)
+    if (spoiler) {
+      const kind = q.kind || "character", list = kind === "character" ? allRows : THING_ALL[kind] || [];
+      if (list.length !== kd.chars.length) {
+        fullData = fullData || {};
+        fullData[kind] = fullData[kind] || E.prepare(list, kind === "character" ? charCfg : kindCfg(list));
+        const f = E.resolveGuess(raw, fullData[kind]);
+        if (f.status === "match") {
+          hint.textContent = `${fullData[kind].byId.get(f.id).name} is hidden by your spoiler filter. Try another answer.`;
+          return;
+        }
       }
     }
     hint.textContent = `No "${raw.trim()}" in the ship's log. Check the spelling and try again.`;
@@ -578,14 +604,14 @@
   // or running out of time ends the prompt. So the only 0 is no answer at all.
   function tryAnswer(id) {
     const q = S.qs[S.i];
-    const res = E.scoreGuess(q, id, data, C);
+    const res = E.scoreGuess(q, id, dataFor(q), C);
     if (res.ok) return finishPrompt(id);
     S_.nope();
     const form = $("#guessForm");
     form.classList.remove("shake"); void form.offsetWidth; form.classList.add("shake");
-    const c = data.byId.get(id);
+    const c = dataFor(q).byId.get(id);
     const why = res.failed ? missReason(c, res.failed) : "";
-    $("#hint").textContent = `${charName(id)} doesn't fit${why ? ` (${why.replace(/^Not on record as: /, "not on record as ")})` : ""}. Pick a different answer.`;
+    $("#hint").textContent = `${nameIn(q, id)} doesn't fit${why ? ` (${why.replace(/^Not on record as: /, "not on record as ")})` : ""}. Pick a different answer.`;
     const input = $("#guessInput");
     input.select();
   }
@@ -1078,7 +1104,7 @@
     const order = C.tiers.map(t => t.id);
     const best = rec.results.filter(r => r.id && order.includes(r.tierId)).sort((a, b) => order.indexOf(b.tierId) - order.indexOf(a.tierId))[0];
     const photo = $("#posterPhoto");
-    const bestChar = best && (best.kind || "character") === "character" && data.byId.get(best.id);
+    const bestChar = best && (best.kind || "character") === "character" && allData.byId.get(best.id);
     if (bestChar && bestChar.image) setPortrait(photo, bestChar);
     else photo.innerHTML = JOLLY_ROGER;
 
