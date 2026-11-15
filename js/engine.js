@@ -344,13 +344,17 @@
   // Answers are sorted most-said first and the tiers cut that pile by cumulative share:
   // the obvious few that most players give are Rookie; only the rare tail reaches Emperor / Pirate King.
   function answerShares(ids, data, cfg, q) {
-    const tau = cfg.popularityTemp ?? 12;                       // lower = famous answers hog more players
+    const mode = (cfg.modeTiers || {})[cfg.mode] || {};
+    const tau = mode.popularityTemp ?? cfg.popularityTemp ?? 12;  // lower = famous answers hog more players
     const fame = id => data.byId.get(id)._fame || 0;
     const top = Math.max(...ids.map(fame));
     let model = ids.map(id => Math.exp((fame(id) - top) / tau));
     const sum = model.reduce((a, b) => a + b, 0) || 1;
     model = model.map(v => v / sum);
-    const stats = (q && root.ANSWER_STATS && root.ANSWER_STATS[q.id]) || null;
+    // real counts from players on THIS difficulty once there are enough of them, else from everyone
+    const all = (q && root.ANSWER_STATS && root.ANSWER_STATS[q.id]) || null;
+    const own = all && all.modes && all.modes[cfg.mode];
+    const stats = own && own.plays >= (cfg.statsMinPlays ?? 50) ? own : all;
     const plays = stats ? stats.plays || 0 : 0;
     const w = plays >= (cfg.statsMinPlays ?? 50) ? Math.min(cfg.statsMaxWeight ?? 0.5, plays / (cfg.statsFullPlays ?? 400)) : 0;
     const share = new Map();
@@ -378,11 +382,17 @@
       // a famous answer is never a deep cut: cap the tier by how well known it is, relative to the
       // levels in play (cfg.poolLevels, set from the difficulty). The least-known level in the pool can
       // reach Pirate King, the next one up Emperor, anything more famous tops out at Warlord.
-      const levels = cfg.poolLevels || ["easy", "medium", "hard"];
-      const hardest = levels[levels.length - 1], known = data.byId.get(id).difficulty || "medium";
+      const known = data.byId.get(id).difficulty || "medium";
+      const caps = ((cfg.modeTiers || {})[cfg.mode] || {}).caps;
       let cap = last;                                                    // obscure: up to Pirate King
-      if (known === "easy" && hardest !== "easy") cap = last - 2;        // famous: never above Warlord
-      else if (known === "medium" && hardest === "hard") cap = last - 1; // well known: up to Emperor
+      if (caps) {                                                        // this mode's caps (config modeTiers)
+        const t = caps[known] ? tiers.findIndex(x => x.id === caps[known]) : -1;
+        if (t >= 0) cap = t;
+      } else {                                                           // no mode set: cap by the levels in play
+        const levels = cfg.poolLevels || ["easy", "medium", "hard"], hardest = levels[levels.length - 1];
+        if (known === "easy" && hardest !== "easy") cap = last - 2;      // famous: never above Warlord
+        else if (known === "medium" && hardest === "hard") cap = last - 1; // well known: up to Emperor
+      }
       if (ti > cap) ti = cap;
       if (ti === last) {
         const pinned = q && q.gem === id;

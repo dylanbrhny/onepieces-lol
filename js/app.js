@@ -63,6 +63,7 @@
   const linkLists = new Set(C.listFields);
   for (const v of Object.values(CHAR_LINKS)) for (const [k, x] of Object.entries(v)) if (Array.isArray(x)) linkLists.add(k);
   C.poolLevels = diff.characters;   // tiers cap famous answers relative to the levels in play (see tierAnswers)
+  C.mode = diffId === "supereasy" ? "easy" : diffId;   // whose answers set the tiers (config modeTiers)
   const charCfg = { ...C, listFields: [...linkLists] };
   const data = E.prepare(rows.length ? rows : allRows, charCfg);
   let fullData = null;   // everyone, built only when needed to explain a filtered-out name

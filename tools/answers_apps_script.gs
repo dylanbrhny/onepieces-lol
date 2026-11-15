@@ -7,7 +7,9 @@
 // 4. Copy the Web app URL (ends in /exec) into statsEndpoint in js/config.js.
 //
 // The game POSTs one answer at a time (plain-text JSON, see logAnswer in js/app.js) and, when it loads,
-// GETs ?stats=1 to receive {"<prompt id>": {"plays": n, "counts": {"<answer id>": n}}}.
+// GETs ?stats=1 to receive {"<prompt id>": {"plays": n, "counts": {"<answer id>": n},
+//                          "modes": {"easy" | "medium" | "hard": {"plays": n, "counts": {...}}}}}.
+// Super Easy answers count as Easy. Each difficulty's tiers lean on its own players' counts.
 // No names, emails or other personal data are sent: only prompt, answer, day, mode and difficulty.
 
 const SHEET_NAME = "Answers";
@@ -40,9 +42,16 @@ function doGet(e) {
     for (const row of rows) {
       const prompt = row[2], answer = row[4], ok = row[5];
       if (!prompt) continue;
-      const s = stats[prompt] || (stats[prompt] = { plays: 0, counts: {} });
+      let mode = String(row[7] || "").toLowerCase();
+      if (mode === "supereasy") mode = "easy";
+      const s = stats[prompt] || (stats[prompt] = { plays: 0, counts: {}, modes: {} });
+      const m = mode && (s.modes[mode] || (s.modes[mode] = { plays: 0, counts: {} }));
       s.plays++;
-      if (ok === true && answer) s.counts[answer] = (s.counts[answer] || 0) + 1;
+      if (m) m.plays++;
+      if (ok === true && answer) {
+        s.counts[answer] = (s.counts[answer] || 0) + 1;
+        if (m) m.counts[answer] = (m.counts[answer] || 0) + 1;
+      }
     }
     body = JSON.stringify(stats);
     if (body.length < 95000) cache.put("stats", body, 600);   // 10 minutes

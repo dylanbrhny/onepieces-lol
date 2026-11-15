@@ -373,8 +373,16 @@ Warlord 60 = up to 76%, Emperor 85 = up to 96%, Pirate King 100 = the rare last 
 and none on prompts under `kingMinAnswers` = 8 answers; pin one with `gem: "<answer id>"` on a prompt).
 Simulated players average about 41 points a prompt, ~285 of 700 a day, in a bell curve like Krillion's.
 
+Each difficulty is its own crowd (`modeTiers` in `js/config.js`), so the same answer can be rare on Easy and
+common on Hard. Easy players pile onto the famous few (`popularityTemp` 8), Hard players know the deep cast
+and spread out (16). Caps per mode: on Medium a famous (easy-level) answer tops out at Warlord; on Hard a
+famous answer tops out at Supernova and a well-known (medium-level) one at Warlord, so only real deep cuts
+reach Emperor or Pirate King there. Example, "bounty over 10 million": Bellamy is Emperor on Easy, Warlord
+on Medium, Supernova on Hard. Real answer counts are kept per difficulty too (`modes` in the stats), and a
+difficulty uses its own players' counts once it has 50 plays of a prompt.
+
 Real answers: every finished answer is logged in the browser (`answerLog`) and POSTed to `statsEndpoint` once set
-(the "Log Pose — Player Answers" Google Sheet + `tools/answers_apps_script.gs`). The game fetches live counts
+(the "One Pieces — Player Answers" Google Sheet + `tools/answers_apps_script.gs`). The game fetches live counts
 on load (cached 30 min). After 50 plays of a prompt, real shares blend into the model shares (up to half at 400
 plays), so answers people actually say a lot slide toward Rookie. Offline alternative:
 `python3 -I tools/aggregate_answers.py answers.jsonl` → `data/answer_stats.js`.

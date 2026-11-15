@@ -40,6 +40,15 @@ window.GAME_CONFIG = {
     { id: "king",      name: "Pirate King", points: 100, from: 0.96, line: "Almost nobody finds this one." }
   ],
   popularityTemp: 12,      // how strongly fame decides who gets said (lower = famous answers hog more players)
+  // Each difficulty has its own crowd, so the same answer can be rare on Easy and common on Hard.
+  // popularityTemp: casual Easy players pile onto the famous few (low), Hard players know the deep cast
+  // and spread out (high). caps: the highest tier an answer of that fame level can reach in this mode
+  // (characters, fruits, places... all carry easy / medium / hard). Missing level = no cap (Pirate King).
+  modeTiers: {
+    easy:   { popularityTemp: 8,  caps: {} },
+    medium: { popularityTemp: 12, caps: { easy: "warlord" } },
+    hard:   { popularityTemp: 16, caps: { easy: "supernova", medium: "warlord" } }
+  },
   kingMinAnswers: 8,       // smaller prompts have no Pirate King answers
   kingMax: 5,              // at most this many Pirate King answers on one prompt (set "gem" on a prompt to pin one)
   statsFullPlays: 400,     // real answer counts reach full weight after this many plays of a prompt...

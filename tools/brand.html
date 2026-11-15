@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Draws the favicon set and the social share banner from the game's own sprite and font.
+<!-- Draws the social share banner (favicons: tools/make_icons.py) from the game's own sprite and font.
      Open http://127.0.0.1:8765/tools/brand.html with tools/... saver running, or just look and right-click save. -->
 <html><head><meta charset="utf-8"><title>One Pieces brand</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
@@ -65,7 +65,7 @@ async function save(c, name) {
 window.makeAll = async () => {
   await document.fonts.load("96px 'Press Start 2P'"); await document.fonts.load("38px VT323");
   const out = [];
-  for (const [size, name] of [[16, "favicon-16.png"], [32, "favicon-32.png"], [180, "apple-touch-icon.png"], [192, "icon-192.png"], [512, "icon-512.png"]]) out.push(await save(icon(size), name));
+  // the favicon set is hand-drawn pixel by pixel now: tools/make_icons.py (icon() above is the old version)
   out.push(await save(banner(), "og-banner.png"));
   return out;
 };
