@@ -378,3 +378,12 @@ Real answers: every finished answer is logged in the browser (`answerLog`) and P
 on load (cached 30 min). After 50 plays of a prompt, real shares blend into the model shares (up to half at 400
 plays), so answers people actually say a lot slide toward Rookie. Offline alternative:
 `python3 -I tools/aggregate_answers.py answers.jsonl` → `data/answer_stats.js`.
+
+## Security (onepieces.lol)
+
+- HTTPS: GitHub Pages certificate for onepieces.lol, "Enforce HTTPS" on (http:// redirects to https://).
+- `index.html` carries a Content-Security-Policy: only the site's own scripts run, fonts only from Google
+  Fonts, network calls only to the site and the answers Google Apps Script. Inline scripts are allowed by
+  hash, so after editing or adding an inline `<script>` run `python3 -I tools/update_csp.py`.
+- No keys or secrets are in the repo. The answers endpoint accepts anonymous answers only (prompt,
+  answer, day, mode, difficulty) and trims every field.
