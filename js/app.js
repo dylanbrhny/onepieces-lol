@@ -833,6 +833,7 @@
   }
   setWantedDiff(wDiffId);
   if (window.LogPoseDebug) window.LogPoseDebug.wantedTarget = () => WS && WS.targetId;   // for testing only
+  if (window.LogPoseDebug) window.LogPoseDebug.prompts = () => playable.map(q => ({ text: q.text, kind: q.kind || "character", difficulty: q.difficulty, answers: q.answers.length, combo: !!q.combo, group: q.group }));
   // search by trait: "fishman", "marine", "zoan", "red hair" lists everyone with it
   const W_TRAITS = W.searchFields || [["race", "Race"], ["primary_group", "Group"], ["organizations", "Group"], ["affiliation_type", "Side"],
     ["devil_fruit_types", "Fruit"], ["haki", "Haki"], ["hair_color", "Hair"], ["origin_sea", "From"], ["debut_arc", "Debut"], ["fighting_style", "Style"]];
