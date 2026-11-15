@@ -72,7 +72,45 @@ COLORS = {
     "orange": "Orange", "pink": "Pink", "green": "Green", "blue": "Blue", "navy": "Blue", "teal": "Teal",
     "cyan": "Teal", "turquoise": "Teal", "white": "White", "silver": "Silver", "gray": "Gray", "grey": "Gray",
     "purple": "Purple", "violet": "Purple", "lavender": "Purple", "magenta": "Pink",
+    "chestnut": "Brown", "brunette": "Brown", "raven": "Black", "platinum": "Blond", "ebony": "Black",
 }
+# ways the Appearance section says a hair colour: "short black hair", "his hair is white",
+# "blond-haired", "a redhead" (only this character's own Appearance section is read)
+HAIR_PATTERNS = [
+    r"(?P<c>(?:[a-z]+[\s,-]+){0,3}[a-z]+)[\s-]+(?:colou?red\s+)?hair\b",
+    r"\bhair\s+(?:is|was|that is|which is|colou?red|dyed|turned)\s+(?:a\s+|an\s+)?(?:(?:light|dark|bright|pale|deep|jet)[\s-]+)?(?P<c>[a-z]+)",
+    r"(?P<c>[a-z]+)[\s-]+haired\b",
+    r"\b(?P<c>redhead|red-headed|blonde?|brunette)\b",
+]
+# the seas "From" uses; other place names map through data/things/places.csv (sea, else its region's sea)
+SEA_NAMES = {"grand line": "Grand Line", "paradise": "Grand Line", "new world": "Grand Line", "sea floor": "Grand Line",
+             "east blue": "East Blue", "west blue": "West Blue", "north blue": "North Blue", "south blue": "South Blue",
+             "calm belt": "Calm Belt", "sky islands": "Sky Islands", "sky island": "Sky Islands", "red line": "Red Line"}
+_PLACES = None
+
+
+def place_sea(name, depth=0):
+    """Sea of a place from the places table (its own sea, else its region's), as a SEA_NAMES value."""
+    global _PLACES
+    if _PLACES is None:
+        _PLACES = {}
+        path = os.path.join(ROOT, "data", "things", "places.csv")
+        if os.path.exists(path):
+            with open(path, encoding="utf-8", newline="") as f:
+                for r in csv.DictReader(f):
+                    for n in [r["name"]] + [a for a in (r.get("aliases") or "").split("|") if a]:
+                        _PLACES.setdefault(n.lower().strip(), r)
+    key = name.lower().strip()
+    if key in SEA_NAMES:
+        return SEA_NAMES[key]
+    r = _PLACES.get(key)
+    if not r or depth > 3:
+        return ""
+    for s in (r.get("sea") or "").split("|"):
+        if s.lower().strip() in SEA_NAMES:
+            return SEA_NAMES[s.lower().strip()]
+    region = re.sub(r"\s*\(.*", "", r.get("region") or "").strip()
+    return place_sea(region, depth + 1) if region and region.lower() != key else ""
 
 JUNK = re.compile(r"^(n/?a|none|unknown|civilian|\?+|-+|(his|her|their) own.*|independent)$", re.I)
 
@@ -477,6 +515,8 @@ def main():
                 hs.append(float(h.replace(",", "")))
             except ValueError:
                 pass
+        if not hs:   # giants and sea creatures are measured in meters ("about 67 m")
+            hs = [float(m) * 100 for m in re.findall(r"(\d+(?:\.\d+)?)\s*m\b", clean(P.get("height", "")))]
         height = str(round(max(hs))) if hs else ""
         nums = [int(n.replace(",", "")) for n in re.findall(r"\d{1,3}(?:,\d{3})+|\d{4,}", clean(P.get("bounty", "")))]
         bounty = str(max(nums)) if nums else ""
@@ -487,6 +527,22 @@ def main():
         blood = split_items(blood)[0].split()[0] if blood else ""
         origin = clean(P.get("origin", ""))
         origin_sea = re.sub(r"\s*\(.*", "", origin).strip()
+        origin_sea = SEA_NAMES.get(origin_sea.lower(), origin_sea)       # "Paradise", "New World" -> Grand Line
+        if not origin_sea or origin_sea.lower() not in SEA_NAMES:
+            # a place as origin -> its sea (Swallow Island -> North Blue); no stated origin at all -> the sea
+            # of where they live (Mihawk: Kuraigana Island -> Grand Line). Other origin text is kept as written.
+            for src in (("origin",) if origin_sea else ("origin", "residence")):
+                raw = P.get(src, "") or ""
+                for link in re.findall(r"\[\[([^|\]#]+)", raw):
+                    # origin must BE the place ("[[Swallow Island]]"), not mention it ("Outside the [[Grand Line]]")
+                    if src == "origin" and not re.match(r"\s*\[\[" + re.escape(link), raw):
+                        continue
+                    sea = place_sea(link)
+                    if sea:
+                        origin_sea = sea
+                        break
+                if origin_sea and origin_sea.lower() in SEA_NAMES:
+                    break
         bp = re.search(r"\(([^)]*)\)", origin)
         birthplace = bp.group(1) if bp else ""
 
@@ -495,9 +551,28 @@ def main():
         appear = clean(section(text, "Appearance"))
         for m in re.finditer(r"([A-Za-z-]+(?:[\s,-]+[A-Za-z-]+){0,3})\s+hair", appear):
             words = re.findall(r"[a-z]+", m.group(1).lower())
+            if "pirates" in m.group(0).lower():                       # "Red Hair Pirates"
+                continue
             found = [COLORS[w] for w in reversed(words) if w in COLORS]
             if found:
                 hair = found[0]
+                break
+        # other ways of saying it, only when the plain "<colour> hair" search found nothing; crew and
+        # people named after hair ("Red Hair Pirates", "Red-Haired Shanks") are taken out first
+        low = re.sub(r"red[\s-]+hair(?:ed)?[\s-]+(?:pirates|shanks)|(?:red[\s-]+hair(?:ed)?)\s+(?=[a-z]+ pirates)", " ", appear.lower())
+        if not hair and re.search(r"\bbald\b", appear, re.I):
+            hair = "Bald"
+        for pat in HAIR_PATTERNS[1:] if not hair else []:
+            for m in re.finditer(pat, low):
+                words = re.findall(r"[a-z]+", m.group("c"))
+                if words and words[-1] in ("redhead", "red") and "head" in m.group(0):
+                    hair = "Red"
+                    break
+                found = [COLORS[w] for w in reversed(words) if w in COLORS]
+                if found:
+                    hair = found[0]
+                    break
+            if hair:
                 break
         if not hair and re.search(r"\bbald\b", appear, re.I):
             hair = "Bald"

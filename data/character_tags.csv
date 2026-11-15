@@ -89,7 +89,7 @@ aswa,Aswa,69,,,,glasses,,,,
 atago-niina,Atago Niina,53,,,,ponytail,,,,
 atagoyama,Atagoyama,72,martial_artist,,,cape,,,,martial_artist=cat:Martial Artists
 atmos,Atmos,78,,,,armor|beard|horns|mask|tattoo,Sword,,,
-atoli,Atoli,39,child|filler_only|prince_or_princess|royalty,,,hat|hood,,,,child=cat:Non-Canon Children; filler_only=data:canon=no; prince_or_princess=cat:Princesses; royalty=cat:Non-Canon Royalty
+atoli,Atoli,39,child|filler_only|prince_or_princess|royalty,,,hat|hood,,,,child=cat:Non-Canon Children; filler_only=data:canon=no; prince_or_princess=cat:Princesses; royalty=cat:Princesses
 atori,Atori,70,cook,,,,Sword,,,cook=cat:Non-Canon Cooks
 atsushi,Atsushi,33,child,,,headband,,,,child=cat:Non-Canon Children
 attach,Attach,72,former_marine|journalist,,,elderly|hat,,,,former_marine=cat:Former Marines; journalist=cat:Reporters
@@ -156,7 +156,7 @@ beetleman,Beetleman,75,,,,cape|horns,Sword,,,
 bekori,Bekori,63,king_or_queen|royalty,,,beard|big_lips|crown|fat|scar|uniform,,,,king_or_queen=cat:Former Kings; royalty=cat:Former Kings
 bell-mere,Bell-mère,79,farmer|former_marine,,,long_hair|mohawk|ponytail,,,Gun,farmer=cat:Farmers; former_marine=cat:Former Marines
 belladonna,Belladonna,57,doctor,,,calm,,,,doctor=cat:Doctors
-bellamy,Bellamy,83,former_pirate,,,arrogant|muscular,,,,former_pirate=cat:Former Pirates
+bellamy,Bellamy,83,former_pirate,,,arrogant|muscular,,,,former_pirate=cat:Former Pirate Captains
 bellett,Bellett,66,impel_down|prince_or_princess|royalty,,,beard|scar|shy|vengeful,,,,impel_down=cat:Impel Down Prisoners; prince_or_princess=cat:Former Princes; royalty=cat:Former Princes
 belo-betty,Belo Betty,81,mercenary,,,lipstick|smokes|sunglasses,,,,mercenary=cat:Former Mercenaries
 bendiger,Bendiger,35,filler_only,,,muscular|suit,,,,filler_only=data:canon=no
@@ -336,7 +336,7 @@ cerberus-sword,Cerberus (Sword),77,mythical_form,,,,,,Sword,mythical_form=cat:My
 cerriot,Cerriot,36,filler_only,,,hat|uniform,,,Gun,filler_only=data:canon=no
 cezar,Cezar,63,king_or_queen|royalty,,,big_lips|cape|crown|loud,,,,king_or_queen=cat:Kings; royalty=cat:Kings
 chabo,Chabo,66,child|farmer,,,vengeful,,,,child=cat:Children; farmer=cat:Farmers
-chadros-higelyges,Chadros Higelyges,80,former_pirate|very_tall,,,arrogant|beard|braids|fat|hat|open_shirt,Sword,,,former_pirate=cat:Former Pirates; very_tall=data:height
+chadros-higelyges,Chadros Higelyges,80,former_pirate|very_tall,,,arrogant|beard|braids|fat|hat|open_shirt,Sword,,,former_pirate=cat:Former Pirate Captains; very_tall=data:height
 chaka,Chaka,81,animal_form|transforms,,,,Sword,,,animal_form=data:Zoan; transforms=data:Zoan
 chameleone,Chameleone,39,filler_only,,,greedy,,,,filler_only=data:canon=no
 chanel,Chanel,34,filler_only|game_only,,,monocle,,,,filler_only=data:canon=no; game_only=cat:Game Characters
@@ -442,7 +442,7 @@ chief,Chief,72,whip,,,cape|coward|fat|fur|hat|no_eyebrows|scar|uniform,Whip,,,wh
 chihaya,Chihaya,68,child,,,glasses|kimono,,,,child=cat:Children
 chimney,Chimney,77,child,,,braids|striped_clothes,,,,child=cat:Children
 chinco-sennin,Chinco Sennin,35,filler_only,,,long_nose,,,,filler_only=data:canon=no
-chinjao,Chinjao,81,former_pirate|martial_artist|very_tall,,,bald|beard|calm|crown|elderly|tattoo,,,,former_pirate=cat:Former Pirates; martial_artist=cat:Martial Artists; very_tall=data:height
+chinjao,Chinjao,81,former_pirate|martial_artist|very_tall,,,bald|beard|calm|crown|elderly|tattoo,,,,former_pirate=cat:Former Pirate Captains; martial_artist=cat:Martial Artists; very_tall=data:height
 chinpy,Chinpy,66,former_pirate,,,hat|open_shirt,,,,former_pirate=cat:Non-Canon Former Pirate Captains
 chip-and-dip,Chip and Dip,29,child|filler_only,,,,,,,child=cat:Non-Canon Children; filler_only=data:canon=no
 chip-and-mini,Chip and Mini,36,filler_only,,,bandana|striped_clothes,,,,filler_only=data:canon=no
@@ -707,7 +707,7 @@ francois,Francois,77,impel_down,,,drinks,Sword,,,impel_down=cat:Former Impel Dow
 francois-non-canon,Francois (Non-Canon),17,filler_only,,,freckles|goatee|striped_clothes,,,,filler_only=data:canon=no
 franky,Franky,93,carpenter|prosthetic|scientist,shirtless,,hat|tattoo,Sword,,,carpenter=cat:Shipwrights; prosthetic=cat:Cyborgs; scientist=cat:Scientists
 fred,Fred,66,,,,beard|glasses,,,,
-fuga,Fuga,78,,,,,,,,
+fuga,Fuga,78,very_tall,,,,,,,very_tall=data:height
 fugar,Fugar,67,,,,beard|drinks|elderly|hat,,,Club,
 fugetsu-kisaburo,Fugetsu Kisaburo,73,,,,named_sword,,,Sword,
 fugetsu-omusubi,Fugetsu Omusubi,77,wano,,,honor_code,Sword,,,wano=data:birthplace
@@ -804,7 +804,7 @@ giro-chintaro,Giro Chintaro,75,,,,bald|beard|kimono,Sword,,,
 gismonda,Gismonda,66,assassin,,,,,,,assassin=cat:Assassins
 gladius,Gladius,81,sniper_skill,,,goggles|hat|mask|scar,,,,sniper_skill=cat:Snipers
 glass,Glass,37,filler_only,,,,,,,filler_only=data:canon=no
-gloriosa,Gloriosa,70,former_pirate,,,big_lips|cape|flowers,,,,former_pirate=cat:Former Pirates
+gloriosa,Gloriosa,70,former_pirate,,,big_lips|cape|flowers,,,,former_pirate=cat:Former Pirate Captains
 glove,Glove,72,martial_artist,,,hat,,,,martial_artist=cat:Martial Artists
 glutbunny,Glutbunny,60,,,,,,,,
 god,God,32,,,,beard|elderly|hat,,,,
@@ -819,7 +819,7 @@ gonbe,Gonbe,77,,,,tail,,,,
 gonzo,Gonzo,37,filler_only,,,bald|beard|glasses|suit,,,,filler_only=data:canon=no
 goo,Goo,64,,,,,,,,
 googly-eyed,Googly-Eyed,56,,,,fins,,,,
-gordon,Gordon,34,filler_only|king_or_queen|movie|musician|royalty,,,bald|face_scar|long_hair|scar|sideburns|sunglasses,,,,filler_only=data:canon=no; king_or_queen=cat:Former Kings; movie=cat:Movie 15 Characters; musician=cat:Non-Canon Musicians; royalty=cat:Former Kings
+gordon,Gordon,34,filler_only|king_or_queen|movie|musician|royalty,,,bald|face_scar|long_hair|scar|sideburns|sunglasses,,,,filler_only=data:canon=no; king_or_queen=cat:Non-Canon Kings; movie=cat:Movie 15 Characters; musician=cat:Non-Canon Musicians; royalty=cat:Non-Canon Kings
 gordon-jail-island,Gordon (Jail Island),33,filler_only,,,hat|scarf,,,Gun,filler_only=data:canon=no
 gorilla,Gorilla,69,,,,calm|cape|fur|hat|sideburns,,,,
 gorishiro,Gorishiro,74,,,,,,,,
@@ -1032,7 +1032,7 @@ iscardunk-pokeportes,Iscardunk Pokeportes,29,filler_only|king_or_queen|royalty,,
 iscat,Iscat,61,,,,crown|vengeful,,,,
 ishigo-shitemanna,Ishigo Shitemanna,68,,,,coward,,,,
 ishilly,Ishilly,62,gills|mermaid_tail|underwater,,,freckles|nosebleeds|striped_clothes|tail,,,,gills=data:race Merfolk; mermaid_tail=data:race Merfolk; underwater=data:race Merfolk
-island-eater,Island Eater,70,animal,,,big_mouth,,,,animal=cat:Animals
+island-eater,Island Eater,70,animal|very_tall,,,big_mouth,,,,animal=cat:Animals; very_tall=data:height
 islewan,Islewan,74,,,,armor|big_chin|long_hair|mask|scar,Sword,,,
 isoka,Isoka,37,filler_only,,,calm|headband,,,Sword,filler_only=data:canon=no
 issho,Issho,86,,,,beard|scar,Sword,,,
@@ -1052,8 +1052,8 @@ jaguar,Jaguar,48,,,,muscular,,,,
 jaguar-d-saul,Jaguar D. Saul,82,former_marine|very_tall|will_of_d,,,beard,,,,former_marine=cat:Former Marines; very_tall=data:race Giant; will_of_d=cat:Clan of D.
 jaki,Jaki,73,,,,giant_weapon|loud|unique_laugh,,,Club,
 jalmack,Jalmack,72,world_noble,,,,,,,world_noble=cat:World Nobles
-jango,Jango,84,former_pirate,cover_story,,beard|glasses|hat|striped_clothes,,,,former_pirate=cat:Former Pirates
-jarul,Jarul,76,former_pirate|very_tall,,,elderly,Sword,,,former_pirate=cat:Former Pirates; very_tall=data:race Giant
+jango,Jango,84,former_pirate,cover_story,,beard|glasses|hat|striped_clothes,,,,former_pirate=cat:Former Pirate Captains
+jarul,Jarul,76,former_pirate|very_tall,,,elderly,Sword,,,former_pirate=cat:Former Pirate Captains; very_tall=data:race Giant
 jaygarcia-saturn,Jaygarcia Saturn,79,mythical_form|scientist,transforms,,beard|elderly|hat|pacifist|scar|suit,,,,mythical_form=cat:Mythical Zoan Devil Fruit Users; scientist=cat:Scientists
 jean-ango,Jean Ango,68,bounty_hunter|sniper_skill,,,unique_laugh,,,,bounty_hunter=cat:Bounty Hunters; sniper_skill=cat:Snipers
 jean-bart,Jean Bart,74,former_pirate|former_slave,,,calm|scar|sideburns|tattoo,,,,former_pirate=cat:Former Pirate Captains; former_slave=cat:Former Mary Geoise Slaves
@@ -1090,7 +1090,7 @@ johnny,Johnny,79,bounty_hunter|fisherman,,,arrogant|cheerful|honor_code|hood|mus
 joke,Joke,37,filler_only|former_pirate,,,afro|bandana|beard|greedy,,,,filler_only=data:canon=no; former_pirate=cat:Non-Canon Former Pirate Captains
 jonathan,Jonathan,38,filler_only,,,feathers|hat|strategist|uniform,,,,filler_only=data:canon=no
 jorge,Jorge,73,,,,beard|elderly|hat,,,,
-jorul,Jorul,75,former_pirate|very_tall,,,beard,Sword,,,former_pirate=cat:Former Pirates; very_tall=data:race Giant
+jorul,Jorul,75,former_pirate|very_tall,,,beard,Sword,,,former_pirate=cat:Former Pirate Captains; very_tall=data:race Giant
 jose,Jose,33,cook|filler_only,,,,,,,cook=cat:Non-Canon Cooks; filler_only=data:canon=no
 joseph,Joseph,71,assassin|long_limbs,,,,,,,assassin=cat:Assassins; long_limbs=data:race Longarm Tribe
 josephine-cba,Josephine (CBA),33,animal|filler_only,,,armor,,,,animal=cat:Non-Canon Animals; filler_only=data:canon=no
@@ -1247,7 +1247,7 @@ kotetsu,Kotetsu,68,,,,named_sword,,,Sword,
 kotetsu-non-canon,Kotetsu (Non-Canon),36,cook|filler_only,,,goatee|honor_code,,,,cook=cat:Non-Canon Cooks; filler_only=data:canon=no
 kouzuki-hiyori,Kouzuki Hiyori,76,musician,,,lipstick|long_hair,,,,musician=cat:Musicians
 kouzuki-momonosuke,Kouzuki Momonosuke,85,animal_form|child|mythical_form|transforms,kimono|long_hair|royalty,,kimono,Sword,,,animal_form=data:Zoan; child=cat:Children; mythical_form=cat:Mythical Zoan Devil Fruit Users; transforms=data:Zoan
-kouzuki-oden,Kouzuki Oden,86,former_pirate|wano,shirtless|makeup|food_name,,gambler|muscular|sideburns,Sword,,,former_pirate=cat:Former Pirates; wano=data:birthplace
+kouzuki-oden,Kouzuki Oden,86,former_pirate|wano,shirtless|makeup|food_name,,gambler|muscular|sideburns,Sword,,,former_pirate=cat:Former Pirate Officers; wano=data:birthplace
 kouzuki-sukiyaki,Kouzuki Sukiyaki,77,wano,,,beard|flowers|kimono,Sword,,,wano=data:birthplace
 kouzuki-toki,Kouzuki Toki,82,former_pirate,,,flowers|kimono|long_hair|scar,Sword,,,former_pirate=cat:Former Pirates
 koyama,Koyama,69,,,,,,,,
@@ -1257,7 +1257,7 @@ koze-and-packy,Koze and Packy,74,,,,big_mouth,Sword,,,
 krieg,Krieg,83,,muscular,,arrogant|fur|hat|muscular|sideburns,,,,
 krin,Krin,38,cook|filler_only,,,muscular,,,,cook=cat:Non-Canon Cooks; filler_only=data:canon=no
 kujaku,Kujaku,81,whip,,,coat_on_shoulders|flirt|flowers|hat|long_hair,Whip,,Sword,whip=cat:Whip Users
-kukai,Kukai,72,wano,,,hat|kimono,,,,wano=data:birthplace
+kukai,Kukai,72,,,,hat|kimono,,,,
 kumadori,Kumadori,81,assassin,,,honor_code|scar|suit|super_strength,,,Staff,assassin=cat:Former Assassins
 kumadori-yamanbako,Kumadori Yamanbako,65,assassin,,,elderly|long_hair,,,,assassin=cat:Former Assassins
 kumae,Kumae,66,,,,hat|striped_clothes,,,,
@@ -1287,7 +1287,7 @@ kyros,Kyros,80,,,,beard|cape|face_scar|mask|muscular|scar|vengeful,Sword,,,
 kyuin,Kyuin,61,,,,mask|shy|tattoo,,,,
 kyuji,Kyuji,76,cook,,,beard|hat,,,,cook=cat:Marine Cooks
 kyukyu,Kyukyu,69,doctor,,,bald,,,,doctor=cat:Doctors
-laboon,Laboon,69,animal,,,fins|scar|tail,,,Hammer,animal=cat:Animals
+laboon,Laboon,69,animal|very_tall,,,fins|scar|tail,,,Hammer,animal=cat:Animals; very_tall=data:height
 lacos,Lacos,40,filler_only,,,muscular,Sword,,Shield,filler_only=data:canon=no
 lacroix,Lacroix,81,very_tall,,,beard|coat_on_shoulders|hat|suit,Sword,,Cannon,very_tall=data:race Giant
 lacuba,Lacuba,78,former_slave,,,beard|hat|long_hair|strategist|tattoo,,,,former_slave=cat:Former Slaves
@@ -1511,7 +1511,7 @@ mochi,Mochi,48,child|sky_island|wings,,,,,,,child=cat:Children; sky_island=data:
 moda,Moda,70,farmer,,,afraid_of_something|bandana,,,,farmer=cat:Farmers
 mohji,Mohji,78,summons_animals|whip,,,big_lips|fur|muscular,Whip,,,summons_animals=cat:Fighters Who Use Animals; whip=cat:Whip Users
 momonga,Momonga,83,,,,coat_on_shoulders|mohawk|muscular|suit|uniform,Sword,,,
-momoo,Momoo,71,,,,afraid_of_something|armor|scales,,,,
+momoo,Momoo,71,very_tall,,,afraid_of_something|armor|scales,,,,very_tall=data:height
 mona,Mona,8,filler_only,,,headband,,,,filler_only=data:canon=no
 monda,Monda,72,,,,hood|mask,,,,
 monday,Monday,32,filler_only,,,,,,,filler_only=data:canon=no
@@ -1580,17 +1580,17 @@ mukkashimi-tower,Mukkashimi Tower,63,,,,elderly,,,,
 mummy,Mummy,65,,,,bandages|feathers|fur,,,,
 mummy-mee,Mummy Mee,65,,,,earrings|fur|lipstick|orphan,,,,
 muret,Muret,62,doctor,,,coward,,,,doctor=cat:Doctors
-musashi,Musashi,35,filler_only|wano,,,vengeful,Sword,,,filler_only=data:canon=no; wano=data:birthplace
+musashi,Musashi,35,filler_only,,,vengeful,Sword,,,filler_only=data:canon=no
 musatobi,Musatobi,24,filler_only|fur,,,bandana|cape|goggles|mask|shirtless,,,,filler_only=data:canon=no; fur=data:race Mink
 mussel,Mussel,36,filler_only,,,beard|eyepatch|horns,,,,filler_only=data:canon=no
-musshuru,Musshuru,39,filler_only|former_pirate|movie|prince_or_princess|royalty,,,armor|arrogant|beard|cape|mask|scarf,,,,filler_only=data:canon=no; former_pirate=cat:Non-Canon Former Pirates; movie=cat:Movie 9 Characters; prince_or_princess=cat:Former Princes; royalty=cat:Non-Canon Royalty
+musshuru,Musshuru,39,filler_only|former_pirate|movie|prince_or_princess|royalty,,,armor|arrogant|beard|cape|mask|scarf,,,,filler_only=data:canon=no; former_pirate=cat:Non-Canon Former Pirates; movie=cat:Movie 9 Characters; prince_or_princess=cat:Former Princes; royalty=cat:Former Princes
 muti,Muti,66,,,,,,,,
 myskina-acier,Myskina Acier,36,filler_only|scientist,,,,,,,filler_only=data:canon=no; scientist=cat:Non-Canon Scientists
 myskina-olga,Myskina Olga,35,filler_only,,,greedy|liar|loud,,,,filler_only=data:canon=no
 mysterious-voice,Mysterious Voice,66,game_only,,,,,,,game_only=cat:Game Characters
 nafk,Nafk,38,doctor|filler_only,,,goatee|headband,,,,doctor=cat:Non-Canon Doctors; filler_only=data:canon=no
 nagels,Nagels,75,king_or_queen|royalty,,,,,,,king_or_queen=cat:Non-Canon Kings; royalty=cat:Non-Canon Kings
-naguri,Naguri,38,filler_only|former_pirate,,,headband,,,,filler_only=data:canon=no; former_pirate=cat:Non-Canon Former Pirate Captains
+naguri,Naguri,38,filler_only|former_pirate,,,headband,,,,filler_only=data:canon=no; former_pirate=cat:Non-Canon Former Pirates
 nakaiwa,Nakaiwa,68,,,,afraid_of_something|big_chin|greedy|hat|scarf,,,,
 nakatsugawa-usopp,Nakatsugawa Usopp,45,,,,glasses|uniform,,,,
 nako,Nako,73,doctor,,,bandana|beard|elderly|striped_clothes|sunglasses,,,,doctor=cat:Doctors
@@ -1730,7 +1730,7 @@ pavlik,Pavlik,68,,,,beard|cape|fat,,,Gun,
 peachbeard,Peachbeard,77,,,,goatee|long_hair|scar|stitches,Sword,,,
 peanutsmonkey,Peanutsmonkey,32,animal|filler_only|movie,,,hat|sunglasses,,,,animal=cat:Non-Canon Animals; filler_only=data:canon=no; movie=cat:Movie 15 Characters
 pearl,Pearl,76,,,,arrogant,,,,
-pedro,Pedro,83,former_pirate|fur,,,scar,Sword,,,former_pirate=cat:Former Pirates; fur=data:race Mink
+pedro,Pedro,83,former_pirate|fur,,,scar,Sword,,,former_pirate=cat:Former Pirate Captains; fur=data:race Mink
 peepley-lulu,Peepley Lulu,78,carpenter,,,muscular|sunglasses|tattoo,Sword,,,carpenter=cat:Shipwrights
 pekkori,Pekkori,71,,,,beard|hat|hood|sunglasses,,,Spear,
 pekoms,Pekoms,83,animal_form|fur|transforms,,,afraid_of_something|afro|sunglasses,,,,animal_form=data:Zoan; fur=data:race Mink; transforms=data:Zoan
@@ -1965,7 +1965,7 @@ sard,Sard,34,filler_only,,,horns|mask,,,,filler_only=data:canon=no
 sardan,Sardan,37,filler_only,,,elderly|glasses,,,,filler_only=data:canon=no
 sarfunkel,Sarfunkel,65,,,,,,,,
 sargus,Sargus,39,filler_only,,,fat|uniform,,,,filler_only=data:canon=no
-sarie-nantokanette,Sarie Nantokanette,71,king_or_queen|prince_or_princess|royalty,,,,,,,king_or_queen=cat:Queens; prince_or_princess=cat:Former Princesses; royalty=cat:Queens
+sarie-nantokanette,Sarie Nantokanette,71,king_or_queen|prince_or_princess|royalty,,,,,,,king_or_queen=cat:Queens; prince_or_princess=cat:Former Princesses; royalty=cat:Former Princesses
 sarquiss,Sarquiss,77,,,,coward|muscular|shirtless|striped_clothes,Sword,,,
 saru,Saru,59,,,,mask|tail,,,,
 sarutobi,Sarutobi,70,wano,,,mask,,,,wano=data:birthplace
@@ -2010,7 +2010,7 @@ sentomaru,Sentomaru,84,former_marine|martial_artist,,,bandages|scar|tattoo,,,,fo
 serizawa,Serizawa,25,,,,,,,Club,
 seto,Seto,75,sky_island|wings,,,hat|muscular,,,,sky_island=data:race Shandia; wings=data:race Shandia
 shachi,Shachi,75,martial_artist,,,hat|sunglasses|tattoo,Sword,,,martial_artist=cat:Martial Artists
-shakuyaku,Shakuyaku,81,bartender|former_pirate,,,smokes,,,,bartender=cat:Bartenders; former_pirate=cat:Former Pirates
+shakuyaku,Shakuyaku,81,bartender|former_pirate,,,smokes,,,,bartender=cat:Bartenders; former_pirate=cat:Former Pirate Captains
 sham,Sham,81,,,,coward,Sword,,,
 shanba,Shanba,65,,,,fat|tattoo,,,Spear,
 shandia-chief,Shandia Chief,53,sky_island|wings,,,beard|elderly|feathers|fur|honor_code|long_hair|mask,,,,sky_island=data:race Shandia; wings=data:race Shandia
@@ -2032,7 +2032,7 @@ shimotsuki-furiko,Shimotsuki Furiko,78,wano,,,long_hair,,,,wano=data:birthplace
 shimotsuki-koushirou,Shimotsuki Koushirou,74,teacher,,,glasses|ponytail,Sword,,,teacher=cat:Teachers
 shimotsuki-kouzaburou,Shimotsuki Kouzaburou,75,wano,,,beard|elderly|named_sword|ponytail|scar,,,Sword,wano=data:birthplace
 shimotsuki-kuina,Shimotsuki Kuina,75,child,,,arrogant,Sword,,,child=cat:Children
-shimotsuki-ryuma,Shimotsuki Ryuma,79,wano,,,face_scar|scar,,,,wano=data:birthplace
+shimotsuki-ryuma,Shimotsuki Ryuma,79,,,,face_scar|scar,,,,
 shimotsuki-ushimaru,Shimotsuki Ushimaru,78,wano,,,bandages|drinks|honor_code|tattoo,Sword,,,wano=data:birthplace
 shimotsuki-yasuie,Shimotsuki Yasuie,77,wano,,,,,,,wano=data:birthplace
 shin-detamaruka,Shin Detamaruka,59,,,,elderly,,,,
@@ -2323,7 +2323,7 @@ vitan,Vitan,69,prosthetic,,,hat,,,,prosthetic=cat:Cyborgs
 vito,Vito,76,,,,tattoo,,,,
 volg,Volg,25,filler_only,,,goatee|headband|striped_clothes,,,,filler_only=data:canon=no
 wadataira,Wadataira,45,,,,,,,,
-wadatsumi,Wadatsumi,63,fins|gills|underwater,,,big_mouth|childish,,,,fins=data:race Fish-Man; gills=data:race Fish-Man; underwater=data:race Fish-Man
+wadatsumi,Wadatsumi,63,fins|gills|underwater|very_tall,,,big_mouth|childish,,,,fins=data:race Fish-Man; gills=data:race Fish-Man; underwater=data:race Fish-Man; very_tall=data:height
 wadatsumi-non-canon,Wadatsumi (Non-Canon),37,filler_only,,,fins|scar,,,,filler_only=data:canon=no
 wakasa,Wakasa,70,cook,,,kimono,,,,cook=cat:Cooks
 wallace,Wallace,73,fins|gills|underwater,,,,Sword,,,fins=data:race Fish-Man; gills=data:race Fish-Man; underwater=data:race Fish-Man
@@ -2332,7 +2332,7 @@ wanda,Wanda,74,fur,,,tail,Sword,,,fur=data:race Mink
 wany,Wany,58,,,,tail,,,,
 wanyudo,Wanyudo,75,,,,beard|sideburns,,,,
 wanze,Wanze,76,cook|martial_artist|spy,,,goggles|hot_headed|loud|scarf|tattoo,,,,cook=cat:Cooks; martial_artist=cat:Martial Artists; spy=cat:Cipher Pol Agents
-wapol,Wapol,84,former_pirate|king_or_queen|prince_or_princess|royalty,,,armor|cape|coward|fat|fur|hood,,,,former_pirate=cat:Former Pirates; king_or_queen=cat:Kings; prince_or_princess=cat:Former Princes; royalty=cat:Kings
+wapol,Wapol,84,former_pirate|king_or_queen|prince_or_princess|royalty,,,armor|cape|coward|fat|fur|hood,,,,former_pirate=cat:Former Pirate Captains; king_or_queen=cat:Kings; prince_or_princess=cat:Former Princes; royalty=cat:Kings
 warashi,Warashi,62,sky_island|wings,,,calm|feathers|hat|jewelry,,,Axe,sky_island=data:race Shandia; wings=data:race Shandia
 warrior-god,Warrior God,76,animal_form|mythical_form|transforms|very_tall,,,beard|cape|fur|horns|mask|shirtless,,,,animal_form=data:Zoan; mythical_form=cat:Mythical Zoan Devil Fruit Users; transforms=data:Zoan; very_tall=data:race Giant
 waruno-furishiro,Waruno Furishiro,68,,,,bald|beard|elderly|kimono,,,,
@@ -2413,7 +2413,7 @@ zap,Zap,37,filler_only,,,mask,,,Sword,filler_only=data:canon=no
 zaraza,Zaraza,37,filler_only|summons_animals,,,headband|striped_clothes,,,,filler_only=data:canon=no; summons_animals=cat:Non-Canon Fighters Who Use Animals
 zau-ra-zau,Zau Ra Zau,41,filler_only,,,,Sword,,,filler_only=data:canon=no
 zaza,Zaza,64,,,,hat,,,,
-zeff,Zeff,82,cook|former_pirate|martial_artist,,,cape,,,,cook=cat:Cooks; former_pirate=cat:Former Pirates; martial_artist=cat:Martial Artists
+zeff,Zeff,82,cook|former_pirate|martial_artist,,,cape,,,,cook=cat:Cooks; former_pirate=cat:Former Pirate Captains; martial_artist=cat:Martial Artists
 zenny,Zenny,36,filler_only,,,beard|elderly|striped_clothes,,,,filler_only=data:canon=no
 zenran,Zenran,39,filler_only,,,flirt|hat|muscular,,,,filler_only=data:canon=no
 zeo,Zeo,75,fins|gills|underwater,,,calm|coward|tattoo|tentacles,,,,fins=data:race Fish-Man; gills=data:race Fish-Man; underwater=data:race Fish-Man

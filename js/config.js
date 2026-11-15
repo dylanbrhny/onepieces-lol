@@ -146,7 +146,7 @@ window.GAME_CONFIG = {
       { field: "sex",               label: "Sex",    compare: "same" },
       { field: "race",              label: "Race",   compare: "overlap" },
       { field: "affiliation_type",  label: "Side",   compare: "overlap" },
-      { field: "primary_group",     label: "Group",  compare: "overlap" },
+      { field: "primary_group",     label: "Group",  compare: "overlap", empty: "None" },
       { field: "devil_fruit_types", label: "Fruit",  compare: "overlap", empty: "None", nearWords: true },
       { field: "haki",              label: "Haki",   compare: "overlap", empty: "None",
         short: { "Observation": "Obs", "Armament": "Arm", "Conqueror's": "Conq" } },

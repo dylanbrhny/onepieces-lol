@@ -611,7 +611,12 @@
     const all = data.chars.filter(c => c.id && c.name && !/^(no|n|false|0)$/i.test(String(c.canon || "").trim()));
     const rated = all.filter(c => c.fame != null || c.appearances);
     const famous = (rated.length ? rated : all).filter(c => c._fame >= (wcfg.minFame || 0));
-    return (famous.length ? famous : all).map(c => c.id).sort();
+    // the hidden character must have every column on file, so no clue ever reads "not on file"
+    // (columns with an "empty" label, like Fruit: None, count as on file)
+    const onFile = c => (wcfg.columns || []).every(col => col.empty != null ||
+      asList(c[col.field]).some(v => !isEmpty(v) && norm(v) !== "unknown"));
+    const complete = wcfg.completeOnly === false ? famous : famous.filter(onFile);
+    return (complete.length ? complete : famous.length ? famous : all).map(c => c.id).sort();
   }
   // The day's character: a fixed seeded shuffle of the pool, one step per day, so nobody repeats
   // until everyone in the pool has had a turn.
