@@ -45,7 +45,7 @@ window.GAME_CONFIG = {
   statsFullPlays: 400,     // real answer counts reach full weight after this many plays of a prompt...
   statsMaxWeight: 0.5,     // ...and never count for more than half (wiki fame is the rest)
   statsMinPlays: 50,       // ...and only start counting after this many plays
-  statsEndpoint: "",       // where finished answers are sent (POST JSON). Blank = only kept in this browser.
+  statsEndpoint: "https://script.google.com/macros/s/AKfycbxYCrMveLndHLsiGJbZVNkDo7PJsJu4EnGcpejLhTdeOtld5eeWMtFrhuHZi8cs2Q_Y/exec",       // where finished answers are sent (POST JSON). Blank = only kept in this browser.
   missTier:    { id: "wreck",   name: "Shipwrecked", points: 0, line: "Wrong waters." },
   timeoutTier: { id: "becalmed", name: "Becalmed",   points: 0, line: "The wind died. Out of time." },
 
@@ -112,7 +112,9 @@ window.GAME_CONFIG = {
   // ---- Wanted (guess the hidden character) ----
   wanted: {
     maxGuesses: 10,                   // 0 = unlimited
-    minFame: 81,                      // the hidden character is picked only from characters with fame >= this
+    minFame: 81,
+    minFameBy: { easy: 81, medium: 81, hard: 75 },   // per difficulty. Easy also only searches Easy characters
+                                                       // (~135 posters); Hard opens the poster to ~615.                      // the hidden character is picked only from characters with fame >= this
                                       // (so the daily target isn't a one-panel extra). 81 = about 190 characters
                                       // with the wiki data (85 = ~65, 80 = ~240). 0 = anyone.
     // Where the ship lands when you catch them: 1st number = caught on guess 1, 2nd = guess 2, ...

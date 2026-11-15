@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
-<link rel="stylesheet" href="css/style.css?v=20261115165305">
+<link rel="stylesheet" href="css/style.css?v=20261115170232">
 <script>try { history.scrollRestoration = "manual"; } catch (e) {} window.scrollTo(0, 0);</script>
 </head>
 <body>
@@ -46,6 +46,15 @@
     <button class="icon-btn" id="sfxBtn" type="button" aria-label="Sound effects" aria-pressed="true">
       <svg viewBox="0 0 8 8" aria-hidden="true"><path d="M0 3h2V2h1V1h1v6H3V6H2V5H0zM5 3h1v2H5zM6 2h1v1H6zM6 5h1v1H6zM7 3h1v2H7z"/></svg>
     </button>
+    <button class="icon-btn" id="volBtn" type="button" aria-label="Volume" aria-expanded="false" aria-controls="volPop">
+      <svg viewBox="0 0 8 8" aria-hidden="true"><path d="M1 0h1v2H1zM0 2h3v2H0zM1 4h1v4H1zM5 0h1v4H5zM4 4h3v2H4zM5 6h1v2H5z"/></svg>
+    </button>
+    <div class="volpop" id="volPop" role="dialog" aria-label="Volume" hidden>
+      <label class="vol-row"><span class="vol-name">Music</span>
+        <input type="range" id="volMusic" min="0" max="100" step="5" value="70" aria-label="Music volume"><b id="volMusicVal">70</b></label>
+      <label class="vol-row"><span class="vol-name">Sound FX</span>
+        <input type="range" id="volSfx" min="0" max="100" step="5" value="70" aria-label="Sound effects volume"><b id="volSfxVal">70</b></label>
+    </div>
   </div>
 
   <aside class="route" id="route" aria-label="Route"></aside>
@@ -131,7 +140,7 @@
 
       <form class="wsearch" id="wantedForm" autocomplete="off">
         <label class="sr-only" for="wantedInput">Search for a character</label>
-        <input id="wantedInput" type="text" placeholder="Search a character..." spellcheck="false" autocapitalize="words" enterkeyhint="go"
+        <input id="wantedInput" type="text" placeholder="Name or trait (fishman, zoan...)" spellcheck="false" autocapitalize="words" enterkeyhint="go"
           role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="wantedList">
         <button class="btn btn-straw" type="submit">Guess</button>
         <ul class="wlist" id="wantedList" role="listbox" hidden></ul>
@@ -192,22 +201,22 @@
   <section class="screen screen-debug" id="screen-debug" hidden></section>
 </div>
 
-<script src="js/config.js?v=20261115165305"></script>
-<script src="js/questions.js?v=20261115165305"></script>
-<script src="data/characters.js?v=20261115165305"></script>
-<script src="data/arcs.js?v=20261115165305"></script>
-<script src="data/route.js?v=20261115165305"></script>
-<script src="js/sprites.js?v=20261115165305"></script>
-<script src="data/answer_stats.js?v=20261115165305"></script>
-<script src="js/engine.js?v=20261115165305"></script>
-<script src="js/audio.js?v=20261115165305"></script>
-<script src="js/scenes.js?v=20261115165305"></script>
-<script src="js/chart.js?v=20261115165305"></script>
-<script src="data/things.js?v=20261115165305"></script>
-<script src="js/questions_things.js?v=20261115165305"></script>
-<script src="js/hints.js?v=20261115165305"></script>
-<script src="js/cutscene.js?v=20261115165305"></script>
-<script src="js/app.js?v=20261115165305"></script>
+<script src="js/config.js?v=20261115170232"></script>
+<script src="js/questions.js?v=20261115170232"></script>
+<script src="data/characters.js?v=20261115170232"></script>
+<script src="data/arcs.js?v=20261115170232"></script>
+<script src="data/route.js?v=20261115170232"></script>
+<script src="js/sprites.js?v=20261115170232"></script>
+<script src="data/answer_stats.js?v=20261115170232"></script>
+<script src="js/engine.js?v=20261115170232"></script>
+<script src="js/audio.js?v=20261115170236"></script>
+<script src="js/scenes.js?v=20261115170232"></script>
+<script src="js/chart.js?v=20261115170232"></script>
+<script src="data/things.js?v=20261115170232"></script>
+<script src="js/questions_things.js?v=20261115170232"></script>
+<script src="js/hints.js?v=20261115170232"></script>
+<script src="js/cutscene.js?v=20261115170232"></script>
+<script src="js/app.js?v=20261115170254"></script>
 <script id="boot-failsafe">setTimeout(function(){var b=document.getElementById("boot");if(b)b.remove();},8000);</script>
 </body>
 </html>

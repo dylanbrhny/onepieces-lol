@@ -5,7 +5,7 @@
   const $ = s => document.querySelector(s);
   const app = $("#app");
   const TIER_EMOJI = { rookie: "⬜", supernova: "🟦", warlord: "🟩", emperor: "🟧", king: "👑", wreck: "☠️", becalmed: "⏳" };
-  const S_ = window.Sound || { unlock() {}, click() {}, type() {}, nope() {}, good() {}, bad() {}, timeout() {}, tick() {}, stamp() {}, tile() {}, landfall() {}, splash() {}, fanfare() {}, toggleSfx() {}, toggleMusic() {}, sfxOn: false, musicOn: false };
+  const S_ = window.Sound || { unlock() {}, click() {}, type() {}, nope() {}, good() {}, bad() {}, timeout() {}, tick() {}, stamp() {}, tile() {}, landfall() {}, splash() {}, fanfare() {}, toggleSfx() {}, toggleMusic() {}, setScene() {}, sfxOn: false, musicOn: false };
   const tierIndex = id => C.tiers.findIndex(t => t.id === id);
   const MODE_ICONS = {
     endless: '<path d="M1 3h2v1h1v1H3v1H1V5H0V4h1zM5 3h2v1h1v1H7v1H5V5h1V4H5zM3 4h2v1H3z"/>',
@@ -183,6 +183,32 @@
   const paintSys = () => { musicBtn.setAttribute("aria-pressed", String(!!S_.musicOn)); sfxBtn.setAttribute("aria-pressed", String(!!S_.sfxOn)); };
   musicBtn.addEventListener("click", () => { S_.toggleMusic(); paintSys(); });
   sfxBtn.addEventListener("click", () => { S_.toggleSfx(); paintSys(); });
+  // volume panel: two sliders (0-100). 70 = the normal level. Moving a slider up turns that sound on.
+  {
+    const pop = $("#volPop"), btn = $("#volBtn");
+    const rows = [["music", $("#volMusic"), $("#volMusicVal")], ["sfx", $("#volSfx"), $("#volSfxVal")]];
+    const paintVol = () => rows.forEach(([kind, input, val]) => {
+      const on = kind === "music" ? S_.musicOn : S_.sfxOn;
+      const v = on ? Math.round(((S_.volume && S_.volume(kind)) ?? 0.7) * 100) : 0;
+      input.value = v; val.textContent = v; input.style.setProperty("--fill", v + "%");
+    });
+    const setOpen = open => { pop.hidden = !open; btn.setAttribute("aria-expanded", String(open)); if (open) paintVol(); };
+    btn.addEventListener("click", e => { e.stopPropagation(); setOpen(pop.hidden); });
+    document.addEventListener("click", e => { if (!pop.hidden && !e.target.closest(".sys")) setOpen(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && !pop.hidden) { setOpen(false); btn.focus(); } });
+    for (const [kind, input, val] of rows) {
+      input.addEventListener("input", () => {
+        const v = Number(input.value);
+        val.textContent = v; input.style.setProperty("--fill", v + "%");
+        const on = kind === "music" ? S_.musicOn : S_.sfxOn;
+        if (v > 0) { if (S_.setVolume) S_.setVolume(kind, v / 100); if (!on) kind === "music" ? S_.toggleMusic() : S_.toggleSfx(); }
+        else if (on) kind === "music" ? S_.toggleMusic() : S_.toggleSfx();
+        paintSys();
+      });
+      if (kind === "sfx") input.addEventListener("change", () => { if (S_.sfxOn) S_.click(); });   // a blip to hear the new level
+    }
+    musicBtn.addEventListener("click", paintVol); sfxBtn.addEventListener("click", paintVol);
+  }
   paintSys();
   const unlock = () => { S_.unlock(); window.removeEventListener("pointerdown", unlock); window.removeEventListener("keydown", unlock); };
   window.addEventListener("pointerdown", unlock);
@@ -198,6 +224,7 @@
     for (const s of ["title", "play", "wanted", "result", "debug"]) $(`#screen-${s}`).hidden = s !== screen;
     $("#hud").hidden = screen !== "play" && screen !== "wanted";
     chart.setMode(screen === "title" ? "title" : "play");
+    if (S_.setScene) S_.setScene(screen);   // music: title -> harbor jig, play -> sea march, result -> wanted calypso
     window.scrollTo(0, 0);
   }
 
@@ -690,9 +717,14 @@
     up: '<svg class="warr" viewBox="0 0 7 4" aria-label="answer is higher"><path d="M3 0h1v1h1v1h1v1h1v1H0V3h1V2h1V1h1z"/></svg>',
     down: '<svg class="warr" viewBox="0 0 7 4" aria-label="answer is lower"><path d="M0 0h7v1H6v1H5v1H4v1H3V3H2V2H1V1H0z"/></svg>'
   };
-  const wPool = E.wantedPool(data, W);
-  const wDailyId = E.wantedDaily(wPool, `${C.storageKey}:wanted`, dayNo);
-  const wKey = `wanted:${dateKey}`;
+  // The poster pool follows the difficulty: Easy = only famous faces (and the search lists only them),
+  // Hard = a much wider net. Each difficulty / spoiler setting has its own daily poster.
+  const wPool = E.wantedPool(data, { ...W, minFame: (W.minFameBy || {})[diffId] ?? W.minFame });
+  const wDailyId = E.wantedDaily(wPool, `${C.storageKey}:wanted${settingKey === "medium" ? "" : ":" + settingKey}`, dayNo);
+  const wKey = `wanted:${dateKey}${settingKey === "medium" ? "" : ":" + settingKey}`;
+  // search by trait: "fishman", "marine", "zoan", "red hair" lists everyone with it
+  const W_TRAITS = W.searchFields || [["race", "Race"], ["primary_group", "Group"], ["organizations", "Group"], ["affiliation_type", "Side"],
+    ["devil_fruit_types", "Fruit"], ["haki", "Haki"], ["hair_color", "Hair"], ["origin_sea", "From"], ["debut_arc", "Debut"], ["fighting_style", "Style"]];
   let WS = null;          // the hunt in progress: { practice, targetId, guesses: [ids], done, won, nmi }
   let wActive = -1, wResults = [];
 
@@ -715,7 +747,7 @@
     }
     chart.setShip(0);
     $("#hud").hidden = false;
-    $("#wantedHead").textContent = WS.practice ? "WANTED · PRACTICE" : `WANTED #${dayNo}`;
+    $("#wantedHead").textContent = (WS.practice ? "WANTED · PRACTICE" : `WANTED #${dayNo}`) + ` · ${diff.label.toUpperCase()}`;
     $("#wantedPrompt").textContent = WS.practice ? "Who is on this poster?" : "Who is on today's poster?";
     $("#wantedHint").textContent = "";
     $("#wantedDone").hidden = true;
@@ -820,7 +852,15 @@
   function closeList() { wList.hidden = true; wList.innerHTML = ""; wResults = []; wActive = -1; wInput.setAttribute("aria-expanded", "false"); wInput.removeAttribute("aria-activedescendant"); }
   function renderList() {
     const q = wInput.value;
-    wResults = q.trim() ? E.searchCharacters(q, data, 8) : [];
+    const names = q.trim() ? E.searchCharacters(q, data, 8) : [];
+    const traits = q.trim() ? E.searchTraits(q, data, W_TRAITS, { displayNames: C.displayNames }).slice(0, 3) : [];
+    // name matches first (fewer when a trait matched), then each trait with everyone in it, most famous first
+    wResults = traits.length ? names.slice(0, 4) : names;
+    const shown = new Set(wResults.map(r => r.id));
+    for (const t of traits) {
+      wResults.push({ header: true, text: `${t.value} · ${t.label}`, count: t.ids.length });
+      for (const id of t.ids.slice(0, 80)) if (!shown.has(id)) { shown.add(id); wResults.push({ id, via: groupLine(id, t.field), trait: true }); }
+    }
     if (!wResults.length) {
       closeList();
       if (q.trim().length >= 3) {
@@ -830,8 +870,9 @@
       } else { $("#wantedHint").textContent = ""; return; }
     }
     $("#wantedHint").textContent = "";
-    wActive = wResults.findIndex(r => !WS.guesses.includes(r.id));
+    wActive = wResults.findIndex(r => !r.header && !WS.guesses.includes(r.id));
     wList.innerHTML = wResults.map((r, i) => {
+      if (r.header) return `<li class="wgroup" role="presentation" data-i="${i}"><span>${esc(r.text)}</span><b>${r.count}</b></li>`;
       const used = WS.guesses.includes(r.id);
       return `<li role="option" id="wopt${i}" data-i="${i}" class="${used ? "used" : ""}" aria-disabled="${used}" aria-selected="${i === wActive}">
         <span class="portrait wmini" data-id="${esc(r.id)}"></span>
@@ -842,6 +883,13 @@
     wList.hidden = false;
     wInput.setAttribute("aria-expanded", "true");
     paintActive();
+  }
+  // the small line under a name in a trait list: their crew, or their race when searching a crew
+  function groupLine(id, field) {
+    const c = data.byId.get(id) || {};
+    const g = E.asList(c.primary_group)[0] || E.asList(c.organizations)[0] || "";
+    const r = E.asList(c.race).filter(x => x !== "Human" && x !== "Unknown")[0] || "";
+    return /group|organizations/.test(field) ? (r || E.asList(c.affiliation_type)[0] || "") : g;
   }
   function paintActive() {
     [...wList.children].forEach((li, i) => li.setAttribute("aria-selected", String(i === wActive)));
@@ -857,7 +905,7 @@
     let i = wActive;
     for (let k = 0; k < wResults.length; k++) {
       i = (i + step + wResults.length) % wResults.length;
-      if (!WS.guesses.includes(wResults[i].id)) { wActive = i; break; }
+      if (!wResults[i].header && !WS.guesses.includes(wResults[i].id)) { wActive = i; break; }
     }
     paintActive();
   }
@@ -873,12 +921,12 @@
     const li = e.target.closest("li");
     if (!li) return;
     const r = wResults[+li.dataset.i];
-    if (r) { S_.click(); wantedGuess(r.id); }
+    if (r && !r.header && !WS.guesses.includes(r.id)) { S_.click(); wantedGuess(r.id); }
   });
   $("#wantedForm").addEventListener("submit", e => {
     e.preventDefault();
     if (!WS || WS.done) return;
-    if (wActive >= 0 && wResults[wActive]) return wantedGuess(wResults[wActive].id);
+    if (wActive >= 0 && wResults[wActive] && !wResults[wActive].header) return wantedGuess(wResults[wActive].id);
     const raw = wInput.value;
     if (!raw.trim()) return;
     const r = E.resolveGuess(raw, data);

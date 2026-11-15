@@ -93,6 +93,22 @@ img, canvas { image-rendering: pixelated; }
 .icon-btn[aria-pressed="false"] svg { fill: var(--ink-faint); }
 .icon-btn[aria-pressed="false"]::after { content: ""; position: absolute; }
 .app[data-screen="play"] .sys { top: auto; bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); }
+/* volume panel: opens under the buttons (above them when they sit at the bottom) */
+.volpop { position: absolute; right: 0; top: calc(100% + 8px); width: 250px; padding: 10px 12px; display: grid; gap: 10px;
+  background: var(--panel); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--edge); }
+.app[data-screen="play"] .volpop, .app[data-screen="wanted"] .volpop { top: auto; bottom: calc(100% + 8px); }
+.vol-row { display: grid; grid-template-columns: 74px 1fr 30px; align-items: center; gap: 8px; cursor: pointer; }
+.vol-name { font: 400 8px/1.2 var(--pixel); text-transform: uppercase; color: var(--ink-dim); letter-spacing: 0.06em; }
+.vol-row b { font: 400 9px/1 var(--pixel); color: var(--straw); text-align: right; font-weight: 400; }
+.vol-row input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin: 0; background: transparent; cursor: pointer; --fill: 70%; }
+.vol-row input[type=range]::-webkit-slider-runnable-track { height: 10px; border: 2px solid var(--ink-faint);
+  background: linear-gradient(90deg, var(--straw) var(--fill), var(--edge) var(--fill)); }
+.vol-row input[type=range]::-moz-range-track { height: 6px; border: 2px solid var(--ink-faint); background: var(--edge); }
+.vol-row input[type=range]::-moz-range-progress { height: 6px; background: var(--straw); }
+.vol-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 20px; margin-top: -7px;
+  background: var(--ink); border: 2px solid var(--night); box-shadow: 0 2px 0 var(--edge); }
+.vol-row input[type=range]::-moz-range-thumb { width: 10px; height: 18px; border-radius: 0; background: var(--ink); border: 2px solid var(--night); }
+.vol-row input[type=range]:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
 
 /* ---------- route list (desktop) ---------- */
 .route {
@@ -400,6 +416,10 @@ img, canvas { image-rendering: pixelated; }
 .wlist li[aria-selected="true"] { background: var(--panel-2); box-shadow: inset 4px 0 0 var(--straw); }
 .wlist li:hover:not(.used) { background: var(--panel-2); }
 .wlist li.used { cursor: default; opacity: 0.45; }
+.wlist li.wgroup { position: sticky; top: 0; z-index: 1; cursor: default; justify-content: space-between; padding: 7px 10px 6px;
+  background: var(--ink); color: var(--night); font: 400 8px/1.2 var(--pixel); letter-spacing: 0.08em; text-transform: uppercase; }
+.wlist li.wgroup:hover { background: var(--ink); }
+.wlist li.wgroup b { font-weight: 400; }
 .portrait.wmini { width: 36px; height: 36px; border-width: 2px; box-shadow: 2px 2px 0 var(--edge); font-size: 10px; }
 .wopt-name { flex: 1; min-width: 0; font-size: 24px; line-height: 1; }
 .wopt-name small { display: block; font-size: 17px; color: var(--ink-dim); }

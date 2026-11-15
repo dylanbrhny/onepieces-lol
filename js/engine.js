@@ -506,6 +506,43 @@
   // Skips non-canon rows (canon = no). Characters with neither fame nor appearances filled are left out
   // too once anyone has them, so a big scraped list doesn't hand out unknown extras as the daily target.
   // Everyone can still be guessed.
+  // Search by trait for Wanted: "fishman", "marine", "zoan", "red hair" -> everyone with that trait.
+  // fields = [[field, label], ...]. Plurals and missing spaces/hyphens are forgiven (fishmen = Fish-Man).
+  function searchTraits(query, data, fields, opts = {}) {
+    const raw = norm(query), q = raw.replace(/ /g, "");
+    if (q.length < 3) return [];
+    if (!data._traitIndex) {
+      const idx = new Map();                              // field|normValue -> { field, label, value, ids }
+      for (const c of data.chars) for (const [field, label] of fields) for (const v of asList(c[field])) {
+        const k = norm(v);
+        if (!k || k === "unknown" || k === "none") continue;
+        const key = label + "|" + k;            // same label = one group (crew in two columns)
+        if (!idx.has(key)) {
+          const alt = opts.displayNames && opts.displayNames[v] ? norm(opts.displayNames[v]) : "";
+          idx.set(key, { field, label, value: v, ids: new Set(), keys: [k.replace(/ /g, ""), alt.replace(/ /g, "")].filter(Boolean), words: (k + " " + alt).split(" ").filter(Boolean) });
+        }
+        idx.get(key).ids.add(c.id);
+      }
+      data._traitIndex = [...idx.values()];
+    }
+    const tries = [...new Set([q, q.replace(/men$/, "man"), q.replace(/ies$/, "y"), q.replace(/es$/, ""), q.replace(/s$/, "")])].filter(t => t.length >= 3);
+    const out = [];
+    for (const t of data._traitIndex) {
+      let rank = 9;
+      // "red hair", "blonde haired" -> the hair colour itself
+      const hairQ = /.hair(ed)?$/.test(q) ? q.replace(/hair(ed)?$/, "").replace(/e$/, "") : "";
+      if (hairQ && /hair/i.test(t.field) && t.keys.some(k => k === hairQ || k.replace(/e$/, "") === hairQ)) rank = 0;
+      for (const x of tries) {
+        if (t.keys.includes(x)) rank = Math.min(rank, 0);
+        else if (t.keys.some(k => k.startsWith(x))) rank = Math.min(rank, 1);
+        else if (raw.length >= 3 && t.words.some(w => w.startsWith(x))) rank = Math.min(rank, 2);
+      }
+      if (rank < 9 && t.ids.size >= (opts.minMembers || 2)) out.push({ ...t, rank, fit: q.length / Math.max(...t.keys.map(k => k.length)) });
+    }
+    const fame = id => data.byId.get(id)._fame || 0;
+    return out.sort((a, b) => a.rank - b.rank || b.fit - a.fit || b.ids.size - a.ids.size)
+      .map(t => ({ field: t.field, label: t.label, value: t.value, ids: [...t.ids].sort((a, b) => fame(b) - fame(a)) }));
+  }
   function wantedPool(data, wcfg) {
     const all = data.chars.filter(c => c.id && c.name && !/^(no|n|false|0)$/i.test(String(c.canon || "").trim()));
     const rated = all.filter(c => c.fame != null || c.appearances);
@@ -576,7 +613,7 @@
     return v.toLocaleString("en-US") + (col.unit || "");
   }
 
-  const api = { rateDifficulty, norm, asList, levenshtein, prepare, resolveGuess, soundKey, suggestNames, testCond, fits, buildQuestions, tierAnswers,
+  const api = { searchTraits, rateDifficulty, norm, asList, levenshtein, prepare, resolveGuess, soundKey, suggestNames, testCond, fits, buildQuestions, tierAnswers,
     scoreGuess, rarestAnswers, hashString, rng, shuffle, pickQuestions, localDateKey, dayNumber,
     searchCharacters, wantedPool, wantedDaily, compareTrait, compareCharacters, formatNumber, comboQuestions };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
