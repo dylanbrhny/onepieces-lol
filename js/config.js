@@ -44,6 +44,8 @@ window.GAME_CONFIG = {
   // popularityTemp: casual Easy players pile onto the famous few (low), Hard players know the deep cast
   // and spread out (high). caps: the highest tier an answer of that fame level can reach in this mode
   // (characters, fruits, places... all carry easy / medium / hard). Missing level = no cap (Pirate King).
+  offPoolWeight: 0.1,      // a right answer from outside the difficulty's pool gets this share of players...
+  offPoolFloor: "warlord", // ...and never scores below this tier
   modeTiers: {
     easy:   { popularityTemp: 8,  caps: {} },
     medium: { popularityTemp: 12, caps: { easy: "warlord" } },

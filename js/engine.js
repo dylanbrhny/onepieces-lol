@@ -348,7 +348,11 @@
     const tau = mode.popularityTemp ?? cfg.popularityTemp ?? 12;  // lower = famous answers hog more players
     const fame = id => data.byId.get(id)._fame || 0;
     const top = Math.max(...ids.map(fame));
-    let model = ids.map(id => Math.exp((fame(id) - top) / tau));
+    // answers from outside this difficulty's pool (a medium-level crew on Easy) are ones this crowd rarely
+    // knows: they get a small slice of players, so they sit at the rare end
+    const levels = cfg.poolLevels, offW = cfg.offPoolWeight ?? 0.1;
+    const off = id => levels && !levels.includes(data.byId.get(id).difficulty || "hard");
+    let model = ids.map(id => Math.exp((fame(id) - top) / tau) * (off(id) ? offW : 1));
     const sum = model.reduce((a, b) => a + b, 0) || 1;
     model = model.map(v => v / sum);
     // real counts from players on THIS difficulty once there are enough of them, else from everyone
@@ -394,6 +398,9 @@
         else if (known === "medium" && hardest === "hard") cap = last - 1; // well known: up to Emperor
       }
       if (ti > cap) ti = cap;
+      // a right answer from outside the difficulty's pool is never an everyday one: Warlord at least
+      const lv = data.byId.get(id).difficulty || "hard", floor = tiers.findIndex(x => x.id === (cfg.offPoolFloor || "warlord"));
+      if (idx > 0 && cfg.poolLevels && !cfg.poolLevels.includes(lv) && floor >= 0 && ti < floor) ti = Math.min(floor, cap);
       if (ti === last) {
         const pinned = q && q.gem === id;
         if (!kingOk || (kings >= (cfg.kingMax ?? 5) && !pinned)) ti = last - 1;

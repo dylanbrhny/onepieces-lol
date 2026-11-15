@@ -544,7 +544,7 @@
     const raw = $("#guessInput").value;
     if (!raw.trim()) return;
     const q = S.qs[S.i], kd = dataFor(q);
-    const r = E.resolveGuess(raw, kd);
+    const r = E.resolveFor(raw, kd, q);
     if (r.status === "match") return tryAnswer(r.id);
     S_.nope();
     const form = $("#guessForm");
@@ -559,7 +559,7 @@
         hint.appendChild(b);
       });
     };
-    if (r.status === "ambiguous") return offer("Which one? ", r.ids.slice(0, 6));
+    if (r.status === "ambiguous") return offer("Which one? ", r.ids.slice(0, 8));
     const close = E.suggestNames(raw, kd, 3);
     if (close.length) return offer("Did you mean ", close);
     // a real character who is only left out by the difficulty or spoiler setting
