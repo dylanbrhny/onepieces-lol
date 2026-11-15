@@ -1,0 +1,601 @@
+id,name,tags_ai,weapons_ai
+monkey-d-luffy,Monkey D. Luffy,hat|scar|face_scar|open_shirt|glutton|meat_lover|catchphrase|unique_laugh|childish|cheerful|loud|has_dream|sworn_sibling|adopted|has_mentor|puncher|yells_attacks|super_strength|lives_on_a_ship|from_a_village|escaped_prison|famous_in_world|transforms|shrinks_or_grows|disguised,
+roronoa-zoro,Roronoa Zoro,multiple_swords|named_sword|bad_sense_of_direction|sleepy|drinks|scar|face_scar|earrings|bandana|muscular|honor_code|has_dream|rival_of_straw_hat|has_mentor|from_a_village|lives_on_a_ship|yells_attacks|saved_by_luffy,Sword
+sanji,Sanji,curly_eyebrow|smokes|flirt|nosebleeds|kicker|suit|goatee|facial_hair|has_sibling|has_mentor|adopted|owes_a_debt|honor_code|has_dream|lives_on_a_ship|from_a_kingdom|wanted_poster_gag|yells_attacks|rival_of_straw_hat|saved_by_luffy|scientist_experiment,
+nami,Nami,tattoo|money_lover|greedy|thief|map_maker|orphan|adopted|has_sibling|cried_for_help|saved_by_luffy|hot_headed|lives_on_a_ship|has_dream|from_a_village,Staff
+tony-tony-chopper,Tony Tony Chopper,hat|cries_easily|sweet_tooth|shy|horns|fur|adopted|has_mentor|childish|wanted_poster_gag|joined_crew_later|lives_on_a_ship,
+usopp,Usopp,long_nose|liar|coward|inventor|big_lips|goggles|from_a_village|has_dream|wanted_poster_gag|disguised|cries_easily|fights_dirty|lives_on_a_ship,Slingshot
+nico-robin,Nico Robin,calm|reader|polite|orphan|adopted|spy|villain_turned_ally|switched_sides|cried_for_help|saved_by_luffy|rescued_by_crew|has_dream|joined_crew_later|has_mentor|lives_on_a_ship,
+brook,Brook,afro|unique_laugh|catchphrase|sings|polite|hat|suit|shadow_stolen|performer|famous_in_world|joined_crew_later|lives_on_a_ship|pet|has_dream|super_speed,Sword
+franky,Franky,open_shirt|sunglasses|signature_pose|catchphrase|cries_easily|pompadour|inventor|muscular|tattoo|has_mentor|adopted|orphan|time_skip_redesign|villain_turned_ally|fought_luffy|joined_crew_later|lives_on_a_ship,Cannon
+jinbe,Jinbe,honor_code|calm|polite|martial_artist|kimono|swimmer|joined_crew_later|ally_of_luffy|escaped_prison|tattoo|has_mentor|protector,
+portgas-d-ace,Portgas D. Ace,freckles|hat|shirtless|tattoo|sleepy|polite|sworn_sibling|adopted|orphan|ally_of_luffy,
+trafalgar-d-water-law,Trafalgar D. Water Law,hat|tattoo|goatee|facial_hair|earrings|named_sword|calm|vengeful|strategist|orphan|has_sibling|ally_of_luffy|saved_by_luffy|from_a_kingdom,Sword
+caesar-clown,Caesar Clown,horns|scientist|unique_laugh|arrogant|coward|lipstick|long_hair|defeated_by_luffy|fought_luffy|captured_straw_hat|fights_dirty|can_fly|liar,
+charlotte-linlin,Charlotte Linlin,big_chin|glutton|sweet_tooth|unique_laugh|hat|lipstick|makeup|long_hair|big_mouth|parent|big_family|married|fat|hot_headed|elderly|adopted|fought_luffy|island_leader,Sword
+crocodile,Crocodile,scar|face_scar|stitches|missing_limb|prosthetic|cigar|smokes|defeated_by_luffy|fought_luffy|escaped_prison|rich|arrogant|calm|strategist|villain_turned_ally|ally_of_luffy|famous_in_world,
+donquixote-doflamingo,Donquixote Doflamingo,sunglasses|coat_on_shoulders|unique_laugh|arrogant|world_noble|defeated_by_luffy|fought_luffy|has_sibling|island_leader|rich|can_fly|clones|from_a_kingdom,
+bartholomew-kuma,Bartholomew Kuma,hat|glasses|reader|calm|scientist_experiment|prosthetic|fought_luffy|spy|parent|poor,
+buggy,Buggy,red_nose|makeup|long_hair|hat|coward|money_lover|greedy|arrogant|dramatic|defeated_by_luffy|fought_luffy|running_gag|famous_in_world|escaped_prison|ally_of_luffy|villain_turned_ally|hot_headed,Knife|Cannon
+kaidou,Kaidou,long_hair|drinks|muscular|facial_hair|mustache|defeated_by_luffy|fought_luffy|can_fly|parent|captured_straw_hat|super_strength,Club
+kuzan,Kuzan,sleepy|lazy|calm|switched_sides|fought_luffy|missing_limb|scar,
+sabo,Sabo,hat|goggles|scar|face_scar|sworn_sibling|rich|ally_of_luffy|from_a_kingdom|adopted|wrongly_accused,Staff
+shanks,Shanks,scar|face_scar|missing_limb|coat_on_shoulders|drinks|calm|named_sword|twin|has_sibling|adopted|famous_in_world|open_shirt|has_mentor,Sword
+smoker,Smoker,cigar|smokes|shirtless|scar|face_scar|seastone|honor_code|fought_luffy|ally_of_luffy,Staff
+x-drake,X Drake,hat|mask|face_scar|sideburns|cape|armor|spy|dual_wielder,Sword|Axe
+borsalino,Borsalino,sunglasses|calm|super_speed|striped_clothes|suit|fought_luffy|kicker|coat_on_shoulders|facial_hair,
+edward-newgate,Edward Newgate,mustache|facial_hair|bandana|coat_on_shoulders|shirtless|tattoo|drinks|elderly|muscular|scar|giant_weapon|unique_laugh|protector|famous_in_world,Spear
+emporio-ivankov,Emporio Ivankov,afro|makeup|lipstick|cross_dresser|cape|heals|escaped_prison|ally_of_luffy|dramatic|verbal_tic|island_leader,
+hatchan,Hatchan,extra_limbs|tentacles|multiple_swords|merchant|villain_turned_ally|defeated_by_straw_hat|cheerful|ally_of_luffy,Sword
+kaku,Kaku,long_nose|hat|spy|traitor|defeated_by_straw_hat|multiple_swords|martial_artist,Sword
+kin-emon,Kin'emon,goatee|facial_hair|kimono|honor_code|multiple_swords|dual_wielder|married|ally_of_luffy,Sword
+monkey-d-dragon,Monkey D. Dragon,tattoo|face_tattoo|hood|parent|famous_in_world|calm,
+monkey-d-garp,Monkey D. Garp,grandparent|parent|marine_hero|scar|face_scar|beard|facial_hair|sleepy|puncher|super_strength|elderly|muscular|mentor_of_straw_hat|coat_on_shoulders|fought_luffy,
+bentham,Bentham,cross_dresser|makeup|dances|kicker|honor_code|ally_of_luffy|villain_turned_ally|impel_down|defeated_by_straw_hat|loud|dramatic|cries_easily,
+daz-bonez,Daz Bonez,bald|big_lips|tattoo|defeated_by_straw_hat|calm|escaped_prison,
+dracule-mihawk,Dracule Mihawk,hat|facial_hair|mustache|beard|sideburns|unusual_eyes|open_shirt|named_sword|giant_weapon|mentor_of_straw_hat|calm|famous_in_world|fought_luffy,Sword|Knife
+galdino,Galdino,glasses|unusual_hair|artist|defeated_by_luffy|fought_luffy|strategist|coward|escaped_prison|villain_turned_ally|ally_of_luffy|barriers,
+gecko-moria,Gecko Moria,horns|stitches|sharp_teeth|unique_laugh|lazy|defeated_by_luffy|fought_luffy|fat|lives_on_a_ship,
+gol-d-roger,Gol D. Roger,mustache|facial_hair|coat_on_shoulders|named_sword|parent|flashback_only|famous_in_world,Sword
+issho,Issho,closed_eyes|scar|face_scar|kimono|gambler|polite|honor_code|coat_on_shoulders|mustache|beard|facial_hair,Sword
+koby,Koby,cries_easily|coward|has_mentor|has_dream|saved_by_luffy|famous_in_world|marine_hero|time_skip_redesign,
+kouzuki-oden,Kouzuki Oden,unusual_hair|long_hair|multiple_swords|named_sword|dual_wielder|kimono|married|parent|flashback_only|dances|muscular|island_leader,Sword
+marshall-d-teach,Marshall D. Teach,beard|facial_hair|unique_laugh|traitor|bandana|sweet_tooth|drinks|fat|fought_luffy|switched_sides|fights_dirty|has_dream,
+nefertari-vivi,Nefertari Vivi,long_hair|ponytail|spy|disguised|pet|rides_animal|cried_for_help|ally_of_luffy|from_a_kingdom|protector,
+queen,Queen,fat|scientist|sings|dances|performer|sunglasses|lipstick|cigar|smokes|braids|mustache|facial_hair|no_eyebrows|scar|defeated_by_straw_hat|arrogant|dramatic,Gun
+rob-lucci,Rob Lucci,goatee|facial_hair|hat|pet|long_hair|spy|traitor|defeated_by_luffy|fought_luffy|martial_artist|suit|calm,
+sakazuki,Sakazuki,hat|tattoo|scar|face_scar|coat_on_shoulders|suit|open_shirt|hot_headed|fought_luffy|honor_code|puncher,
+scratchmen-apoo,Scratchmen Apoo,unique_laugh|traitor,
+silvers-rayleigh,Silvers Rayleigh,glasses|beard|facial_hair|scar|face_scar|elderly|mentor_of_straw_hat|gambler|drinks|calm|famous_in_world,Sword
+tashigi,Tashigi,glasses|named_sword|has_dream|collector|rival_of_straw_hat,Sword
+bartolomeo,Bartolomeo,mohawk|no_eyebrows|sharp_teeth|piercings|tattoo|face_tattoo|grand_fleet|cries_easily|ally_of_luffy|dramatic,
+basil-hawkins,Basil Hawkins,long_hair|calm|fortune_teller|tattoo,Sword
+boa-hancock,Boa Hancock,in_love|arrogant|signature_pose|former_slave|has_sibling|kicker|pet|long_hair|earrings|lipstick|island_leader|famous_in_world|ally_of_luffy|dramatic|king_or_queen,
+capone-bege,Capone Bege,cigar|smokes|gunner|suit|striped_clothes|scarf|jewelry|married|parent|ally_of_luffy|villain_turned_ally|strategist|traitor,Gun
+donquixote-rosinante,Donquixote Rosinante,makeup|heart_motif|smokes|spy|flashback_only|has_sibling|world_noble|orphan|running_gag,
+dorry,Dorry,beard|facial_hair|mask|cape|giant_weapon|honor_code|unique_laugh|elderly,Sword|Shield
+izou,Izou,lipstick|makeup|kimono|cross_dresser|gunner|dual_wielder|has_sibling|tattoo,Gun
+jack,Jack,mask|horns|ponytail|braids|piercings|muscular,Sword
+jewelry-bonney,Jewelry Bonney,glutton|hat|lipstick|striped_clothes|ally_of_luffy|disguised|vengeful|transforms,
+kouzuki-momonosuke,Kouzuki Momonosuke,cries_easily|has_sibling|can_fly|scientist_experiment|orphan|king_or_queen|wano|cried_for_help|saved_by_luffy,
+nekomamushi,Nekomamushi,sharp_teeth|tail|animal|scar|face_scar|missing_limb|smokes|ally_of_luffy|island_leader|protector|loud,Gun
+raizo,Raizo,face_scar|scar|kimono|unusual_hair|big_chin|cries_easily|honor_code|ally_of_luffy,
+sengoku,Sengoku,beard|goatee|mustache|facial_hair|braids|afro|glasses|hat|pet|coat_on_shoulders|uniform|elderly|strategist,
+vegapunk,Vegapunk,mustache|facial_hair|elderly|scientist|inventor|famous_in_world,
+who-s-who,Who's-Who,horns|long_hair|mask|earrings|smokes|open_shirt|impel_down|escaped_prison|defeated_by_straw_hat,
+arlong,Arlong,long_nose|sharp_teeth|tattoo|hat|open_shirt|jewelry|long_hair|unique_laugh|fought_luffy|defeated_by_luffy|arrogant|hot_headed|captured_straw_hat|giant_weapon,Sword
+binz,Binz,big_lips|has_mentor,
+brogy,Brogy,beard|facial_hair|mask|cape|unique_laugh|honor_code|missing_limb,Axe|Shield
+caribou,Caribou,beard|facial_hair|unusual_eyes|coat_on_shoulders|unique_laugh|greedy,
+cavendish,Cavendish,long_hair|hat|coat_on_shoulders|sleepy|arrogant|dramatic|rides_animal|pet|grand_fleet|ally_of_luffy|named_sword|famous_in_world|from_a_kingdom,Sword
+charlotte-lola,Charlotte Lola,big_lips|lipstick|hat|braids|fat|shadow_stolen|twin|has_sibling|big_family|saved_by_luffy,
+diamante,Diamante,hat|cape|long_limbs|famous_in_world|arrogant,Sword
+eustass-kid,Eustass Kid,unusual_hair|spiky_hair|no_eyebrows|lipstick|makeup|goggles|coat_on_shoulders|missing_limb|scar|rival_of_straw_hat|ally_of_luffy|escaped_prison|hot_headed|arrogant,
+helmeppo,Helmeppo,big_chin|unusual_hair|uniform|coward|has_mentor|dual_wielder,Knife
+inazuma,Inazuma,two_tone_hair|face_scar|scar|glasses|signature_pose|calm|polite|ally_of_luffy|escaped_prison,
+inuarashi,Inuarashi,sunglasses|beard|facial_hair|tail|cape|island_leader|ally_of_luffy|honor_code,Sword
+jango,Jango,sunglasses|heart_motif|hat|dances|catchphrase|controls_others|fought_luffy|defeated_by_luffy|in_love,
+kalifa,Kalifa,glasses|catchphrase|spy|defeated_by_straw_hat|suit,Whip
+king,King,mask|can_fly|fire_powers|tattoo|face_tattoo|defeated_by_straw_hat|scientist_experiment|calm,Sword
+koala,Koala,martial_artist|has_mentor|hat|cheerful|from_a_village,
+nerona-imu,Nerona Imu,world_noble|horns|unusual_eyes,
+perona,Perona,long_hair|crown|lipstick|makeup|heart_motif|striped_clothes|cape|flowers|unique_laugh|defeated_by_straw_hat|childish,
+polo-marco,Polo Marco,unusual_hair|tattoo|open_shirt|can_fly|kicker|ally_of_luffy|calm,
+sasaki,Sasaki,long_hair|earrings|sharp_teeth|tattoo|hat|defeated_by_straw_hat,
+sentomaru,Sentomaru,face_scar|scar|tattoo|coat_on_shoulders|giant_weapon|fought_luffy|villain_turned_ally,Axe
+shiki,Shiki,unusual_hair|long_hair|beard|goatee|facial_hair|kimono|coat_on_shoulders|elderly|prosthetic|missing_limb|can_fly|escaped_prison|multiple_swords|named_sword|unique_laugh|defeated_by_luffy|fought_luffy,Sword
+vergo,Vergo,sunglasses|beard|facial_hair|sideburns|spy|traitor|calm,Staff
+wapol,Wapol,fat|big_mouth|cape|hood|glutton|arrogant|coward|defeated_by_luffy|fought_luffy|rich|cover_story,
+yamato,Yamato,long_hair|ponytail|two_tone_hair|horns|earrings|ice_powers|ally_of_luffy|fought_luffy|wano|has_dream,Club
+ain,Ain,scar|has_mentor,
+alvida,Alvida,freckles|hat|lipstick|arrogant|defeated_by_luffy|fought_luffy,Club
+bellamy,Bellamy,scar|face_scar|tattoo|defeated_by_luffy|fought_luffy|arrogant,
+black-maria,Black Maria,horns|long_hair|kimono|lipstick|smokes|flirt|defeated_by_straw_hat|captured_straw_hat,
+blueno,Blueno,big_lips|beard|facial_hair|unusual_hair|suit|spy|disguised|defeated_by_luffy|fought_luffy,
+charlotte-cracker,Charlotte Cracker,shirtless|face_scar|scar|unusual_hair|armor|cape|creates_objects|food_name|has_sibling|big_family|defeated_by_luffy|fought_luffy|named_sword,Sword|Shield
+charlotte-pudding,Charlotte Pudding,third_eye|liar|in_love|villain_turned_ally|food_name|has_sibling|big_family,
+denjiro,Denjiro,pompadour|sideburns|kimono|cape|spy|disguised|ally_of_luffy|honor_code|former_pirate,Sword
+foxy,Foxy,long_nose|red_nose|unusual_hair|fights_dirty|defeated_by_luffy|fought_luffy|unique_laugh,
+funkfreed,Funkfreed,,
+gem,Gem,sunglasses|dreadlocks|tattoo,
+hyougoro,Hyougoro,elderly|goatee|facial_hair|tattoo|glasses|scarf|mentor_of_straw_hat|teacher|ally_of_luffy|escaped_prison,
+jabra,Jabra,mustache|goatee|facial_hair|braids|face_scar|scar|tattoo|sunglasses|earrings|open_shirt|liar|martial_artist|defeated_by_straw_hat,
+kawamatsu,Kawamatsu,long_hair|beak|kimono|cape|hat|ally_of_luffy|honor_code|wano,Sword
+kikunojo,Kikunojo,long_hair|ponytail|kimono|missing_limb|has_sibling|ally_of_luffy|honor_code|polite|former_pirate,Sword
+krieg,Krieg,armor|sideburns|fights_dirty|liar|arrogant|loud|defeated_by_luffy|fought_luffy,Spear|Gun
+kuroobi,Kuroobi,martial_artist|ponytail|tattoo|calm|defeated_by_straw_hat,
+kurozumi-kanjuro,Kurozumi Kanjuro,long_hair|unusual_hair|big_lips|artist|performer|dramatic|creates_objects|traitor|spy|liar,
+kurozumi-orochi,Kurozumi Orochi,crown|kimono|mustache|facial_hair|coward|vengeful|rich|island_leader,
+loki,Loki,horns|long_hair|braids|goatee|facial_hair|tattoo|bandages|cape|unusual_eyes,Hammer
+mikita,Mikita,hat|earrings|unique_laugh,
+momonga,Momonga,mohawk|mustache|facial_hair|coat_on_shoulders|suit,Sword
+pedro,Pedro,long_hair|tail|face_scar|scar|hat|cape|ally_of_luffy|protector,Sword
+pekoms,Pekoms,sunglasses|suit|earrings,
+pell,Pell,can_fly|protector|from_a_kingdom|scar,
+pica,Pica,long_hair|armor|mask|defeated_by_straw_hat,Sword
+rebecca,Rebecca,long_hair|braids|armor|pacifist|saved_by_luffy|from_a_kingdom|has_mentor,Sword|Shield
+sai,Sai,sideburns|cape|striped_clothes|tattoo|grand_fleet|ally_of_luffy|has_sibling,
+shiryu,Shiryu,smokes|cigar|big_chin|hat|named_sword|traitor|switched_sides|escaped_prison,Sword
+tsuru,Tsuru,elderly|ponytail|earrings|coat_on_shoulders|strategist|calm,
+ulti,Ulti,horns|mask|hot_headed|has_sibling|defeated_by_straw_hat|fought_luffy,
+absalom,Absalom,long_hair|hat|stitches|scientist_experiment|flirt|in_love|captured_straw_hat|defeated_by_straw_hat,
+ashura-doji,Ashura Doji,tattoo|kimono|open_shirt|muscular|thief|ally_of_luffy|vengeful|named_sword,Sword
+baby-5,Baby 5,lipstick|smokes|long_hair|headband|transforms|traitor|switched_sides|in_love|adopted|grand_fleet|villain_turned_ally,Gun|Sword|Axe
+bastille,Bastille,mask|long_hair|coat_on_shoulders|suit|giant_weapon|named_sword,Sword
+charlotte-katakuri,Charlotte Katakuri,face_scar|scar|scarf|big_mouth|muscular|spiky_hair|sweet_tooth|calm|honor_code|fought_luffy|defeated_by_luffy|has_sibling|big_family,Spear
+charlotte-perospero,Charlotte Perospero,hat|unusual_hair|verbal_tic|creates_objects|missing_limb|prosthetic|has_sibling|big_family,Staff
+charlotte-smoothie,Charlotte Smoothie,lipstick|long_hair|long_limbs|has_sibling|big_family,Sword
+dalton,Dalton,goatee|facial_hair|armor|island_leader|protector|from_a_kingdom|honor_code,
+fisher-tiger,Fisher Tiger,beard|facial_hair|sideburns|long_hair|muscular|tattoo|flashback_only|swimmer,
+fullbody,Fullbody,face_scar|scar|hat|puncher|flirt|arrogant|defeated_by_straw_hat|cover_story,
+igaram,Igaram,red_nose|unusual_hair|verbal_tic|spy|disguised|from_a_kingdom|protector|married|cried_for_help,Gun|Cannon
+jaguar-d-saul,Jaguar D. Saul,beard|facial_hair|long_hair|unique_laugh|traitor|switched_sides,
+jesus-burgess,Jesus Burgess,mask|muscular|loud|super_strength|fought_luffy,
+killer,Killer,mask|long_hair|unusual_hair|unique_laugh|calm|ally_of_luffy|dual_wielder,Scythe
+kouzuki-toki,Kouzuki Toki,long_hair|kimono|married|parent|flashback_only|wano,
+lassoo,Lassoo,animal|defeated_by_straw_hat,
+leo,Leo,tail|goggles|hat|grand_fleet|from_a_kingdom|ally_of_luffy,Sword
+morley,Morley,mustache|beard|facial_hair|hat|goggles|fat|polite|giant_weapon,
+nokokuwa-police,Nokokuwa Police,extra_limbs|tattoo|hat|horns|muscular|unique_laugh,
+onigumo,Onigumo,smokes|long_hair|mask|earrings|suit,Gun
+page-one,Page One,unusual_hair|horns|no_eyebrows|tattoo|mask|hat|cape|has_sibling,
+rocks-d-xebec,Rocks D. Xebec,spiky_hair|two_tone_hair|face_tattoo|tattoo|parent|flashback_only|has_dream|greedy,
+senor-pink,Senor Pink,sunglasses|fat|big_lips|hat|scarf|married|honor_code|defeated_by_straw_hat,
+stussy,Stussy,lipstick|cape|polite|traitor|switched_sides|scientist_experiment,
+tamago,Tamago,mustache|facial_hair|sunglasses|face_scar|scar|verbal_tic|polite|food_name,
+uta,Uta,two_tone_hair|ponytail|braids|long_hair|sings|performer|famous_in_world|adopted|orphan|childhood_friend|rival_of_straw_hat|fought_luffy|has_dream|cheerful,
+zala,Zala,big_lips|calm|defeated_by_straw_hat|escaped_prison|cover_story,
+zeff,Zeff,mustache|facial_hair|missing_limb|prosthetic|hat|kicker|mentor_of_straw_hat|elderly|has_dream,
+aramaki,Aramaki,shirtless|tattoo|goatee|sideburns|facial_hair|smokes|muscular,
+avalo-pizarro,Avalo Pizarro,mustache|facial_hair|unusual_eyes|verbal_tic|escaped_prison,
+babanuki,Babanuki,beard|facial_hair|long_hair|sharp_teeth|horns|muscular,
+babe,Babe,fat|big_lips|giant_weapon|defeated_by_straw_hat|escaped_prison|cover_story,Club
+belo-betty,Belo Betty,sunglasses|lipstick|smokes|hat|goggles,
+benn-beckman,Benn Beckman,smokes|scar|face_scar|calm|gunner,Gun
+boa-marigold,Boa Marigold,has_sibling|long_hair|unusual_hair|former_slave|muscular|fought_luffy|defeated_by_luffy|headband|flowers,
+buffalo,Buffalo,unusual_hair|goatee|sideburns|facial_hair|big_teeth|can_fly,
+catarina-devon,Catarina Devon,long_nose|escaped_prison|copies_others|collector,
+chaka,Chaka,coat_on_shoulders|from_a_kingdom|protector,Sword
+charlotte-mont-d-or,Charlotte Mont-d'Or,lipstick|makeup|hat|long_limbs|long_nose|has_sibling|big_family,
+charlotte-oven,Charlotte Oven,beard|facial_hair|muscular|cape|unusual_hair|has_sibling|big_family,
+chinjao,Chinjao,bald|beard|mustache|facial_hair|elderly|face_tattoo|tattoo|grand_fleet|vengeful|fought_luffy|defeated_by_luffy|grandparent|villain_turned_ally|ally_of_luffy,
+dalmatian,Dalmatian,animal_form|transforms|tail|fur|beard|facial_hair,
+doc-q,Doc Q,rides_animal|pet|long_hair|face_tattoo|tattoo|hat,Scythe
+drophy,Drophy,sunglasses|defeated_by_straw_hat|escaped_prison|cover_story,
+ethanbaron-v-nusjuro,Ethanbaron V. Nusjuro,bald|glasses|elderly|world_noble|named_sword,Sword
+gedatsu,Gedatsu,unusual_hair|running_gag|fought_luffy|defeated_by_luffy|cover_story,
+gin,Gin,headband|earrings|dual_wielder|owes_a_debt,Club
+gladius,Gladius,mask|goggles|hat|explosion_powers|hot_headed,Gun
+gotti,Gotti,missing_limb|beard|facial_hair|gunner|hot_headed,Gun
+hajrudin,Hajrudin,long_hair|beard|mustache|facial_hair|armor|mask|muscular|grand_fleet|ally_of_luffy|arrogant|royalty|prince_or_princess|has_sibling|has_dream|from_a_kingdom|owes_a_debt,
+holed-em,Holed'em,shirtless|tattoo|tail|extra_limbs|fought_luffy|defeated_by_luffy,
+john,John,drinks|greedy|money_lover|long_hair,
+john-giant,John Giant,big_chin,
+jozu,Jozu,armor|muscular|super_strength|missing_limb,
+kujaku,Kujaku,long_hair|hat|coat_on_shoulders,Whip
+kumadori,Kumadori,long_hair|unusual_hair|makeup|signature_pose|dramatic|verbal_tic|honor_code|cries_easily|defeated_by_straw_hat,Staff
+lacroix,Lacroix,hat|suit|coat_on_shoulders|fat,
+lola-2,Lola,lipstick|stitches|in_love,Axe|Sword
+lucky-roux,Lucky Roux,goggles|fat|meat_lover|glutton|striped_clothes|cheerful,Gun
+machvise,Machvise,sunglasses|beard|mustache|facial_hair|long_hair|fat|hat|verbal_tic,
+marianne,Marianne,braids|hat|artist|lazy|controls_others|cover_story|escaped_prison,
+mont-blanc-cricket,Mont Blanc Cricket,shirtless|muscular|smokes|tattoo|barefoot|swimmer|unusual_hair|food_name,
+oimo,Oimo,mask|long_hair|facial_hair|switched_sides|villain_turned_ally|former_pirate|hot_headed|giant_weapon,Club
+shakuyaku,Shakuyaku,smokes|reader|king_or_queen|calm,
+sham,Sham,defeated_by_straw_hat|fights_dirty|unusual_eyes,
+shinobu,Shinobu,makeup|fat|ally_of_luffy|teacher,
+shirahoshi,Shirahoshi,cries_easily|shy|pet|has_sibling|saved_by_luffy|from_a_kingdom|summons_animals|long_hair,
+solitaire,Solitaire,horns|extra_limbs|tail|mask|long_hair,
+trebol,Trebol,sunglasses|unique_laugh|defeated_by_luffy|fought_luffy|barefoot,Staff
+van-augur,Van Augur,glasses|calm|gunner|teleport,Gun
+viola,Viola,flowers|long_hair|dances|earrings|has_sibling|switched_sides|villain_turned_ally|kicker|from_a_kingdom|performer,Knife
+vista,Vista,mustache|facial_hair|hat|earrings|cape|open_shirt|dual_wielder|multiple_swords|muscular|ally_of_luffy,Sword
+yasopp,Yasopp,dreadlocks|parent|gunner,Gun
+z,Z,sunglasses|muscular|elderly|missing_limb|vengeful|defeated_by_luffy|fought_luffy|seastone,
+adio-suerte,Adio Suerte,tattoo|long_hair,
+aladine,Aladine,long_hair|ponytail|beard|goatee|facial_hair|muscular|calm|married|in_love,Spear
+alpacaman,Alpacaman,cape|muscular|unique_laugh,
+boa-sandersonia,Boa Sandersonia,has_sibling|cape|long_hair|former_slave|defeated_by_luffy|fought_luffy,
+bogard,Bogard,hat|coat_on_shoulders|suit|calm,Sword
+brannew,Brannew,sunglasses|big_lips|sideburns|striped_clothes,
+cabaji,Cabaji,scarf|unusual_hair|defeated_by_straw_hat|performer|fights_dirty,Sword
+carrot,Carrot,tail|transforms|ally_of_luffy|cheerful|food_name|protector|island_leader,
+chadros-higelyges,Chadros Higelyges,beard|facial_hair|mustache|braids|hat|missing_limb|scientist_experiment|defeated_by_luffy|fought_luffy|fat|open_shirt|arrogant,
+charlotte-daifuku,Charlotte Daifuku,has_sibling|big_family|food_name|cape|hot_headed|mustache|facial_hair,
+chew,Chew,big_lips|tattoo|defeated_by_straw_hat|calm,
+crocus,Crocus,bald|beard|facial_hair|big_lips|unusual_hair|elderly|loves_animals|pet,
+daifugo,Daifugo,extra_limbs|mask|ponytail|long_hair|defeated_by_luffy|fought_luffy|switched_sides|villain_turned_ally|muscular|open_shirt,
+doberman,Doberman,face_scar|scar|mustache|facial_hair|long_hair|coat_on_shoulders|unusual_eyes,
+duval,Duval,mask|cape|rides_animal|vengeful|wrongly_accused|defeated_by_straw_hat|villain_turned_ally|pet,Gun
+enel,Enel,arrogant|defeated_by_luffy|fought_luffy|unique_laugh|shirtless|island_leader|super_speed|childish|cover_story|earrings,Staff
+fourtricks,Fourtricks,sunglasses|big_lips|pompadour|face_tattoo|tattoo|defeated_by_straw_hat,
+hack,Hack,long_hair|mustache|facial_hair|sharp_teeth|martial_artist|muscular|turned_into_toy|honor_code|calm,
+hina,Hina,long_hair|lipstick|smokes|third_person|calm,
+indigo,Indigo,makeup|unique_laugh|scarf|doctor|unusual_hair|defeated_by_straw_hat,
+karasu,Karasu,bald|mask|muscular|open_shirt,
+karoo,Karoo,animal|feathers|beak|goggles|hat|super_speed|spy|from_a_kingdom,
+kelly-funk,Kelly Funk,shirtless|tattoo|striped_clothes|has_sibling|puncher|hot_headed|controls_others,
+kong,Kong,muscular|elderly|beard|facial_hair|spiky_hair|scar|face_scar|stitches|scarf|coat_on_shoulders,
+kuro,Kuro,glasses|suit|strategist|spy|disguised|defeated_by_luffy|fought_luffy|super_speed|calm|signature_pose,
+kurozumi-tama,Kurozumi Tama,pet|rides_animal|saved_by_luffy|adopted|kimono|controls_others|has_dream|has_mentor|cheerful|from_a_village|poor,
+kyros,Kyros,long_hair|beard|facial_hair|muscular|missing_limb|scar|face_scar|cape|turned_into_toy|married|parent|in_love|ally_of_luffy|famous_in_world|protector,Sword
+lao-g,Lao G,elderly|bald|beard|facial_hair|closed_eyes|verbal_tic,
+lindbergh,Lindbergh,goggles|hat|inventor,
+monet,Monet,wings|feathers|tail|long_hair|glasses|ice_powers|can_fly|spy|defeated_by_straw_hat|has_sibling,
+mr-9,Mr. 9,crown|scarf|catchphrase|defeated_by_luffy,Club
+nefertari-cobra,Nefertari Cobra,beard|facial_hair|long_hair|parent|married|from_a_kingdom|protector|wrongly_accused,
+nefertari-d-lili,Nefertari D. Lili,crown|cape|from_a_kingdom|flashback_only,
+orlumbus,Orlumbus,braids|long_hair|hat|bandana|facial_hair|grand_fleet|ally_of_luffy|muscular,Whip
+prince-grus,Prince Grus,open_shirt|striped_clothes,
+sanjuan-wolf,Sanjuan Wolf,beard|facial_hair|unusual_hair|shy|escaped_prison,
+sharinguru,Sharinguru,goggles|hat,
+spandam,Spandam,mask|red_nose|scar|running_gag|coward|hot_headed|arrogant|named_sword|captured_straw_hat|defeated_by_straw_hat,Sword
+speed,Speed,two_tone_hair|tail|piercings|goggles|switched_sides|villain_turned_ally|extra_limbs,Bow
+stainless,Stainless,mustache|facial_hair|suit|coat_on_shoulders,
+strawberry,Strawberry,beard|facial_hair|closed_eyes|hat|coat_on_shoulders|food_name,
+streusen,Streusen,sings|mustache|facial_hair|big_lips|elderly|hat|scarf|fat|food_name,
+t-bone,T Bone,armor|mask|honor_code|defeated_by_straw_hat,Sword
+urouge,Urouge,scar|face_scar|stitches|muscular|wings|prays|cheerful|tattoo|beard|facial_hair|sideburns,
+vinsmoke-judge,Vinsmoke Judge,long_hair|mustache|facial_hair|big_chin|curly_eyebrow|mask|cape|parent|married|scientist|arrogant|from_a_kingdom|villain_turned_ally,
+yamakaji,Yamakaji,closed_eyes|cigar|smokes|beard|facial_hair|big_lips|suit|coat_on_shoulders|hat,
+yosaku,Yosaku,tattoo|signature_pose|cries_easily|smokes,Sword
+bao-huang,Bao Huang,horns|tail|mask|kimono,Fan
+bell-mere,Bell-mère,smokes|ponytail|unusual_hair|parent|gunner|from_a_village|flashback_only,Gun
+bepo,Bepo,sharp_teeth|running_gag,
+bisley,Bisley,long_hair|unusual_hair|beard|facial_hair|fat|coward|switched_sides|villain_turned_ally,Bow
+bluejam,Bluejam,unusual_hair|captured_straw_hat|flashback_only,
+briscola,Briscola,muscular|sideburns|tattoo|scar|face_scar|cape|defeated_by_straw_hat|switched_sides|villain_turned_ally,
+buchi,Buchi,fat|sharp_teeth|striped_clothes|cape|has_sibling|fights_dirty|defeated_by_straw_hat,
+bunbuku,Bunbuku,tail|wano,
+carmel,Carmel,elderly|lipstick|makeup|smokes|liar|flashback_only,
+charlotte-amande,Charlotte Amande,long_hair|big_lips|tattoo|horns|smokes|calm|big_family|has_sibling|named_sword|island_leader|food_name,Sword
+charlotte-basskarte,Charlotte Basskarte,mask|headband|unusual_hair|big_family|has_sibling,
+charlotte-brulee,Charlotte Brûlée,hat|long_nose|long_limbs|scar|face_scar|unique_laugh|big_family|has_sibling|copies_others|teleport|food_name,
+charlotte-mobile,Charlotte Mobile,long_nose|mustache|facial_hair|suit|scarf|cape|striped_clothes|drinks|arrogant|big_family|has_sibling|island_leader,
+charlotte-poire,Charlotte Poire,big_mouth|sharp_teeth|hat|big_family|has_sibling|food_name,
+charlotte-snack,Charlotte Snack,long_nose|tattoo|face_tattoo|scarf|armor|big_family|has_sibling|island_leader|food_name,
+charlotte-tablet,Charlotte Tablet,long_hair|earrings|cape|uniform|rides_animal|big_family|has_sibling|island_leader|food_name,
+coribou,Coribou,fat|has_sibling,
+dachoman,Dachoman,feathers|mask|beard|facial_hair|open_shirt|fought_luffy|defeated_by_luffy,
+dellinger,Dellinger,hat|earrings|sharp_teeth|kicker|arrogant,
+dobon,Dobon,hat|sunglasses|shirtless|tattoo|fat|glutton|greedy,
+fukurou,Fukurou,verbal_tic|big_mouth|fat|martial_artist|suit|defeated_by_straw_hat,
+hamlet,Hamlet,long_hair|cape|arrogant|switched_sides|villain_turned_ally,
+harald,Harald,horns|tattoo|face_tattoo|muscular|parent|in_love|from_a_kingdom|island_leader|flashback_only,
+hattori,Hattori,animal|feathers|beak|can_fly|spy,
+heracles,Heracles,armor|mask|cape|verbal_tic|mentor_of_straw_hat|teacher,Spear
+hibari,Hibari,ponytail|uniform|in_love|gunner,Gun
+hyouzou,Hyouzou,tentacles|extra_limbs|dreadlocks|big_mouth|drinks|money_lover|multiple_swords|defeated_by_straw_hat,Sword
+ideo,Ideo,ponytail|beard|facial_hair|makeup|puncher|grand_fleet|ally_of_luffy,
+jaygarcia-saturn,Jaygarcia Saturn,world_noble|elderly|mustache|beard|facial_hair|hat|scar|face_scar|suit|arrogant,
+jigoro,Jigoro,long_hair|mustache|facial_hair|bandages,Sword
+johnny,Johnny,sunglasses|tattoo|face_tattoo,Sword
+kadar,Kadar,coat_on_shoulders|glasses|beard|facial_hair|suit|flashback_only,Sword
+kashii,Kashii,facial_hair|big_chin|mask|muscular|shirtless|unique_laugh|switched_sides,
+kokoro,Kokoro,drinks|fat|elderly|grandparent|unique_laugh|cheerful,
+laffitte,Laffitte,hat|dances|polite|can_fly,
+little-oars-jr,Little Oars Jr.,long_hair|ally_of_luffy,
+lonz,Lonz,mask|long_hair|uniform,Axe
+manmayer-gunko,Manmayer Gunko,world_noble|unusual_eyes|bandages|hat|goggles|cape|from_a_kingdom,
+masira,Masira,tail|goggles|has_sibling|swimmer|hot_headed|villain_turned_ally,
+mikazuki,Mikazuki,mask|sharp_teeth|arrogant,
+miss-catherina,Miss Catherina,liar|fights_dirty|defeated_by_straw_hat,
+mizerka,Mizerka,horns|switched_sides|villain_turned_ally,
+morgan,Morgan,prosthetic|missing_limb|big_chin|muscular|arrogant|fought_luffy|defeated_by_luffy|parent|island_leader|named_after_real_pirate,Axe
+mozambia,Mozambia,scar|face_scar|suit|coat_on_shoulders,
+nero,Nero,unusual_hair|mohawk|hat|jewelry|martial_artist|defeated_by_straw_hat,
+nika,Nika,unusual_hair,Spear
+ohm,Ohm,bald|mustache|beard|facial_hair|sunglasses|muscular|pet|defeated_by_straw_hat,Sword
+onimaru,Onimaru,fur|tail|thief|defeated_by_straw_hat,Sword
+paulie,Paulie,cigar|smokes|goggles|gambler|catchphrase|ally_of_luffy,
+poker,Poker,long_hair|horns|switched_sides|villain_turned_ally,
+porche,Porche,long_nose|mask|hat|arrogant,Staff
+richie,Richie,animal|fur|tail|glutton|fought_luffy|defeated_by_luffy,
+rimoshifu-killingham,Rimoshifu Killingham,sleepy,Bow
+scopper-gaban,Scopper Gaban,elderly|ponytail|beard|facial_hair|braids|scar|face_scar|sunglasses,Axe
+sheepshead,Sheepshead,horns|goggles|cape|open_shirt|scar|muscular|defeated_by_straw_hat,
+shimotsuki-ryuma,Shimotsuki Ryuma,scar|face_scar|kimono|honor_code|named_sword|zombie|defeated_by_straw_hat,Sword
+shoujou,Shoujou,long_hair|hat|has_sibling|hot_headed|villain_turned_ally,
+speed-jiru,Speed Jiru,hat|ally_of_luffy,Spear|Shield
+sugar,Sugar,hood|cape|glutton|controls_others|food_name|defeated_by_straw_hat,
+suleiman,Suleiman,hat|scar|grand_fleet|ally_of_luffy,Sword
+thatch,Thatch,pompadour|goatee|facial_hair|scar|face_scar|stitches|flashback_only,Sword
+vasco-shot,Vasco Shot,drinks|escaped_prison,
+atmos,Atmos,armor|mask|long_hair|beard|facial_hair|big_teeth,
+baskerville,Baskerville,uniform,
+batman,Batman,can_fly|wings|sharp_teeth|mustache|facial_hair|hood|unique_laugh,Bow
+billy-2-2-2,Billy,,Sword
+blamenco,Blamenco,fat|big_lips|hat,
+charlotte-high-fat,Charlotte High-Fat,mustache|facial_hair|mask|big_family|has_sibling,
+charlotte-newshi,Charlotte Newshi,hat|suit|big_family|has_sibling,
+charlotte-raisin,Charlotte Raisin,long_hair|spiky_hair|cape|big_family|has_sibling,Sword
+cho,Cho,kimono|tattoo|lipstick|makeup|unusual_hair|wano,
+diez-barrels,Diez Barrels,sideburns|big_chin|parent|flashback_only|switched_sides,
+doubt-brothers,Doubt Brothers,has_sibling,
+fossa,Fossa,muscular|bald|mustache|facial_hair|scar|face_scar|tattoo|open_shirt,
+fuga,Fuga,horns|unique_laugh|scientist_experiment,
+fujin,Fujin,ponytail|kimono|mask|rides_animal,
+gan-fall,Gan Fall,elderly|long_hair|mustache|beard|facial_hair|armor|cape|rides_animal|pet|island_leader|protector,Spear
+giolla,Giolla,makeup|glasses|two_tone_hair|artist|arrogant,
+haruta,Haruta,,Sword
+higuma,Higuma,goatee|facial_hair|scar|face_scar|arrogant|coward|captured_straw_hat,Sword
+hihimaru,Hihimaru,animal|fur|wano|switched_sides,
+hody-jones,Hody Jones,sharp_teeth|tattoo|scar|long_hair|muscular|defeated_by_luffy|fought_luffy|arrogant|hot_headed,Spear
+hogback,Hogback,long_nose|sharp_teeth|scar|face_scar|tattoo|scientist|arrogant|unique_laugh|famous_in_world|in_love,
+kakunoshin,Kakunoshin,sideburns|kimono|tattoo|ally_of_luffy,Spear|Sword
+kalgara,Kalgara,long_hair|tattoo|muscular|flashback_only|protector,
+kazekage,Kazekage,long_hair|kimono|scarf,
+kiev,Kiev,beard|facial_hair|tattoo|goggles,Sword
+komachiyo,Komachiyo,animal|fur|wano,
+lacuba,Lacuba,long_hair|beard|facial_hair|hat|tattoo|strategist,
+lip-shark,Lip Shark,calm,
+madilloman,Madilloman,bald|beard|facial_hair|muscular|defeated_by_luffy|fought_luffy,
+marcus-mars,Marcus Mars,elderly|long_hair|mustache|goatee|facial_hair|suit|world_noble|can_fly|transforms,
+minotaurus,Minotaurus,shirtless|big_lips|striped_clothes|transforms,Club
+minozebra,Minozebra,shy|big_lips|long_hair,Club
+mohji,Mohji,big_lips|pet|rides_animal|unusual_hair|defeated_by_luffy|fought_luffy,Whip
+mont-blanc-noland,Mont Blanc Noland,flashback_only|famous_in_world|wrongly_accused|scarf|striped_clothes|unusual_hair|from_a_kingdom|scientist,
+mozu-and-kiwi,Mozu and Kiwi,long_nose|unusual_hair|has_sibling,
+nola,Nola,,
+oars,Oars,horns|stitches|long_hair|sharp_teeth|defeated_by_luffy|fought_luffy,
+peepley-lulu,Peepley Lulu,mustache|facial_hair|sunglasses|tattoo|unusual_hair|running_gag,Sword
+pierre,Pierre,animal|can_fly|wings|feathers|beak|bandages|sky_island|mythical_form,
+pomsky,Pomsky,coat_on_shoulders|sunglasses|hat|mustache|facial_hair|scar|face_scar|suit|uniform,
+porchemy,Porchemy,long_hair|no_eyebrows|open_shirt|tattoo|earrings|captured_straw_hat,Sword
+riku-doldo-iii,Riku Doldo III,elderly|muscular|disguised|parent|grandparent|from_a_kingdom|wrongly_accused|saved_by_luffy,Sword
+s-hawk,S-Hawk,unusual_eyes|scientist_experiment|can_fly,Sword
+shepherd-ju-peter,Shepherd Ju Peter,world_noble|beard|mustache|facial_hair|transforms,
+shepherd-sommers,Shepherd Sommers,world_noble|long_hair|beard|facial_hair|tattoo|glasses|sunglasses|muscular,
+shimoi-zappa,Shimoi Zappa,flirt|shy|long_hair,
+shimotsuki-furiko,Shimotsuki Furiko,long_hair|flashback_only,
+shimotsuki-ushimaru,Shimotsuki Ushimaru,tattoo|honor_code|island_leader|flashback_only,Sword
+smiley,Smiley,gas_powers|poison_powers,
+squard,Squard,long_hair|bald|sharp_teeth|headband|vengeful|traitor,Sword
+stansen,Stansen,beard|mustache|facial_hair|scar|face_scar|hat|missing_limb|grand_fleet,
+surume,Surume,animal|tentacles|defeated_by_luffy|fought_luffy|villain_turned_ally|underwater,
+topman-warcury,Topman Warcury,bald|elderly|mustache|facial_hair|fat|suit|world_noble|transforms,
+tsumegeri-guards,Tsumegeri Guards,armor|makeup|from_a_kingdom,Sword|Axe
+urban,Urban,sharp_teeth|long_hair|hat|suit|coat_on_shoulders,
+usakkov,Usakkov,mustache|beard|facial_hair|sunglasses|hat|striped_clothes|performer|cross_dresser|escaped_prison|ally_of_luffy|gunner,Gun
+usunoro,Usunoro,long_hair|beard|mustache|facial_hair|muscular|cape|mask,
+vander-decken-ix,Vander Decken IX,extra_limbs|goatee|mustache|facial_hair|long_hair|sharp_teeth|verbal_tic|signature_pose|in_love,
+vinsmoke-reiju,Vinsmoke Reiju,lipstick|curly_eyebrow|tattoo|poison_powers|has_sibling|from_a_kingdom|scientist_experiment|ally_of_luffy|calm,
+yatappe,Yatappe,wano|long_hair|sideburns|beard|mustache|facial_hair|big_lips|scar|face_scar|ally_of_luffy,
+yeti-cool-brothers,Yeti Cool Brothers,fur|long_limbs|captured_straw_hat|fought_luffy|gunner,Gun
+yokozuna,Yokozuna,animal|sharp_teeth|scar|swimmer|fought_luffy,
+zambai,Zambai,long_hair|goggles|tattoo|villain_turned_ally|ally_of_luffy,
+all-hunt-grount,All-Hunt Grount,mohawk|two_tone_hair|scar|face_scar|cape|arrogant|hot_headed|fought_luffy|defeated_by_luffy|has_mentor,
+baccarat,Baccarat,long_hair|tattoo|earrings|arrogant|defeated_by_straw_hat,
+blenheim,Blenheim,muscular|beard|facial_hair|braids|ponytail|tattoo|ally_of_luffy,
+bluegrass,Bluegrass,elderly|sunglasses|coat_on_shoulders,
+boo,Boo,long_hair|ponytail|tattoo|striped_clothes|has_sibling|grand_fleet|ally_of_luffy|calm,Axe
+camie,Camie,cheerful|pet|saved_by_luffy|rescued_by_crew,
+caucasusman,Caucasusman,extra_limbs|horns|hat|muscular|switched_sides|villain_turned_ally,
+cerberus-2,Cerberus,transforms,
+charlotte-dosmarche,Charlotte Dosmarche,fat|mustache|facial_hair|mohawk|cape|has_sibling|big_family|island_leader,
+charlotte-galette,Charlotte Galette,has_sibling|big_family|island_leader|food_name,
+charlotte-kanten,Charlotte Kanten,fat|bandages|shirtless|long_hair|unusual_hair|has_sibling|big_family|island_leader|food_name,
+charlotte-kato,Charlotte Kato,mask|cape|armor|has_sibling|big_family|island_leader,
+charlotte-mondee,Charlotte Mondée,hat|flowers|long_hair|fat|verbal_tic|has_sibling|big_family,
+charlotte-noisette,Charlotte Noisette,pompadour|sideburns|beard|facial_hair|cape|has_sibling|big_family|island_leader|food_name,
+charlotte-nusstorte,Charlotte Nusstorte,mustache|facial_hair|sunglasses|hat|smokes|has_sibling|big_family|island_leader|food_name,Sword
+charlotte-opera,Charlotte Opera,fat|cape|has_sibling|big_family|island_leader|food_name,
+chess,Chess,cape|arrogant|from_a_kingdom|defeated_by_straw_hat,Bow
+chimney,Chimney,braids|striped_clothes|cheerful|pet,
+curly-dadan,Curly Dadan,long_hair|fat|smokes|cries_easily|thief,
+dagama,Dagama,mustache|facial_hair|sunglasses|coat_on_shoulders|fat|strategist|fights_dirty|greedy|from_a_kingdom,
+demalo-black,Demalo Black,fat|facial_hair|scar|liar|disguised|arrogant,
+dice,Dice,muscular|mustache|beard|facial_hair|tattoo|giant_weapon|defeated_by_straw_hat,Axe
+edward-weevil,Edward Weevil,scar|face_scar|braids|mustache|facial_hair|bandana|sharp_teeth|childish,Spear
+elizabello-ii,Elizabello II,big_chin|beard|facial_hair|crown|cape|puncher|muscular,
+epoida,Epoida,fat|long_hair|hat|striped_clothes|ally_of_luffy,
+francois,Francois,muscular|long_hair|sideburns|lipstick|sunglasses|flowers|tattoo|scar|cross_dresser|escaped_prison|ally_of_luffy,Sword
+fugetsu-omusubi,Fugetsu Omusubi,makeup|face_tattoo|long_hair|kimono|cape|honor_code|island_leader|flashback_only|food_name,
+gally,Gally,mustache|facial_hair|hat|fought_luffy|defeated_by_luffy,
+genzo,Genzo,mustache|facial_hair|hat|scar|face_scar|uniform|protector|from_a_village|saved_by_luffy,
+gild-tesoro,Gild Tesoro,muscular|jewelry|earrings|sunglasses|scar|suit|sings|rich|poor|in_love|arrogant|fought_luffy|defeated_by_luffy,
+gill-bastar,Gill Bastar,hat|sunglasses|gunner,Gun
+gonbe,Gonbe,animal|fur,
+hongo,Hongo,ponytail|scar|face_scar|stitches|open_shirt,
+hound,Hound,glasses|lipstick|suit|coat_on_shoulders,
+karma,Karma,extra_limbs|goatee|facial_hair|striped_clothes|ally_of_luffy,
+kop,Kop,headband|villain_turned_ally|ally_of_luffy,Sword
+kouzuki-sukiyaki,Kouzuki Sukiyaki,mustache|beard|facial_hair|kimono|long_hair|elderly|royalty|island_leader|parent|grandparent|disguised,
+kureha,Kureha,elderly|sunglasses|piercings|drinks|catchphrase|unique_laugh|hot_headed|mentor_of_straw_hat|teacher|from_a_kingdom,
+magellan,Magellan,sharp_teeth|beard|facial_hair|gloomy|fought_luffy|captured_straw_hat,
+masked-deuce,Masked Deuce,mask|open_shirt|long_hair|spiky_hair|writer,
+matsuge,Matsuge,animal|flirt,
+minorhinoceros,Minorhinoceros,big_lips|horns|shy|dual_wielder,Club
+miss-father-s-day,Miss Father's Day,hat|unique_laugh|gunner,Gun
+miss-monday,Miss Monday,muscular|puncher|super_strength|defeated_by_straw_hat,
+mr-7,Mr. 7,sunglasses|gunner,Gun
+napoleon,Napoleon,transforms,
+neptune,Neptune,beard|facial_hair|long_hair|red_nose|shirtless|tattoo|crown|muscular|verbal_tic|loud|parent|married|pet|elderly,Spear
+peachbeard,Peachbeard,mustache|goatee|facial_hair|long_hair|scar|face_scar|stitches|big_chin|hat|coat_on_shoulders|money_lover|greedy,
+puppu,Puppu,fat|arrogant,
+roronoa-arashi,Roronoa Arashi,spiky_hair|flashback_only|parent,
+roronoa-pinzoro,Roronoa Pinzoro,flashback_only|parent|grandparent|married,Sword
+roshio,Roshio,dreadlocks|long_hair|tattoo|muscular|gambler,
+saitank,Saitank,mask|armor|muscular|extra_limbs|switched_sides|villain_turned_ally,
+sarquiss,Sarquiss,tattoo|striped_clothes|arrogant,
+schollzo,Schollzo,goggles|villain_turned_ally|ally_of_luffy,Sword
+scorpionlady,Scorpionlady,goggles|mask|long_hair|extra_limbs|switched_sides|villain_turned_ally,
+shimotsuki-yasuie,Shimotsuki Yasuie,afro|unusual_hair|mustache|facial_hair|island_leader|disguised|cheerful|elderly|protector|parent,
+shu,Shu,hat|coat_on_shoulders|uniform,
+shura,Shura,mustache|facial_hair|hat|goggles|scarf|rides_animal|pet,Spear
+tamagon,Tamagon,goggles|bandages|fat,Sword|Cannon
+tanaka,Tanaka,fat|suit|hood,
+tom,Tom,horns|sharp_teeth|beard|facial_hair|bandana|open_shirt|unique_laugh|cheerful|wrongly_accused|mentor_of_straw_hat|teacher|flashback_only|inventor,
+tsunokkov,Tsunokkov,lipstick|makeup|sunglasses|mustache|facial_hair|cross_dresser|escaped_prison|ally_of_luffy|performer,
+uzuki-tempura,Uzuki Tempura,mustache|facial_hair|kimono|cape|island_leader|honor_code|food_name|flashback_only,Sword
+very-good,Very Good,afro|tattoo|face_tattoo|scar|face_scar|uniform|fat,
+vinsmoke-niji,Vinsmoke Niji,curly_eyebrow|goggles|cape|unusual_hair|has_sibling|lightning_powers|super_speed|arrogant|hot_headed|from_a_kingdom|defeated_by_straw_hat|scientist_experiment|rich,
+wyper,Wyper,shirtless|long_hair|mohawk|braids|tattoo|face_tattoo|earrings|barefoot|smokes|muscular|hot_headed|protector,Cannon
+yorki,Yorki,hat|tattoo|face_tattoo|musician|cheerful|flashback_only,
+akumai,Akumai,dances|striped_clothes|scarf|unusual_hair,
+albion,Albion,bandages|ponytail,Knife|Sword
+bakezo,Bakezo,beard|mustache|facial_hair|long_hair|big_lips|cape,Sword
+big-pan,Big Pan,fins|sharp_teeth|beard|facial_hair|mask|fights_dirty|defeated_by_straw_hat|food_name,
+boodle,Boodle,elderly|glasses|island_leader|protector|saved_by_luffy,
+building-snake,Building Snake,long_hair|tattoo|sunglasses|muscular|lives_on_a_ship,
+charlotte-marnier,Charlotte Marnier,afro|cape|has_sibling|big_family|island_leader,
+charlotte-saint-marc,Charlotte Saint-Marc,armor|cape|mask|has_sibling|big_family|island_leader,
+charlotte-yuen,Charlotte Yuen,verbal_tic|mask|cape|striped_clothes|has_sibling|big_family,
+charlotte-zuccotto,Charlotte Zuccotto,shirtless|sideburns|mustache|beard|facial_hair|cape|has_sibling|big_family|island_leader,
+comil,Comil,mustache|facial_hair|suit|coat_on_shoulders,
+curiel,Curiel,glasses|hat|tattoo|face_tattoo|muscular|gunner|lives_on_a_ship|ally_of_luffy,Cannon|Gun
+draw,Draw,,
+erik,Erik,hat|long_hair|from_a_kingdom,
+gaimon,Gaimon,afro|beard|facial_hair|money_lover|protector|loves_animals,
+gal,Gal,scar|face_scar|tattoo|polite,Sword
+gazelleman,Gazelleman,muscular|cape|hood|super_speed|switched_sides|villain_turned_ally,
+ginrummy,Ginrummy,horns|armor|earrings,
+gyro,Gyro,beard|mustache|facial_hair|hat|striped_clothes,Sword
+hamburg,Hamburg,unique_laugh|mask|scarf|fights_dirty|defeated_by_straw_hat|food_name,
+hasami,Hasami,animal,
+isuka,Isuka,uniform|coat_on_shoulders|scar,Sword
+jarul,Jarul,beard|facial_hair|elderly|mask,
+jero,Jero,ponytail|tattoo|face_tattoo|striped_clothes,Sword
+joy-boy,Joy Boy,hat|cape|stretchy|flashback_only,
+jujiro,Jujiro,scar|face_scar|kimono|tattoo|wano|ally_of_luffy,Sword
+kalik-meidara,Kalik Meidara,mask|long_hair|beard|facial_hair|shirtless|muscular|prosthetic|arrogant,Axe
+kibagaeru,Kibagaeru,mustache|facial_hair|hat|mask|honor_code|switched_sides|joined_crew_later,Whip
+koda,Koda,fat|parent|married,
+kojuro,Kojuro,kimono|cape|tattoo|wano|ally_of_luffy,Sword
+kouzuki-hiyori,Kouzuki Hiyori,long_hair|lipstick|makeup|kimono|royalty|prince_or_princess|has_sibling|wano|disguised|famous_in_world|performer|orphan|adopted,
+kuromarimo,Kuromarimo,afro|unusual_hair|beard|facial_hair|drinks|defeated_by_luffy|fought_luffy|arrogant|from_a_kingdom,
+kurosawa,Kurosawa,ponytail|beard|facial_hair|kimono|wano|ally_of_luffy,Sword
+kurozumi-semimaru,Kurozumi Semimaru,elderly|beard|facial_hair|long_hair|closed_eyes|kimono|flashback_only,
+kyuji,Kyuji,beard|mustache|facial_hair|hat|parent|married,
+lip-doughty,Lip Doughty,hat|big_lips|big_chin|long_hair|cape,
+manboshi,Manboshi,verbal_tic|sings|dances|hat|fat|has_sibling|fins|from_a_kingdom|cheerful,
+merry,Merry,horns|unusual_hair|suit|from_a_village,
+minatomo,Minatomo,elderly|scar|face_scar|headband|hot_headed|running_gag,
+minokoala,Minokoala,animal_form|transforms|big_lips,
+monjiro,Monjiro,mustache|facial_hair|sideburns|hat|kimono|tattoo|wano|ally_of_luffy,Sword
+mr-7-2,Mr. 7,tattoo|face_tattoo|defeated_by_straw_hat|flashback_only,Sword
+nezumi,Nezumi,goatee|facial_hair|uniform|hood|unique_laugh|coward|greedy|money_lover|arrogant,
+nure-onna,Nure-Onna,long_hair|sharp_teeth|kimono|flowers|disguised|big_mouth,
+otohime,Otohime,lipstick|kimono|married|parent|flashback_only|has_dream|pacifist|cries_easily|from_a_kingdom,
+pandaman,Pandaman,mask|running_gag,
+patty,Patty,muscular|tattoo|earrings|headband|goatee|facial_hair|hot_headed,
+pearl,Pearl,armor|arrogant|fights_dirty|fought_luffy,Shield
+pickles,Pickles,defeated_by_straw_hat|fat|arrogant|long_limbs,
+pudos,Pudos,long_hair|ponytail|open_shirt|hot_headed,
+rockstar,Rockstar,unusual_hair|spiky_hair,
+ryuboshi,Ryuboshi,big_teeth|long_hair|dances|verbal_tic|cheerful|has_sibling|from_a_kingdom|multiple_swords|dual_wielder|ally_of_luffy|protector,Sword
+ryuma,Ryuma,named_sword|defeated_by_straw_hat|unique_laugh|bandages|scarf|wano|famous_in_world,Sword
+sadi,Sadi,long_hair|dramatic,Whip
+sarahebi,Sarahebi,lipstick|kimono|flowers|horns,
+satori,Satori,defeated_by_luffy|fought_luffy|sunglasses|hat|fat|long_hair|has_sibling,
+sicily,Sicily,facial_hair|beard|mustache|scar|face_scar|uniform|hat,
+skull,Skull,mask|long_hair|tattoo|collector,Sword
+tenjo-sagari,Tenjo-Sagari,horns|long_hair|kimono|sharp_teeth|defeated_by_straw_hat|disguised,
+tsurujo,Tsurujo,lipstick|kimono|cook|polite,
+ukon,Ukon,wano|sideburns|kimono|cape|ally_of_luffy,
+uwattsura,Uwattsura,shirtless|muscular|scar|face_scar|tattoo|goggles|defeated_by_luffy|fought_luffy,
+vito,Vito,verbal_tic|tattoo|face_tattoo|suit,
+wanze,Wanze,defeated_by_straw_hat|goggles|big_teeth|open_shirt|scarf|tattoo|unusual_eyes|loud|hot_headed,
+warrior-god,Warrior God,beard|facial_hair|shirtless|mask|cape,
+yarisugi,Yarisugi,hat|beard|mustache|facial_hair|scar|face_scar|muscular|verbal_tic,
+yurikah,Yurikah,cover_story|unusual_hair|flowers|multiple_swords|dual_wielder,Sword
+zeus,Zeus,lightning_powers|can_fly|hat|glutton|switched_sides|villain_turned_ally|joined_crew_later,
+a-o,A O,hat|bandana|sideburns|long_hair|open_shirt|ally_of_luffy,
+ageha-woman,Ageha Woman,wings|scarf,
+ahiru,Ahiru,big_lips|long_hair|goggles,
+aisa,Aisa,hat,
+andre,Andre,big_lips|sharp_teeth|ally_of_luffy|puncher,
+aphelandra,Aphelandra,mask|cape|shy,
+ban-dedessinee,Ban Dedessinée,lipstick|makeup|from_a_kingdom,
+battaman,Battaman,mask|horns|switched_sides|villain_turned_ally|ally_of_luffy,
+beegirl,Beegirl,horns|extra_limbs|wings|striped_clothes|switched_sides|villain_turned_ally|ally_of_luffy,Whip
+beetleman,Beetleman,horns|extra_limbs|cape|unique_laugh,
+bishonure-onna,Bishonure-Onna,makeup|kimono,
+bobby-funk,Bobby Funk,has_sibling|from_a_kingdom|beard|facial_hair|long_hair|hat|tattoo|muscular,
+bonk-punch,Bonk Punch,bald|scar|face_scar|drinks|pet,
+buhichuck,Buhichuck,animal|unique_laugh|multiple_swords,Sword
+caimanlady,Caimanlady,mask|long_hair|kimono,
+cancer,Cancer,sunglasses|cigar|smokes|scar|face_scar|suit,
+catacombo,Catacombo,mustache|beard|facial_hair|scar|face_scar|hat,
+charlotte-akimeg,Charlotte Akimeg,has_sibling|big_family|striped_clothes|long_hair|heart_motif,
+charlotte-allmeg,Charlotte Allmeg,afro|has_sibling|big_family|striped_clothes|heart_motif,
+charlotte-cabaletta,Charlotte Cabaletta,fat|beard|mustache|facial_hair|has_sibling|big_family,
+charlotte-cadenza,Charlotte Cadenza,fat|beard|facial_hair|has_sibling|big_family|striped_clothes|hat,
+charlotte-chiffon,Charlotte Chiffon,twin|has_sibling|big_family|married|parent|big_lips|fat|owes_a_debt,
+charlotte-counter,Charlotte Counter,mohawk|beard|facial_hair|fat|has_sibling|big_family,
+charlotte-fuyumeg,Charlotte Fuyumeg,braids|long_hair|has_sibling|big_family|striped_clothes,
+charlotte-harumeg,Charlotte Harumeg,long_hair|has_sibling|big_family|striped_clothes,
+charlotte-joscarpone,Charlotte Joscarpone,has_sibling|big_family,Bow
+charlotte-mascarpone,Charlotte Mascarpone,has_sibling|big_family,Bow
+charlotte-nutmeg,Charlotte Nutmeg,has_sibling|big_family|long_hair|striped_clothes,
+charlotte-prim,Charlotte Prim,tentacles|has_sibling|big_family,
+chochinman,Chochinman,bald|mask|cape|bandages|long_limbs,
+chouchou,Chouchou,animal|fur|tail,
+craven,Craven,muscular|long_hair|ponytail|beard|facial_hair|tattoo|striped_clothes|giant_weapon|greedy,
+d-r,D.R.,face_tattoo|tattoo|cape|liar,
+dago,Dago,afro|sideburns|fat|goggles|ally_of_luffy|villain_turned_ally,
+devil-dias,Devil Dias,muscular|tattoo|scar|cape,
+disco,Disco,mustache|beard|facial_hair|hat|glasses|scarf|long_hair|hot_headed|merchant,
+doll,Doll,earrings|tattoo,
+doma,Doma,beard|facial_hair|headband|pet|ally_of_luffy,
+dosun,Dosun,sharp_teeth|big_lips|defeated_by_straw_hat|unusual_eyes,
+dotaku,Dotaku,elderly|beard|mustache|facial_hair|sideburns|scar|face_scar|kimono|wano|ally_of_luffy,
+emet,Emet,mask,
+figarland-garling,Figarland Garling,world_noble|unusual_hair|spiky_hair|beard|mustache|facial_hair|sideburns|elderly|arrogant|parent|rich,Sword
+fukaboshi,Fukaboshi,muscular|has_sibling|polite|ally_of_luffy|from_a_kingdom,
+gambia,Gambia,tattoo|sunglasses|goggles|headband|unusual_hair|grand_fleet|cheerful,
+ganryu,Ganryu,braids|ponytail|striped_clothes,
+ganzui,Ganzui,beard|facial_hair|long_hair|ponytail|armor|cape|money_lover,
+gattenshochinosukeo,Gattenshochinosukeo,shirtless|muscular|tattoo|mustache|facial_hair|wano,Sword
+ginny,Ginny,freckles|thief|glutton|parent|flashback_only|in_love,
+giro-chintaro,Giro Chintaro,wano|kimono|honor_code|facial_hair,Sword
+guernika,Guernika,hat|mask|scarf|mustache|beard|facial_hair|scar|face_scar|unusual_eyes,
+gyaro,Gyaro,ponytail|big_lips|tattoo|unusual_eyes|unique_laugh|cover_story,
+hailey,Hailey,,
+hanji-2,Hanji,scar|face_scar|mohawk|wano|ally_of_luffy,
+hannyabal,Hannyabal,fat|big_chin|running_gag|fought_luffy|defeated_by_luffy,Spear
+hareji,Hareji,scar|face_scar|pompadour|wano|ally_of_luffy,
+hatcha,Hatcha,horns|drinks|scientist_experiment|fought_luffy,Club
+hawkman,Hawkman,wings|coat_on_shoulders,
+hippo-gentleman,Hippo Gentleman,suit|mustache|facial_hair|defeated_by_straw_hat,
+hiriluk,Hiriluk,hat|mustache|goatee|facial_hair|elderly|unusual_hair|flashback_only|has_dream|from_a_kingdom,
+hoisassa,Hoisassa,wano|kimono,
+horseman,Horseman,mask|super_speed,
+ikaros-much,Ikaros Much,extra_limbs|beard|mustache|facial_hair|tattoo|verbal_tic|afraid_of_something|defeated_by_straw_hat,
+jeet,Jeet,scar|face_scar|grand_fleet,Sword
+jorul,Jorul,beard|mustache|facial_hair|cape|flashback_only|elderly,
+jumper,Jumper,mask|horns|scarf|tattoo|switched_sides,
+kabu,Kabu,tail|facial_hair|scarf|grand_fleet|from_a_kingdom|ally_of_luffy,
+kairiken,Kairiken,afro|striped_clothes|defeated_by_luffy|fought_luffy,
+kamakirigirl,Kamakirigirl,horns|tattoo|armor|switched_sides,
+kamijiro,Kamijiro,tail|hot_headed|animal|fought_luffy|defeated_by_luffy,
+kaya,Kaya,rich|orphan|from_a_village|saved_by_luffy,
+kibin,Kibin,ponytail|big_chin|scar|face_scar|coat_on_shoulders|suit,
+komakkov,Komakkov,hat|goggles|long_hair,
+koshi-falcon,Koshi Falcon,wings|mohawk|mustache|facial_hair|tattoo,
+kurozumi-higurashi,Kurozumi Higurashi,elderly|long_hair|unusual_hair|headband|kimono|strategist|flashback_only,
+lines,Lines,uniform,
+macro,Macro,big_lips|big_mouth|unique_laugh|cover_story,
+makko,Makko,scar|face_scar|uniform,
+mansherry,Mansherry,long_hair|tail|from_a_kingdom|in_love,
+marguerite,Marguerite,pet|cape|saved_by_luffy,Bow
+marine-headquarters-court,Marine Headquarters Court,,
+mcguy,McGuy,long_hair|mustache|facial_hair,
+meista,Meista,open_shirt|ponytail|mustache|beard|goatee|facial_hair|tattoo|fought_luffy|defeated_by_luffy,
+merlin,Merlin,spiky_hair|traitor,Cannon|Shield
+minochihuahua,Minochihuahua,animal_form|transforms,
+minoruba,Minoruba,mohawk|facial_hair,
+monster,Monster,fur,
+morgans,Morgans,hat|feathers|beak|wings|catchphrase|cape|can_fly,
+mouseman,Mouseman,goggles|beard|mustache|facial_hair,
+mr-11,Mr. 11,face_tattoo|tattoo|hat|long_hair|bounty_hunter,
+nagels,Nagels,greedy|island_leader,
+nico-olvia,Nico Olvia,parent|flashback_only|long_hair,
+nightcrab-girl,Nightcrab Girl,long_hair|horns|extra_limbs|dances|drinks|fought_luffy,
+nojiko,Nojiko,tattoo|has_sibling|adopted|orphan|from_a_village,
+pappag,Pappag,hat|musician|sings|merchant|running_gag|underwater|stitches,
+pudding-pudding,Pudding Pudding,ponytail|goatee|facial_hair|uniform|scarf,
+rabbitman,Rabbitman,tail,
+ragnir,Ragnir,,
+redwolf,Redwolf,horns|cape,
+ripper,Ripper,uniform|mustache|beard|facial_hair,Gun

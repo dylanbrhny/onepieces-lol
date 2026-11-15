@@ -1,0 +1,274 @@
+tag,group,prompt
+shirtless,look,Name a character who's often shirtless
+facial_hair,look,Name a character with facial hair
+beard,look,Name a character with a beard
+mustache,look,Name a character with a mustache
+bald,look,Name a bald character
+long_hair,look,Name a character with long hair
+unusual_hair,look,Name a character with a wild or unusual hairstyle
+hat,look,Name a character who's rarely seen without a hat
+sunglasses,look,Name a character who wears sunglasses
+glasses,look,Name a character who wears glasses
+eyepatch,look,Name a character with an eyepatch
+scar,look,Name a character with a visible scar
+face_scar,look,Name a character with a scar on their face
+tattoo,look,Name a character with a tattoo
+makeup,look,Name a character who wears makeup or face paint
+mask,look,Name a character who wears a mask or helmet
+coat_on_shoulders,look,Name a character who wears a coat draped over their shoulders
+earrings,look,Name a character who wears earrings
+long_nose,look,Name a character with a long nose
+sharp_teeth,look,Name a character with sharp teeth
+lipstick,look,Name a character who wears lipstick
+cross_dresser,look,Name a character who cross-dresses
+horns,body,Name a character with horns
+wings,body,Name a character with wings
+tail,body,Name a character with a tail
+extra_limbs,body,Name a character with extra arms or legs
+missing_limb,body,Name a character missing an arm or a leg
+prosthetic,body,Name a character with a prosthetic or mechanical body part
+animal,body,Name a character who is an animal
+smokes,habit,Name a character who smokes
+drinks,habit,Name a character known for drinking
+glutton,habit,Name a character who's always eating
+unique_laugh,habit,Name a character with a unique laugh
+catchphrase,habit,Name a character with a catchphrase
+verbal_tic,habit,Name a character with a verbal tic
+cries_easily,habit,Name a character who cries a lot
+flirt,habit,Name a character who's a big flirt
+coward,habit,Name a character who's famously cowardly
+money_lover,habit,Name a character obsessed with money or treasure
+bad_sense_of_direction,habit,Name a character who always gets lost
+sleepy,habit,Name a character who falls asleep at odd times
+royalty,story,Name a character who is royalty
+world_noble,story,Name a World Noble
+former_slave,story,Name a character who was once a slave
+orphan,story,Name a character who grew up an orphan
+traitor,story,Name a character who betrayed their own side
+spy,story,Name a character who worked undercover
+impel_down,story,Name a character who was locked up in Impel Down
+defeated_by_luffy,story,Name a character Luffy beat in a fight
+defeated_by_straw_hat,story,Name a character beaten by a Straw Hat other than Luffy
+villain_turned_ally,story,Name a villain who later helped the Straw Hats
+grand_fleet,story,Name a member of the Straw Hat Grand Fleet
+switched_sides,story,Name a character who switched sides
+doctor,skill,Name a character who is a doctor
+scientist,skill,Name a scientist
+cook,skill,Name a character who cooks
+musician,skill,Name a character who plays music
+artist,skill,"Name a character who draws, paints or sculpts"
+inventor,skill,Name a character who invents things
+can_fly,skill,Name a character who can fly
+transforms,skill,Name a character who can transform
+multiple_swords,skill,Name a character who fights with more than one sword
+pet,skill,Name a character with an animal companion
+has_sibling,family,Name a character whose sibling also appears
+parent,family,Name a character whose child also appears
+twin,family,Name a character with a twin
+adopted,family,Name a character who was adopted or raised by someone else
+sworn_sibling,family,Name a character with a sworn brother or sister
+filler_only,meta,Name a character who only appears in filler
+movie,meta,Name a character who appears in a One Piece film
+cover_story,meta,Name a character who starred in a manga cover story
+running_gag,meta,Name a character who's a running gag
+afro,look-hair,Name a character with an afro
+ponytail,look-hair,Name a character with a ponytail
+braids,look-hair,Name a character with braids
+pompadour,look-hair,Name a character with a pompadour
+spiky_hair,look-hair,Name a character with spiky hair
+two_tone_hair,look-hair,Name a character with two-colored hair
+dreadlocks,look-hair,Name a character with dreadlocks
+mohawk,look-hair,Name a character with a mohawk
+curly_eyebrow,look-hair,Name a character with curly eyebrows
+no_eyebrows,look-hair,Name a character with no eyebrows
+goatee,look-hair,Name a character with a goatee
+sideburns,look-hair,Name a character with big sideburns
+big_lips,look-face,Name a character with big lips
+big_chin,look-face,Name a character with a huge chin
+freckles,look-face,Name a character with freckles
+face_tattoo,look-face,Name a character with a tattoo on their face
+stitches,look-face,Name a character with stitches
+closed_eyes,look-face,Name a character whose eyes always look closed
+unusual_eyes,look-face,Name a character with unusual eyes
+red_nose,look-face,Name a character with a red nose
+big_teeth,look-face,Name a character with big or buck teeth
+piercings,look-face,Name a character with piercings
+monocle,look-face,Name a character who wears a monocle
+goggles,look-face,Name a character who wears goggles
+cape,look-clothes,Name a character who wears a cape
+kimono,look-clothes,Name a character who wears a kimono
+armor,look-clothes,Name a character who wears armor
+suit,look-clothes,Name a character who wears a suit
+uniform,look-clothes,Name a character who wears a uniform
+crown,look-clothes,Name a character who wears a crown
+headband,look-clothes,Name a character who wears a headband
+bandana,look-clothes,Name a character who wears a bandana
+hood,look-clothes,Name a character who wears a hood
+scarf,look-clothes,Name a character who wears a scarf
+jewelry,look-clothes,Name a character covered in jewelry
+flowers,look-clothes,Name a character who wears flowers
+barefoot,look-clothes,Name a character who goes barefoot
+bandages,look-clothes,Name a character wrapped in bandages
+open_shirt,look-clothes,Name a character who wears an open shirt
+striped_clothes,look-clothes,Name a character who wears stripes
+heart_motif,look-clothes,Name a character with hearts on their outfit
+very_tall,body,Name a character who towers over everyone
+very_short,body,Name a character who is tiny
+fat,body,Name a character with a big round build
+muscular,body,Name a character who is extremely muscular
+elderly,body,Name an elderly character
+child,body,Name a child character
+fins,body,Name a character with fins
+gills,body,Name a character with gills
+tentacles,body,Name a character with tentacles
+fur,body,Name a character covered in fur
+feathers,body,Name a character with feathers
+beak,body,Name a character with a beak
+scales,body,Name a character with scales
+third_eye,body,Name a character with a third eye
+long_limbs,body,Name a character with extra-long arms or legs
+skeleton,body,Name a character who is a skeleton
+zombie,body,Name a zombie
+mermaid_tail,body,Name a character with a mermaid tail
+big_mouth,body,Name a character with a huge mouth
+stretchy,body,Name a character whose body can stretch
+cigar,habit,Name a character who smokes cigars
+sings,habit,Name a character who loves to sing
+dances,habit,Name a character known for dancing
+meat_lover,habit,Name a character who loves meat
+sweet_tooth,habit,Name a character with a sweet tooth
+reader,habit,Name a character who's always reading
+gambler,habit,Name a character who gambles
+collector,habit,Name a character who collects things
+liar,habit,Name a character who lies a lot
+arrogant,habit,Name a character who is very arrogant
+polite,habit,Name a character who speaks very politely
+hot_headed,habit,Name a character with a short temper
+calm,habit,Name a character who never loses their cool
+nosebleeds,habit,Name a character who gets nosebleeds
+signature_pose,habit,Name a character with a signature pose
+third_person,habit,Name a character who talks about themselves in the third person
+childish,habit,Name a character who acts like a kid
+honor_code,habit,Name a character who lives by a strict code of honor
+vengeful,habit,Name a character out for revenge
+cheerful,habit,Name a character who's always cheerful
+gloomy,habit,Name a character who's always gloomy
+afraid_of_something,habit,Name a character with a famous fear
+loves_animals,habit,Name a character who loves animals
+greedy,habit,Name a character who's greedy
+lazy,habit,Name a character who's lazy
+loud,habit,Name a character who's always shouting
+shy,habit,Name a character who's shy
+dramatic,habit,Name a character who's very dramatic
+prays,habit,Name a character who's religious or prays
+former_marine,story,Name a character who used to be a Marine
+former_pirate,story,Name a character who used to be a pirate
+bounty_hunter,story,Name a bounty hunter
+assassin,story,Name an assassin
+mercenary,story,Name a mercenary
+king_or_queen,story,Name a king or queen
+prince_or_princess,story,Name a prince or princess
+island_leader,story,Name a character who leads a town or island
+mentor_of_straw_hat,story,Name a character who trained a Straw Hat
+saved_by_luffy,story,Name a character Luffy saved
+fought_luffy,story,Name a character who fought Luffy
+ally_of_luffy,story,Name a character who fought alongside Luffy
+captured_straw_hat,story,Name a character who captured a Straw Hat
+joined_crew_later,story,Name a character who joined their crew partway through
+flashback_only,story,Name a character who only appears in flashbacks
+escaped_prison,story,Name a character who escaped from prison
+wrongly_accused,story,Name a character who was framed or wrongly accused
+disguised,story,Name a character who wore a disguise
+famous_in_world,story,Name a character who is a celebrity in their world
+rich,story,Name a character who is rich
+poor,story,Name a character who grew up poor
+has_dream,story,Name a character with a dream they say out loud
+protector,story,Name a character who protects an island or its people
+shadow_stolen,story,Name a character whose shadow was stolen
+turned_into_toy,story,Name a character who was turned into a toy
+time_skip_redesign,story,Name a character whose look changed a lot after the time skip
+wanted_poster_gag,story,Name a character with a funny wanted poster
+rescued_by_crew,story,Name a character who was rescued by the Straw Hats
+cried_for_help,story,Name a character who asked Luffy for help
+marine_hero,story,Name a character who is a Marine hero
+scientist_experiment,story,Name a character who was the subject of an experiment
+fire_powers,power,Name a character with fire powers
+ice_powers,power,Name a character with ice powers
+lightning_powers,power,Name a character with lightning powers
+light_powers,power,Name a character with light powers
+smoke_powers,power,Name a character with smoke powers
+sand_powers,power,Name a character with sand powers
+poison_powers,power,Name a character with poison powers
+explosion_powers,power,Name a character who can make explosions
+string_powers,power,Name a character who controls strings
+gas_powers,power,Name a character with gas powers
+clones,power,Name a character who can make copies of themselves
+invisible,power,Name a character who can turn invisible
+teleport,power,Name a character who can teleport or warp
+heals,power,Name a character who can heal others
+super_speed,power,Name a character known for super speed
+super_strength,power,Name a character known for super strength
+copies_others,power,Name a character who can copy other people
+controls_others,power,Name a character who can control other people
+creates_objects,power,Name a character who can create objects from nothing
+shrinks_or_grows,power,Name a character who can change size
+animal_form,power,Name a character who can turn into an animal
+mythical_form,power,Name a character who can turn into a mythical creature
+splits_body,power,Name a character who can split their body apart
+barriers,power,Name a character who makes barriers or walls
+martial_artist,fight,Name a martial artist
+kicker,fight,Name a character who fights mainly with kicks
+puncher,fight,Name a character who fights mainly with punches
+gunner,fight,Name a character who fights with guns
+archer,fight,Name a character who fights with a bow
+whip,fight,Name a character who fights with a whip
+giant_weapon,fight,Name a character with a giant weapon
+dual_wielder,fight,Name a character who fights with two weapons
+named_sword,fight,Name a character with a famous named sword
+yells_attacks,fight,Name a character who shouts their attack names
+seastone,fight,Name a character who uses seastone
+rides_animal,fight,Name a character who rides an animal
+summons_animals,fight,Name a character who commands animals
+strategist,fight,Name a character known as a genius strategist
+sniper_skill,fight,Name a character who never misses a shot
+fights_dirty,fight,Name a character who fights dirty
+pacifist,fight,Name a character who refuses to fight
+navigator,skill,Name a navigator
+map_maker,skill,Name a character who draws maps
+swimmer,skill,Name a character who's an amazing swimmer
+carpenter,skill,Name a character who builds things
+writer,skill,Name a character who writes
+fortune_teller,skill,Name a fortune teller
+merchant,skill,Name a character who sells things
+bartender,skill,Name a character who runs a bar
+fisherman,skill,Name a fisherman
+farmer,skill,Name a farmer
+teacher,skill,Name a character who teaches others
+performer,skill,Name a performer or entertainer
+journalist,skill,Name a journalist or reporter
+thief,skill,Name a thief
+archaeologist,skill,Name an archaeologist
+married,family,Name a character who is married
+grandparent,family,Name a character whose grandchild also appears
+has_mentor,family,Name a character with a mentor who also appears
+rival_of_straw_hat,family,Name a rival of a Straw Hat
+childhood_friend,family,Name a character who is a childhood friend of a Straw Hat
+in_love,family,Name a character who's in love with someone
+big_family,family,Name a character from a huge family
+owes_a_debt,family,Name a character who owes someone a life debt
+sky_island,place,Name a character from a sky island
+underwater,place,Name a character who lives underwater
+wano,place,Name a character from Wano
+from_a_kingdom,place,Name a character from a kingdom
+from_a_village,place,Name a character from a small village
+lives_on_a_ship,place,Name a character who lives on a ship
+named_after_real_pirate,meta,Name a character named after a real-life pirate
+will_of_d,meta,Name someone who has the Will of D.
+number_name,meta,Name a character with a number in their name
+food_name,meta,Name a character named after a food
+one_word_name,meta,Name a character known by a one-word name
+popular,meta,Name a character who ranks high in popularity polls
+cameo,meta,Name a character who only shows up for a cameo
+one_episode,meta,Name a character who appears in only one episode
+game_only,meta,Name a character who only appears in a video game
+opening_scene,meta,Name a character who appears in an anime opening

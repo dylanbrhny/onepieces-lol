@@ -1,0 +1,12 @@
+{
+  "name": "Log Pose · The daily One Piece voyage",
+  "short_name": "Log Pose",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#10183d",
+  "theme_color": "#10183d",
+  "icons": [
+    { "src": "assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

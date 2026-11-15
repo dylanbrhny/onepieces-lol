@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One Pieces · The daily One Piece voyage</title>
+<meta name="description" content="A daily One Piece fan game. Seven prompts, thirty seconds each: name the rarest right answer and sail further than everyone else.">
+<link rel="canonical" href="https://onepieces.lol/">
+<meta name="theme-color" content="#10183d">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="One Pieces">
+<meta property="og:title" content="One Pieces · The daily One Piece voyage">
+<meta property="og:description" content="Name the rarest right answer. Sail further than everyone else. A new voyage every day.">
+<meta property="og:url" content="https://onepieces.lol/">
+<meta property="og:image" content="https://onepieces.lol/assets/brand/og-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ONE PIECES pixel logo with a pirate ship at sunset">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One Pieces · The daily One Piece voyage">
+<meta name="twitter:description" content="Name the rarest right answer. Sail further than everyone else.">
+<meta name="twitter:image" content="https://onepieces.lol/assets/brand/og-banner.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
+<link rel="stylesheet" href="css/style.css?v=20261115165305">
+<script>try { history.scrollRestoration = "manual"; } catch (e) {} window.scrollTo(0, 0);</script>
+</head>
+<body>
+<div class="boot" id="boot" role="status" aria-live="polite"><span>SETTING SAIL</span><i></i><i></i><i></i></div>
+<div id="app" class="app" data-screen="title">
+  <canvas id="sea" class="sea" aria-label="Your ship sailing the Grand Line" role="img"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="sys">
+    <button class="icon-btn" id="musicBtn" type="button" aria-label="Music" aria-pressed="true">
+      <svg viewBox="0 0 8 8" aria-hidden="true"><path d="M3 1h4v1H4v4H3V5H1v2h2v1H0V5h1V4h2zM6 2h1v3H6zM4 5h2v1H4z"/></svg>
+    </button>
+    <button class="icon-btn" id="sfxBtn" type="button" aria-label="Sound effects" aria-pressed="true">
+      <svg viewBox="0 0 8 8" aria-hidden="true"><path d="M0 3h2V2h1V1h1v6H3V6H2V5H0zM5 3h1v2H5zM6 2h1v1H6zM6 5h1v1H6zM7 3h1v2H7z"/></svg>
+    </button>
+  </div>
+
+  <aside class="route" id="route" aria-label="Route"></aside>
+
+  <header class="hud" id="hud" hidden>
+    <div class="hud-stat"><span class="hud-label" id="hudNmiLabel">Sailed</span><span class="hud-value" id="hudNmi">0 nmi</span></div>
+    <div class="pips" id="pips" aria-label="Prompts"></div>
+    <div class="hud-stat hud-right"><span class="hud-label" id="hudBountyLabel">Bounty</span><span class="hud-value straw" id="hudBounty">฿0</span></div>
+  </header>
+  <div class="landfall" id="landfall" aria-live="polite" hidden></div>
+
+  <!-- PORT -->
+  <section class="screen screen-title" id="screen-title">
+    <div class="title-wrap">
+      <h1 class="logo" id="logo">ONE PIECES</h1>
+      <p class="tagline" id="tagline">The daily voyage</p>
+      <p class="pitch">Name a character. The rarer the right answer, the further your ship sails.</p>
+      <p class="voyage-meta" id="voyageMeta"></p>
+      <div class="modes" id="modes"></div>
+      <details class="howto">
+        <summary>? How to play</summary>
+        <div class="howto-body">
+          <p>7 prompts a day, 30 seconds each. Most ask for a character; a couple ask for a place, Devil Fruit, ship or crew. Every right answer sails at least 100 nmi: famous picks sail a little, deep cuts up to 1,000. A wrong answer is turned away so you can try again; you only score 0 if time runs out. The route is 7,000 nmi, so only seven Pirate King answers reach the end.</p>
+          <ul class="tier-legend" id="tierLegend"></ul>
+        </div>
+      </details>
+      <p class="data-warn" id="dataWarn" hidden></p>
+      <p class="credits">Unofficial fan game. Not affiliated with Eiichiro Oda, Shueisha or Toei Animation.
+        Character data and pictures from the <a href="https://onepiece.fandom.com/" target="_blank" rel="noopener">One Piece Wiki</a>
+        (text under CC BY-SA 3.0). Your answers are counted anonymously to rank how common they are.</p>
+    </div>
+  </section>
+
+  <!-- AT SEA -->
+  <section class="screen screen-play" id="screen-play" hidden>
+    <div class="panel">
+      <div class="prompt-head">
+        <span id="promptNo">PROMPT 1 OF 7</span>
+        <span id="lives" class="lives"></span>
+      </div>
+      <div class="prompt-row">
+        <h2 class="prompt" id="promptText"></h2>
+        <button type="button" class="hint-btn" id="hintBtn" aria-expanded="false" aria-controls="hintPop" hidden>?</button>
+      </div>
+      <p class="prompt-note" id="promptNote" hidden></p>
+      <p class="hint-pop" id="hintPop" hidden></p>
+
+      <form class="guess" id="guessForm" autocomplete="off">
+        <label class="sr-only" for="guessInput">Your answer</label>
+        <input id="guessInput" name="guess" type="text" placeholder="Type a character..." spellcheck="false" autocapitalize="words" enterkeyhint="go">
+        <button class="btn btn-straw" type="submit">Answer</button>
+        <div class="logpose" id="logpose" aria-hidden="true">
+          <canvas id="lpCanvas" width="26" height="26"></canvas>
+          <span id="lpSecs">30</span>
+        </div>
+      </form>
+      <div class="hint" id="hint" aria-live="polite"></div>
+
+      <div class="reveal" id="reveal" hidden>
+        <div class="stamp" id="stamp"></div>
+        <div class="reveal-row">
+          <div class="portrait" id="portrait"></div>
+          <div class="reveal-text">
+            <div class="answer-name" id="answerName"></div>
+            <div class="answer-line" id="answerLine"></div>
+            <div class="answer-pts" id="answerPts"></div>
+          </div>
+        </div>
+        <div class="others" id="others"></div>
+        <button class="btn btn-straw btn-wide" id="nextBtn" type="button">Sail on</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WANTED: guess the hidden character -->
+  <section class="screen screen-wanted" id="screen-wanted" hidden>
+    <div class="panel panel-wanted">
+      <div class="prompt-head">
+        <span id="wantedHead">WANTED #1</span>
+        <span id="wantedLeft"></span>
+      </div>
+      <h2 class="prompt" id="wantedPrompt">Who is on today's poster?</h2>
+
+      <form class="wsearch" id="wantedForm" autocomplete="off">
+        <label class="sr-only" for="wantedInput">Search for a character</label>
+        <input id="wantedInput" type="text" placeholder="Search a character..." spellcheck="false" autocapitalize="words" enterkeyhint="go"
+          role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="wantedList">
+        <button class="btn btn-straw" type="submit">Guess</button>
+        <ul class="wlist" id="wantedList" role="listbox" hidden></ul>
+      </form>
+      <div class="hint" id="wantedHint" aria-live="polite"></div>
+
+      <div class="wcaught" id="wantedDone" hidden>
+        <div class="stamp" id="wantedStamp"></div>
+        <div class="reveal-row">
+          <div class="portrait" id="wantedPortrait"></div>
+          <div class="reveal-text">
+            <div class="answer-name" id="wantedName"></div>
+            <div class="answer-line" id="wantedLine"></div>
+          </div>
+        </div>
+        <button class="btn btn-straw btn-wide" id="wantedPortBtn" type="button">See the poster</button>
+      </div>
+
+      <div class="wtools">
+        <button class="btn btn-ghost" id="wantedGiveUp" type="button">Reveal</button>
+        <button class="btn btn-ghost" id="wantedLeave" type="button">Port</button>
+      </div>
+      <div class="wboard" id="wantedBoard" aria-live="polite"></div>
+      <div class="wkey" id="wantedKey">
+        <span data-state="same">Match</span><span data-state="near">Partly</span><span data-state="diff">No</span><span data-state="unknown">Not on file</span><span class="wkey-arrow">▲▼ answer is higher / lower</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen screen-result" id="screen-result" hidden>
+    <div class="result-wrap">
+      <article class="poster" id="poster">
+        <div class="poster-wanted">WANTED</div>
+        <div class="poster-photo" id="posterPhoto"></div>
+        <div class="poster-doa">DEAD OR ALIVE</div>
+        <label class="sr-only" for="posterName">Your pirate name</label>
+        <input class="poster-name" id="posterName" maxlength="18" spellcheck="false">
+        <div class="poster-bounty"><span class="berry">฿</span><span id="posterBounty">0</span><span class="berry">-</span></div>
+        <div class="poster-foot"><span id="posterVoyage"></span><span>MARINE</span></div>
+      </article>
+      <div class="logbook">
+        <h3 class="logbook-title">SHIP'S LOG</h3>
+        <p class="logbook-sub" id="logReach"></p>
+        <ol class="log" id="log"></ol>
+        <div class="wboard wboard-mini" id="resultBoard" hidden></div>
+        <div class="actions">
+          <button class="btn btn-straw" id="copyBtn" type="button">Copy result</button>
+          <button class="btn" id="practiceBtn" type="button" hidden>Practice</button>
+          <button class="btn" id="endlessBtn" type="button">Endless</button>
+          <button class="btn btn-ghost" id="portBtn" type="button">Port</button>
+        </div>
+        <textarea class="copy-fallback" id="copyFallback" readonly hidden></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen screen-debug" id="screen-debug" hidden></section>
+</div>
+
+<script src="js/config.js?v=20261115165305"></script>
+<script src="js/questions.js?v=20261115165305"></script>
+<script src="data/characters.js?v=20261115165305"></script>
+<script src="data/arcs.js?v=20261115165305"></script>
+<script src="data/route.js?v=20261115165305"></script>
+<script src="js/sprites.js?v=20261115165305"></script>
+<script src="data/answer_stats.js?v=20261115165305"></script>
+<script src="js/engine.js?v=20261115165305"></script>
+<script src="js/audio.js?v=20261115165305"></script>
+<script src="js/scenes.js?v=20261115165305"></script>
+<script src="js/chart.js?v=20261115165305"></script>
+<script src="data/things.js?v=20261115165305"></script>
+<script src="js/questions_things.js?v=20261115165305"></script>
+<script src="js/hints.js?v=20261115165305"></script>
+<script src="js/cutscene.js?v=20261115165305"></script>
+<script src="js/app.js?v=20261115165305"></script>
+<script id="boot-failsafe">setTimeout(function(){var b=document.getElementById("boot");if(b)b.remove();},8000);</script>
+</body>
+</html>
