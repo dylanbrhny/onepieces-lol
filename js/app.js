@@ -527,6 +527,7 @@
     }
     $("#reveal").hidden = true;
     $("#guessForm").hidden = false;
+    $("#idkRow").hidden = false; resetIdk();
     $("#hint").innerHTML = "";
     closeGuessList();
     const input = $("#guessInput");
@@ -702,18 +703,48 @@
     }
   }
 
-  function finishPrompt(id) {
+  // An inline "are you sure?" in place of a button: the button hides, a short question with Yes / No shows
+  // where it was. No puts the button back. Used by "I don't know" and Wanted's Reveal.
+  function askSure(btn, msg, yesLabel, noLabel, onYes) {
+    const old = btn.parentNode.querySelector(".sure");
+    if (old) old.remove();
+    const box = document.createElement("div");
+    box.className = "sure"; box.setAttribute("role", "alertdialog"); box.setAttribute("aria-label", msg);
+    box.innerHTML = `<span class="sure-msg">${esc(msg)}</span><span class="sure-btns"><button type="button" class="btn btn-ghost" data-a="yes">${esc(yesLabel)}</button><button type="button" class="btn btn-straw" data-a="no">${esc(noLabel)}</button></span>`;
+    btn.hidden = true;
+    btn.after(box);
+    const close = () => { box.remove(); btn.hidden = false; };
+    box.querySelector('[data-a="no"]').addEventListener("click", () => { S_.click(); close(); btn.focus({ preventScroll: true }); });
+    box.querySelector('[data-a="yes"]').addEventListener("click", () => { close(); onYes(); });
+    box.querySelector('[data-a="no"]').focus({ preventScroll: true });
+    return close;
+  }
+  function resetIdk() { const b = $("#idkBtn"), s = $("#idkRow .sure"); if (s) s.remove(); b.hidden = false; }
+  $("#idkBtn").addEventListener("click", () => {
+    if (!S || !$("#reveal").hidden) return;
+    S_.click();
+    const life = S.mode === "endless" ? " and it costs a life" : "";
+    askSure($("#idkBtn"), `Are you sure? You'll sail 0 nmi on this one${life}.`, "Yes, skip it", "Keep trying", () => {
+      if (!S || !$("#reveal").hidden) return;
+      finishPrompt(null, true);
+    });
+  });
+
+  function finishPrompt(id, skipped = false) {
     closeGuessList();
+    resetIdk();
+    $("#idkRow").hidden = true;
     stopTimer();
     $("#guessInput").disabled = true;
     const q = S.qs[S.i];
     let res;
-    if (id == null) res = { ok: false, id: null, tier: C.timeoutTier, points: 0 };
+    if (id == null) res = { ok: false, id: null, points: 0, skipped,
+      tier: skipped ? { ...C.timeoutTier, name: "Passed", line: "You let this one go." } : C.timeoutTier };
     else res = E.scoreGuess(q, id, dataFor(q), C);
     S.results[S.i] = { q: q.text, qid: q.id, kind: q.kind || "character", id: res.id, name: res.id ? nameIn(q, res.id) : "", tierId: res.tier.id, tierName: res.tier.name, points: res.points };
     S.total += res.points;
     logAnswer(q, res);
-    if (S.mode === "endless" && id == null) S.lives--;   // only running out of time costs a life
+    if (S.mode === "endless" && id == null) S.lives--;   // only running out of time (or "I don't know") costs a life
     updateHud();
     renderReveal(q, res);
     if (id == null) S_.timeout();
@@ -810,7 +841,7 @@
     $("#answerLine").textContent = line;
     $("#answerPts").innerHTML = res.points
       ? `<span class="tc">+${fmt(res.points * C.nmiPerPoint)} nmi</span> · bounty +฿${fmt(res.points * C.bountyPerPoint)}`
-      : `<span class="tc">+0 nmi</span> · out of time, the ship holds position`;
+      : `<span class="tc">+0 nmi</span> · ${res.skipped ? "skipped" : "out of time"}, the ship holds position`;
 
     // No other answers are shown: the same prompt can come back another day.
     $("#others").innerHTML = "";
@@ -1003,6 +1034,7 @@
     $("#wantedHint").textContent = "";
     $("#wantedDone").hidden = true;
     $("#wantedForm").hidden = false;
+    { const sb = $("#wantedGiveUp").parentNode.querySelector(".sure"); if (sb) sb.remove(); }
     $("#wantedGiveUp").hidden = !WS.practice;
     $("#wantedBoard").style.setProperty("--cols", W.columns.length);
     const input = $("#wantedInput");
@@ -1078,6 +1110,7 @@
 
     input.disabled = true;
     $("#wantedForm").hidden = true;
+    { const sb = $("#wantedGiveUp").parentNode.querySelector(".sure"); if (sb) sb.remove(); }
     $("#wantedGiveUp").hidden = true;
     setTimeout(() => {
       const reveal = () => { showCaught(); setTimeout(() => S_.stamp(), 260); };
@@ -1196,10 +1229,15 @@
   $("#wantedLeave").addEventListener("click", renderTitle);
   $("#wantedGiveUp").addEventListener("click", () => {
     if (!WS || WS.done) return;
+    S_.click();
+    askSure($("#wantedGiveUp"), "Are you sure? This shows who it is and ends the hunt.", "Yes, reveal", "Keep guessing", wantedReveal);
+  });
+  function wantedReveal() {
+    if (!WS || WS.done) return;
     WS.done = true; WS.won = false; WS.gaveUp = true; WS.nmi = 0;
     $("#wantedForm").hidden = true; $("#wantedGiveUp").hidden = true; closeList();
     paintWantedHud(); showCaught(); S_.bad();
-  });
+  }
 
   function wantedRecord(ws) {
     return { mode: "wanted", practice: !!ws.practice, dayNo: ws.dayNo || dayNo, targetId: ws.targetId,
