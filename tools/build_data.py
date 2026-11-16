@@ -166,6 +166,16 @@ def main():
                 oid, col = (row.get("id") or "").strip(), (row.get("column") or "").strip()
                 if oid and col:
                     overrides.setdefault(oid, {})[col] = (row.get("value") or "").strip()
+    # hair colours read from the character pictures (data/hair_from_pictures.csv: id, hair_color), used
+    # only where the wiki text gives none; hand fixes and the wiki always win
+    hair_pics = {}
+    hp_path = os.path.join(ROOT, "data", "hair_from_pictures.csv")
+    if os.path.exists(hp_path):
+        with open(hp_path, encoding="utf-8-sig", newline="") as f:
+            for row in csv.DictReader(f):
+                if (row.get("id") or "").strip() and (row.get("hair_color") or "").strip():
+                    hair_pics[row["id"].strip()] = row["hair_color"].strip()
+    hair_from_pics = 0
     errors, warnings, out = [], [], []
     seen = set()
 
@@ -181,6 +191,9 @@ def main():
                 continue
             for col, val in overrides.get(row.get("id", ""), {}).items():
                 row[col] = val
+            if not row.get("hair_color") and row.get("id", "") in hair_pics:
+                row["hair_color"] = hair_pics[row["id"]]
+                hair_from_pics += 1
             cid, name = row.get("id", ""), row.get("name", "")
             where = f"row {line_no}"
             if not cid:
@@ -370,6 +383,8 @@ def main():
           + (f" ({sum(1 for v in overrides.values() if 'difficulty' in v)} set by hand)" if overrides else ""))
     if overrides:
         print(f"Overrides applied for {len(overrides)} characters from data/character_overrides.csv")
+    if hair_from_pics:
+        print(f"Hair colour from pictures (data/hair_from_pictures.csv) for {hair_from_pics} characters the wiki has none for")
     if arcs:
         print(f"Spoiler filter: {len(arcs)} arcs written to data/arcs.js")
     print(f"Shared names given to the most famous owner: {given}")

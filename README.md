@@ -73,6 +73,10 @@ Each difficulty / spoiler setting has its own daily voyage.
 Hand fixes to the wiki data go in `data/character_overrides.csv` (`id,column,value`); `build_data.py`
 applies them on top of `characters.csv`, so a re-scrape never wipes them.
 
+Hair colour the wiki text never mentions was read from each character's picture and saved in
+`data/hair_from_pictures.csv` (`id,hair_color`). `build_data.py` uses it only when both the hand fixes
+and the wiki have no hair colour; pictures where the hair was hidden or unclear were left out.
+
 ## Characters (pulled from the One Piece Wiki)
 
 `data/characters.csv` holds every character page on onepiece.fandom.com (2,433: 1,665 canon,
