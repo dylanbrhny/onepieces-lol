@@ -23,6 +23,33 @@
     set(k, v) { try { localStorage.setItem(`${C.storageKey}:${k}`, JSON.stringify(v)); } catch (e) { /* private mode */ } }
   };
 
+  // ---------- anonymous player id + events for the answers sheet ----------
+  // A random id made in this browser (no names, emails or anything personal) so the sheet can tell players
+  // apart, see repeat plays and count active players. Sent with every answer and event.
+  const PID_NEW = !store.get("pid", "");
+  const PID = (() => {
+    let p = store.get("pid", "");
+    if (!/^[a-z0-9]{10}$/.test(p)) {
+      const abc = "abcdefghijklmnopqrstuvwxyz0123456789";
+      try { p = Array.from(crypto.getRandomValues(new Uint8Array(10)), b => abc[b % 36]).join(""); }
+      catch (e) { p = Array.from({ length: 10 }, () => abc[Math.floor(Math.random() * 36)]).join(""); }
+      store.set("pid", p);
+    }
+    return p;
+  })();
+  const SID = Math.random().toString(36).slice(2, 10);
+  const DEVICE = () => (window.innerWidth < 720 ? "phone" : "desktop");
+  // local copies (localhost / 127.0.0.1) don't send anything, so testing never lands in the sheet; add ?track to force it
+  const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) && !/[?&]track\b/.test(location.search);
+  function sendRow(rec) {
+    if (!C.statsEndpoint || LOCAL) return;
+    try { fetch(C.statsEndpoint, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(rec), keepalive: true }).catch(() => {}); } catch (e) { /* offline */ }
+  }
+  // event: visit | start | finish | daily-start | wanted | blind | tierlist | fight | feedback
+  function track(event, data = {}) {
+    sendRow({ event, t: new Date().toISOString(), day: E.localDateKey(new Date()), pid: PID, sid: SID, device: DEVICE(), ...data });
+  }
+
   // ---------- player settings: difficulty + spoiler filter (saved in this browser) ----------
   // Difficulty is for Endless Voyage (and the Wanted picker): easy = characters everyone knows, medium adds
   // the well-known cast, hard = every named character. The daily 7 ignore it (see DAILY below).
@@ -224,7 +251,9 @@
   let burstVoiceOn = false;
   window.LogPoseDebug = { chart };   // for testing in the browser console
   // what js/extras.js (Blind Ranking, Tier List, Build a Fighter) reads
-  window.OnePieces = { C, chars: allRows, things: THING_ALL, seenBy, sound: S_, spoilerEp: spoiler ? spoiler.last_ep : null };
+  window.OnePieces = { C, chars: allRows, things: THING_ALL, seenBy, sound: S_, spoilerEp: spoiler ? spoiler.last_ep : null, track, pid: PID };
+  { const fb = $("#feedbackBtn"); if (fb) fb.addEventListener("click", () => { S_.click(); if (window.Extras) window.Extras.feedback(); }); }
+  track("visit", { detail: PID_NEW ? "new" : "returning", mode: location.hash.startsWith("#fight=") ? "fight-link" : "" });
   chart.onBurstPhase = (phase, power) => {
     // the cutscene already played the charge and launch sounds; the map only adds the landing
     if (phase === "land" && S_.burstLand) S_.burstLand();
@@ -443,13 +472,26 @@
       const saved = store.get(dayKey, null);
       if (saved) return showResult(saved);
       S = { mode: "rarefind", qs, i: 0, results: [], total: 0 };
+      // a reload mid-voyage picks up where you were (the clock kept running), instead of a fresh start
+      const prog = store.get(`progress:${dayKey}`, null);
+      if (prog && Array.isArray(prog.results) && prog.results.length <= qs.length) {
+        S.results = prog.results; S.total = prog.total || 0; S.i = Math.min(prog.i || 0, qs.length - 1);
+        if (S.results[S.i]) S.i = Math.min(S.i + 1, qs.length - 1);
+        if (prog.qid === (qs[S.i] || {}).id && prog.at) S.resumeLeft = (diff.seconds || C.secondsPerPrompt) * 1000 - (Date.now() - prog.at);
+        S.resumed = true;
+      } else {
+        const runs = store.get(`dailyRuns:${dateKey}`, 0) + 1;     // >1 means this browser started today's daily again
+        store.set(`dailyRuns:${dateKey}`, runs);
+        track("daily-start", { mode: "rarefind", value: runs });
+      }
     } else if (id === "endless") {
       useWorld("play");
       if (!playable.length) return;
       S = { mode: "endless", qs: [], deck: [], i: 0, results: [], total: 0, lives: C.endlessLives };
     }
     chart.infinite = S.mode === "endless";   // Endless: past the end of the map, Elbaph goes on forever
-    chart.setShip(0);
+    chart.setShip(S.total * C.nmiPerPoint);
+    if (!S.resumed) track("start", { mode: S.mode, difficulty: S.mode === "rarefind" ? "daily" : diffId });
     buildPips();
     updateHud();
     show("play");
@@ -503,6 +545,14 @@
   function nextPrompt() {
     if (S.mode === "endless") S.qs[S.i] = endlessQuestion();
     const q = S.qs[S.i];
+    S.wrongs = 0; S.promptAt = Date.now();
+    if (S.mode === "rarefind") {
+      const prev = store.get(`progress:${dayKey}`, null);
+      const same = prev && prev.qid === q.id && prev.at && S.resumeLeft != null;
+      const at = same ? prev.at : Date.now();
+      S.promptAt = at; if (same) S.wrongs = prev.wrongs || 0;
+      store.set(`progress:${dayKey}`, { i: S.i, qid: q.id, at, results: S.results, total: S.total, wrongs: S.wrongs });
+    }
     $("#promptNo").innerHTML = (S.mode === "rarefind" ? `PROMPT ${S.i + 1} OF ${S.qs.length}` : `PROMPT ${S.i + 1}`) +
       (DIFF[q.difficulty] ? ` · <span class="dtag d-${q.difficulty}">${q.difficulty.toUpperCase()}</span>` : "");
     $("#promptText").textContent = q.text;
@@ -538,13 +588,15 @@
     input.placeholder = ((window.THING_KINDS || {})[q.kind] || {}).placeholder || "Type a character...";
     setTimeout(() => input.focus({ preventScroll: true }), 50);
     paintPips();
-    startTimer();
+    const left = S.resumeLeft; S.resumeLeft = null;
+    if (left != null && left <= 0) { finishPrompt(null); return; }   // reloaded after the time ran out
+    startTimer(left);
   }
 
-  function startTimer() {
+  function startTimer(leftMs) {
     stopTimer();
     const SECS = diff.seconds || C.secondsPerPrompt;
-    const total = SECS * 1000, start = performance.now();
+    const total = SECS * 1000, start = performance.now() - (leftMs != null ? Math.max(0, total - leftMs) : 0);
     const secs = $("#lpSecs"), lp = $("#logpose"), lpCtx = $("#lpCanvas").getContext("2d");
     let lastSec = SECS;
     const tick = () => {
@@ -681,6 +733,9 @@
     const q = S.qs[S.i];
     const res = E.scoreGuess(q, id, dataFor(q), C);
     if (res.ok) return finishPrompt(id);
+    logAnswer(q, { ...res, id, ok: false, points: 0, tier: null }, false);   // a wrong guess (turned away)
+    S.wrongs = (S.wrongs || 0) + 1;
+    if (S.mode === "rarefind") { const pr = store.get(`progress:${dayKey}`, null); if (pr) store.set(`progress:${dayKey}`, { ...pr, wrongs: S.wrongs }); }
     S_.nope();
     const form = $("#guessForm");
     form.classList.remove("shake"); void form.offsetWidth; form.classList.add("shake");
@@ -694,15 +749,20 @@
   // ---------- answer log: feeds data/answer_stats.js so tiers slowly follow what players really say ----------
   // Kept in this browser (last 500) and, if C.statsEndpoint is set, sent there as plain-text JSON
   // (plain text avoids a CORS preflight, so a Google Apps Script web app works as the endpoint).
-  function logAnswer(q, res) {
+  // final = the answer that ended the prompt (right, skipped or timed out); wrong guesses before it are sent
+  // with final: false. first = this browser's first go at this prompt today (repeats don't move the tiers).
+  function logAnswer(q, res, final = true) {
+    // only the daily tracks replays (Endless repeats prompts by design)
+    const seenKey = `answered:${dateKey}`, seen = S.mode === "rarefind" ? store.get(seenKey, []) : [];
+    const first = !seen.includes(q.id);
+    if (final && first && S.mode === "rarefind") store.set(seenKey, [...seen, q.id].slice(-200));
     const rec = { t: new Date().toISOString(), day: dateKey, prompt: q.id, kind: q.kind || "character",
-                  answer: res.id || "", ok: !!res.ok, mode: S.mode, difficulty: S.mode === "rarefind" ? "daily" : diffId };
-    const log = store.get("answerLog", []);
-    log.push(rec);
-    store.set("answerLog", log.slice(-500));
-    if (C.statsEndpoint) {
-      try { fetch(C.statsEndpoint, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(rec), keepalive: true }).catch(() => {}); } catch (e) { /* offline */ }
-    }
+                  answer: res.id || "", ok: !!res.ok, mode: S.mode, difficulty: S.mode === "rarefind" ? "daily" : diffId,
+                  pid: PID, sid: SID, run: S.mode === "rarefind" ? store.get(`dailyRuns:${dateKey}`, 1) : 0, first, final,
+                  ms: S.promptAt ? Date.now() - S.promptAt : "", wrongs: S.wrongs || 0,
+                  tier: res.tier ? res.tier.id : "", points: res.points || 0, skipped: !!res.skipped, device: DEVICE() };
+    if (final) { const log = store.get("answerLog", []); log.push(rec); store.set("answerLog", log.slice(-500)); }
+    sendRow(rec);
   }
 
   // An inline "are you sure?" in place of a button: the button hides, a short question with Yes / No shows
@@ -744,6 +804,7 @@
       tier: skipped ? { ...C.timeoutTier, name: "Passed", line: "You let this one go." } : C.timeoutTier };
     else res = E.scoreGuess(q, id, dataFor(q), C);
     S.results[S.i] = { q: q.text, qid: q.id, kind: q.kind || "character", id: res.id, name: res.id ? nameIn(q, res.id) : "", tierId: res.tier.id, tierName: res.tier.name, points: res.points };
+    if (S.mode === "rarefind") { const pr = store.get(`progress:${dayKey}`, {}); store.set(`progress:${dayKey}`, { ...pr, i: S.i, results: S.results, total: S.total + res.points }); }
     S.total += res.points;
     logAnswer(q, res);
     if (window.Fleet) window.Fleet.record({ type: "answer", tier: res.ok ? res.tier.id : "", points: res.points });
@@ -1022,6 +1083,11 @@
     setTimeout(() => (pick.querySelector('[aria-pressed="true"]') || pick.querySelector("[data-pick]")).focus({ preventScroll: true }), 30);
   }
   function openWantedPick(practice) {
+    // one daily poster per browser per day: once you've guessed on one difficulty, that's today's
+    if (!practice) {
+      const mine = W_LEVELS.find(id => { const w = store.get(wKeyFor(id), null); return w && w.guesses && w.guesses.length; });
+      if (mine) { setWantedDiff(mine); return startWanted(false); }
+    }
     const pick = pickEl();
     const cards = W_LEVELS.map(id => {
       const n = { pool: fmt(wPoolFor(id).length), chars: fmt(wantedData(id).chars.length) }, t = W_PICK[id];
@@ -1037,7 +1103,7 @@
       <p class="wpick-kicker">WANTED · ${practice ? "PRACTICE" : `DAILY #${dayNo}`}</p>
       <h2 class="wpick-title" id="wpickTitle">Pick your hunt</h2>
       <div class="wpick-cards">${cards}</div>
-      <p class="wpick-note">Catch them in fewer guesses to sail further. ${practice ? "Practice posters are random and unlimited." : "Each difficulty has its own daily poster."} This doesn't change the daily voyage's difficulty.</p>
+      <p class="wpick-note">Catch them in fewer guesses to sail further. ${practice ? "Practice posters are random and unlimited." : "One daily poster per day: the difficulty you pick now is the one you play today."}</p>
       <button type="button" class="btn btn-mini wpick-back">Back to port</button></div>`;
     pick.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => {
       S_.click(); closeWantedPick();
@@ -1129,7 +1195,7 @@
     hint.textContent = "";
     WS.guesses.push(id);
     const n = WS.guesses.length, won = id === WS.targetId, lost = !won && n >= wCap();
-    if (won || lost) { WS.done = true; WS.won = won; WS.nmi = wShipAt(); }
+    if (won || lost) { WS.done = true; WS.won = won; WS.nmi = wShipAt(); trackWanted(); }
     if (!WS.practice) store.set(wKey, WS);
 
     const input = $("#wantedInput");
@@ -1157,6 +1223,10 @@
     }, flipEnd);
   }
 
+  function trackWanted() {
+    track("wanted", { mode: WS.practice ? "practice" : "daily", difficulty: wDiffId, value: WS.guesses.length,
+                      detail: `${WS.won ? "caught" : WS.gaveUp ? "revealed" : "escaped"}:${WS.targetId}` });
+  }
   function showCaught() {
     const target = WD.byId.get(WS.targetId), n = WS.guesses.length;
     const box = $("#wantedDone");
@@ -1272,7 +1342,7 @@
   });
   function wantedReveal() {
     if (!WS || WS.done) return;
-    WS.done = true; WS.won = false; WS.gaveUp = true; WS.nmi = 0;
+    WS.done = true; WS.won = false; WS.gaveUp = true; WS.nmi = 0; trackWanted();
     $("#wantedForm").hidden = true; $("#wantedGiveUp").hidden = true; closeList();
     paintWantedHud(); showCaught(); S_.bad();
   }
@@ -1337,8 +1407,9 @@
   // ---------- RESULT ----------
   function finishVoyage() {
     const rec = { mode: S.mode, total: S.total, dayNo, dateKey, results: S.results.filter(Boolean) };
-    if (S.mode === "rarefind") { store.set(dayKey, rec); store.set(`played:${dateKey}`, true); }
+    if (S.mode === "rarefind") { store.set(dayKey, rec); store.set(`played:${dateKey}`, true); try { localStorage.removeItem(`${C.storageKey}:progress:${dayKey}`); } catch (e) {} }
     else if (S.total > store.get("endlessBest", 0)) store.set("endlessBest", S.total);
+    track("finish", { mode: S.mode, difficulty: S.mode === "rarefind" ? "daily" : diffId, value: Math.round(S.total * C.nmiPerPoint), detail: `${S.results.filter(r => r && r.points).length}/${S.results.length} right` });
     if (window.Fleet) window.Fleet.record({ type: "voyage", mode: S.mode });
     showResult(rec);
   }

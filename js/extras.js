@@ -1,5 +1,6 @@
-// Modes with no score to chase: Blind Ranking, the Tier List maker and Build a Fighter (with 1v1s).
-// They open as a full-screen panel over the port. Data comes from window.OnePieces (set up by app.js).
+// Modes with no score to chase: Blind Ranking, the Tier List maker and Build a Fighter (with 1v1s),
+// plus the suggestions / bug report box. They open as a full-screen panel over the port.
+// Data comes from window.OnePieces (set up by app.js); track() sends anonymous usage to the answers sheet.
 (function () {
   "use strict";
   const OP = () => window.OnePieces || {};
@@ -10,6 +11,7 @@
     set(k, v) { try { localStorage.setItem("onepieces-x:" + k, JSON.stringify(v)); } catch (e) { /* private mode */ } }
   };
   const sound = n => { try { const s = OP().sound; if (s && s[n]) s[n](); } catch (e) { /* no sound */ } };
+  const track = (ev, data) => { try { if (OP().track) OP().track(ev, data); } catch (e) { /* offline */ } };
   const initials = name => String(name || "?").split(/\s+/).filter(w => /^[A-Za-z]/.test(w) && w.length > 1).slice(-2).map(w => w[0]).join("") || "?";
   const pic = (item, cls = "") => `<span class="xpic ${cls}">${item && item.image ? `<img src="${esc(item.image)}" alt="" loading="lazy">` : ""}<i>${esc(initials(item && item.name))}</i></span>`;
   const byFame = (a, b) => (b.fame || 0) - (a.fame || 0);
@@ -46,140 +48,187 @@
     { id: "arcs",     name: "Story arcs",        get: arcItems }
   ];
   const catById = id => CATS.find(c => c.id === id) || CATS[0];
+  const catCache = {};
+  const catList = id => catCache[id] || (catCache[id] = catById(id).get());
 
   // ---------------- the panel ----------------
-  let panel = null;
-  function openPanel(kicker, title) {
+  const ICONS = {
+    blind: '<path d="M0 0h2v2H0zM3 0h5v2H3zM0 3h2v2H0zM3 3h5v2H3zM0 6h2v2H0zM3 6h2v2H3z"/>',
+    tierlist: '<path d="M0 0h2v2H0zM3 0h5v2H3zM0 3h2v2H0zM3 3h3v2H3zM0 6h2v2H0zM3 6h1v2H3z"/>',
+    fighter: '<path d="M1 1h5v1h1v3H6v1H5v2H2V6H1zM2 2v1h1V2zM4 2v1h1V2z"/>',
+    feedback: '<path d="M0 0h8v6H3L1 8V6H0zM1 1v4h1v1l1-1h4V1zM2 2h4v1H2zM2 3h3v1H2z"/>'
+  };
+  let panel = null, backFn = null;
+  function openPanel(mode, kicker, title, back) {
     if (!panel) {
       panel = document.createElement("div");
       panel.className = "xm"; panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true"); panel.setAttribute("aria-labelledby", "xmTitle");
-      panel.innerHTML = `<div class="xm-panel"><header class="xm-head"><div><p class="xm-kicker" id="xmKicker"></p><h2 class="xm-title" id="xmTitle"></h2></div>
-        <button type="button" class="btn btn-mini xm-close">Port</button></header><div class="xm-body" id="xmBody"></div></div>`;
+      panel.innerHTML = `<div class="xm-panel"><header class="xm-head">
+          <button type="button" class="xm-back" aria-label="Back" hidden>‹</button>
+          <svg class="xm-icon" viewBox="0 0 8 8" aria-hidden="true"></svg>
+          <div class="xm-titles"><p class="xm-kicker" id="xmKicker"></p><h2 class="xm-title" id="xmTitle"></h2></div>
+          <button type="button" class="xm-close" aria-label="Back to port">✕</button></header>
+        <div class="xm-body" id="xmBody"></div></div>`;
       document.body.appendChild(panel);
       panel.querySelector(".xm-close").addEventListener("click", close);
+      panel.querySelector(".xm-back").addEventListener("click", () => { sound("click"); if (backFn) backFn(); });
+      panel.addEventListener("click", e => { if (e.target === panel) close(); });
       document.addEventListener("keydown", e => { if (e.key === "Escape" && panel && !panel.hidden) close(); });
     }
     panel.hidden = false;
+    panel.dataset.mode = mode;
     document.body.classList.add("xm-open");
+    setHead(kicker, title, back);
+    panel.querySelector(".xm-icon").innerHTML = ICONS[mode] || "";
+    return body();
+  }
+  const body = () => panel.querySelector("#xmBody");
+  function close() { if (panel) panel.hidden = true; document.body.classList.remove("xm-open"); sound("click"); }
+  function setHead(kicker, title, back) {
     panel.querySelector("#xmKicker").textContent = kicker;
     panel.querySelector("#xmTitle").textContent = title;
-    return panel.querySelector("#xmBody");
+    backFn = back || null;
+    panel.querySelector(".xm-back").hidden = !back;
   }
-  function close() { if (panel) panel.hidden = true; document.body.classList.remove("xm-open"); sound("click"); }
-  function setHead(kicker, title) { panel.querySelector("#xmKicker").textContent = kicker; panel.querySelector("#xmTitle").textContent = title; }
   const top = () => { const p = panel && panel.querySelector(".xm-panel"); if (p) p.scrollTop = 0; };
+  function toast(msg) {
+    let t = panel.querySelector(".xm-toast");
+    if (!t) { t = document.createElement("div"); t.className = "xm-toast"; t.setAttribute("role", "status"); panel.querySelector(".xm-panel").appendChild(t); }
+    t.textContent = msg; t.classList.remove("on"); void t.offsetWidth; t.classList.add("on");
+  }
 
-  async function shareText(text, btn) {
+  async function shareText(text) {
     try {
       if (navigator.share && /Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) { await navigator.share({ text }); return; }
       await navigator.clipboard.writeText(text);
-      if (btn) { const t = btn.textContent; btn.textContent = "Copied!"; setTimeout(() => { btn.textContent = t; }, 1400); }
+      toast("Copied. Paste it anywhere.");
     } catch (e) {
-      if (btn) { const box = document.createElement("textarea"); box.className = "xm-copy"; box.value = text; box.readOnly = true; btn.after(box); box.select(); }
+      const box = document.createElement("textarea"); box.className = "xm-copy"; box.value = text; box.readOnly = true;
+      body().appendChild(box); box.select(); toast("Copy the text below.");
     }
   }
-  function catPicker(sel) {
-    return `<div class="xm-cats">${CATS.map(c => `<button type="button" class="xm-chip" data-cat="${c.id}" aria-pressed="${c.id === sel}">${esc(c.name)}</button>`).join("")}</div>`;
+  // category cards: a little collage of the first pictures in each
+  function catCards(sel) {
+    return `<div class="xm-catgrid">${CATS.map(c => {
+      const list = catList(c.id), shots = list.filter(x => x.image).slice(0, 3);
+      return `<button type="button" class="xm-cat" data-cat="${c.id}" aria-pressed="${c.id === sel}">
+        <span class="xm-collage">${shots.map(x => pic(x, "xcol")).join("")}</span>
+        <span class="xm-cat-name">${esc(c.name)}</span><span class="xm-cat-n">${list.length}</span></button>`;
+    }).join("")}</div>`;
   }
-  function wireChips(body, attr, onPick) {
-    body.querySelectorAll(`[data-${attr}]`).forEach(b => b.addEventListener("click", () => {
+  const seg = (attr, opts, sel) => `<div class="xm-seg" role="group">${opts.map(([v, label]) => `<button type="button" data-${attr}="${v}" aria-pressed="${String(v) === String(sel)}">${esc(label)}</button>`).join("")}</div>`;
+  function wire(b, attr, onPick) {
+    b.querySelectorAll(`[data-${attr}]`).forEach(x => x.addEventListener("click", () => {
       sound("click");
-      body.querySelectorAll(`[data-${attr}]`).forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-      onPick(b.dataset[attr]);
+      b.querySelectorAll(`[data-${attr}]`).forEach(y => y.setAttribute("aria-pressed", String(y === x)));
+      onPick(x.dataset[attr]);
     }));
   }
+  // the item being placed, as a card that flips in
+  const card = (it, extra = "") => `<div class="xm-card" ${extra}><div class="xm-card-in">${pic(it, "xcard")}
+      <span class="xm-card-name">${esc(it.name)}</span>${it.sub ? `<span class="xm-card-sub">${esc(it.sub)}</span>` : ""}</div></div>`;
 
   // ================= BLIND RANKING =================
-  // One item at a time; you lock each into a slot without knowing what comes next. Nothing to win.
+  // One item at a time; you lock each into a spot without knowing what comes next. Nothing to win.
   let BR = null;
   function blindSetup() {
-    const body = openPanel("BLIND RANKING", "Rank them blind");
+    const b = openPanel("blind", "BLIND RANKING", "Rank it blind");
     let cat = store.get("blindCat", "famous"), n = store.get("blindN", 10);
-    body.innerHTML = `<p class="xm-note">Things show up one at a time. Put each one in a spot for good, before you see what's next. No winning, no losing: just your call.</p>
-      <h3 class="xm-h">What to rank</h3>${catPicker(cat)}
-      <h3 class="xm-h">How many spots</h3><div class="xm-cats"><button type="button" class="xm-chip" data-n="5" aria-pressed="${n === 5}">Top 5</button><button type="button" class="xm-chip" data-n="10" aria-pressed="${n === 10}">Top 10</button></div>
-      <button type="button" class="btn btn-straw xm-go">Start ranking</button>`;
-    wireChips(body, "cat", v => { cat = v; });
-    wireChips(body, "n", v => { n = +v; });
-    body.querySelector(".xm-go").addEventListener("click", () => { store.set("blindCat", cat); store.set("blindN", n); blindStart(cat, n); });
+    b.innerHTML = `<p class="xm-lede">Cards come one at a time. Lock each one into a spot <b>before you see the next</b>. No take-backs, no winning: just your call.</p>
+      <h3 class="xm-h">Pick a deck</h3>${catCards(cat)}
+      <h3 class="xm-h">Spots</h3>${seg("n", [[5, "Top 5"], [10, "Top 10"]], n)}
+      <button type="button" class="btn btn-straw xm-cta">Deal the first card</button>`;
+    wire(b, "cat", v => { cat = v; });
+    wire(b, "n", v => { n = +v; });
+    b.querySelector(".xm-cta").addEventListener("click", () => { store.set("blindCat", cat); store.set("blindN", n); blindStart(cat, n); });
   }
   function blindStart(cat, n) {
     sound("click");
-    const items = shuffle(catById(cat).get());
+    const items = shuffle(catList(cat));
     if (items.length < n) n = Math.max(1, items.length);
-    BR = { cat, n, deck: items.slice(0, n), i: 0, slots: Array(n).fill(null) };
+    BR = { cat, n, deck: items.slice(0, n), i: 0, slots: Array(n).fill(null), last: -1 };
+    track("start", { mode: "blind", detail: cat, value: n });
     blindRender();
   }
+  const medal = k => (k === 0 ? "gold" : k === 1 ? "silver" : k === 2 ? "bronze" : "");
   function blindRender() {
-    const body = panel.querySelector("#xmBody"), c = catById(BR.cat), done = BR.i >= BR.n, cur = BR.deck[BR.i];
-    setHead("BLIND RANKING", c.name);
-    body.innerHTML = `${done ? `<p class="xm-done">Your blind top ${BR.n}. No take-backs.</p>` : `
-      <div class="xm-now"><span class="xm-count">${BR.i + 1} of ${BR.n}</span>${pic(cur, "xbig")}<span class="xm-now-name">${esc(cur.name)}</span>${cur.sub ? `<span class="xm-now-sub">${esc(cur.sub)}</span>` : ""}
-      <span class="xm-now-ask">Where does it go?</span></div>`}
-      <ol class="xm-slots">${BR.slots.map((s, k) => `<li><span class="xm-rank">${k + 1}</span>${s
-        ? `${pic(s, "xmini")}<span class="xm-slot-name">${esc(s.name)}</span>`
-        : done ? `<span class="xm-slot-empty">—</span>` : `<button type="button" class="xm-put" data-k="${k}">Put it here</button>`}</li>`).join("")}</ol>
-      <div class="xm-actions">${done ? `<button type="button" class="btn btn-straw" data-a="again">Rank again</button><button type="button" class="btn" data-a="share">Share list</button>` : ""}
-        <button type="button" class="btn btn-ghost" data-a="reset">${done ? "Change category" : "Reset"}</button></div>`;
-    body.querySelectorAll(".xm-put").forEach(b => b.addEventListener("click", () => {
-      BR.slots[+b.dataset.k] = cur; BR.i++; sound("stamp"); blindRender();
-    }));
-    const act = a => body.querySelector(`[data-a="${a}"]`);
-    act("reset").addEventListener("click", () => { sound("click"); if (done) blindSetup(); else blindStart(BR.cat, BR.n); });
+    const b = body(), c = catById(BR.cat), done = BR.i >= BR.n, cur = BR.deck[BR.i];
+    setHead("BLIND RANKING", c.name, blindSetup);
+    const pips = `<div class="xm-pips">${BR.deck.map((_, k) => `<i class="${k < BR.i ? "on" : k === BR.i ? "now" : ""}"></i>`).join("")}</div>`;
     if (done) {
+      const podium = [1, 0, 2].filter(k => BR.slots[k]).map(k => `<div class="xm-pod ${medal(k)}"><span class="xm-pod-rank">${k + 1}</span>${pic(BR.slots[k], "xpod")}<span class="xm-pod-name">${esc(BR.slots[k].name)}</span><span class="xm-pod-base"></span></div>`).join("");
+      b.innerHTML = `<p class="xm-banner">Your blind top ${BR.n}</p><div class="xm-podium">${podium}</div>
+        ${BR.n > 3 ? `<ol class="xm-rest" start="4">${BR.slots.slice(3).map((s, k) => `<li><span class="xm-num">${k + 4}</span>${pic(s, "xmini")}<span class="xm-name">${esc(s ? s.name : "—")}</span></li>`).join("")}</ol>` : ""}
+        <div class="xm-actions"><button type="button" class="btn btn-straw" data-a="again">Deal again</button><button type="button" class="btn" data-a="share">Share</button><button type="button" class="btn btn-ghost" data-a="deck">New deck</button></div>`;
+      const act = a => b.querySelector(`[data-a="${a}"]`);
       act("again").addEventListener("click", () => blindStart(BR.cat, BR.n));
-      act("share").addEventListener("click", e => shareText(`One Pieces · blind ranking (${c.name})\n` + BR.slots.map((s, k) => `${k + 1}. ${s ? s.name : "—"}`).join("\n") + `\n${location.origin}${location.pathname}`, e.currentTarget));
+      act("deck").addEventListener("click", () => { sound("click"); blindSetup(); });
+      act("share").addEventListener("click", () => shareText(`My blind top ${BR.n} ${c.name} on One Pieces:\n` + BR.slots.map((s, k) => `${k + 1}. ${s ? s.name : "—"}`).join("\n") + `\n${location.origin}${location.pathname}`));
+      return top();
     }
-    top();
+    b.innerHTML = `${pips}<div class="xm-stage">${card(cur, `data-k="${BR.i}"`)}<p class="xm-ask">Where does it go?</p></div>
+      <ol class="xm-spots">${BR.slots.map((s, k) => `<li class="${medal(k)}${k === BR.last ? " landed" : ""}"><span class="xm-num">${k + 1}</span>${s
+        ? `${pic(s, "xmini")}<span class="xm-name">${esc(s.name)}</span>`
+        : `<button type="button" class="xm-place" data-k="${k}">Place at #${k + 1}</button>`}</li>`).join("")}</ol>
+      <div class="xm-actions"><button type="button" class="btn btn-ghost" data-a="reset">Start over</button></div>`;
+    b.querySelectorAll(".xm-place").forEach(x => x.addEventListener("click", () => {
+      const k = +x.dataset.k;
+      BR.slots[k] = cur; BR.i++; BR.last = k; sound("stamp");
+      if (BR.i >= BR.n) track("blind", { mode: BR.cat, value: BR.n, detail: BR.slots.map(s => s && s.id).join(",") });
+      blindRender();
+    }));
+    b.querySelector('[data-a="reset"]').addEventListener("click", () => blindStart(BR.cat, BR.n));
   }
 
   // ================= TIER LIST =================
-  const TIERS = [["S", "#ff5a46"], ["A", "#ff9a3c"], ["B", "#f1c04a"], ["C", "#9be35a"], ["D", "#6fe3ff"], ["F", "#a98bff"]];
+  const TIERS = [["S", "#ff4d5e", "#ff8a5b"], ["A", "#ff9a3c", "#ffc15a"], ["B", "#f1c04a", "#ffe27a"], ["C", "#7ad85a", "#b6ee7a"], ["D", "#4fc3f7", "#8fe3ff"], ["F", "#9a7bff", "#c3a9ff"]];
   let TL = null, tlSel = null;
   function tierSetup() {
-    const body = openPanel("TIER LIST", "Make a tier list");
+    const b = openPanel("tierlist", "TIER LIST", "Make a tier list");
     const saved = store.get("tier", null);
     let cat = store.get("tierCat", "famous"), count = store.get("tierCount", 24), pickBy = store.get("tierPick", "famous");
-    body.innerHTML = `${saved && saved.items && saved.items.length ? `<button type="button" class="btn btn-straw xm-go" data-a="resume">Keep editing: ${esc(saved.title)}</button>` : ""}
-      <h3 class="xm-h">What to rank</h3>${catPicker(cat)}
-      <h3 class="xm-h">How many</h3><div class="xm-cats">${[12, 24, 36].map(v => `<button type="button" class="xm-chip" data-count="${v}" aria-pressed="${v === count}">${v}</button>`).join("")}</div>
-      <h3 class="xm-h">Which ones</h3><div class="xm-cats"><button type="button" class="xm-chip" data-pick="famous" aria-pressed="${pickBy === "famous"}">The most famous</button><button type="button" class="xm-chip" data-pick="random" aria-pressed="${pickBy === "random"}">A random mix</button></div>
-      <button type="button" class="btn ${saved ? "" : "btn-straw"} xm-go" data-a="new">New tier list</button>`;
-    wireChips(body, "cat", v => { cat = v; });
-    wireChips(body, "count", v => { count = +v; });
-    wireChips(body, "pick", v => { pickBy = v; });
-    body.querySelector('[data-a="new"]').addEventListener("click", () => {
+    b.innerHTML = `${saved && saved.items && saved.items.length ? `<button type="button" class="xm-resume" data-a="resume"><span>Keep editing</span><b>${esc(saved.title)}</b><small>${Object.keys(saved.place || {}).length} of ${saved.items.length} ranked</small></button>` : ""}
+      <h3 class="xm-h">What to rank</h3>${catCards(cat)}
+      <h3 class="xm-h">How many</h3>${seg("count", [[12, "12"], [24, "24"], [36, "36"]], count)}
+      <h3 class="xm-h">Which ones</h3>${seg("pick", [["famous", "Most famous"], ["random", "Random mix"]], pickBy)}
+      <button type="button" class="btn btn-straw xm-cta" data-a="new">Build the board</button>`;
+    wire(b, "cat", v => { cat = v; });
+    wire(b, "count", v => { count = +v; });
+    wire(b, "pick", v => { pickBy = v; });
+    b.querySelector('[data-a="new"]').addEventListener("click", () => {
       store.set("tierCat", cat); store.set("tierCount", count); store.set("tierPick", pickBy);
-      const all = catById(cat).get(), items = (pickBy === "random" ? shuffle(all) : all).slice(0, count);
-      TL = { title: `${catById(cat).name} tier list`, items, place: {} };
-      sound("click"); tierRender();
+      const all = catList(cat), items = (pickBy === "random" ? shuffle(all) : all).slice(0, count);
+      TL = { title: `${catById(cat).name} tier list`, cat, items, place: {} };
+      track("start", { mode: "tierlist", detail: cat, value: items.length });
+      sound("click"); tlSel = null; tierRender();
     });
-    const r = body.querySelector('[data-a="resume"]');
-    if (r) r.addEventListener("click", () => { TL = saved; sound("click"); tierRender(); });
+    const r = b.querySelector('[data-a="resume"]');
+    if (r) r.addEventListener("click", () => { TL = saved; tlSel = null; sound("click"); tierRender(); });
   }
   const tierSave = () => store.set("tier", TL);
   function tierRender() {
-    const body = panel.querySelector("#xmBody");
-    setHead("TIER LIST", TL.title);
-    const tile = it => `<button type="button" class="xm-tile${tlSel === it.id ? " sel" : ""}" data-id="${esc(it.id)}" draggable="true" title="${esc(it.name)}">${pic(it, "xtile")}<span>${esc(it.name)}</span></button>`;
+    const b = body();
+    setHead("TIER LIST", TL.title, tierSetup);
+    const tile = it => `<button type="button" class="xm-tile${tlSel === it.id ? " sel" : ""}" data-id="${esc(it.id)}" draggable="true" title="${esc(it.name)}" aria-pressed="${tlSel === it.id}">${pic(it, "xtile")}<span class="xm-ribbon">${esc(it.name)}</span></button>`;
     const inRow = t => TL.items.filter(it => (TL.place[it.id] || "") === t);
-    body.innerHTML = `<label class="xm-titlein"><span class="sr-only">List title</span><input type="text" maxlength="60" value="${esc(TL.title)}"></label>
-      <p class="xm-note">${tlSel ? "Now tap a row to put it there (or the tray to take it back)." : "Tap a picture, then tap a row. On a computer you can drag too."}</p>
-      <div class="xm-tiers">${TIERS.map(([t, col]) => `<div class="xm-row" data-row="${t}"><span class="xm-tier" style="--tc:${col}">${t}</span><div class="xm-drop">${inRow(t).map(tile).join("")}</div></div>`).join("")}</div>
-      <div class="xm-tray" data-row=""><span class="xm-tray-label">Unranked · ${inRow("").length}</span><div class="xm-drop">${inRow("").map(tile).join("")}</div></div>
-      <div class="xm-actions"><button type="button" class="btn btn-straw" data-a="png">Save picture</button><button type="button" class="btn" data-a="reset">Reset</button><button type="button" class="btn btn-ghost" data-a="new">New list</button></div>`;
-    body.querySelector(".xm-titlein input").addEventListener("input", e => { TL.title = e.target.value || "My tier list"; setHead("TIER LIST", TL.title); tierSave(); });
-    body.querySelectorAll(".xm-tile").forEach(b => {
-      b.addEventListener("click", e => { e.stopPropagation(); sound("click"); tlSel = tlSel === b.dataset.id ? null : b.dataset.id; tierRender(); });
-      b.addEventListener("dragstart", e => { tlSel = b.dataset.id; e.dataTransfer.setData("text/plain", b.dataset.id); e.dataTransfer.effectAllowed = "move"; });
+    const left = inRow("").length;
+    b.innerHTML = `<div class="xm-tbar"><label class="xm-tname"><span class="sr-only">List title</span><input type="text" maxlength="60" value="${esc(TL.title)}"></label>
+        <span class="xm-progress"><b>${TL.items.length - left}</b>/${TL.items.length}</span></div>
+      <div class="xm-board">${TIERS.map(([t, c1, c2]) => `<div class="xm-row${tlSel ? " armed" : ""}" data-row="${t}" style="--c1:${c1};--c2:${c2}"><span class="xm-tier">${t}</span><div class="xm-drop">${inRow(t).map(tile).join("")}</div></div>`).join("")}</div>
+      <div class="xm-tray${tlSel ? " armed" : ""}" data-row=""><p class="xm-tray-head">${tlSel ? "Now tap a row ↑ (or here to take it back)" : left ? `Unranked · ${left} left · tap one, then a row` : "All ranked! Save the picture below."}</p><div class="xm-drop">${inRow("").map(tile).join("")}</div></div>
+      <div class="xm-actions"><button type="button" class="btn btn-straw" data-a="png">Save picture</button><button type="button" class="btn" data-a="reset">Clear board</button><button type="button" class="btn btn-ghost" data-a="new">New list</button></div>`;
+    b.querySelector(".xm-tname input").addEventListener("input", e => { TL.title = e.target.value || "My tier list"; setHead("TIER LIST", TL.title, tierSetup); tierSave(); });
+    b.querySelectorAll(".xm-tile").forEach(x => {
+      x.addEventListener("click", e => { e.stopPropagation(); sound("click"); tlSel = tlSel === x.dataset.id ? null : x.dataset.id; tierRender(); });
+      x.addEventListener("dragstart", e => { tlSel = x.dataset.id; e.dataTransfer.setData("text/plain", x.dataset.id); e.dataTransfer.effectAllowed = "move"; });
     });
-    body.querySelectorAll("[data-row]").forEach(row => {
-      row.addEventListener("click", () => { if (!tlSel) return; tierMove(tlSel, row.dataset.row); });
+    b.querySelectorAll("[data-row]").forEach(row => {
+      row.addEventListener("click", () => { if (tlSel) tierMove(tlSel, row.dataset.row); });
       row.addEventListener("dragover", e => { e.preventDefault(); row.classList.add("over"); });
       row.addEventListener("dragleave", () => row.classList.remove("over"));
       row.addEventListener("drop", e => { e.preventDefault(); const id = e.dataTransfer.getData("text/plain") || tlSel; if (id) tierMove(id, row.dataset.row); });
     });
-    const act = a => body.querySelector(`[data-a="${a}"]`);
+    const act = a => b.querySelector(`[data-a="${a}"]`);
     act("reset").addEventListener("click", () => { TL.place = {}; tlSel = null; tierSave(); sound("click"); tierRender(); });
     act("new").addEventListener("click", () => { tlSel = null; tierSetup(); });
     act("png").addEventListener("click", tierPicture);
@@ -190,35 +239,43 @@
   }
   // the whole list as one picture (same-origin images, so the canvas can be saved)
   async function tierPicture() {
-    const T = 92, G = 6, LW = 96, W = 1000, PER = Math.floor((W - LW - G) / (T + G));
-    const rows = TIERS.map(([t, col]) => ({ t, col, items: TL.items.filter(it => TL.place[it.id] === t) }));
+    const T = 96, G = 6, LW = 110, W = 1080, PER = Math.floor((W - LW - G) / (T + G));
+    const rows = TIERS.map(([t, c1, c2]) => ({ t, c1, c2, items: TL.items.filter(it => TL.place[it.id] === t) }));
     const heights = rows.map(r => Math.max(1, Math.ceil(r.items.length / PER)) * (T + G) + G);
-    const H = 70 + heights.reduce((a, b) => a + b, 0) + 30;
+    const H = 92 + heights.reduce((a, c) => a + c, 0) + 44;
     const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
     const x = cv.getContext("2d");
-    x.fillStyle = "#0c1230"; x.fillRect(0, 0, W, H);
-    x.fillStyle = "#f4ecd8"; x.font = '24px "Press Start 2P", monospace'; x.textBaseline = "middle"; x.fillText(TL.title.slice(0, 40), 16, 36);
+    const bg = x.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, "#162a66"); bg.addColorStop(1, "#0a0f2a");
+    x.fillStyle = bg; x.fillRect(0, 0, W, H);
+    x.fillStyle = "#050818"; x.fillText && (x.font = '26px "Press Start 2P", monospace'); x.textBaseline = "middle";
+    x.fillText(TL.title.slice(0, 38), 22, 50); x.fillStyle = "#ffd36b"; x.fillText(TL.title.slice(0, 38), 18, 46);
     const load = src => new Promise(res => { if (!src) return res(null); const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
-    let y = 70;
+    let y = 92;
     for (let r = 0; r < rows.length; r++) {
-      const row = rows[r], h = heights[r];
-      x.fillStyle = row.col; x.fillRect(0, y, LW, h - G);
-      x.fillStyle = "#1a1205"; x.font = '40px "Press Start 2P", monospace'; x.textAlign = "center"; x.fillText(row.t, LW / 2, y + (h - G) / 2); x.textAlign = "left";
-      x.fillStyle = "#10183d"; x.fillRect(LW, y, W - LW, h - G);
+      const row = rows[r], h = heights[r] - G;
+      const g = x.createLinearGradient(0, y, LW, y + h); g.addColorStop(0, row.c1); g.addColorStop(1, row.c2);
+      x.fillStyle = g; x.fillRect(10, y, LW - 10, h);
+      x.font = '44px "Press Start 2P", monospace'; x.textAlign = "center";
+      x.fillStyle = "rgba(0,0,0,0.35)"; x.fillText(row.t, 10 + (LW - 10) / 2 + 3, y + h / 2 + 3);
+      x.fillStyle = "#1a1205"; x.fillText(row.t, 10 + (LW - 10) / 2, y + h / 2); x.textAlign = "left";
+      x.fillStyle = "rgba(255,255,255,0.05)"; x.fillRect(LW, y, W - LW - 10, h);
       for (let i = 0; i < row.items.length; i++) {
-        const it = row.items[i], tx = LW + G + (i % PER) * (T + G), ty = y + G + Math.floor(i / PER) * (T + G);
+        const it = row.items[i], tx = LW + G + (i % PER) * (T + G), ty = y + G / 2 + Math.floor(i / PER) * (T + G);
         const im = await load(it.image);
         x.fillStyle = "#172255"; x.fillRect(tx, ty, T, T);
-        if (im) { const s = Math.max(T / im.width, T / im.height), w = im.width * s, hh = im.height * s; x.save(); x.beginPath(); x.rect(tx, ty, T, T); x.clip(); x.drawImage(im, tx + (T - w) / 2, ty + (T - hh) / 2, w, hh); x.restore(); }
-        x.fillStyle = "rgba(5,8,24,0.78)"; x.fillRect(tx, ty + T - 20, T, 20);
-        x.fillStyle = "#f4ecd8"; x.font = "15px VT323, monospace"; x.fillText(it.name.length > 13 ? it.name.slice(0, 12) + "…" : it.name, tx + 4, ty + T - 10);
+        if (im) { const s = Math.max(T / im.width, T / im.height), w = im.width * s, hh = im.height * s; x.save(); x.beginPath(); x.rect(tx, ty, T, T); x.clip(); x.drawImage(im, tx + (T - w) / 2, ty + (T - hh) / 4, w, hh); x.restore(); }
+        x.fillStyle = "rgba(5,8,24,0.8)"; x.fillRect(tx, ty + T - 22, T, 22);
+        x.fillStyle = "#f4ecd8"; x.font = "17px VT323, monospace"; x.fillText(it.name.length > 13 ? it.name.slice(0, 12) + "…" : it.name, tx + 4, ty + T - 11);
+        x.strokeStyle = "#050818"; x.lineWidth = 3; x.strokeRect(tx, ty, T, T);
       }
-      y += h;
+      y += heights[r];
     }
-    x.fillStyle = "#a9b1d6"; x.font = "18px VT323, monospace"; x.fillText("made with One Pieces · onepieces.lol", 16, H - 15);
+    x.fillStyle = "#a9b1d6"; x.font = "20px VT323, monospace"; x.fillText("Made with One Pieces · onepieces.lol", 18, H - 22);
     const a = document.createElement("a");
     a.href = cv.toDataURL("image/png"); a.download = (TL.title || "tier-list").replace(/[^\w -]+/g, "").trim().replace(/\s+/g, "-").toLowerCase() + ".png";
     document.body.appendChild(a); a.click(); a.remove();
+    track("tierlist", { mode: TL.cat || "", value: Object.keys(TL.place).length, detail: TIERS.map(([t]) => `${t}:${TL.items.filter(it => TL.place[it.id] === t).map(it => it.id).join("|")}`).join(" ").slice(0, 900) });
+    toast("Saved. Check your downloads.");
   }
 
   // ================= BUILD A FIGHTER =================
@@ -227,6 +284,7 @@
     { id: "hax", name: "Hax", w: 1.1 }, { id: "df", name: "Devil Fruit", w: 1.0 }, { id: "weapon", name: "Weapon", w: 0.9 },
     { id: "haki", name: "Haki", w: 1.2 }, { id: "speed", name: "Speed", w: 1.1 }, { id: "durability", name: "Durability", w: 1.2 }, { id: "strength", name: "Strength", w: 1.2 }
   ];
+  const MAXPOWER = STATS.reduce((s, x) => s + x.w * 10, 0);
   // Hand-set ratings (0-10) for the big names, in STATS order: body, iq, biq, hax, df, weapon, haki, speed, durability, strength.
   // Everyone else gets ratings from their bounty, Haki, fruit and traits (see rate()). Fan estimates, not canon.
   const RATED = {
@@ -301,58 +359,73 @@
     } catch (e) { return null; }
   }
   const fightLink = f => `${location.origin}${location.pathname}#fight=${encode(f)}`;
+  const power = build => STATS.reduce((sum, s) => { const c = charById(build[s.id]); return sum + (c ? rate(c, s.id) * s.w : 0); }, 0);
+  const pct = build => Math.round(power(build) / MAXPOWER * 100);
+  const barColor = v => (v >= 9 ? "var(--x-gold)" : v >= 7 ? "var(--d-easy)" : v >= 4 ? "var(--d-medium)" : "var(--d-hard)");
 
   let FB = null;   // the build in progress: { name, mode: "blind"|"pick", level, build, deck, i, challenger, pickStat }
   function fighterSetup(challenger) {
-    const body = openPanel("BUILD A FIGHTER", challenger ? `${challenger.name} wants a 1v1` : "Build your fighter");
+    const b = openPanel("fighter", "BUILD A FIGHTER", challenger ? `${challenger.name} wants a 1v1` : "Build your fighter");
     let mode = store.get("fMode", "blind"), level = store.get("fLevel", "famous");
-    body.innerHTML = `${challenger ? `<p class="xm-done">${esc(challenger.name)} built a fighter and sent it to you. Build yours, then fight.</p>` : ""}
-      <p class="xm-note">Fill ten stats with ten characters: you get that character's version of the stat. Body, IQ, Battle IQ, Hax, Devil Fruit, Weapon, Haki, Speed, Durability and Strength. Then take it into a 1v1.</p>
-      <label class="xm-titlein"><span class="xm-h">Fighter name</span><input type="text" id="fName" maxlength="30" value="${esc(store.get("fName", "My Fighter"))}"></label>
-      <h3 class="xm-h">How you build</h3><div class="xm-cats"><button type="button" class="xm-chip" data-mode="blind" aria-pressed="${mode === "blind"}">Blind draft</button><button type="button" class="xm-chip" data-mode="pick" aria-pressed="${mode === "pick"}">Pick anyone</button></div>
-      <p class="xm-note small">Blind draft: characters show up one at a time and you lock each into a stat, no take-backs. Pick anyone: choose who goes in each stat.</p>
-      <h3 class="xm-h">Who can show up</h3><div class="xm-cats"><button type="button" class="xm-chip" data-level="famous" aria-pressed="${level === "famous"}">Famous only</button><button type="button" class="xm-chip" data-level="all" aria-pressed="${level === "all"}">Famous + side characters</button></div>
-      <button type="button" class="btn btn-straw xm-go">Start building</button>`;
-    wireChips(body, "mode", v => { mode = v; });
-    wireChips(body, "level", v => { level = v; });
-    body.querySelector(".xm-go").addEventListener("click", () => {
-      const name = (body.querySelector("#fName").value || "My Fighter").trim().slice(0, 30);
+    b.innerHTML = `${challenger ? `<div class="xm-challenge"><span>INCOMING CHALLENGE</span><b>${esc(challenger.name)}</b> built a fighter and sent it to you. Build yours, then fight.</div>` : ""}
+      <p class="xm-lede">Ten stats, ten characters. Each one gives your fighter <b>their</b> version of that stat. Then take it into a 1v1.</p>
+      <div class="xm-statchips">${STATS.map(s => `<span>${s.name}</span>`).join("")}</div>
+      <label class="xm-field"><span class="xm-h">Fighter name</span><input type="text" id="fName" maxlength="30" value="${esc(store.get("fName", "My Fighter"))}"></label>
+      <h3 class="xm-h">How you build</h3>${seg("mode", [["blind", "Blind draft"], ["pick", "Pick anyone"]], mode)}
+      <p class="xm-hint">Blind draft: characters show up one at a time and you lock each into a stat. Pick anyone: you choose who goes where.</p>
+      <h3 class="xm-h">Who can show up</h3>${seg("level", [["famous", "Famous only"], ["all", "+ Side characters"]], level)}
+      <button type="button" class="btn btn-straw xm-cta">${challenger ? "Build my fighter" : "Start building"}</button>`;
+    wire(b, "mode", v => { mode = v; });
+    wire(b, "level", v => { level = v; });
+    b.querySelector(".xm-cta").addEventListener("click", () => {
+      const name = (b.querySelector("#fName").value || "My Fighter").trim().slice(0, 30);
       store.set("fName", name); store.set("fMode", mode); store.set("fLevel", level);
       FB = { name, mode, level, build: {}, deck: shuffle(fighterPool(level)), i: 0, challenger: challenger || null, pickStat: null };
+      track("start", { mode: "fighter", detail: `${mode}${challenger ? ":vs-friend" : ""}`, value: 0 });
       sound("click"); fighterRender();
     });
   }
+  // the fighter as a trading card: name, power and a bar per stat
+  function fighterCard(f, showVals) {
+    const p = pct(f.build);
+    return `<div class="xm-fcard"><div class="xm-fhead"><span class="xm-fname">${esc(f.name)}</span>${showVals ? `<span class="xm-power"><b>${p}</b><small>POWER</small></span>` : ""}</div>
+      <ul class="xm-fstats">${STATS.map(s => { const c = charById(f.build[s.id]), v = c ? rate(c, s.id) : 0;
+        return `<li><span class="xm-sname">${s.name}</span>${c ? pic(c, "xmini") : `<span class="xpic xmini empty"><i>?</i></span>`}
+          <span class="xm-who">${c ? esc(c.name) : "—"}</span>${showVals ? `<span class="xm-bar"><i style="width:${v * 10}%;background:${barColor(v)}"></i></span><b class="xm-v">${v}</b>` : ""}</li>`; }).join("")}</ul></div>`;
+  }
   function fighterRender() {
-    const body = panel.querySelector("#xmBody"), filled = Object.keys(FB.build).length, done = filled === STATS.length;
-    setHead("BUILD A FIGHTER", FB.name);
+    const b = body(), filled = Object.keys(FB.build).length, done = filled === STATS.length;
+    setHead("BUILD A FIGHTER", FB.name, () => fighterSetup(FB.challenger));
     const cur = FB.mode === "blind" && !done ? FB.deck[FB.i] : null;
-    body.innerHTML = `${cur ? `<div class="xm-now"><span class="xm-count">${filled + 1} of ${STATS.length}</span>${pic(cur, "xbig")}<span class="xm-now-name">${esc(cur.name)}</span>
-        <span class="xm-now-ask">Which stat do they give you?</span></div>` : done ? `<p class="xm-done">Fighter ready. Power ${power(FB.build).toFixed(0)}.</p>` :
-        `<p class="xm-note">Tap a stat to pick who goes there.</p>`}
-      <ul class="xm-stats">${STATS.map(s => { const id = FB.build[s.id], c = id && charById(id);
-        return `<li><span class="xm-stat">${s.name}</span>${c ? `${pic(c, "xmini")}<span class="xm-slot-name">${esc(c.name)}</span>${done ? `<b class="xm-val">${rate(c, s.id)}</b>` : ""}`
-          : cur ? `<button type="button" class="xm-put" data-s="${s.id}">Put here</button>` : FB.mode === "pick" ? `<button type="button" class="xm-put" data-pick="${s.id}">Pick…</button>` : ""}</li>`; }).join("")}</ul>
-      <div id="fPick"></div>
-      <div class="xm-actions">${done ? `${FB.challenger ? `<button type="button" class="btn btn-straw" data-a="friend">Fight ${esc(FB.challenger.name)}</button>` : ""}
-        <button type="button" class="btn ${FB.challenger ? "" : "btn-straw"}" data-a="random">1v1 a random fighter</button>
-        <button type="button" class="btn" data-a="share">Challenge a friend</button>` : ""}
-        <button type="button" class="btn btn-ghost" data-a="reset">${done ? "Build another" : "Reset"}</button></div>`;
-    body.querySelectorAll("[data-s]").forEach(b => b.addEventListener("click", () => {
-      FB.build[b.dataset.s] = cur.id; FB.i++; sound("stamp"); fighterRender();
-    }));
-    body.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => { sound("click"); FB.pickStat = b.dataset.pick; pickSearch(); }));
-    const act = a => body.querySelector(`[data-a="${a}"]`);
-    act("reset").addEventListener("click", () => { sound("click"); if (done) fighterSetup(FB.challenger); else { FB.build = {}; FB.i = 0; FB.deck = shuffle(fighterPool(FB.level)); fighterRender(); } });
     if (done) {
+      b.innerHTML = `<p class="xm-banner">Fighter ready</p>${fighterCard(FB, true)}
+        <div class="xm-actions xm-big">${FB.challenger ? `<button type="button" class="btn btn-straw" data-a="friend">Fight ${esc(FB.challenger.name)}</button>` : ""}
+          <button type="button" class="btn ${FB.challenger ? "" : "btn-straw"}" data-a="random">1v1 a random rival</button>
+          <button type="button" class="btn" data-a="share">Challenge a friend</button>
+          <button type="button" class="btn btn-ghost" data-a="reset">Build another</button></div>`;
+      const act = a => b.querySelector(`[data-a="${a}"]`);
       act("random").addEventListener("click", () => fight({ name: FB.name, build: FB.build }, randomRival(FB.level), false));
-      act("share").addEventListener("click", e => shareText(`${FB.name} wants a 1v1 on One Pieces. Build your fighter and fight mine: ${fightLink({ name: FB.name, build: FB.build })}`, e.currentTarget));
+      act("share").addEventListener("click", () => shareText(`${FB.name} wants a 1v1 on One Pieces. Build your fighter and fight mine: ${fightLink({ name: FB.name, build: FB.build })}`));
+      act("reset").addEventListener("click", () => { sound("click"); fighterSetup(FB.challenger); });
       const f = act("friend"); if (f) f.addEventListener("click", () => fight({ name: FB.name, build: FB.build }, FB.challenger, true));
+      return top();
     }
+    const pips = `<div class="xm-pips">${STATS.map(s => `<i class="${FB.build[s.id] ? "on" : ""}"></i>`).join("")}</div>`;
+    b.innerHTML = `${pips}${cur ? `<div class="xm-stage">${card(cur, `data-k="${FB.i}"`)}<p class="xm-ask">Which stat do they give you?</p></div>` : `<p class="xm-ask solo">Tap a stat to choose who fills it</p>`}
+      <div class="xm-statgrid">${STATS.map(s => { const c = charById(FB.build[s.id]);
+        return c ? `<div class="xm-sbtn full"><span class="xm-sname">${s.name}</span>${pic(c, "xmini")}<span class="xm-who">${esc(c.name)}</span></div>`
+          : `<button type="button" class="xm-sbtn" data-s="${s.id}"><span class="xm-sname">${s.name}</span><span class="xm-plus">${cur ? "Put here" : "Choose"}</span></button>`; }).join("")}</div>
+      <div id="fPick"></div>
+      <div class="xm-actions"><button type="button" class="btn btn-ghost" data-a="reset">Start over</button></div>`;
+    b.querySelectorAll("[data-s]").forEach(x => x.addEventListener("click", () => {
+      if (cur) { FB.build[x.dataset.s] = cur.id; FB.i++; sound("stamp"); fighterRender(); }
+      else { sound("click"); FB.pickStat = x.dataset.s; b.querySelectorAll("[data-s]").forEach(y => y.classList.toggle("picking", y === x)); pickSearch(); }
+    }));
+    b.querySelector('[data-a="reset"]').addEventListener("click", () => { sound("click"); FB.build = {}; FB.i = 0; FB.deck = shuffle(fighterPool(FB.level)); FB.pickStat = null; fighterRender(); });
     if (FB.pickStat) pickSearch();
-    top();
   }
   function pickSearch() {
-    const box = panel.querySelector("#fPick"), stat = STATS.find(s => s.id === FB.pickStat);
+    const box = body().querySelector("#fPick"), stat = STATS.find(s => s.id === FB.pickStat);
     const pool = fighterPool(FB.level).filter(c => !Object.values(FB.build).includes(c.id));
     box.innerHTML = `<div class="xm-search"><label class="xm-h" for="fSearch">Who gives you ${esc(stat.name)}?</label><input id="fSearch" type="text" placeholder="Type a name..." autocomplete="off"><ul class="xm-results"></ul></div>`;
     const input = box.querySelector("input"), list = box.querySelector("ul");
@@ -360,46 +433,93 @@
     const draw = () => {
       const q = norm(input.value).trim();
       const hits = (q ? pool.filter(c => norm(c.name).includes(q) || (c.aliases || []).some(a => norm(a).includes(q))) : pool.slice().sort(byFame)).slice(0, 24);
-      list.innerHTML = hits.map(c => `<li><button type="button" data-id="${esc(c.id)}">${pic(c, "xmini")}<span>${esc(c.name)}</span></button></li>`).join("") || `<li class="xm-none">No one by that name in this pool.</li>`;
-      list.querySelectorAll("[data-id]").forEach(b => b.addEventListener("click", () => {
-        FB.build[FB.pickStat] = b.dataset.id; FB.pickStat = null; sound("stamp"); fighterRender();
+      list.innerHTML = hits.map(c => `<li><button type="button" data-id="${esc(c.id)}">${pic(c, "xmini")}<span>${esc(c.name)}</span></button></li>`).join("") || `<li class="xm-none">No one by that name here.</li>`;
+      list.querySelectorAll("[data-id]").forEach(x => x.addEventListener("click", () => {
+        FB.build[FB.pickStat] = x.dataset.id; FB.pickStat = null; sound("stamp"); fighterRender();
       }));
     };
     input.addEventListener("input", draw); draw();
-    setTimeout(() => input.focus({ preventScroll: false }), 30);
+    box.scrollIntoView({ block: "nearest" });
+    setTimeout(() => input.focus({ preventScroll: true }), 30);
   }
-  const power = build => STATS.reduce((sum, s) => { const c = charById(build[s.id]); return sum + (c ? rate(c, s.id) * s.w : 0); }, 0);
 
   // the 1v1: stat by stat, weighted; same two builds always give the same result
   function fight(me, them, friend) {
     sound("click");
-    const body = panel.querySelector("#xmBody");
-    setHead("1V1", `${me.name} vs ${them.name}`);
+    const b = body();
+    setHead("1V1", `${me.name} vs ${them.name}`, () => fighterRender());
     const rows = STATS.map(s => {
-      const a = charById(me.build[s.id]), b = charById(them.build[s.id]);
-      const va = a ? rate(a, s.id) : 0, vb = b ? rate(b, s.id) : 0;
-      return { s, a, b, va, vb, win: va > vb ? 1 : vb > va ? -1 : 0 };
+      const a = charById(me.build[s.id]), c = charById(them.build[s.id]);
+      const va = a ? rate(a, s.id) : 0, vb = c ? rate(c, s.id) : 0;
+      return { s, a, c, va, vb, win: va > vb ? 1 : vb > va ? -1 : 0 };
     });
     const pa = power(me.build), pb = power(them.build), wins = rows.filter(r => r.win > 0).length, losses = rows.filter(r => r.win < 0).length;
     const result = Math.abs(pa - pb) < 0.5 ? (wins === losses ? 0 : wins > losses ? 1 : -1) : pa > pb ? 1 : -1;
-    body.innerHTML = `<div class="xm-vs"><span>${esc(me.name)}</span><b>VS</b><span>${esc(them.name)}</span></div>
-      <ul class="xm-fight">${rows.map((r, i) => `<li style="--i:${i}" class="${r.win > 0 ? "w" : r.win < 0 ? "l" : "d"}">
-        <span class="xm-side">${pic(r.a, "xmini")}<span class="xm-slot-name">${esc(r.a ? r.a.name : "—")}</span><b>${r.va}</b></span>
-        <span class="xm-stat">${r.s.name}</span>
-        <span class="xm-side r"><b>${r.vb}</b><span class="xm-slot-name">${esc(r.b ? r.b.name : "—")}</span>${pic(r.b, "xmini")}</span></li>`).join("")}</ul>
-      <div class="xm-verdict ${result > 0 ? "w" : result < 0 ? "l" : "d"}" style="--i:${rows.length}">${result > 0 ? `${esc(me.name)} wins!` : result < 0 ? `${esc(them.name)} wins!` : "It's a draw!"}
-        <small>Power ${pa.toFixed(0)} vs ${pb.toFixed(0)} · stats won ${wins}–${losses}</small></div>
-      <div class="xm-actions" style="--i:${rows.length + 1}">
-        ${friend ? `<button type="button" class="btn btn-straw" data-a="back">Send ${esc(them.name)} your fighter</button>` : `<button type="button" class="btn btn-straw" data-a="again">Another random rival</button>`}
-        <button type="button" class="btn" data-a="share">Share result</button><button type="button" class="btn btn-ghost" data-a="build">Build another</button></div>`;
-    setTimeout(() => sound(result > 0 ? "fanfare" : "bad"), rows.length * 260 + 200);
-    const act = a => body.querySelector(`[data-a="${a}"]`);
-    if (friend) act("back").addEventListener("click", e => shareText(`I took your 1v1 on One Pieces (${result > 0 ? "I won" : result < 0 ? "you won" : "draw"}). Now fight mine: ${fightLink(me)}`, e.currentTarget));
+    const STEP = 330;
+    b.innerHTML = `<div class="xm-versus"><div class="xm-vside me"><span>${esc(me.name)}</span><b>${pct(me.build)}</b></div><span class="xm-vs">VS</span><div class="xm-vside them"><span>${esc(them.name)}</span><b>${pct(them.build)}</b></div></div>
+      <div class="xm-score"><b data-sc="me">0</b><span>stats won</span><b data-sc="them">0</b></div>
+      <ul class="xm-clash">${rows.map((r, i) => `<li style="--i:${i}" class="${r.win > 0 ? "w" : r.win < 0 ? "l" : "d"}">
+        <span class="xm-cside">${pic(r.a, "xmini")}<span class="xm-who">${esc(r.a ? r.a.name : "—")}</span></span>
+        <span class="xm-cmid"><span class="xm-cbar l"><i style="--v:${r.va * 10}%"></i><b>${r.va}</b></span><span class="xm-sname">${r.s.name}</span><span class="xm-cbar r"><b>${r.vb}</b><i style="--v:${r.vb * 10}%"></i></span></span>
+        <span class="xm-cside r"><span class="xm-who">${esc(r.c ? r.c.name : "—")}</span>${pic(r.c, "xmini")}</span></li>`).join("")}</ul>
+      <div class="xm-verdict ${result > 0 ? "w" : result < 0 ? "l" : "d"}" style="--i:${rows.length}"><span class="xm-stamp">${result > 0 ? "VICTORY" : result < 0 ? "DEFEAT" : "DRAW"}</span>
+        <small>${result > 0 ? `${esc(me.name)} wins` : result < 0 ? `${esc(them.name)} wins` : "Dead even"} · power ${pct(me.build)} vs ${pct(them.build)} · stats ${wins}–${losses}</small></div>
+      <div class="xm-actions xm-late" style="--i:${rows.length + 1}">
+        ${friend ? `<button type="button" class="btn btn-straw" data-a="back">Send ${esc(them.name)} your fighter</button>` : `<button type="button" class="btn btn-straw" data-a="again">Next rival</button>`}
+        <button type="button" class="btn" data-a="share">Share result</button><button type="button" class="btn btn-ghost" data-a="build">New fighter</button></div>`;
+    // running score as each row lands
+    let sm = 0, st = 0;
+    rows.forEach((r, i) => setTimeout(() => {
+      if (!b.isConnected) return;
+      if (r.win > 0) sm++; else if (r.win < 0) st++;
+      const m = b.querySelector('[data-sc="me"]'), t = b.querySelector('[data-sc="them"]');
+      if (m) m.textContent = sm; if (t) t.textContent = st;
+      sound(r.win > 0 ? "click" : "tick");
+    }, (i + 1) * STEP));
+    setTimeout(() => { sound(result > 0 ? "fanfare" : result < 0 ? "bad" : "stamp"); if (result > 0) confetti(b.querySelector(".xm-verdict")); }, rows.length * STEP + 300);
+    track("fight", { mode: friend ? "friend" : "random", value: Math.round(pa), detail: `${result > 0 ? "win" : result < 0 ? "loss" : "draw"}:${STATS.map(s => me.build[s.id]).join(",")}`.slice(0, 900) });
+    const act = a => b.querySelector(`[data-a="${a}"]`);
+    if (friend) act("back").addEventListener("click", () => shareText(`I took your 1v1 on One Pieces (${result > 0 ? "I won" : result < 0 ? "you won" : "draw"}). Now fight mine: ${fightLink(me)}`));
     else act("again").addEventListener("click", () => fight(me, randomRival(FB ? FB.level : "famous"), false));
-    act("share").addEventListener("click", e => shareText(`One Pieces 1v1: ${me.name} vs ${them.name}, ${result > 0 ? `${me.name} wins` : result < 0 ? `${them.name} wins` : "draw"} (${pa.toFixed(0)}–${pb.toFixed(0)})\n` +
-      rows.map(r => `${r.s.name}: ${r.a ? r.a.name : "—"} ${r.va} vs ${r.vb} ${r.b ? r.b.name : "—"}`).join("\n") + `\nFight me: ${fightLink(me)}`, e.currentTarget));
+    act("share").addEventListener("click", () => shareText(`One Pieces 1v1: ${me.name} vs ${them.name}, ${result > 0 ? `${me.name} wins` : result < 0 ? `${them.name} wins` : "draw"} (${pct(me.build)}–${pct(them.build)})\n` +
+      rows.map(r => `${r.s.name}: ${r.a ? r.a.name : "—"} ${r.va} vs ${r.vb} ${r.c ? r.c.name : "—"}`).join("\n") + `\nFight me: ${fightLink(me)}`));
     act("build").addEventListener("click", () => fighterSetup(null));
     top();
+  }
+  function confetti(el) {
+    if (!el || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+    const cols = ["#ffd36b", "#ff5a46", "#6fe3ff", "#5fd35a", "#f4ecd8"];
+    for (let i = 0; i < 36; i++) {
+      const p = document.createElement("i"); p.className = "xm-conf";
+      p.style.cssText = `left:${50 + (Math.random() - 0.5) * 30}%;background:${cols[i % cols.length]};--dx:${(Math.random() - 0.5) * 340}px;--dy:${-80 - Math.random() * 160}px;--r:${Math.random() * 720 - 360}deg;animation-delay:${Math.random() * 120}ms`;
+      el.appendChild(p); setTimeout(() => p.remove(), 1600);
+    }
+  }
+
+  // ================= SUGGESTIONS & BUG REPORTS =================
+  function feedback() {
+    const b = openPanel("feedback", "SUGGESTIONS & BUGS", "Tell me anything");
+    const today = new Date().toISOString().slice(0, 10), sent = store.get(`fb:${today}`, 0);
+    let kind = "idea";
+    b.innerHTML = `<div class="xm-letter"><p class="xm-lede">Found a bug, a wrong answer, or have an idea for the game? Send it here. <b>I read every single one, every day.</b></p>
+      ${seg("kind", [["idea", "Idea"], ["bug", "Bug"], ["answer", "Wrong answer"], ["other", "Something else"]], kind)}
+      <label class="xm-field"><span class="sr-only">Your message</span><textarea id="fbText" maxlength="1000" rows="6" placeholder="What happened, or what would make it better?"></textarea></label>
+      <p class="xm-hint">No name or email needed. If it's about a prompt, say which one. ${sent >= 5 ? "<b>That's the limit for today. Thanks for all of them!</b>" : ""}</p>
+      <button type="button" class="btn btn-straw xm-cta" ${sent >= 5 ? "disabled" : ""}>Send</button></div>`;
+    wire(b, "kind", v => { kind = v; });
+    const ta = b.querySelector("#fbText"), btn = b.querySelector(".xm-cta");
+    setTimeout(() => ta.focus({ preventScroll: true }), 40);
+    btn.addEventListener("click", () => {
+      const msg = ta.value.trim();
+      if (msg.length < 3) { ta.focus(); toast("Write a few words first."); return; }
+      track("feedback", { mode: kind, detail: msg.slice(0, 1000), value: (document.getElementById("app") || {}).dataset ? document.getElementById("app").dataset.screen : "" });
+      store.set(`fb:${today}`, sent + 1);
+      sound("stamp");
+      b.innerHTML = `<div class="xm-letter sent"><p class="xm-banner">Message in a bottle sent!</p><p class="xm-lede">Thank you. I'll read it today.</p>
+        <div class="xm-actions"><button type="button" class="btn btn-straw" data-a="more">Send another</button><button type="button" class="btn btn-ghost" data-a="port">Back to port</button></div></div>`;
+      b.querySelector('[data-a="more"]').addEventListener("click", feedback);
+      b.querySelector('[data-a="port"]').addEventListener("click", close);
+    });
   }
 
   // ---------------- entry points ----------------
@@ -417,6 +537,6 @@
     try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* file:// */ }
     if (f) fighterSetup(f);
   }
-  window.Extras = { modes: MODES, open, rate, STATS };
+  window.Extras = { modes: MODES, open, feedback, rate, STATS };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fromLink); else setTimeout(fromLink, 0);
 })();
