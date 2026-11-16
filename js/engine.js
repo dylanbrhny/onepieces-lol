@@ -467,32 +467,51 @@
   }
   // Pick n questions, never two from the same group if it can be helped,
   // and at most opts.maxCombos combination prompts so a day isn't all "Name a X who Y".
+  // Two prompts "ask the same thing" when most right answers of the smaller one also answer the bigger one:
+  // "fought Luffy" vs "fought Monkey D. Luffy" (two data sources), "Swordsman" vs "fights with a sword",
+  // or "a Pirate who fought Luffy" next to "fought Luffy". One voyage never gets both.
+  // (A small prompt inside a huge catch-all like "never ate a Devil Fruit" is a different question: skipped.)
+  function sameQuestion(a, b, min = 0.75) {
+    if (a === b) return true;
+    if ((a.kind || "character") !== (b.kind || "character") || !a.answers || !b.answers) return false;
+    const [x, y] = a.answers.length <= b.answers.length ? [a, b] : [b, a];
+    if (!x.answers.length || x.answers.length < y.answers.length * 0.25) return false;
+    const ys = y._ansSet || (y._ansSet = new Set(y.answers));
+    let hit = 0;
+    for (const id of x.answers) if (ys.has(id)) hit++;
+    return hit / x.answers.length >= min;
+  }
+  // a prompt's topic: its group, with groups that ask about the same thing merged
+  // (debut arc, "appeared in the first N episodes" and "...N chapters" are all "when did they show up")
+  const TOPIC_OF = { "debut-ep": "debut", "debut-ch": "debut" };
+  const topicOf = q => TOPIC_OF[q.group] || q.group;
   function pickQuestions(pool, n, rand, opts = {}) {
     // opts.plan = ["easy", "easy", "medium", ...]: one difficulty per slot, in order (easy first).
     if (opts.plan) {
       const shuffled = shuffle(pool, rand), picked = [], groups = new Set();
       const maxCombos = opts.maxCombos == null ? Infinity : opts.maxCombos;
-      const ok = q => !picked.includes(q) && (!q.combo || picked.filter(x => x.combo).length < maxCombos);
+      const ok = q => !picked.includes(q) && (!q.combo || picked.filter(x => x.combo).length < maxCombos) && !picked.some(p => sameQuestion(p, q));
       const order = ["easy", "medium", "hard"];
       for (const want of opts.plan.slice(0, n)) {
         // the wanted level first, then the nearest other level; a new topic beats a repeated one
         const levels = [want, ...order.filter(l => l !== want).sort((a, b) => Math.abs(order.indexOf(a) - order.indexOf(want)) - Math.abs(order.indexOf(b) - order.indexOf(want)))];
         let q = null;
         for (const lvl of levels) {
-          q = shuffled.find(x => x.difficulty === lvl && ok(x) && !groups.has(x.group)) || shuffled.find(x => x.difficulty === lvl && ok(x));
+          q = shuffled.find(x => x.difficulty === lvl && ok(x) && !groups.has(topicOf(x))) || shuffled.find(x => x.difficulty === lvl && ok(x));
           if (q) break;
         }
         if (!q) break;
-        picked.push(q); groups.add(q.group);
+        picked.push(q); groups.add(topicOf(q));
       }
       return picked;
     }
     const shuffled = shuffle(pool, rand), picked = [], groups = new Set();
     const maxCombos = opts.maxCombos == null ? Infinity : opts.maxCombos;
     const combosIn = () => picked.filter(q => q.combo).length;
-    const ok = q => !q.combo || combosIn() < maxCombos;
-    for (const q of shuffled) { if (picked.length >= n) break; if (!groups.has(q.group) && ok(q)) { picked.push(q); groups.add(q.group); } }
+    const ok = q => (!q.combo || combosIn() < maxCombos) && !picked.some(p => sameQuestion(p, q));
+    for (const q of shuffled) { if (picked.length >= n) break; if (!groups.has(topicOf(q)) && ok(q)) { picked.push(q); groups.add(topicOf(q)); } }
     for (const q of shuffled) { if (picked.length >= n) break; if (!picked.includes(q) && ok(q)) picked.push(q); }
+    for (const q of shuffled) { if (picked.length >= n) break; if (!picked.includes(q) && !picked.some(p => sameQuestion(p, q))) picked.push(q); }
     for (const q of shuffled) { if (picked.length >= n) break; if (!picked.includes(q)) picked.push(q); }
     return picked;
   }
@@ -683,7 +702,7 @@
   }
 
   const api = { searchTraits, rateDifficulty, norm, asList, levenshtein, prepare, resolveGuess, resolveFor, soundKey, suggestNames, testCond, fits, buildQuestions, tierAnswers,
-    scoreGuess, rarestAnswers, hashString, rng, shuffle, pickQuestions, localDateKey, dayNumber,
+    scoreGuess, rarestAnswers, hashString, rng, shuffle, pickQuestions, sameQuestion, topicOf, localDateKey, dayNumber,
     searchCharacters, wantedPool, wantedDaily, compareTrait, compareCharacters, formatNumber, comboQuestions };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Engine = api;

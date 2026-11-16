@@ -450,16 +450,26 @@
 
   function endlessQuestion() {
     // about 1 in 4 Endless prompts comes from the other tables (Devil Fruits, places, crews...)
+    const fitOf = pool => { const fit = pool.filter(q => diff.prompts.includes(q.difficulty)); return fit.length >= 10 ? fit : pool; };
     const fill = (key, pool) => {
-      if (!S[key] || !S[key].length) {
-        const fit = pool.filter(q => diff.prompts.includes(q.difficulty));
-        S[key] = E.shuffle(fit.length >= 10 ? fit : pool, Math.random);
-      }
+      if (!S[key] || !S[key].length) S[key] = E.shuffle(fitOf(pool), Math.random);
       return S[key];
     };
     const things = playable.filter(isThing), chars = playable.filter(q => !isThing(q));
-    if (things.length && Math.random() < (C.thingShareEndless ?? 0.25)) return fill("thingDeck", things).pop();
-    return fill("deck", chars.length ? chars : playable).pop();
+    const useThings = things.length && Math.random() < (C.thingShareEndless ?? 0.25);
+    const pool = useThings ? things : chars.length ? chars : playable;
+    const deck = fill(useThings ? "thingDeck" : "deck", pool);
+    // Never ask the same thing twice in a row of prompts: skip anything that matches one already asked this
+    // run (or, once the run is long, the last 12), and prefer a topic that isn't one of the last two.
+    // If this deck has nothing fresh left, look through the whole pool before allowing a repeat.
+    const asked = S.qs.filter(Boolean), recent = asked.slice(-2).map(E.topicOf);
+    const fresh = (q, window, strict) => !window.some(a => E.sameQuestion(a, q)) && !(strict && recent.includes(E.topicOf(q)));
+    for (const window of [asked, asked.slice(-12)]) for (const strict of [true, false]) {
+      for (let i = deck.length - 1; i >= 0; i--) if (fresh(deck[i], window, strict)) return deck.splice(i, 1)[0];
+      const spare = E.shuffle(fitOf(pool), Math.random).find(q => fresh(q, window, strict));
+      if (spare) return spare;
+    }
+    return deck.pop();
   }
 
   function buildPips() {
@@ -889,8 +899,16 @@
     const plan = DAILY.plan.slice(0, n);
     const tq = E.pickQuestions(things, k, E.rng(E.hashString(seed + ":things")), { plan: slots.map(i => plan[i]) });
     const cq = E.pickQuestions(chars, n - tq.length, E.rng(E.hashString(seed)), { maxCombos: DAILY.maxCombos, plan: plan.filter((_, i) => !slots.includes(i)) });
-    const out = [...tq, ...cq].map(q => { const t = {}; for (const id of q.answers) { const x = (q.tierById[id] || {}).tier; if (x) t[x.id] = (t[x.id] || 0) + 1; } return { text: q.text, difficulty: q.difficulty, combo: !!q.combo, answers: q.answers.length, tiers: t }; });
+    const out = [...tq, ...cq].map(q => { const t = {}; for (const id of q.answers) { const x = (q.tierById[id] || {}).tier; if (x) t[x.id] = (t[x.id] || 0) + 1; } return { text: q.text, kind: q.kind || "character", difficulty: q.difficulty, combo: !!q.combo, answers: q.answers.length, ids: q.answers, tiers: t }; });
     useWorld(back); return out;
+  };
+  // for testing only: the first n prompts of a fresh Endless run on the player's difficulty
+  if (window.LogPoseDebug) window.LogPoseDebug.endlessSample = n => {
+    const save = S, back = worldKey; useWorld("play");
+    S = { mode: "endless", qs: [], i: 0 };
+    for (let i = 0; i < n; i++) { S.i = i; S.qs[i] = endlessQuestion(); }
+    const out = S.qs.map(q => ({ text: q.text, kind: q.kind || "character", group: q.group, ids: q.answers }));
+    S = save; useWorld(back); return out;
   };
   if (window.LogPoseDebug) window.LogPoseDebug.current = () => { const q = S && S.qs && S.qs[S.i]; return q ? { text: q.text, kind: q.kind || "character", answers: q.answers.map(id => ({ id, name: nameIn(q, id), tier: (q.tierById[id] || {}).tier ? q.tierById[id].tier.id : "" })) } : null; };   // for testing / trailer capture only
   // search by trait: "fishman", "marine", "zoan", "red hair" lists everyone with it
