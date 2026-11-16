@@ -2,3 +2,6 @@
 tools/.wiki_cache/
 __pycache__/
 *.pyc
+
+# your own boat art to pull from: stays on this Mac, never pushed to the public repo
+boats/
