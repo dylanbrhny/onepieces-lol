@@ -113,7 +113,8 @@ function setup() {
 function buildDashboard() {
   const ss = SpreadsheetApp.getActive();
   let d = ss.getSheetByName(DASH);
-  if (d) d.clear(); else d = ss.insertSheet(DASH, 0);
+  if (d) ss.deleteSheet(d);                    // fresh tab each time (no leftover formats)
+  d = ss.insertSheet(DASH, 0);
   const E = "Events!", A = "Answers!", F = "Feedback!";
   const put = (cell, v) => (String(v).startsWith("=") ? d.getRange(cell).setFormula(v) : d.getRange(cell).setValue(v));
   const title = (cell, v) => { put(cell, v); d.getRange(cell).setFontWeight("bold").setFontSize(12).setFontColor("#4b5c92"); };
@@ -124,10 +125,10 @@ function buildDashboard() {
 
   // headline numbers
   const stats = [
-    ["Players today", `=COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, TODAY())`],
-    ["Players, last 7 days", `=COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, ">="&(TODAY()-6))`],
-    ["Players, last 30 days", `=COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, ">="&(TODAY()-29))`],
-    ["Players, all time", `=COUNTUNIQUE(${E}C2:C)`],
+    ["Players today", `=COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, TODAY(), ${E}C2:C, "<>")`],
+    ["Players, last 7 days", `=COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, ">="&(TODAY()-6), ${E}C2:C, "<>")`],
+    ["Players, last 30 days", `=COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, ">="&(TODAY()-29), ${E}C2:C, "<>")`],
+    ["Players, all time", `=COUNTUNIQUEIFS(${E}C2:C, ${E}C2:C, "<>")`],
     ["New players today", `=COUNTIFS(${E}E2:E, "visit", ${E}G2:G, "new", ${E}B2:B, TODAY())`],
     ["Finished today's daily", `=COUNTUNIQUEIFS(${E}C2:C, ${E}E2:E, "finish", ${E}F2:F, "rarefind", ${E}B2:B, TODAY())`],
     ["Started the daily again today (replays)", `=COUNTIFS(${E}E2:E, "daily-start", ${E}H2:H, ">1", ${E}B2:B, TODAY())`],
@@ -140,12 +141,12 @@ function buildDashboard() {
   d.getRange("B5:B14").setFontWeight("bold").setHorizontalAlignment("left");
 
   // players by day (last 30 days)
-  title("D4", "By day (last 30 days)");
+  title("A17", "By day (last 30 days)");
   const heads = ["Day", "Players", "New", "Daily finished", "Daily replays", "Avg daily nmi", "Endless runs", "Wanted played", "Wanted caught", "Blind / tier / fight", "Feedback"];
-  d.getRange(5, 4, 1, heads.length).setValues([heads]).setFontWeight("bold");
-  put("D6", `=IFERROR(LET(days, SORT(UNIQUE(FILTER(${E}B2:B, ${E}B2:B<>"", ${E}B2:B>=TODAY()-29)), 1, FALSE),
+  d.getRange(18, 1, 1, heads.length).setValues([heads]).setFontWeight("bold");
+  put("A19", `=IFERROR(LET(days, SORT(UNIQUE(FILTER(${E}B2:B, ${E}B2:B<>"", ${E}B2:B>=TODAY()-29)), 1, FALSE),
     HSTACK(days,
-      MAP(days, LAMBDA(x, COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, x))),
+      MAP(days, LAMBDA(x, COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, x, ${E}C2:C, "<>"))),
       MAP(days, LAMBDA(x, COUNTIFS(${E}B2:B, x, ${E}E2:E, "visit", ${E}G2:G, "new"))),
       MAP(days, LAMBDA(x, COUNTUNIQUEIFS(${E}C2:C, ${E}B2:B, x, ${E}E2:E, "finish", ${E}F2:F, "rarefind"))),
       MAP(days, LAMBDA(x, COUNTIFS(${E}B2:B, x, ${E}E2:E, "daily-start", ${E}H2:H, ">1"))),
@@ -155,13 +156,13 @@ function buildDashboard() {
       MAP(days, LAMBDA(x, COUNTIFS(${E}B2:B, x, ${E}E2:E, "wanted", ${E}G2:G, "caught*"))),
       MAP(days, LAMBDA(x, COUNTIFS(${E}B2:B, x, ${E}E2:E, "start", ${E}F2:F, "blind") + COUNTIFS(${E}B2:B, x, ${E}E2:E, "start", ${E}F2:F, "tierlist") + COUNTIFS(${E}B2:B, x, ${E}E2:E, "start", ${E}F2:F, "fighter"))),
       MAP(days, LAMBDA(x, COUNTIFS(${F}B2:B, x))))), "No events yet")`);
-  d.getRange("D6:D40").setNumberFormat("ddd mmm d");
+  d.getRange("A19:A48").setNumberFormat("ddd mmm d");
 
   // today's daily, prompt by prompt (first tries only)
-  title("A44", "Today's daily, prompt by prompt (first tries only)");
+  title("A51", "Today's daily, prompt by prompt (first tries only)");
   const ph = ["Prompt", "Players", "% right", "Skipped", "Timed out", "Avg seconds", "Avg wrong guesses", "Top answers", "Most common wrong guesses"];
-  d.getRange(45, 1, 1, ph.length).setValues([ph]).setFontWeight("bold");
-  put("A46", `=IFERROR(LET(
+  d.getRange(52, 1, 1, ph.length).setValues([ph]).setFontWeight("bold");
+  put("A53", `=IFERROR(LET(
       r, FILTER(${A}A2:S, ${A}B2:B=TODAY(), ${A}G2:G="rarefind", ${A}M2:M<>FALSE, ${A}L2:L<>FALSE),
       w, FILTER(${A}A2:S, ${A}B2:B=TODAY(), ${A}G2:G="rarefind", ${A}M2:M=FALSE),
       p, UNIQUE(INDEX(r, , 3)),
@@ -177,15 +178,16 @@ function buildDashboard() {
         MAP(p, LAMBDA(x, IFERROR(top(FILTER(INDEX(w, , 5), INDEX(w, , 3)=x)), ""))))), "No daily answers yet today")`);
 
   // what people play (last 7 days)
-  title("A60", "What people play (last 7 days)");
-  put("A61", `=IFERROR(QUERY(${E}A2:J, "select F, count(F) where E = 'start' and B >= date '" & TEXT(TODAY()-6, "yyyy-mm-dd") & "' group by F order by count(F) desc label F 'Mode', count(F) 'Starts'", 0), "Nothing yet")`);
-  title("E60", "Devices (last 7 days)");
-  put("E61", `=IFERROR(QUERY(${E}A2:J, "select J, count(J) where E = 'visit' and B >= date '" & TEXT(TODAY()-6, "yyyy-mm-dd") & "' group by J label J 'Device', count(J) 'Visits'", 0), "Nothing yet")`);
+  title("A64", "What people play (last 7 days)");
+  put("A65", `=IFERROR(QUERY(${E}A2:J, "select F, count(F) where E = 'start' and B >= date '" & TEXT(TODAY()-6, "yyyy-mm-dd") & "' group by F order by count(F) desc label F 'Mode', count(F) 'Starts'", 0), "Nothing yet")`);
+  title("D64", "Devices (last 7 days)");
+  put("D65", `=IFERROR(QUERY(${E}A2:J, "select J, count(J) where E = 'visit' and B >= date '" & TEXT(TODAY()-6, "yyyy-mm-dd") & "' group by J label J 'Device', count(J) 'Visits'", 0), "Nothing yet")`);
 
   // newest feedback
-  title("A72", "Newest feedback (tick 'done?' in the Feedback tab when handled)");
-  put("A73", `=IFERROR(ARRAY_CONSTRAIN(SORT(FILTER({${F}A2:A, ${F}D2:D, ${F}E2:E, ${F}F2:F, ${F}H2:H}, ${F}A2:A<>""), 1, FALSE), 25, 5), "No feedback yet")`);
+  title("A78", "Newest feedback (tick 'done?' in the Feedback tab when handled)");
+  put("A79", `=IFERROR(ARRAY_CONSTRAIN(SORT(FILTER({${F}A2:A, ${F}D2:D, ${F}E2:E, ${F}F2:F, ${F}H2:H}, ${F}A2:A<>""), 1, FALSE), 25, 5), "No feedback yet")`);
 
-  d.setColumnWidth(1, 240); d.setColumnWidth(8, 360); d.setColumnWidth(9, 300);
+  d.setColumnWidth(1, 250);
+  d.getRange("A53:I62").setWrap(true).setVerticalAlignment("top"); d.setColumnWidth(8, 260); d.setColumnWidth(9, 260);
   d.setFrozenRows(2);
 }
