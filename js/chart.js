@@ -599,13 +599,15 @@
       for (let k = 0; k < n - 1; k++) {
         const a = Math.round(posX(stops[k].nmi)), b = Math.round(posX(stops[k + 1].nmi)), w = Math.max(1, b - a);
         if (b < x0 - 4 || a > x0 + tw + 4) continue;                       // off the visible window (phones)
-        let thumb = this.trackThumbs[k];
-        if (!thumb && window.SceneArt) thumb = this.trackThumbs[k] = window.SceneArt.paint(stops[k], 96, 96);
+        // the band around the horizon, where each island's landmark sits. The scene is painted as wide as this
+        // section needs, so long arcs show more of the place and short ones less; it is never stretched.
+        const TH = 96, sy = Math.round(TH * 0.38), sh = Math.round(TH * 0.48), need = Math.max(1, Math.round(sh * w / th));
+        const pw = Math.min(2048, Math.max(64, Math.ceil(need / 64) * 64)), tkey = `${k}:${pw}`;
+        let thumb = this.trackThumbs[tkey];
+        if (!thumb && window.SceneArt) thumb = this.trackThumbs[tkey] = window.SceneArt.paint(stops[k], pw, TH);
         if (thumb) {
           ctx.imageSmoothingEnabled = false;
-          // the band around the horizon, where each island's landmark sits
-          const sy = Math.round(thumb.height * 0.38), sh = Math.round(thumb.height * 0.48);
-          const sw = Math.min(thumb.width, Math.round(sh * w / th));
+          const sw = Math.min(thumb.width, need);
           ctx.drawImage(thumb, Math.round((thumb.width - sw) * 0.6), sy, sw, sh, a, ty, w, th);
         } else { ctx.fillStyle = sea(stops[k]); ctx.fillRect(a, ty, w, th); }
         const reached = posX(stops[k + 1].nmi) <= shipPx, here = posX(stops[k].nmi) <= shipPx && !reached;
