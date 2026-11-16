@@ -11,7 +11,10 @@
     endless: '<path d="M1 3h2v1h1v1H3v1H1V5H0V4h1zM5 3h2v1h1v1H7v1H5V5h1V4H5zM3 4h2v1H3z"/>',
     wanted: '<path d="M1 0h6v8H1zM2 1v6h4V1zM3 2h2v2H3zM3 5h2v1H3z"/>',
     higher: '<path d="M3 0h2v1h1v1h1v1H5v5H3V3H1V2h1V1h1z"/>',
-    timeline: '<path d="M0 3h8v2H0zM1 1h1v6H1zM4 2h1v4H4zM7 1h1v6H7z"/>'
+    timeline: '<path d="M0 3h8v2H0zM1 1h1v6H1zM4 2h1v4H4zM7 1h1v6H7z"/>',
+    blind: '<path d="M0 0h2v2H0zM3 0h5v2H3zM0 3h2v2H0zM3 3h5v2H3zM0 6h2v2H0zM3 6h2v2H3z"/>',
+    tierlist: '<path d="M0 0h2v2H0zM3 0h5v2H3zM0 3h2v2H0zM3 3h3v2H3zM0 6h2v2H0zM3 6h1v2H3z"/>',
+    fighter: '<path d="M1 1h5v1h1v3H6v1H5v2H2V6H1zM2 2v1h1V2zM4 2v1h1V2z"/>'
   };
 
   // ---------- storage (per browser, optional) ----------
@@ -220,6 +223,8 @@
   if (window.Fleet) window.Fleet.init(C, { chart, seen: (ep, ch) => !spoiler || (ep ? ep <= spoiler.last_ep : ch <= spoiler.last_ch) });
   let burstVoiceOn = false;
   window.LogPoseDebug = { chart };   // for testing in the browser console
+  // what js/extras.js (Blind Ranking, Tier List, Build a Fighter) reads
+  window.OnePieces = { C, chars: allRows, things: THING_ALL, seenBy, sound: S_, spoilerEp: spoiler ? spoiler.last_ep : null };
   chart.onBurstPhase = (phase, power) => {
     // the cutscene already played the charge and launch sounds; the map only adds the landing
     if (phase === "land" && S_.burstLand) S_.burstLand();
@@ -426,6 +431,7 @@
   let timer = null;
 
   function startMode(id, picked) {
+    if (window.Extras && window.Extras.modes.includes(id)) return window.Extras.open(id);   // js/extras.js
     if (id === "wanted") return openWantedPick(false);
     if (id === "endless" && !picked) return openEndlessPick();
     if (!playable.length) return;

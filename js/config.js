@@ -164,6 +164,9 @@ window.GAME_CONFIG = {
     { id: "rarefind", name: "Rare Find", blurb: "7 prompts a day. The rarer the right answer, the further you sail.", ready: true },
     { id: "endless",  name: "Endless Voyage", blurb: "Prompts until you sink. Three lives.", ready: true },
     { id: "wanted",   name: "Wanted", blurb: "Find the hidden character. Each guess shows which traits match.", ready: true },
+    { id: "blind",    name: "Blind Ranking", blurb: "One at a time, no take-backs. Rank fruits, characters, arcs and more.", ready: true },
+    { id: "tierlist", name: "Tier List", blurb: "Drop characters, fruits or ships into S to F and save the picture.", ready: true },
+    { id: "fighter",  name: "Build a Fighter", blurb: "Ten stats, ten characters. Then 1v1 a random rival or a friend.", ready: true },
     { id: "higher",   name: "Higher or Lower", blurb: "Who's taller? Whose bounty is bigger?", ready: false },
     { id: "timeline", name: "First Sighting", blurb: "Guess the episode a character first showed up.", ready: false }
   ]
