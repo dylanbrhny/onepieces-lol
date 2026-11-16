@@ -21,8 +21,8 @@
   };
 
   // ---------- player settings: difficulty + spoiler filter (saved in this browser) ----------
-  // Difficulty picks WHO counts: easy = characters everyone knows, medium adds the well-known cast,
-  // hard = every named character. It also sets how tricky the 7 daily prompts get (easy first).
+  // Difficulty is for Endless Voyage (and the Wanted picker): easy = characters everyone knows, medium adds
+  // the well-known cast, hard = every named character. The daily 7 ignore it (see DAILY below).
   const DIFF = {
     supereasy: { label: "Super Easy", note: "The most famous names, the simplest prompts and 45 seconds each. A search list opens under the answer box: type part of a name or a trait (fishman, straw hat, zoan) and pick from the pictures.",
               characters: ["easy"], prompts: ["easy"], plan: ["easy", "easy", "easy", "easy", "easy", "easy", "easy"], seconds: 45, search: true },
@@ -35,7 +35,14 @@
     ...(C.difficulties || {})
   };
   const diffId = DIFF[store.get("difficulty", C.defaultDifficulty || "medium")] ? store.get("difficulty", C.defaultDifficulty || "medium") : "medium";
-  const diff = DIFF[diffId];
+  // The daily 7 are the same for everyone whatever difficulty they picked: plain one-fact prompts built from
+  // the famous cast, so anyone can answer. Every right answer still counts and rare ones still score as
+  // deep cuts, so a Pirate King answer is always there for people who know the series.
+  const DAILY = { label: "Daily", characters: ["easy"], prompts: ["easy"], maxCombos: 0,
+                  plan: ["easy", "easy", "easy", "easy", "easy", "easy", "medium"], ...(C.daily || {}) };
+  // prompts that ask the same thing as another one under a different name: kept out of the daily so a day
+  // can't have both
+  const DAILY_SKIP = new Set(["Name a character who fought Luffy", "Name a character whose fighting style is Swordsman", ...(DAILY.skip || [])]);
   // Spoiler filter: "I've watched up to <arc>" leaves out anyone who first appears later.
   const ARCS = (window.ARC_DATA || []).slice().sort((a, b) => a.last_ep - b.last_ep);
   // stored as an episode number ("I'm on episode 310"); older saves stored an arc name
@@ -60,92 +67,115 @@
   // what each character owns or leads, from the other tables (owns_named_sword, ship_names, ...)
   const CHAR_LINKS = (window.THING_LINKS || {}).character || {};
   for (const c of allRows) for (const [k, v] of Object.entries(CHAR_LINKS[c.id] || {})) if (c[k] == null || c[k] === "") c[k] = v;
-  const rows = allRows.filter(c => diff.characters.includes(c.difficulty || "hard") && seenBy(c));
   // linked lists (fought_names, ship_names...) must stay lists, not get flattened into text
   const linkLists = new Set(C.listFields);
   for (const v of Object.values(CHAR_LINKS)) for (const [k, x] of Object.entries(v)) if (Array.isArray(x)) linkLists.add(k);
-  C.poolLevels = diff.characters;   // tiers cap famous answers relative to the levels in play (see tierAnswers)
-  C.mode = diffId === "supereasy" ? "easy" : diffId;   // whose answers set the tiers (config modeTiers)
-  const charCfg = { ...C, listFields: [...linkLists] };
-  const data = E.prepare(rows.length ? rows : allRows, charCfg);
-  // Every right answer counts on every difficulty. The difficulty only picks the prompts (from its own
-  // pool) and how rare each answer is; guesses are checked against everyone the spoiler filter allows,
-  // so a less famous right answer on Easy scores as a deep cut instead of being turned away.
-  const seenRows = allRows.filter(seenBy);
-  const allData = seenRows.length === rows.length || !seenRows.length ? data : E.prepare(seenRows, charCfg);
-  let fullData = null;   // everyone, built only when needed to explain a filtered-out name
-  const { playable, tooSmall } = E.buildQuestions(data, window.QUESTION_TEMPLATES || [], window.QUESTIONS || [], C);
-
-  // ---------- other tables: Devil Fruits, places, weapons, ships, crews... (data/things.js) ----------
-  // Same difficulty + spoiler filters. Each prompt has a "kind" saying which table its answers come from.
-  const KIND_DATA = { character: data };      // the difficulty's pool: prompts are built from this
-  const ANSWER_DATA = { character: allData }; // every right answer (spoiler filter only): guesses check this
-  const THING_ALL = {};                       // everything per table, to explain a spoiler-hidden name
   const kindCfg = list => {
     const lists = new Set(C.listFields), nums = new Set(C.numberFields);
     for (const t of list) for (const [k, v] of Object.entries(t)) { if (Array.isArray(v)) lists.add(k); else if (typeof v === "number") nums.add(k); }
     return { ...C, listFields: [...lists], numberFields: [...nums], noCombos: true };
   };
-  for (const [kind, list] of Object.entries(window.THING_DATA || {})) {
-    const keep = list.filter(t => diff.characters.includes(t.difficulty || "hard") && seenBy(t));
-    if (keep.length) KIND_DATA[kind] = E.prepare(keep, kindCfg(keep));
-    const seen = list.filter(seenBy);
-    if (seen.length) ANSWER_DATA[kind] = seen.length === keep.length ? KIND_DATA[kind] : E.prepare(seen, kindCfg(seen));
-    THING_ALL[kind] = list;
+  const THING_ALL = {};                       // everything per table, to explain a spoiler-hidden name
+  for (const [kind, list] of Object.entries(window.THING_DATA || {})) THING_ALL[kind] = list;
+  const seenRows = allRows.filter(seenBy);
+
+  // A "world" = the prompts, answer pools and tiers for one difficulty. Two exist: "daily" (DAILY, the
+  // same for everyone) and "play" (the player's difficulty, for Endless and the settings panel).
+  // Built on first use; useWorld() switches the variables the rest of the app reads.
+  function buildWorld(def, mode) {
+    C.poolLevels = def.characters;   // tiers cap famous answers relative to the levels in play (see tierAnswers)
+    C.mode = mode;                   // whose answers set the tiers (config modeTiers)
+    const rows = allRows.filter(c => def.characters.includes(c.difficulty || "hard") && seenBy(c));
+    const charCfg = { ...C, listFields: [...linkLists] }, baseCfg = { ...C };
+    const data = E.prepare(rows.length ? rows : allRows, charCfg);
+    // Every right answer counts on every difficulty. The difficulty only picks the prompts (from its own
+    // pool) and how rare each answer is; guesses are checked against everyone the spoiler filter allows,
+    // so a less famous right answer on Easy scores as a deep cut instead of being turned away.
+    const allData = seenRows.length === rows.length || !seenRows.length ? data : E.prepare(seenRows, charCfg);
+    const { playable, tooSmall } = E.buildQuestions(data, window.QUESTION_TEMPLATES || [], window.QUESTIONS || [], C);
+    // Other tables: Devil Fruits, places, weapons, ships, crews... (data/things.js). Same filters.
+    // Each prompt has a "kind" saying which table its answers come from.
+    const KIND_DATA = { character: data };      // the difficulty's pool: prompts are built from this
+    const ANSWER_DATA = { character: allData }; // every right answer (spoiler filter only): guesses check this
+    for (const [kind, list] of Object.entries(window.THING_DATA || {})) {
+      const keep = list.filter(t => def.characters.includes(t.difficulty || "hard") && seenBy(t));
+      if (keep.length) KIND_DATA[kind] = E.prepare(keep, kindCfg(keep));
+      const seen = list.filter(seenBy);
+      if (seen.length) ANSWER_DATA[kind] = seen.length === keep.length ? KIND_DATA[kind] : E.prepare(seen, kindCfg(seen));
+    }
+    const thingCount = Object.entries(KIND_DATA).reduce((n, [k, kd]) => n + (k === "character" ? 0 : kd.chars.length), 0);
+    const dataForW = q => ANSWER_DATA[(q && q.kind) || "character"] || allData;
+    {
+      // templates with "labels" become one hand-written prompt per label
+      const templates = [], manual = [...(window.THING_QUESTIONS || [])];
+      for (const t of window.THING_TEMPLATES || []) {
+        if (!t.labels) { templates.push(t); continue; }
+        for (const [value, label] of Object.entries(t.labels))
+          manual.push({ kind: t.kind, id: `${t.group}:${value}`, group: t.group, text: t.text.replace("{label}", label), where: [[t.field, "is", value]] });
+      }
+      for (const [kind, kd] of Object.entries(KIND_DATA)) {
+        const mine = x => (x.kind || "character") === kind;
+        const r = E.buildQuestions(kd, templates.filter(mine), manual.filter(mine), kind === "character" ? { ...charCfg, noCombos: true } : kindCfg(kd.chars));
+        for (const q of r.playable) { q.kind = kind; q.id = `${kind}:${q.id}`; if (!playable.some(p => p.text === q.text)) playable.push(q); }
+      }
+    }
+    // Re-check each prompt against every right answer, not just the difficulty's pool. Prompt difficulty and
+    // which prompts are playable stay as the pool decided; answers from outside the pool sit at the rare
+    // end of the tiers (config modeTiers caps still apply).
+    for (const q of playable) {
+      const kind = q.kind || "character", ad = dataForW(q), pool = KIND_DATA[kind] || data;
+      if (ad === pool || (!q.where && !q.anyOf)) continue;
+      const extra = ad.chars.filter(c => !pool.byId.has(c.id) && E.fits(c, q)).map(c => c.id);
+      if (!extra.length) continue;
+      q.answers = [...q.answers, ...extra];
+      let cache = null;
+      Object.defineProperty(q, "tierById", { get() { return cache || (cache = E.tierAnswers(q.answers, ad, kind === "character" ? charCfg : baseCfg, q)); }, configurable: true });
+    }
+    return { def, mode, charCfg, data, allData, playable, tooSmall, KIND_DATA, ANSWER_DATA, thingCount };
   }
-  const thingCount = Object.entries(KIND_DATA).reduce((n, [k, kd]) => n + (k === "character" ? 0 : kd.chars.length), 0);
+  const worlds = {};
+  let worldKey = null, diff, data, allData, playable, tooSmall, KIND_DATA, ANSWER_DATA, thingCount, charCfg;
+  let fullData = null;   // everyone, built only when needed to explain a filtered-out name
+  function useWorld(key) {
+    if (key === worldKey) return;
+    const w = worlds[key] || (worlds[key] = key === "daily" ? buildWorld(DAILY, "easy")
+      : buildWorld(DIFF[diffId], diffId === "supereasy" ? "easy" : diffId));
+    worldKey = key;
+    ({ def: diff, data, allData, playable, tooSmall, KIND_DATA, ANSWER_DATA, thingCount, charCfg } = w);
+    C.poolLevels = w.def.characters; C.mode = w.mode; fullData = null;
+  }
+  useWorld("play");
   const dataFor = q => ANSWER_DATA[(q && q.kind) || "character"] || allData;
   const nameIn = (q, id) => (dataFor(q).byId.get(id) || {}).name || id;
-  {
-    // templates with "labels" become one hand-written prompt per label
-    const templates = [], manual = [...(window.THING_QUESTIONS || [])];
-    for (const t of window.THING_TEMPLATES || []) {
-      if (!t.labels) { templates.push(t); continue; }
-      for (const [value, label] of Object.entries(t.labels))
-        manual.push({ kind: t.kind, id: `${t.group}:${value}`, group: t.group, text: t.text.replace("{label}", label), where: [[t.field, "is", value]] });
-    }
-    for (const [kind, kd] of Object.entries(KIND_DATA)) {
-      const mine = x => (x.kind || "character") === kind;
-      const r = E.buildQuestions(kd, templates.filter(mine), manual.filter(mine), kind === "character" ? { ...charCfg, noCombos: true } : kindCfg(kd.chars));
-      for (const q of r.playable) { q.kind = kind; q.id = `${kind}:${q.id}`; if (!playable.some(p => p.text === q.text)) playable.push(q); }
-    }
-  }
-  // Re-check each prompt against every right answer, not just the difficulty's pool. Prompt difficulty and
-  // which prompts are playable stay as the pool decided; answers from outside the pool sit at the rare
-  // end of the tiers (config modeTiers caps still apply).
-  for (const q of playable) {
-    const kind = q.kind || "character", ad = dataFor(q), pool = KIND_DATA[kind] || data;
-    if (ad === pool || (!q.where && !q.anyOf)) continue;
-    const extra = ad.chars.filter(c => !pool.byId.has(c.id) && E.fits(c, q)).map(c => c.id);
-    if (!extra.length) continue;
-    q.answers = [...q.answers, ...extra];
-    let cache = null;
-    Object.defineProperty(q, "tierById", { get() { return cache || (cache = E.tierAnswers(q.answers, ad, kind === "character" ? charCfg : C, q)); }, configurable: true });
-  }
   const today = new Date();
   const dateKey = E.localDateKey(today);
   const dayNo = E.dayNumber(C.launchDate, today);
-  // each difficulty / spoiler setting has its own daily voyage
-  const settingKey = diffId + (spoiler ? ":" + spoiler.last_ep : "");
-  const dayKey = `day:${dateKey}${settingKey === "medium" ? "" : ":" + settingKey}`;
+  // one daily voyage for everyone (only the spoiler filter gives a different one)
+  const settingKey = "daily" + (spoiler ? ":" + spoiler.last_ep : "");
+  const dayKey = `day:${dateKey}:${settingKey}`;
   // The daily 7: mostly character prompts, plus `thingsPerDay` (default 2) from the other tables
   // (Devil Fruits, places, crews...), all ordered easy -> hard.
   const isThing = q => q.kind && q.kind !== "character";
-  const dailyQs = (() => {
-    const seed = `${C.storageKey}:${dateKey}:${settingKey}`, n = C.promptsPerDay, plan = diff.plan.slice(0, n);
-    const things = playable.filter(isThing), chars = playable.filter(q => !isThing(q));
+  let dailyCache = null;
+  const dailyQs = () => {
+    if (dailyCache) return dailyCache;
+    const back = worldKey;
+    useWorld("daily");
+    const seed = `${C.storageKey}:${dateKey}:${settingKey}`, n = C.promptsPerDay, plan = DAILY.plan.slice(0, n);
+    const things = playable.filter(isThing), chars = playable.filter(q => !isThing(q) && !DAILY_SKIP.has(q.text));
     const k = Math.min(things.length ? (C.thingsPerDay ?? 2) : 0, n);
     const slots = k ? [...Array(k)].map((_, i) => Math.min(n - 1, Math.floor((i + 1) * n / (k + 1)))) : [];
     const thingPlan = slots.map(i => plan[i]), charPlan = plan.filter((_, i) => !slots.includes(i));
     const tq = E.pickQuestions(things, k, E.rng(E.hashString(seed + ":things")), { plan: thingPlan });
-    const cq = E.pickQuestions(chars, n - tq.length, E.rng(E.hashString(seed)), { maxCombos: (window.QUESTION_COMBOS || {}).perDay ?? 3, plan: charPlan });
+    const cq = E.pickQuestions(chars, n - tq.length, E.rng(E.hashString(seed)), { maxCombos: DAILY.maxCombos ?? (window.QUESTION_COMBOS || {}).perDay ?? 3, plan: charPlan });
     const out = [];
     for (let i = 0, a = 0, b = 0; i < n; i++) {
       const q = slots.includes(i) && tq[a] ? tq[a++] : cq[b++] || tq[a++];
       if (q) out.push(q);
     }
-    return out;
-  })();
+    useWorld(back);
+    return (dailyCache = out);
+  };
 
   // ---------- the voyage map: one box per arc (data/route.js), cut off by the spoiler filter ----------
   if (window.ROUTE_STOPS && window.ROUTE_STOPS.length) {
@@ -284,7 +314,7 @@
       if (i === 0) {
         const main = document.createElement("div");
         main.className = "mode mode-main";
-        main.innerHTML = `<button type="button" class="btn btn-straw play-btn">${played ? "SEE TODAY'S POSTER" : `PLAY TODAY'S ${C.promptsPerDay}`}<small>${played ? `${fmt(played.total * C.nmiPerPoint)} NMI · ฿${fmt(played.total * C.bountyPerPoint)}` : "ONE VOYAGE A DAY"}</small></button>`;
+        main.innerHTML = `<button type="button" class="btn btn-straw play-btn">${played ? "SEE TODAY'S POSTER" : `PLAY TODAY'S ${C.promptsPerDay}`}<small>${played ? `${fmt(played.total * C.nmiPerPoint)} NMI · ฿${fmt(played.total * C.bountyPerPoint)}` : "SAME 7 FOR EVERYONE"}</small></button>`;
         main.querySelector("button").addEventListener("click", () => startMode(m.id));
         wrap.appendChild(main);
         const more = document.createElement("p");
@@ -332,6 +362,7 @@
 
   // Difficulty + spoiler filter controls on the title screen. Changing one rebuilds the game (page reload).
   function renderSettings() {
+    useWorld("play");                       // the panel describes the player's difficulty (Endless)
     let box = $("#settings");
     if (!box) {
       box = document.createElement("div");
@@ -343,12 +374,12 @@
     const custom = spoiler && !ARCS.some(a => a.last_ep === spoiler.last_ep);
     box.innerHTML = `
       <div class="set-row">
-        <span class="set-label" id="diffLabel">Difficulty</span>
+        <span class="set-label" id="diffLabel">Endless difficulty</span>
         <div class="seg" role="group" aria-labelledby="diffLabel">
           ${Object.entries(DIFF).map(([id, d]) => `<button type="button" class="seg-btn" data-diff="${id}" aria-pressed="${id === diffId}">${esc(d.label)}</button>`).join("")}
         </div>
       </div>
-      <p class="set-note">${esc(diff.note)} ${fmt(data.chars.length)} characters and ${fmt(thingCount)} places and things in play.</p>
+      <p class="set-note">${esc(diff.note)} ${fmt(data.chars.length)} characters and ${fmt(thingCount)} places and things in play. Today's 7 are the same easy-going set for everyone, whatever you pick here; rare answers still sail furthest.</p>
       ${ARCS.length ? `<div class="set-row">
         <label class="set-label" for="spoilerSel">Spoilers</label>
         <select id="spoilerSel" class="set-select"><option value="">Show everything (caught up)</option>${custom ? `<option value="${spoiler.last_ep}" selected>Up to episode ${spoiler.last_ep}</option>` : ""}${arcOpts}</select>
@@ -398,10 +429,13 @@
     $("#hudNmiLabel").textContent = "Sailed";
     $("#hudBountyLabel").textContent = "Bounty";
     if (id === "rarefind") {
+      const qs = dailyQs();
+      useWorld("daily");
       const saved = store.get(dayKey, null);
       if (saved) return showResult(saved);
-      S = { mode: "rarefind", qs: dailyQs, i: 0, results: [], total: 0 };
+      S = { mode: "rarefind", qs, i: 0, results: [], total: 0 };
     } else if (id === "endless") {
+      useWorld("play");
       S = { mode: "endless", qs: [], deck: [], i: 0, results: [], total: 0, lives: C.endlessLives };
     }
     chart.setShip(0);
@@ -640,7 +674,7 @@
   // (plain text avoids a CORS preflight, so a Google Apps Script web app works as the endpoint).
   function logAnswer(q, res) {
     const rec = { t: new Date().toISOString(), day: dateKey, prompt: q.id, kind: q.kind || "character",
-                  answer: res.id || "", ok: !!res.ok, mode: S.mode, difficulty: diffId };
+                  answer: res.id || "", ok: !!res.ok, mode: S.mode, difficulty: S.mode === "rarefind" ? "daily" : diffId };
     const log = store.get("answerLog", []);
     log.push(rec);
     store.set("answerLog", log.slice(-500));
@@ -825,7 +859,7 @@
   // Hard = a much wider net. Each difficulty / spoiler setting has its own daily poster.
   // Wanted has its own difficulty (picked on the screen after you click Wanted), separate from the daily voyage's.
   const wDataCache = {};
-  const wantedData = id => wDataCache[id] || (wDataCache[id] = id === diffId ? data
+  const wantedData = id => wDataCache[id] || (wDataCache[id] = id === diffId && worlds.play ? worlds.play.data
     : E.prepare(allRows.filter(c => DIFF[id].characters.includes(c.difficulty || "hard") && seenBy(c)), charCfg));
   const wPoolFor = id => E.wantedPool(wantedData(id), { ...W, minFame: (W.minFameBy || {})[id] ?? W.minFame });
   const wKeyFor = id => { const k = id + (spoiler ? ":" + spoiler.last_ep : ""); return `wanted:${dateKey}${k === "medium" ? "" : ":" + k}`; };
@@ -842,6 +876,19 @@
   setWantedDiff(wDiffId);
   if (window.LogPoseDebug) window.LogPoseDebug.wantedTarget = () => WS && WS.targetId;   // for testing only
   if (window.LogPoseDebug) window.LogPoseDebug.prompts = () => playable.map(q => ({ text: q.text, kind: q.kind || "character", difficulty: q.difficulty, answers: q.answers.length, combo: !!q.combo, group: q.group }));
+  // for testing only: the daily 7 for any date ("2026-11-20"), with how many answers reach each tier
+  if (window.LogPoseDebug) window.LogPoseDebug.dailyFor = day => {
+    const back = worldKey; useWorld("daily");
+    const seed = `${C.storageKey}:${day}:${settingKey}`, n = C.promptsPerDay;
+    const things = playable.filter(isThing), chars = playable.filter(q => !isThing(q) && !DAILY_SKIP.has(q.text));
+    const k = Math.min(things.length ? (C.thingsPerDay ?? 2) : 0, n);
+    const slots = k ? [...Array(k)].map((_, i) => Math.min(n - 1, Math.floor((i + 1) * n / (k + 1)))) : [];
+    const plan = DAILY.plan.slice(0, n);
+    const tq = E.pickQuestions(things, k, E.rng(E.hashString(seed + ":things")), { plan: slots.map(i => plan[i]) });
+    const cq = E.pickQuestions(chars, n - tq.length, E.rng(E.hashString(seed)), { maxCombos: DAILY.maxCombos, plan: plan.filter((_, i) => !slots.includes(i)) });
+    const out = [...tq, ...cq].map(q => { const t = {}; for (const id of q.answers) { const x = (q.tierById[id] || {}).tier; if (x) t[x.id] = (t[x.id] || 0) + 1; } return { text: q.text, difficulty: q.difficulty, combo: !!q.combo, answers: q.answers.length, tiers: t }; });
+    useWorld(back); return out;
+  };
   if (window.LogPoseDebug) window.LogPoseDebug.current = () => { const q = S && S.qs && S.qs[S.i]; return q ? { text: q.text, kind: q.kind || "character", answers: q.answers.map(id => ({ id, name: nameIn(q, id), tier: (q.tierById[id] || {}).tier ? q.tierById[id].tier.id : "" })) } : null; };   // for testing / trailer capture only
   // search by trait: "fishman", "marine", "zoan", "red hair" lists everyone with it
   const W_TRAITS = W.searchFields || [["race", "Race"], ["primary_group", "Group"], ["organizations", "Group"], ["affiliation_type", "Side"],
@@ -1236,6 +1283,7 @@
   }
 
   function showResult(rec) {
+    if (rec.mode === "rarefind") dailyQs(), useWorld("daily");
     if (rec.mode === "wanted") return showWantedResult(rec);
     // undo what the Wanted poster changes
     const poster = $("#poster");
@@ -1296,14 +1344,15 @@
   function renderDebug() {
     const tierName = (q, id) => q.tierById[id].tier.name;
     const el = $("#screen-debug");
-    const singles = playable.filter(q => !q.combo || dailyQs.includes(q)), combos = playable.filter(q => q.combo && !dailyQs.includes(q));
+    const dq = dailyQs();
+    const singles = playable.filter(q => !q.combo || dq.includes(q)), combos = playable.filter(q => q.combo && !dq.includes(q));
     const COMBO_SHOWN = 2000;
     el.innerHTML = `<div class="dbg">
       <h1>Data check</h1>
       <p>${data.chars.length} characters loaded. ${playable.length} prompts are playable (${C.minAnswers}+ right answers): ${playable.length - combos.length} single-fact and ${combos.length} combinations. ${tooSmall.length} single-fact prompts are too small for now. Today's seven are marked ★.</p>
       <p><a href="#" style="color:var(--straw)">Back to port</a></p>
       <h2>Playable prompts, answers from most famous to rarest</h2>
-      ${singles.map(q => `<div class="dbg-q"><h3>${dailyQs.includes(q) ? "★ " : ""}${esc(q.text)} <small>${q.answers.length} answers · group ${esc(q.group)}</small></h3>
+      ${singles.map(q => `<div class="dbg-q"><h3>${dq.includes(q) ? "★ " : ""}${esc(q.text)} <small>${q.answers.length} answers · group ${esc(q.group)}</small></h3>
         <div class="dbg-a">${[...q.answers].sort((a, b) => dataFor(q).byId.get(b)._fame - dataFor(q).byId.get(a)._fame)
           .map(id => `<span data-tier="${q.tierById[id].tier.id}"><span class="tc">${esc(nameIn(q, id))}</span> · ${tierName(q, id)} · fame ${Math.round(dataFor(q).byId.get(id)._fame)}</span>`).join("")}</div></div>`).join("")}
       <h2>Combination prompts (${combos.length})</h2>

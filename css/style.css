@@ -170,6 +170,8 @@ img, canvas { image-rendering: pixelated; }
   padding: 10px 16px; white-space: nowrap; text-align: center;
   animation: landfall 2.4s steps(12) forwards;
 }
+/* phones: the place label already sits under the route strip, so the banner pops up in the open water instead */
+@media (max-width: 719px) { .landfall { top: calc(var(--sea-h) - 76px); font-size: 11px; padding: 8px 12px; } }
 .landfall small { display: block; font-size: 8px; color: var(--ink-dim); margin-bottom: 6px; letter-spacing: 0.2em; }
 @keyframes landfall { 0% { opacity: 0; transform: translate(-50%, 10px); } 12%, 78% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; } }
 
