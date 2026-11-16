@@ -213,6 +213,8 @@
   })();
 
   const chart = new window.SeaChart($("#sea"), C);
+  // Shipyard (js/fleet.js): ships you unlock by playing; ones past your spoiler filter stay "???"
+  if (window.Fleet) window.Fleet.init(C, { chart, seen: (ep, ch) => !spoiler || (ep ? ep <= spoiler.last_ep : ch <= spoiler.last_ch) });
   let burstVoiceOn = false;
   window.LogPoseDebug = { chart };   // for testing in the browser console
   chart.onBurstPhase = (phase, power) => {
@@ -735,6 +737,7 @@
     S.results[S.i] = { q: q.text, qid: q.id, kind: q.kind || "character", id: res.id, name: res.id ? nameIn(q, res.id) : "", tierId: res.tier.id, tierName: res.tier.name, points: res.points };
     S.total += res.points;
     logAnswer(q, res);
+    if (window.Fleet) window.Fleet.record({ type: "answer", tier: res.ok ? res.tier.id : "", points: res.points });
     if (S.mode === "endless" && id == null) S.lives--;   // only running out of time (or "I don't know") costs a life
     updateHud();
     renderReveal(q, res);
@@ -1327,6 +1330,7 @@
     const rec = { mode: S.mode, total: S.total, dayNo, dateKey, results: S.results.filter(Boolean) };
     if (S.mode === "rarefind") { store.set(dayKey, rec); store.set(`played:${dateKey}`, true); }
     else if (S.total > store.get("endlessBest", 0)) store.set("endlessBest", S.total);
+    if (window.Fleet) window.Fleet.record({ type: "voyage", mode: S.mode });
     showResult(rec);
   }
 

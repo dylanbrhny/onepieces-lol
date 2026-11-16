@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
-<link rel="stylesheet" href="css/style.css?v=20261115203223">
+<link rel="stylesheet" href="css/style.css?v=20261115210806">
 <script>try { history.scrollRestoration = "manual"; } catch (e) {} window.scrollTo(0, 0);</script>
 </head>
 <body>
@@ -74,6 +74,7 @@
       <p class="pitch">Name a character. The rarer the right answer, the further your ship sails.</p>
       <p class="voyage-meta" id="voyageMeta"></p>
       <div class="modes" id="modes"></div>
+      <button type="button" class="btn btn-mini shipyard-btn" id="shipyardBtn" hidden>⚓ Shipyard <span class="shipyard-count"></span></button>
       <details class="howto">
         <summary>? How to play</summary>
         <div class="howto-body">
@@ -213,12 +214,14 @@
 <script src="js/engine.js?v=20261115201539"></script>
 <script src="js/audio.js?v=20261115174203"></script>
 <script src="js/scenes.js?v=20261115174203"></script>
-<script src="js/chart.js?v=20261115203158"></script>
+<script src="js/chart.js?v=20261115210806"></script>
 <script src="data/things.js?v=20261115174203"></script>
 <script src="js/questions_things.js?v=20261115174203"></script>
 <script src="js/hints.js?v=20261115174203"></script>
 <script src="js/cutscene.js?v=20261115174203"></script>
-<script src="js/app.js?v=20261115203259"></script>
+<script src="data/ships_art.js?v=20261115210806"></script>
+<script src="js/fleet.js?v=20261115210806"></script>
+<script src="js/app.js?v=20261115210806"></script>
 <script id="boot-failsafe">setTimeout(function(){var b=document.getElementById("boot");if(b)b.remove();},8000);</script>
 </body>
 </html>

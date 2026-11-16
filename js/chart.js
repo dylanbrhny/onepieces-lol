@@ -344,8 +344,18 @@
 
     // which ship: the second after the first ship's last voyage, unless the dev bar forces one
     usingSecond() { return this.forceShip ? this.forceShip === "second" : this.onSunny; }
+    // the ship being sailed: one picked in the Shipyard (js/fleet.js), else the story ship
+    shipSprite() { return this.sprites.custom || ((this.usingSecond() && this.sprites.sunny) ? this.sprites.sunny : (this.sprites.merry || this.sprites.ship)); }
     // the ship sprite in use right now (for the cutscene)
-    currentShipImg() { return ((this.usingSecond() && this.sprites.sunny) ? this.sprites.sunny : (this.sprites.merry || this.sprites.ship)).img; }
+    currentShipImg() { return this.shipSprite().img; }
+    // Shipyard pick: rows of palette letters, or null for the story ship. A picked ship keeps sailing
+    // through the story's ship change instead of being replaced.
+    setCustomShip(rows) {
+      if (this._sunnyAt0 === undefined) this._sunnyAt0 = this.sunnyAt;
+      this.sprites.custom = rows && rows.length ? { img: makeSprite(rows) } : null;
+      this.sunnyAt = this.sprites.custom ? null : this._sunnyAt0;
+      if (this.sprites.custom) this.burn = null;
+    }
 
     // ---------------- box map ----------------
     // Boxes can be different lengths (each arc's stretch follows how long it ran): boxLen is the average.
@@ -432,7 +442,7 @@
       // ship: moves across its box as distance builds up
       const frac = Math.max(0, Math.min(1, (this.ship - stops[cur].nmi) / this.boxSpan(cur)));
       // keep the whole ship on screen: half its width plus a margin from the edge
-      const half = ((this.usingSecond() && this.sprites.sunny) ? this.sprites.sunny : (this.sprites.merry || this.sprites.ship)).img.width / 2 + 6;
+      const half = this.shipSprite().img.width / 2 + 6;
       const sx = (cur - this.view) * bw + Math.max(half, Math.min(bw - half - 30, bw * (0.12 + 0.6 * frac)));
       this.drawBoxShip(sx, seaTop);
       // gulls
@@ -497,7 +507,7 @@
     drawBoxShip(cx, seaTop) {
       const b = this.b;
       const burning = !!this.burn;
-      const sp = (this.usingSecond() && this.sprites.sunny) ? this.sprites.sunny : (this.sprites.merry || this.sprites.ship);
+      const sp = this.shipSprite();
       const img = sp.img;
       const x = Math.round(cx - img.width / 2);
       const bob = burning ? 0 : Math.round(Math.sin(this.t * 2.6));
@@ -859,7 +869,7 @@
     }
 
     drawShip(hy) {
-      const img = this.sprites.ship.img;
+      const img = (this.sprites.custom || this.sprites.ship).img;
       const x = Math.round(this.worldX(this.ship) - this.cam - img.width / 2);
       const bob = Math.round(Math.sin(this.t * 2.6) * 1);
       const y = hy - img.height + 4 + bob;

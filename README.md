@@ -391,6 +391,21 @@ on load (cached 30 min). After 50 plays of a prompt, real shares blend into the 
 plays), so answers people actually say a lot slide toward Rookie. Offline alternative:
 `python3 -I tools/aggregate_answers.py answers.jsonl` → `data/answer_stats.js`.
 
+## Shipyard (unlockable ships)
+
+Eight ships to unlock and sail: Going Merry, Marine Warship, Coffin Boat, Sexy Foxy, Thriller Bark, Flying
+Dutchman, Thousand Sunny, Saber of Xebec. The "⚓ Shipyard" button under the modes picks one; the chart,
+title screen and the Pirate King cutscene then use it instead of the story ship.
+
+- Unlock rules, names and spoiler debuts: `SHIPS` in `js/fleet.js` (nmi sailed, daily voyages finished,
+  Pirate King / Emperor answers, days played, sinking in Endless). Progress is per browser
+  (`localStorage` "logpose-v2:fleet"); on first load it credits voyages already saved in that browser.
+- Ships past the player's spoiler filter show as a silhouette named "???".
+- The art is drawn in code: `python3 -I tools/make_ships.py` writes `data/ships_art.js`. Each ship is a
+  function of simple shapes; a lighting pass then shades every surface from the upper left (rim light,
+  shadow toward blue-purple) so they read as 3D while staying pixel art. Reference pictures live in
+  `boats/`, which is kept out of the repo.
+
 ## Security (onepieces.lol)
 
 - HTTPS: GitHub Pages certificate for onepieces.lol, "Enforce HTTPS" on (http:// redirects to https://).
