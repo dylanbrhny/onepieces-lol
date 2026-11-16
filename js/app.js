@@ -189,7 +189,10 @@
     // Each arc's stretch of the route is as long as the arc ran (episodes), so Wano and Dressrosa are long
     // hauls and the early East Blue stops go by fast. A small floor keeps the shortest arcs visible.
     const minEps = C.route.minArcEpisodes ?? 8;
-    const weight = st => st.finale ? 0 : Math.max(minEps, st.first_ep && st.last_ep ? st.last_ep - st.first_ep + 1 : 20);
+    // The arc you're partway through counts only the episodes up to your spoiler point, so the strip shows
+    // it as long as the part you've watched (Endless still sails on past it forever).
+    const lastEp = st => (spoiler && st.last_ep > spoiler.last_ep) ? Math.max(st.first_ep, spoiler.last_ep) : st.last_ep;
+    const weight = st => st.finale ? 0 : Math.max(minEps, st.first_ep && st.last_ep ? lastEp(st) - st.first_ep + 1 : 20);
     const weights = shown.map(weight), legs = weights.slice(0, -1), total = legs.reduce((a, b) => a + b, 0) || 1;
     let run = 0;
     const stops = shown.map((st, i) => { const nmi = i === shown.length - 1 ? L : Math.round(run * L / total); run += weights[i]; return { ...st, nmi }; });
