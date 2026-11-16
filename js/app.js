@@ -34,7 +34,7 @@
               prompts: ["easy", "medium", "hard"], plan: ["medium", "medium", "hard", "hard", "hard", "hard", "hard"] },
     ...(C.difficulties || {})
   };
-  const diffId = DIFF[store.get("difficulty", C.defaultDifficulty || "medium")] ? store.get("difficulty", C.defaultDifficulty || "medium") : "medium";
+  let diffId = DIFF[store.get("difficulty", C.defaultDifficulty || "medium")] ? store.get("difficulty", C.defaultDifficulty || "medium") : "medium";
   // The daily 7 are the same for everyone whatever difficulty they picked: plain one-fact prompts built from
   // the famous cast, so anyone can answer. Every right answer still counts and rare ones still score as
   // deep cuts, so a Pirate King answer is always there for people who know the series.
@@ -137,6 +137,7 @@
   let worldKey = null, diff, data, allData, playable, tooSmall, KIND_DATA, ANSWER_DATA, thingCount, charCfg;
   let fullData = null;   // everyone, built only when needed to explain a filtered-out name
   function useWorld(key) {
+    if (key === "play") key = `play:${diffId}`;             // one world per Endless difficulty, built on first use
     if (key === worldKey) return;
     const w = worlds[key] || (worlds[key] = key === "daily" ? buildWorld(DAILY, "easy")
       : buildWorld(DIFF[diffId], diffId === "supereasy" ? "easy" : diffId));
@@ -297,6 +298,7 @@
     const wantedish = screen === "wanted" || (screen === "result" && WS && app.dataset.screen === "wanted");
     chart.sunnyAt = wantedish ? null : SUNNY_AT;
     if (wantedish) chart.onSunny = false;
+    if (screen === "title" || screen === "wanted") chart.infinite = false;
     app.dataset.screen = screen;
     for (const s of ["title", "play", "wanted", "result", "debug"]) $(`#screen-${s}`).hidden = s !== screen;
     $("#hud").hidden = screen !== "play" && screen !== "wanted";
@@ -370,8 +372,7 @@
   }
 
   // Difficulty + spoiler filter controls on the title screen. Changing one rebuilds the game (page reload).
-  function renderSettings() {
-    useWorld("play");                       // the panel describes the player's difficulty (Endless)
+  function renderSettings() {   // the spoiler filter (Endless difficulty is picked after tapping Endless)
     let box = $("#settings");
     if (!box) {
       box = document.createElement("div");
@@ -382,13 +383,6 @@
     const arcOpts = ARCS.map(a => `<option value="${a.last_ep}"${spoiler && spoiler.last_ep === a.last_ep ? " selected" : ""}>Up to ${esc(a.arc.replace(/ Arc$/, ""))} (ep ${a.last_ep})</option>`).join("");
     const custom = spoiler && !ARCS.some(a => a.last_ep === spoiler.last_ep);
     box.innerHTML = `
-      <div class="set-row">
-        <span class="set-label" id="diffLabel">Endless difficulty</span>
-        <div class="seg" role="group" aria-labelledby="diffLabel">
-          ${Object.entries(DIFF).map(([id, d]) => `<button type="button" class="seg-btn" data-diff="${id}" aria-pressed="${id === diffId}">${esc(d.label)}</button>`).join("")}
-        </div>
-      </div>
-      <p class="set-note">${esc(diff.note)} ${fmt(data.chars.length)} characters and ${fmt(thingCount)} places and things in play. Today's 7 are the same easy-going set for everyone, whatever you pick here; rare answers still sail furthest.</p>
       ${ARCS.length ? `<div class="set-row">
         <label class="set-label" for="spoilerSel">Spoilers</label>
         <select id="spoilerSel" class="set-select"><option value="">Show everything (caught up)</option>${custom ? `<option value="${spoiler.last_ep}" selected>Up to episode ${spoiler.last_ep}</option>` : ""}${arcOpts}</select>
@@ -399,12 +393,6 @@
         <button type="button" class="seg-btn" id="spoilerEpGo">Set</button>
       </div>
       <p class="set-note">${spoiler ? `Only characters, places and things that appear by episode ${spoiler.last_ep}. Facts revealed later about them (deaths, new fruits, titles) can still show up.` : "Pick the last arc you've watched to leave out characters and places you haven't reached yet."}</p>` : ""}`;
-    box.querySelectorAll("[data-diff]").forEach(b => b.addEventListener("click", () => {
-      if (b.dataset.diff === diffId) return;
-      box.querySelectorAll("[data-diff]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-      store.set("difficulty", b.dataset.diff);
-      reloadHere();
-    }));
     const sel = box.querySelector("#spoilerSel");
     const setEp = v => { store.set("spoilerEp", v ? Number(v) : null); store.set("spoilerArc", ""); reloadHere(); };
     if (sel) sel.addEventListener("change", () => setEp(sel.value));
@@ -432,8 +420,9 @@
   let S = null;          // the voyage in progress
   let timer = null;
 
-  function startMode(id) {
+  function startMode(id, picked) {
     if (id === "wanted") return openWantedPick(false);
+    if (id === "endless" && !picked) return openEndlessPick();
     if (!playable.length) return;
     $("#hudNmiLabel").textContent = "Sailed";
     $("#hudBountyLabel").textContent = "Bounty";
@@ -445,8 +434,10 @@
       S = { mode: "rarefind", qs, i: 0, results: [], total: 0 };
     } else if (id === "endless") {
       useWorld("play");
+      if (!playable.length) return;
       S = { mode: "endless", qs: [], deck: [], i: 0, results: [], total: 0, lives: C.endlessLives };
     }
+    chart.infinite = S.mode === "endless";   // Endless: past the end of the map, Elbaph goes on forever
     chart.setShip(0);
     buildPips();
     updateHud();
@@ -909,7 +900,7 @@
   // Hard = a much wider net. Each difficulty / spoiler setting has its own daily poster.
   // Wanted has its own difficulty (picked on the screen after you click Wanted), separate from the daily voyage's.
   const wDataCache = {};
-  const wantedData = id => wDataCache[id] || (wDataCache[id] = id === diffId && worlds.play ? worlds.play.data
+  const wantedData = id => wDataCache[id] || (wDataCache[id] = worlds[`play:${id}`] ? worlds[`play:${id}`].data
     : E.prepare(allRows.filter(c => DIFF[id].characters.includes(c.difficulty || "hard") && seenBy(c)), charCfg));
   const wPoolFor = id => E.wantedPool(wantedData(id), { ...W, minFame: (W.minFameBy || {})[id] ?? W.minFame });
   const wKeyFor = id => { const k = id + (spoiler ? ":" + spoiler.last_ep : ""); return `wanted:${dateKey}${k === "medium" ? "" : ":" + k}`; };
@@ -976,7 +967,8 @@
     medium: { head: "The usual crew", body: n => `One of <b>${n.pool}</b> posters, from the main cast to well-known side characters. The search covers <b>${n.chars}</b> characters.`, best: "Anyone keeping up with the anime" },
     hard:   { head: "Deep cuts", body: n => `One of <b>${n.pool}</b> posters, including side characters most fans forget. The search covers all <b>${n.chars}</b> named characters.`, best: "Manga readers and wiki divers" }
   };
-  function openWantedPick(practice) {
+  // the pop-up both pickers use (Wanted and Endless)
+  function pickEl() {
     let pick = document.getElementById("wpick");
     if (!pick) {
       pick = document.createElement("div");
@@ -985,6 +977,40 @@
       pick.addEventListener("click", e => { if (e.target === pick) closeWantedPick(); });
       document.addEventListener("keydown", e => { if (e.key === "Escape" && !pick.hidden) closeWantedPick(); });
     }
+    return pick;
+  }
+  // ---- Endless difficulty picker: shown after you tap Endless ----
+  const E_PICK = {
+    supereasy: { head: "Training wheels", body: "Only the most famous names and the simplest prompts, <b>45 seconds</b> each, and a search list under the answer box that shows matching characters as you type.", best: "Kids and brand-new fans" },
+    easy:      { head: "Plain sailing", body: "Famous characters, islands, fruits and crews, with plain one-fact prompts like <b>“Name a giant”</b>.", best: "Casual watchers" },
+    medium:    { head: "The usual crew", body: "Adds well-known side characters, places, ships and fruits. <b>Some prompts mix two facts.</b>", best: "Anyone keeping up with the anime" },
+    hard:      { head: "Deep cuts", body: "<b>Always very hard.</b> Expect obscure questions every time: every named character, island, fruit, ship and crew counts, and most prompts mix facts, like “a giant with under 10 letters”.", best: "Manga readers and wiki divers" }
+  };
+  function openEndlessPick() {
+    const pick = pickEl();
+    const best = store.get("endlessBest", 0);
+    const cards = Object.keys(E_PICK).filter(id => DIFF[id]).map(id => `<button type="button" class="wpick-card d-${id}" data-pick="${id}" aria-pressed="${id === diffId}">
+        <span class="wpick-top"><span class="wpick-name">${DIFF[id].label}</span></span>
+        <span class="wpick-head">${E_PICK[id].head}</span>
+        <span class="wpick-body">${E_PICK[id].body}</span>
+        <span class="wpick-best">Best for: ${E_PICK[id].best}</span></button>`).join("");
+    pick.innerHTML = `<div class="wpick-panel">
+      <p class="wpick-kicker">ENDLESS VOYAGE${best ? ` · BEST ${fmt(best * C.nmiPerPoint)} NMI` : ""}</p>
+      <h2 class="wpick-title" id="wpickTitle">How hard a sea?</h2>
+      <div class="wpick-cards four">${cards}</div>
+      <p class="wpick-note">${C.endlessLives} lives. Running out of time or saying “I don't know” costs one. Rare answers sail furthest, and past the end of the map the voyage never stops.</p>
+      <button type="button" class="btn btn-mini wpick-back">Back to port</button></div>`;
+    pick.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => {
+      S_.click(); closeWantedPick();
+      diffId = b.dataset.pick; store.set("difficulty", diffId);
+      startMode("endless", true);
+    }));
+    pick.querySelector(".wpick-back").addEventListener("click", closeWantedPick);
+    pick.hidden = false;
+    setTimeout(() => (pick.querySelector('[aria-pressed="true"]') || pick.querySelector("[data-pick]")).focus({ preventScroll: true }), 30);
+  }
+  function openWantedPick(practice) {
+    const pick = pickEl();
     const cards = W_LEVELS.map(id => {
       const n = { pool: fmt(wPoolFor(id).length), chars: fmt(wantedData(id).chars.length) }, t = W_PICK[id];
       const w = practice ? null : store.get(wKeyFor(id), null);
@@ -1365,7 +1391,9 @@
     const nameEl = $("#posterName");
     nameEl.value = store.get("pirateName", "Nameless Rookie");
     nameEl.oninput = () => store.set("pirateName", nameEl.value);
-    $("#logReach").textContent = `${fmt(rec.total * C.nmiPerPoint)} of ${fmt(C.route.length)} nmi · last landfall: ${reached.name}`;
+    $("#logReach").textContent = rec.mode === "endless" && rec.total * C.nmiPerPoint > C.route.length
+      ? `${fmt(rec.total * C.nmiPerPoint)} nmi · past the end of the map, still sailing ${reached.name}`
+      : `${fmt(rec.total * C.nmiPerPoint)} of ${fmt(C.route.length)} nmi · last landfall: ${reached.name}`;
 
     // poster photo: the rarest right answer's picture, else a jolly roger
     const order = C.tiers.map(t => t.id);

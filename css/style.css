@@ -609,10 +609,12 @@ img, canvas { image-rendering: pixelated; }
 .wpick-kicker { margin: 0; font: 400 9px/1 var(--pixel); letter-spacing: 0.1em; color: var(--ink-dim); text-align: center; }
 .wpick-title { margin: 0; font: 400 20px/1.2 var(--pixel); color: var(--ink); text-align: center; }
 .wpick-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-@media (max-width: 620px) { .wpick-cards { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .wpick-cards, .wpick-cards.four { grid-template-columns: 1fr; } }
 .wpick-card { --dc: var(--d-medium); display: flex; flex-direction: column; gap: 8px; text-align: left; cursor: pointer; padding: 12px;
   color: var(--ink); background: var(--panel-2); border: 3px solid color-mix(in srgb, var(--dc) 55%, var(--ink-faint)); box-shadow: 0 4px 0 var(--edge); }
-.wpick-card.d-easy { --dc: var(--d-easy); } .wpick-card.d-hard { --dc: var(--d-hard); }
+.wpick-card.d-easy { --dc: var(--d-easy); } .wpick-card.d-hard { --dc: var(--d-hard); } .wpick-card.d-supereasy { --dc: var(--d-supereasy); }
+.wpick-cards.four { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 620px) { .wpick-cards.four { grid-template-columns: 1fr; } .wpick-cards.four .wpick-card { gap: 5px; padding: 10px 12px; } }
 .wpick-card:hover, .wpick-card:focus-visible { border-color: var(--dc); transform: translateY(-2px); box-shadow: 0 6px 0 var(--edge); outline: none; }
 .wpick-card[aria-pressed="true"] { border-color: var(--dc); box-shadow: 0 4px 0 var(--edge), inset 0 0 0 2px color-mix(in srgb, var(--dc) 35%, transparent); }
 .wpick-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }

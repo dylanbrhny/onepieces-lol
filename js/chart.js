@@ -124,6 +124,8 @@
       this.view = 0; this.sceneCache = {}; this.dt = 0;
       this.sunnyAt = this.route.sunnyAt ?? null;   // nmi where the Merry's last voyage happens (null = never, spoiler filter)
       this.onSunny = false; this.burn = null; this.onShipChange = null;
+      // Endless sets this: the last real place (Elbaph) goes on forever instead of reaching the "???" end box
+      this.infinite = false;
       // The sky regions (dusk from Paradise, storm-night in the New World...) were placed for evenly spaced
       // boxes; move each to the same point between the same two stops now that boxes follow arc length.
       if (this.route.boxes && this.route.stops.length > 1) {
@@ -187,8 +189,8 @@
       }
       this.anim = { from, to: nmi, start: now, dur: power >= 2 ? Math.min(1500, 600 + dist * 1.2) : Math.min(3000, 800 + dist * 2.2), done, surge: power === 2 || power === 3 };
     }
-    passStops(a, b) { if (this.onIsland) for (const s of this.route.stops) if (s.nmi > a && s.nmi <= b) this.onIsland(s); }
-    lastStop(nmi = this.ship) { let last = this.route.stops[0]; for (const s of this.route.stops) if (s.nmi <= nmi) last = s; return last; }
+    passStops(a, b) { if (this.onIsland) for (const s of this.route.stops) if (s.nmi > a && s.nmi <= b && !(this.infinite && s.finale)) this.onIsland(s); }
+    lastStop(nmi = this.ship) { let last = this.route.stops[0]; for (const s of this.route.stops) if (s.nmi <= nmi && !(this.infinite && s.finale)) last = s; return last; }
 
     frame(now) {
       requestAnimationFrame(t => this.frame(t));          // schedule first, so one bad frame can't stop the loop
@@ -350,8 +352,14 @@
     boxLen() { return this.route.length / Math.max(1, this.route.stops.length - 1); }
     boxSpan(k) { const st = this.route.stops; return k < st.length - 1 ? Math.max(1, st[k + 1].nmi - st[k].nmi) : this.boxLen(); }
     boxIndex(nmi) {
-      const st = this.route.stops; let i = 0;
-      while (i < st.length - 1 && st[i + 1].nmi <= nmi + 1e-6) i++;
+      const st = this.route.stops, last = this.lastBox(); let i = 0;
+      while (i < last && st[i + 1].nmi <= nmi + 1e-6) i++;
+      return i;
+    }
+    // the last box the ship can be in: the "???" end box, or (Endless) the last real place before it
+    lastBox() {
+      const st = this.route.stops; let i = st.length - 1;
+      if (this.infinite) while (i > 0 && st[i].finale) i--;
       return i;
     }
 
@@ -403,16 +411,20 @@
           for (const k of [cur + 1, cur - 1, cur + 2]) if (k >= 0 && k < n) { const before = Object.keys(this.sceneCache).length; this.sceneCanvas(k, bw, hy + 2); if (Object.keys(this.sceneCache).length > before) break; }
         }, 30);
       }
-      for (let k = first; k <= first + 1 && k < n; k++) {
+      // Endless past the end of the map: the ship holds its spot and the last place scrolls by forever
+      const lastK = this.lastBox();
+      const span = this.boxSpan(cur), past = this.infinite && cur === lastK ? Math.max(0, this.ship - stops[cur].nmi - span) : 0;
+      const scroll = past * 0.6 * bw / span;
+      for (let k = first; k <= first + 1 && k <= lastK; k++) {
         if (k < 0) continue;
         const x0 = Math.round((k - this.view) * bw);
-        this.drawBox(k, x0, hy);
+        this.drawBox(k, x0, hy, k === cur ? scroll : 0);
       }
       // sea strip the ship sails on
       const pal = regionAt(stops[cur] && stops[cur].first_ep ? this.ship : this.ship);
       const seaTop = hy;
       for (let i = 0; i < 4; i++) this.R(0, seaTop + Math.floor((bh - seaTop) * [0, 0.15, 0.4, 0.7][i]), bw, bh, pal.sea[i]);
-      const off = Math.floor(this.t * 6 + this.view * bw);
+      const off = Math.floor(this.t * 6 + this.view * bw + scroll);
       for (let x = 0; x < bw; x++) {
         if (((x + off) % 14 + 14) % 14 < 4) this.R(x, seaTop, 1, 1, pal.foam);
         if (((x + off * 0.7 + 7) % 23 + 23) % 23 < 3) this.R(x, seaTop + 3, 1, 1, pal.foam + "aa");
@@ -448,11 +460,22 @@
       }
     }
 
-    drawBox(k, x0, hy) {
+    drawBox(k, x0, hy, scroll = 0) {
       const { b, bw, bh } = this, st = this.route.stops[k];
       const painted = (this.cfg.sceneSource || "painted") === "painted" && window.SceneArt;
       const scene = (st.finale && !painted) ? null : this.sceneCanvas(k, bw, hy + 2);
-      if (scene) { b.imageSmoothingEnabled = false; b.drawImage(scene, x0, 0, bw, hy + 2); }
+      if (scene && scroll > 0) {
+        // scrolling forever: the picture repeats, every other copy mirrored so the edges always meet
+        b.imageSmoothingEnabled = false;
+        b.save(); b.beginPath(); b.rect(x0, 0, bw, hy + 2); b.clip();
+        const tile = Math.floor(scroll / bw), o = scroll - tile * bw;
+        for (let j = 0; j < 2; j++) {
+          const x = Math.round(x0 - o + j * bw);
+          if ((tile + j) % 2) { b.save(); b.translate(x + bw, 0); b.scale(-1, 1); b.drawImage(scene, 0, 0, bw, hy + 2); b.restore(); }
+          else b.drawImage(scene, x, 0, bw, hy + 2);
+        }
+        b.restore();
+      } else if (scene) { b.imageSmoothingEnabled = false; b.drawImage(scene, x0, 0, bw, hy + 2); }
       else {
         // no picture: sky + a drawn island (also the "???" box)
         const pal = regionAt(st.finale ? this.route.length : st.nmi);
@@ -585,7 +608,7 @@
       let posX;
       if (narrow) {
         const span = this.boxLen() * 4.5, half = span / 2;
-        const target = Math.max(half - this.boxLen() * 0.4, Math.min(L + this.boxLen() * 0.4 - half, this.ship));
+        const target = Math.max(half - this.boxLen() * 0.4, Math.min(L + this.boxLen() * 0.4 - half, this.infinite ? Math.min(this.ship, L) : this.ship));
         this._trackC = this._trackC == null || this.mode === "title" ? target : this._trackC + (target - this._trackC) * Math.min(1, (this.dt || 0.016) * 6);
         const c = this._trackC;
         posX = nmi => x0 + tw / 2 + (nmi - c) * tw / span;
@@ -594,7 +617,7 @@
       const sea = st => (!st.first_ep || st.finale) ? "#c4553a" : st.first_ep >= 517 ? "#9a6ad8" : st.first_ep >= 62 ? "#38b2a8" : "#3f86d4";
       ctx.fillStyle = "rgba(5,8,24,0.85)"; ctx.fillRect(x0 - 3, ty - 3, tw + 6, th + 6);
       // each section is a tiny slice of that place's painted scene: dimmed until you get there
-      const shipPx = posX(this.ship);
+      const shipPx = posX(this.infinite ? Math.min(this.ship, L) : this.ship);   // Endless past the map: the marker waits at the end
       this.trackThumbs = this.trackThumbs || {};
       for (let k = 0; k < n - 1; k++) {
         const a = Math.round(posX(stops[k].nmi)), b = Math.round(posX(stops[k + 1].nmi)), w = Math.max(1, b - a);
@@ -623,9 +646,9 @@
         ctx.fillStyle = stops[k].nmi <= this.ship ? "#f1c04a" : "rgba(244,236,216,0.7)";
         ctx.fillRect(x - 1, ty - 3, 2, th + 6);
       }
-      // the finale mark
+      // the finale mark (not in Endless, where the last place never ends)
       const fx = Math.round(posX(L));
-      ctx.fillStyle = "#c4553a"; ctx.fillRect(fx + 3, ty, 6, 2); ctx.fillRect(fx + 3, ty + th - 2, 6, 2); ctx.fillRect(fx + 5, ty, 2, th);
+      if (!this.infinite) ctx.fillStyle = "#c4553a"; else ctx.fillStyle = "rgba(0,0,0,0)"; ctx.fillRect(fx + 3, ty, 6, 2); ctx.fillRect(fx + 3, ty + th - 2, 6, 2); ctx.fillRect(fx + 5, ty, 2, th);
       // the ship marker: a tiny pixel boat riding on the track
       const sxm = Math.round(shipPx), bob = Math.floor(this.t * 3) % 2;
       ctx.fillStyle = "#141018"; ctx.fillRect(sxm - 7, ty - 7 - bob, 14, 5);
