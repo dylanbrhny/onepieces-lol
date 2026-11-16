@@ -185,7 +185,13 @@
     const MERRY_LAST_EP = C.merryLastEpisode || 312;     // the Going Merry's farewell
     const shown = window.ROUTE_STOPS.filter(st => st.finale || !spoiler || !st.first_ep || st.first_ep <= spoiler.last_ep);
     const L = C.route.length || 7000;
-    const stops = shown.map((st, i) => ({ ...st, nmi: Math.round(i * L / Math.max(1, shown.length - 1)) }));
+    // Each arc's stretch of the route is as long as the arc ran (episodes), so Wano and Dressrosa are long
+    // hauls and the early East Blue stops go by fast. A small floor keeps the shortest arcs visible.
+    const minEps = C.route.minArcEpisodes ?? 8;
+    const weight = st => st.finale ? 0 : Math.max(minEps, st.first_ep && st.last_ep ? st.last_ep - st.first_ep + 1 : 20);
+    const weights = shown.map(weight), legs = weights.slice(0, -1), total = legs.reduce((a, b) => a + b, 0) || 1;
+    let run = 0;
+    const stops = shown.map((st, i) => { const nmi = i === shown.length - 1 ? L : Math.round(run * L / total); run += weights[i]; return { ...st, nmi }; });
     // the Sunny takes over at the first box after the Merry's last episode, unless the filter stops before it
     const sunnyStop = (!spoiler || spoiler.last_ep >= MERRY_LAST_EP) ? stops.find(st => st.first_ep && st.first_ep > MERRY_LAST_EP) : null;
     C.route = { ...C.route, length: L, boxes: true, stops, sunnyAt: sunnyStop ? sunnyStop.nmi : null };

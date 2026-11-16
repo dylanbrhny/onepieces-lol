@@ -124,6 +124,13 @@
       this.view = 0; this.sceneCache = {}; this.dt = 0;
       this.sunnyAt = this.route.sunnyAt ?? null;   // nmi where the Merry's last voyage happens (null = never, spoiler filter)
       this.onSunny = false; this.burn = null; this.onShipChange = null;
+      // The sky regions (dusk from Paradise, storm-night in the New World...) were placed for evenly spaced
+      // boxes; move each to the same point between the same two stops now that boxes follow arc length.
+      if (this.route.boxes && this.route.stops.length > 1) {
+        const st = this.route.stops, even = this.route.length / (st.length - 1);
+        const at = nmi => { const f = nmi / even, i = Math.max(0, Math.min(st.length - 2, Math.floor(f))); return st[i].nmi + (f - i) * (st[i + 1].nmi - st[i].nmi); };
+        for (const r of REGIONS) { if (r.evenNmi == null) r.evenNmi = r.nmi; r.nmi = Math.round(at(r.evenNmi)); }
+      }
       if (this.route.boxes) this.route.stops.forEach(st => {
         if (!st.scene) return;
         const im = new Image();
@@ -339,8 +346,14 @@
     currentShipImg() { return ((this.usingSecond() && this.sprites.sunny) ? this.sprites.sunny : (this.sprites.merry || this.sprites.ship)).img; }
 
     // ---------------- box map ----------------
+    // Boxes can be different lengths (each arc's stretch follows how long it ran): boxLen is the average.
     boxLen() { return this.route.length / Math.max(1, this.route.stops.length - 1); }
-    boxIndex(nmi) { return Math.max(0, Math.min(this.route.stops.length - 1, Math.floor(nmi / this.boxLen() + 1e-6))); }
+    boxSpan(k) { const st = this.route.stops; return k < st.length - 1 ? Math.max(1, st[k + 1].nmi - st[k].nmi) : this.boxLen(); }
+    boxIndex(nmi) {
+      const st = this.route.stops; let i = 0;
+      while (i < st.length - 1 && st[i + 1].nmi <= nmi + 1e-6) i++;
+      return i;
+    }
 
     // the place picture as big soft blocks: shrink it to a small mosaic (averaging the colours),
     // then blow it back up with no smoothing. No dither, so it reads as a blurry version of the picture.
@@ -405,7 +418,7 @@
         if (((x + off * 0.7 + 7) % 23 + 23) % 23 < 3) this.R(x, seaTop + 3, 1, 1, pal.foam + "aa");
       }
       // ship: moves across its box as distance builds up
-      const frac = Math.max(0, Math.min(1, (this.ship - cur * L) / L));
+      const frac = Math.max(0, Math.min(1, (this.ship - stops[cur].nmi) / this.boxSpan(cur)));
       // keep the whole ship on screen: half its width plus a margin from the edge
       const half = ((this.usingSecond() && this.sprites.sunny) ? this.sprites.sunny : (this.sprites.merry || this.sprites.ship)).img.width / 2 + 6;
       const sx = (cur - this.view) * bw + Math.max(half, Math.min(bw - half - 30, bw * (0.12 + 0.6 * frac)));
@@ -442,7 +455,7 @@
       if (scene) { b.imageSmoothingEnabled = false; b.drawImage(scene, x0, 0, bw, hy + 2); }
       else {
         // no picture: sky + a drawn island (also the "???" box)
-        const pal = regionAt(st.finale ? this.route.length : (k / Math.max(1, this.route.stops.length - 1)) * this.route.length);
+        const pal = regionAt(st.finale ? this.route.length : st.nmi);
         for (let i = 0; i < 8; i++) {
           const t = i / 7, seg = Math.min(2, Math.floor(t * 3)), lt = t * 3 - seg;
           this.R(x0, Math.floor(hy * i / 8), bw, Math.ceil(hy / 8) + 1, mix(pal.sky[seg], pal.sky[seg + 1], lt));
