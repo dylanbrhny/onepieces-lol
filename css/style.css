@@ -147,6 +147,7 @@ img, canvas { image-rendering: pixelated; }
 .hud-right { justify-self: end; text-align: right; }
 .hud-label { font: 400 8px/1 var(--pixel); color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; }
 .hud-value { font: 400 clamp(11px, 1.6vw, 16px)/1 var(--pixel); font-variant-numeric: tabular-nums; }
+.hud-value { white-space: nowrap; }
 .straw { color: var(--straw); }
 .pips { display: flex; gap: 6px; padding-top: 8px; flex-wrap: wrap; justify-content: center; max-width: 40vw; }
 .pip { width: 18px; height: 18px; border: 3px solid var(--ink-dim); background: rgba(8, 12, 36, 0.8); }
@@ -499,8 +500,8 @@ img, canvas { image-rendering: pixelated; }
 }
 @media (max-width: 460px) {
   .app[data-screen="wanted"] { --sea-h: 30dvh; }
-  .app[data-screen="wanted"] .pips { max-width: 48vw; gap: 3px; }
-  .app[data-screen="wanted"] .pip { width: 12px; height: 12px; }
+  .app[data-screen="wanted"] .pips { max-width: 48vw; gap: 2px; flex-wrap: nowrap; }
+  .app[data-screen="wanted"] .pip { width: 11px; height: 11px; border-width: 2px; }
   .screen-wanted { padding-top: 30dvh; }
 }
 

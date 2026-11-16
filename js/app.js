@@ -241,6 +241,14 @@
   document.addEventListener("click", e => { if (e.target.closest(".btn, .mode, .hint button")) S_.click(); });
 
   const fmt = n => Math.round(n).toLocaleString("en-US");
+  // phones: short bounty in the score box (฿10M, ฿1.2B) so it doesn't squeeze the prompt squares
+  const fmtShort = n => {
+    if (window.innerWidth >= 720) return fmt(n);
+    const u = [[1e9, "B"], [1e6, "M"], [1e3, "K"]].find(([v]) => n >= v);
+    if (!u) return fmt(n);
+    const x = n / u[0];
+    return (x >= 100 ? Math.round(x) : Math.round(x * 10) / 10) + u[1];
+  };
   const charName = id => (data.byId.get(id) || {}).name || id;
 
   // ---------- screens ----------
@@ -432,7 +440,7 @@
   }
   function updateHud() {
     $("#hudNmi").textContent = `${fmt(S.total * C.nmiPerPoint)} nmi`;
-    $("#hudBounty").textContent = `฿${fmt(S.total * C.bountyPerPoint)}`;
+    $("#hudBounty").textContent = `฿${fmtShort(S.total * C.bountyPerPoint)}`;
     $("#lives").textContent = S.mode === "endless" ? "♥".repeat(Math.max(0, S.lives)) + "♡".repeat(C.endlessLives - Math.max(0, S.lives)) : "";
     paintPips();
   }

@@ -535,25 +535,49 @@
       const { ctx, px, bw } = this, stops = this.route.stops;
       const size = px >= 4 ? 16 : 8;
       // place name plaque in the top-left corner of each visible box
+      // Phones: the track gets its own full-width row under the score boxes and only shows the few islands
+      // around the ship, scrolling along as you sail (the whole route squeezed into ~100px was unreadable).
+      const narrow = this.w < 720, title = this.mode === "title";
+      const n = stops.length, L = this.route.length;
+      let x0, tw, ty, th;
+      if (narrow) {
+        const now = performance.now();
+        if (!this._hudAt || now - this._hudAt > 500) {          // where the score boxes end (safe areas included)
+          this._hudAt = now;
+          const hud = document.getElementById("hud"), r = hud && !hud.hidden ? hud.getBoundingClientRect() : null;
+          this._hudBottom = r && r.height ? r.bottom : 0;
+        }
+        x0 = 10; tw = this.w - 20; th = 18;
+        ty = title ? Math.round(this.h - 28) : Math.round((this._hudBottom || 56) + 22);   // room for the ship marker above it
+      } else {
+        const margin = Math.max(130, Math.round(this.w * 0.14));
+        x0 = margin; tw = Math.max(60, this.w - 2 * margin); th = 16;
+        ty = title ? Math.round(this.h - 26) : 58;
+      }
       ctx.textBaseline = "top"; ctx.textAlign = "left";
-      for (let k = first; k <= first + 1 && k < stops.length; k++) {
+      if (!(narrow && (title || this.h < 300))) for (let k = first; k <= first + 1 && k < stops.length; k++) {   // on phones the menu covers it
         if (k < 0) continue;
-        const x0 = Math.round((k - this.view) * bw * px);
-        if (x0 > this.w || x0 < -this.w) continue;
+        const bx = Math.round((k - this.view) * bw * px);
+        if (bx > this.w || bx < -this.w) continue;
         const label = stops[k].name.toUpperCase();
-        ctx.font = `${size}px "Press Start 2P", "Courier New", monospace`;
+        const fs = narrow ? 10 : size;
+        ctx.font = `${fs}px "Press Start 2P", "Courier New", monospace`;
         const wpx = ctx.measureText(label).width;
-        const lx = Math.max(10, x0 + 12), ly = this.mode === "title" ? Math.round(this.h * 0.62) : 84;
-        ctx.fillStyle = "rgba(10,10,30,0.82)"; ctx.fillRect(lx - 6, ly - 6, wpx + 12, size + 12);
+        const lx = Math.max(narrow ? 16 : 10, bx + 12), ly = title ? Math.round(this.h * 0.62) : narrow ? ty + th + 12 : 84;
+        ctx.fillStyle = "rgba(10,10,30,0.82)"; ctx.fillRect(lx - 6, ly - 6, wpx + 12, fs + 12);
         ctx.fillStyle = k <= cur ? "#f1c04a" : "#f4ecd8"; ctx.fillText(label, lx, ly);
       }
       // the whole voyage as one track split into a section per island; the ship slides along it.
       // Sections are tinted by sea: East Blue, Paradise (from Reverse Mountain), New World (from Fish-Man Island).
-      const n = stops.length, L = this.route.length;
-      const margin = Math.max(130, Math.round(this.w * 0.14));
-      const x0 = margin, x1 = this.w - margin, tw = Math.max(60, x1 - x0);
-      const ty = this.mode === "title" ? Math.round(this.h - 26) : 58, th = 16;
-      const posX = nmi => x0 + tw * Math.max(0, Math.min(1, nmi / L));
+      let posX;
+      if (narrow) {
+        const span = this.boxLen() * 4.5, half = span / 2;
+        const target = Math.max(half - this.boxLen() * 0.4, Math.min(L + this.boxLen() * 0.4 - half, this.ship));
+        this._trackC = this._trackC == null || this.mode === "title" ? target : this._trackC + (target - this._trackC) * Math.min(1, (this.dt || 0.016) * 6);
+        const c = this._trackC;
+        posX = nmi => x0 + tw / 2 + (nmi - c) * tw / span;
+      } else posX = nmi => x0 + tw * Math.max(0, Math.min(1, nmi / L));
+      ctx.save(); ctx.beginPath(); ctx.rect(x0 - 3, ty - 18, tw + 6, th + 24); ctx.clip();
       const sea = st => (!st.first_ep || st.finale) ? "#c4553a" : st.first_ep >= 517 ? "#9a6ad8" : st.first_ep >= 62 ? "#38b2a8" : "#3f86d4";
       ctx.fillStyle = "rgba(5,8,24,0.85)"; ctx.fillRect(x0 - 3, ty - 3, tw + 6, th + 6);
       // each section is a tiny slice of that place's painted scene: dimmed until you get there
@@ -561,6 +585,7 @@
       this.trackThumbs = this.trackThumbs || {};
       for (let k = 0; k < n - 1; k++) {
         const a = Math.round(posX(stops[k].nmi)), b = Math.round(posX(stops[k + 1].nmi)), w = Math.max(1, b - a);
+        if (b < x0 - 4 || a > x0 + tw + 4) continue;                       // off the visible window (phones)
         let thumb = this.trackThumbs[k];
         if (!thumb && window.SceneArt) thumb = this.trackThumbs[k] = window.SceneArt.paint(stops[k], 96, 96);
         if (thumb) {
@@ -592,6 +617,16 @@
       ctx.fillStyle = "#8a4b2a"; ctx.fillRect(sxm - 6, ty - 6 - bob, 12, 3);
       ctx.fillStyle = "#f4ecd8"; ctx.fillRect(sxm - 3, ty - 14 - bob, 6, 7);
       ctx.fillStyle = "#141018"; ctx.fillRect(sxm - 1, ty - 15 - bob, 1, 9);
+      ctx.restore();
+      if (narrow) {                                                         // fade at the cut edges: the route carries on
+        const fade = (fx, dir) => {
+          const g = ctx.createLinearGradient(fx, 0, fx + dir * 26, 0);
+          g.addColorStop(0, "rgba(5,8,24,0.95)"); g.addColorStop(1, "rgba(5,8,24,0)");
+          ctx.fillStyle = g; ctx.fillRect(dir > 0 ? fx : fx - 26, ty, 26, th);
+        };
+        if (posX(0) < x0) fade(x0, 1);
+        if (posX(L) > x0 + tw) fade(x0 + tw, -1);
+      }
     }
 
     disc(cx, cy, r, c) {
