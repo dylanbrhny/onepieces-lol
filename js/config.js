@@ -19,6 +19,7 @@ window.GAME_CONFIG = {
 
   // ---- Rare Find (mode 1) ----
   promptsPerDay: 7,
+  dailyResets: { "2026-11-15": 1 },   // bump a date's number to let everyone replay that day's daily
   secondsPerPrompt: 30,
   minAnswers: 5,                      // a question needs at least this many valid characters. Raise to ~12 once your database is big.
   bountyPerPoint: 1000000,            // final bounty = points x this (700 points = 700,000,000 berries)

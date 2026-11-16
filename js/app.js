@@ -152,7 +152,10 @@
   const dayNo = E.dayNumber(C.launchDate, today);
   // one daily voyage for everyone (only the spoiler filter gives a different one)
   const settingKey = "daily" + (spoiler ? ":" + spoiler.last_ep : "");
-  const dayKey = `day:${dateKey}:${settingKey}`;
+  // C.dailyResets { "YYYY-MM-DD": n }: bump n to let everyone replay that day's daily (saved results live in
+  // each player's browser, so a new key is the only way to clear them). Streaks are kept.
+  const dailyReset = (C.dailyResets || {})[dateKey];
+  const dayKey = `day:${dateKey}:${settingKey}` + (dailyReset ? `:r${dailyReset}` : "");
   // The daily 7: mostly character prompts, plus `thingsPerDay` (default 2) from the other tables
   // (Devil Fruits, places, crews...), all ordered easy -> hard.
   const isThing = q => q.kind && q.kind !== "character";
