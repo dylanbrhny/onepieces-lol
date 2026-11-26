@@ -117,17 +117,25 @@
         }
       }
     }
-    // Single words: unique ones match outright, shared ones ("monkey") ask which you meant.
+    // Single words: unique ones match outright, a few sharing one ("monkey") ask which you meant.
+    // Generic words ("sword", "pirates", "fruit") and words shared by many names never count alone,
+    // or typing "Sword" for a named weapon would offer a list of every weapon with Sword in its name.
     for (const [tok, owners] of tokenOwners) {
-      if (!index.has(tok)) owners.forEach(id => add(tok, id));
+      if (index.has(tok) || GENERIC_WORDS.has(tok) || owners.size > 4) continue;
+      owners.forEach(id => add(tok, id));
     }
     return index;
   }
+  const GENERIC_WORDS = new Set(("sword swords blade blades katana gun guns pistol rifle cannon cannons spear staff " +
+    "whip bow axe hammer knife dagger club weapon weapons ship ships boat pirates pirate crew crews fleet " +
+    "fruit fruits island islands kingdom village town city country mountain sea ocean family army navy " +
+    "marine marines company group alliance guild captain king queen prince princess god man men woman " +
+    "giant giants model and mr miss").split(" "));
 
   // -> { status: "match", id } | { status: "ambiguous", ids } | { status: "unknown" }
   function resolveGuess(input, data) {
     const k = norm(input);
-    if (!k) return { status: "unknown" };
+    if (!k || GENERIC_WORDS.has(k)) return { status: "unknown" };
     const exact = data.index.get(k) || data.index.get(k.replace(/\b(d|the|of)\b/g, " ").replace(/\s+/g, " ").trim());
     if (exact) {
       if (exact.size === 1) return { status: "match", id: [...exact][0] };
@@ -187,7 +195,7 @@
   // -> [id, ...] best first, at most `limit`, ties go to the more famous character.
   function suggestNames(input, data, limit = 3) {
     const k = norm(input);
-    if (k.length < 2) return [];
+    if (k.length < 2 || GENERIC_WORDS.has(k)) return [];
     const sk = soundKey(k), best = new Map();
     for (const [key, ids] of data.index) {
       let score = Infinity;
@@ -226,6 +234,7 @@
       case "lte": return typeof v === "number" && v <= val;
       case "between": return typeof v === "number" && v >= val[0] && v <= val[1];
       case "countGte": return items.length >= val;
+      case "in": { const set = val._set || Object.defineProperty(val, "_set", { value: new Set(val) })._set; return items.some(x => set.has(x)); }
       default: throw new Error("Unknown operator " + op);
     }
   }

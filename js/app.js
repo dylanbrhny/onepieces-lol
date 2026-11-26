@@ -122,7 +122,9 @@
     // pool) and how rare each answer is; guesses are checked against everyone the spoiler filter allows,
     // so a less famous right answer on Easy scores as a deep cut instead of being turned away.
     const allData = seenRows.length === rows.length || !seenRows.length ? data : E.prepare(seenRows, charCfg);
-    const { playable, tooSmall } = E.buildQuestions(data, window.QUESTION_TEMPLATES || [], window.QUESTIONS || [], C);
+    // prompts with min_ep (data/question_bank.js) stay hidden until the spoiler filter reaches that episode
+    const manualQs = (window.QUESTIONS || []).filter(q => !spoiler || !q.min_ep || q.min_ep <= spoiler.last_ep);
+    const { playable, tooSmall } = E.buildQuestions(data, window.QUESTION_TEMPLATES || [], manualQs, C);
     // Other tables: Devil Fruits, places, weapons, ships, crews... (data/things.js). Same filters.
     // Each prompt has a "kind" saying which table its answers come from.
     const KIND_DATA = { character: data };      // the difficulty's pool: prompts are built from this
@@ -926,6 +928,7 @@
     const has = Array.isArray(v) ? v.length > 0 : !(v === null || v === undefined || v === "");
     const pretty = s => String(s).replace(/_/g, " ");
     if (field === "tags") return `Not on record as: ${pretty(val)}`;
+    if (op === "in") return "Not one of the answers on record for this prompt";
     if (op === "filled") return `${label}: none on record`;
     if (op === "empty") return `${label}: ${Array.isArray(v) ? v.slice(0, 2).join(", ") : v}`;
     if (!has) return `${label}: not on record`;
