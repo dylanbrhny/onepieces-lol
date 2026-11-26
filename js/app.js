@@ -200,8 +200,9 @@
     const k = Math.min(things.length ? (C.thingsPerDay ?? 2) : 0, n);
     const slots = k ? [...Array(k)].map((_, i) => Math.min(n - 1, Math.floor((i + 1) * n / (k + 1)))) : [];
     const thingPlan = slots.map(i => plan[i]), charPlan = plan.filter((_, i) => !slots.includes(i));
-    const tq = E.pickQuestions(things, k, E.rng(E.hashString(seed + ":things")), { plan: thingPlan });
-    const cq = E.pickQuestions(chars, n - tq.length, E.rng(E.hashString(seed)), { maxCombos: DAILY.maxCombos ?? (window.QUESTION_COMBOS || {}).perDay ?? 3, plan: charPlan });
+    // cyclePick: a fixed walk through each level's prompts, so nothing repeats until a level is used up
+    const tq = E.cyclePick(things, thingPlan, dayNo, `${settingKey}:things`);
+    const cq = E.cyclePick(chars, charPlan, dayNo, settingKey, { maxCombos: DAILY.maxCombos ?? (window.QUESTION_COMBOS || {}).perDay ?? 3 });
     const out = [];
     for (let i = 0, a = 0, b = 0; i < n; i++) {
       const q = slots.includes(i) && tq[a] ? tq[a++] : cq[b++] || tq[a++];
@@ -998,8 +999,9 @@
     const k = Math.min(things.length ? (C.thingsPerDay ?? 2) : 0, n);
     const slots = k ? [...Array(k)].map((_, i) => Math.min(n - 1, Math.floor((i + 1) * n / (k + 1)))) : [];
     const plan = DAILY.plan.slice(0, n);
-    const tq = E.pickQuestions(things, k, E.rng(E.hashString(seed + ":things")), { plan: slots.map(i => plan[i]) });
-    const cq = E.pickQuestions(chars, n - tq.length, E.rng(E.hashString(seed)), { maxCombos: DAILY.maxCombos, plan: plan.filter((_, i) => !slots.includes(i)) });
+    const dn = E.dayNumber(C.launchDate, new Date(day + "T12:00:00"));
+    const tq = E.cyclePick(things, slots.map(i => plan[i]), dn, `${settingKey}:things`);
+    const cq = E.cyclePick(chars, plan.filter((_, i) => !slots.includes(i)), dn, settingKey, { maxCombos: DAILY.maxCombos ?? (window.QUESTION_COMBOS || {}).perDay ?? 3 });
     const out = [...tq, ...cq].map(q => { const t = {}; for (const id of q.answers) { const x = (q.tierById[id] || {}).tier; if (x) t[x.id] = (t[x.id] || 0) + 1; } return { text: q.text, kind: q.kind || "character", difficulty: q.difficulty, combo: !!q.combo, answers: q.answers.length, ids: q.answers, tiers: t }; });
     useWorld(back); return out;
   };

@@ -485,6 +485,45 @@
   // (debut arc, "appeared in the first N episodes" and "...N chapters" are all "when did they show up")
   const TOPIC_OF = { "debut-ep": "debut", "debut-ch": "debut" };
   const topicOf = q => TOPIC_OF[q.group] || q.group;
+  // The daily: walk each difficulty's prompts in one fixed order (by a hash of the prompt id), one step
+  // per slot per day, carrying the place from day 1 to today. Nothing repeats until a whole level has been
+  // used, everyone gets the same 7, and adding prompts only slots them into the order.
+  // plan = ["easy", "easy", ..., "medium"], dayNo = days since launch (1 = launch day).
+  function cyclePick(pool, plan, dayNo, salt, opts = {}) {
+    const levels = ["easy", "medium", "hard"];
+    const key = q => hashString(`${salt}:${q.id || q.text}`);
+    const lists = {};
+    for (const lvl of levels) lists[lvl] = pool.filter(q => (q.difficulty || "hard") === lvl).sort((a, b) => key(a) - key(b) || String(a.id || a.text).localeCompare(String(b.id || b.text)));
+    const maxCombos = opts.maxCombos == null ? Infinity : opts.maxCombos;
+    const cursor = { easy: 0, medium: 0, hard: 0 };
+    const near = want => [want, ...levels.filter(l => l !== want).sort((a, b) => Math.abs(levels.indexOf(a) - levels.indexOf(want)) - Math.abs(levels.indexOf(b) - levels.indexOf(want)))];
+    let picked = [];
+    for (let day = 1; day <= Math.max(1, dayNo); day++) {
+      picked = [];
+      const topics = new Set();
+      const ok = q => !picked.includes(q) && (!q.combo || picked.filter(x => x.combo).length < maxCombos) && !picked.some(p => sameQuestion(p, q));
+      for (const want of plan) {
+        let q = null;
+        for (const lvl of near(want)) {
+          const list = lists[lvl];
+          if (!list.length) continue;
+          let fallback = -1;
+          for (let s = 0; s < list.length; s++) {
+            const cand = list[(cursor[lvl] + s) % list.length];
+            if (!ok(cand)) continue;
+            if (!topics.has(topicOf(cand))) { q = cand; cursor[lvl] += s + 1; break; }
+            if (fallback < 0) fallback = s;
+          }
+          if (!q && fallback >= 0) { q = list[(cursor[lvl] + fallback) % list.length]; cursor[lvl] += fallback + 1; }
+          if (q) break;
+        }
+        if (!q) break;
+        picked.push(q); topics.add(topicOf(q));
+      }
+    }
+    return picked;
+  }
+
   function pickQuestions(pool, n, rand, opts = {}) {
     // opts.plan = ["easy", "easy", "medium", ...]: one difficulty per slot, in order (easy first).
     if (opts.plan) {
@@ -702,7 +741,7 @@
   }
 
   const api = { searchTraits, rateDifficulty, norm, asList, levenshtein, prepare, resolveGuess, resolveFor, soundKey, suggestNames, testCond, fits, buildQuestions, tierAnswers,
-    scoreGuess, rarestAnswers, hashString, rng, shuffle, pickQuestions, sameQuestion, topicOf, localDateKey, dayNumber,
+    scoreGuess, rarestAnswers, hashString, rng, shuffle, pickQuestions, cyclePick, sameQuestion, topicOf, localDateKey, dayNumber,
     searchCharacters, wantedPool, wantedDaily, compareTrait, compareCharacters, formatNumber, comboQuestions };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Engine = api;
