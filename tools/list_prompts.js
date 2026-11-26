@@ -7,7 +7,7 @@ const fs = require("fs"), path = require("path"), vm = require("vm");
 const ROOT = path.join(__dirname, "..");
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["js/config.js", "js/questions.js", "data/characters.js"]) vm.runInContext(fs.readFileSync(path.join(ROOT, f), "utf8"), ctx);
+for (const f of ["js/config.js", "js/questions.js", "data/question_bank.js", "data/characters.js"]) vm.runInContext(fs.readFileSync(path.join(ROOT, f), "utf8"), ctx);
 const W = ctx.window;
 globalThis.TAG_CATALOG = W.TAG_CATALOG || {};
 globalThis.QUESTION_COMBOS = W.QUESTION_COMBOS;

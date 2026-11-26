@@ -19,6 +19,8 @@ window.GAME_CONFIG = {
 
   // ---- Rare Find (mode 1) ----
   promptsPerDay: 7,
+  thingsPerDay: 1,                  // daily prompts about Devil Fruits / ships / places... instead of characters.
+                                    // Only ~8 easy ones exist, so 2 a day repeated every 4 days; 1 a day = every ~8.
   dailyResets: { "2026-11-15": 1 },   // bump a date's number to let everyone replay that day's daily
   secondsPerPrompt: 30,
   minAnswers: 5,                      // a question needs at least this many valid characters. Raise to ~12 once your database is big.

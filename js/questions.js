@@ -18,8 +18,8 @@
 // "group" stops two prompts about the same thing landing on the same day.
 
 window.QUESTION_TEMPLATES = [
-  { field: "organizations",     text: "Name a member of the {value}", group: "org" },
-  { field: "race",              text: "Name {a} {value}", group: "race", skip: ["Human", "Unknown"] },
+  { field: "organizations",     text: "Name a member of the {value}", group: "org", easyAt: 6 },   // easy when 6+ answers in the pool
+  { field: "race",              text: "Name {a} {value}", group: "race", skip: ["Human", "Unknown"], easyAt: 6 },
   { field: "devil_fruit_types", text: "Name {a} {value} Devil Fruit user", group: "fruit" },
   { field: "fighting_style",    text: "Name a character whose fighting style is {value}", group: "style" },
   { field: "crew_role",         text: "Name {a} {value}", group: "role", skip: ["Officer", "Agent"] },
@@ -111,7 +111,7 @@ window.QUESTION_COMBOS = {
     { field: "crew_role",        text: "{a} {value}", skip: ["Officer", "Agent"] },
     { field: "sex",              labels: { Female: "a female character" } },
     { field: "origin_sea",       text: "a character from the {value}" },
-    { field: "debut_saga",       text: "a {value} character" },               // a Water 7 Saga character
+    { field: "debut_saga",       text: "{a} {value} character" },               // a Water 7 Saga character
     { field: "devil_fruit_types", text: "{a} {value} user" },
     { id: "s-fruit",  text: "a Devil Fruit user",            where: [["devil_fruits", "filled"]] },
     { id: "s-nofruit", text: "a character without a Devil Fruit", where: [["devil_fruits", "empty"]] },

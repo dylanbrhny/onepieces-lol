@@ -276,7 +276,8 @@
           group,
           // displayNames (config) shows other names too, e.g. "Four Emperors (Yonko)"
           text: text.replace("{a}", article(v)).replace("{value}", (cfg.displayNames && cfg.displayNames[v]) || v).replace("{lower}", String(v).toLowerCase()),
-          where: [[t.field, "is", v]]
+          where: [[t.field, "is", v]],
+          ...(t.easyAt ? { easyAt: t.easyAt } : {})
         });
       }
     }
@@ -310,6 +311,9 @@
     const conds = [...(q.where || []), ...((q.anyOf || [])[0] || [])];
     const wordy = conds.some(([f]) => NAME_FIELDS.test(f)) || /letter|initial/i.test(q.text);
     let level = n >= 40 ? 0 : n >= 15 ? 1 : 2;
+    // identity prompts ("Name a member of the Straw Hat Pirates") are easy once enough well-known
+    // characters can answer, even if the group is small: easyAt = that many answers in the pool
+    if (q.easyAt && n >= q.easyAt) level = 0;
     if (q.combo || conds.length >= 2) level += 1;
     if (wordy) level += 1;
     return ["easy", "medium", "hard"][Math.min(2, level)];

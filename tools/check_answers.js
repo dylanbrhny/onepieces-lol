@@ -6,7 +6,7 @@
 // "Which one?" list, crashing, or breaking the tier rules. Run it after changing data, prompts or the engine.
 const vm=require("vm"),fs=require("fs");const R=process.env.REPO||require("path").join(__dirname,"..")+"/";
 const ctx={window:{}};ctx.globalThis=ctx;vm.createContext(ctx);
-for (const f of ["js/config.js","js/questions.js","js/questions_things.js","data/characters.js","data/things.js"]) vm.runInContext(fs.readFileSync(R+f,"utf8"),ctx);
+for (const f of ["js/config.js","js/questions.js", "data/question_bank.js","js/questions_things.js","data/characters.js","data/things.js"]) vm.runInContext(fs.readFileSync(R+f,"utf8"),ctx);
 try{vm.runInContext(fs.readFileSync(R+"data/tags.js","utf8"),ctx)}catch(e){}
 for (const k of Object.keys(ctx.window)) globalThis[k]=ctx.window[k];
 const W=ctx.window;const E=require(R+"js/engine.js");

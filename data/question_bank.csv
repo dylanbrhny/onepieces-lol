@@ -1,0 +1,175 @@
+key,prompt,group,difficulty,min_ep,categories,answers,remove,source
+revolutionary-army-leader,Name a Revolutionary Army leader,bond,medium,438,,monkey-d-dragon|sabo|emporio-ivankov|morley|lindbergh|belo-betty,,claude
+who-sailed-with-gol-d-roger,Name someone who sailed with Gol D. Roger,bond,easy,48,,silvers-rayleigh|crocus|buggy|shanks|benn-beckman|yasopp|lucky-roux|kouzuki-oden,,claude
+big-mom-pirates-member,Name a Big Mom Pirates member,crew,medium,571,Big Mom Pirates,,,wiki
+blackbeard-pirates-member,Name a Blackbeard Pirates member,crew,medium,917,Blackbeard Pirates,,,wiki
+buggy-pirates-member,Name a Buggy Pirates member,crew,medium,0,Buggy Pirates,,,wiki
+donquixote-pirate,Name a Donquixote Pirate,crew,easy,151,Donquixote Pirates|Donquixote Pirates Officers,,,wiki
+former-big-mom-pirate,Name a former Big Mom Pirate,crew,hard,786,Former Big Mom Pirates,,,wiki
+former-foxy-pirate,Name a former Foxy Pirate,crew,hard,209,Former Foxy Pirates,,,wiki
+kuja-pirate,Name a Kuja Pirate,crew,hard,408,Kuja Pirates,,,wiki
+new-fish-man-pirate,Name a New Fish-Man Pirate,crew,hard,530,New Fish-Man Pirates,,,wiki
+new-fish-man-pirates-officer,Name a New Fish-Man Pirates officer,crew,hard,530,New Fish-Man Pirates Officers,,,wiki
+red-hair-pirates-member,Name a Red Hair Pirates member,crew,easy,0,Red Hair Pirates|Red Hair Pirates Senior Officers,,,wiki
+straw-hat-pirate,Name a Straw Hat Pirate,crew,easy,0,Straw Hat Pirates Members,,,wiki
+sun-pirates-member,Name a Sun Pirates member,crew,medium,31,Sun Pirates,,,wiki
+tamed-beasts-pirates-member,Name a Tamed Beasts Pirates member,crew,hard,930,Tamed Beasts Pirates,,,wiki
+tontatta-pirate,Name a Tontatta Pirate,crew,hard,641,Tontatta Pirates,,,wiki
+whitebeard-pirate-past-or-present,"Name a Whitebeard Pirate, past or present",crew,easy,95,Whitebeard Pirates Division Commanders|Whitebeard Pirates|Former Whitebeard Pirates,,,wiki
+one-of-big-mom-s-homies,Name one of Big Mom's Homies,crew,hard,786,Homies,,,wiki
+charlotte-family-member,Name a Charlotte family member,family,medium,795,Charlotte Family,,,wiki
+child-of-big-mom,Name a child of Big Mom,family,easy,783,,charlotte-katakuri|charlotte-smoothie|charlotte-cracker|charlotte-perospero|charlotte-pudding|charlotte-lola|charlotte-oven|charlotte-daifuku|charlotte-galette|charlotte-opera,,claude
+donquixote-family-member,Name a Donquixote family member,family,medium,699,Donquixote Family,,,wiki
+kouzuki-family-member,Name a Kouzuki family member,family,medium,910,Kouzuki Family|Former Kouzuki Family Subordinates,,,wiki
+kouzuki-family-subordinate,Name a Kouzuki family subordinate,family,hard,909,Kouzuki Family Subordinates,,,wiki
+kurozumi-family-member,Name a Kurozumi Family member,family,hard,939,Kurozumi Family Subordinates|Kurozumi Family,,,wiki
+member-of-the-nefertari-family-or-its-subordinates,Name a member of the Nefertari family or its subordinates,family,medium,62,Nefertari Family|Nefertari Family Subordinates,,,wiki
+riku-family-member,Name a Riku family member,family,medium,650,Riku Family,,,wiki
+shimotsuki-family-member,Name a Shimotsuki family member,family,medium,0,Shimotsuki Family,,,wiki
+vinsmoke-child,Name a Vinsmoke child,family,medium,810,,vinsmoke-ichiji|vinsmoke-niji|vinsmoke-yonji|vinsmoke-reiju|sanji,,claude
+vinsmoke-family-member,Name a Vinsmoke family member,family,medium,787,Modified Humans|Vinsmoke Family,,,wiki
+whitebeard-called-a-son,Name someone Whitebeard called a son,family,easy,151,,polo-marco|portgas-d-ace|jozu|vista|thatch|izou,,claude
+who-raised-a-straw-hat,Name someone who raised a Straw Hat,family,easy,100,,curly-dadan|zeff|monkey-d-garp|bell-mere|kureha,,claude
+shichibukai-who-ate-a-devil-fruit,Name a Shichibukai who ate a Devil Fruit,fruit,easy,0,,crocodile|donquixote-doflamingo|bartholomew-kuma|buggy|gecko-moria|boa-hancock,,claude
+straw-hat-who-never-ate-a-devil-fruit,Name a Straw Hat who never ate a Devil Fruit,fruit,easy,0,,roronoa-zoro|nami|usopp|sanji|franky|jinbe,,claude
+153rd-branch-marine,Name a 153rd Branch Marine,org,medium,0,153rd Branch Marines,,,wiki
+baroque-works-agent,Name a Baroque Works agent,org,medium,103,Baroque Works,,,wiki
+baroque-works-officer-agent,Name a Baroque Works officer agent,org,easy,78,Officer Agents|Baroque Works|Baroque Works Agents,,,wiki
+cipher-pol-agent-cp0-or-cp9,Name a Cipher Pol agent (CP0 or CP9),org,easy,230,CP0|CP9|Cipher Pol Agents,,,wiki
+former-cipher-pol-agent,Name a former Cipher Pol agent,org,medium,828,Former Cipher Pol Agents,,,wiki
+former-marine,Name a former Marine,org,easy,0,Former Marines,,,wiki
+galley-la-company-member,Name a Galley-La Company member,org,medium,230,Galley-La Company,,,wiki
+germa-66-member,Name a Germa 66 member,org,medium,793,Germa 66,,,wiki
+gifter-or-shinuchi,Name a Gifter or Shinuchi,org,hard,901,Gifters|Shinuchi,,,wiki
+knight-of-god,Name a Knight of God,org,hard,1166,Knights of God,,,wiki
+member-of-buggy-s-delivery,Name a member of Buggy's Delivery,org,hard,0,Buggy's Delivery Administration,,,wiki
+member-of-god-s-army-skypiea,Name a member of God's Army (Skypiea),org,hard,155,God's Army,,,wiki
+member-of-mads,Name a member of MADS,org,hard,910,MADS,,,wiki
+member-of-the-arabasta-rebel-army,Name a member of the Arabasta Rebel Army,org,medium,100,Arabasta Rebel Army|Sand-Sand Clan,,,wiki
+member-of-the-ssg,Name a member of the SSG,org,hard,1094,SSG,,,wiki
+mimawarigumi-member,Name a Mimawarigumi member,org,hard,951,Mimawarigumi,,,wiki
+pacifista-or-clone,Name a Pacifista or Clone,org,hard,1094,Pacifista|Clones,,,wiki
+revolutionary-army-member,Name a Revolutionary Army member,org,medium,633,Revolutionaries,,,wiki
+oniwabanshu-member,Name an Oniwabanshu member,org,hard,925,Kouzuki Family Oniwabanshu,,,wiki
+born-in-the-east-blue-who-isn-t-a-straw-hat,Name someone born in the East Blue who isn't a Straw Hat,origin,easy,0,,koby|helmeppo|morgan|alvida|bell-mere|nojiko,,claude
+b-or-c-block-participant,Name a Corrida Colosseum fighter,other,hard,632,B Block Participants|C Block Participants,,,wiki
+bazooka-user,Name a bazooka user,other,medium,103,Bazooka Users,,,wiki
+blade-user,Name a blade user,other,hard,834,Blade Users,,,wiki
+dagger-user,Name a dagger user,other,medium,100,Dagger Users,,,wiki
+lance-user,Name a lance user,other,hard,467,Lance Users,,,wiki
+longarm-user,Name a Longarm user,other,hard,635,Longarms|Longarm Hybrids,,,wiki
+prisoner-of-prison-tower,Name a prisoner of Prison Tower,other,hard,525,Prison Tower Prisoners,,,wiki
+rifle-user,Name a rifle user,other,medium,163,Rifle Users,,,wiki
+user-of-an-awakened-devil-fruit,Name a user of an awakened Devil Fruit,other,easy,430,Awakened Zoan Devil Fruit Users|Awakened Paramecia Devil Fruit Users,,,wiki
+user-of-the-six-powers-rokushiki,Name a user of the Six Powers (Rokushiki),other,easy,68,Six Powers Users,,,wiki
+voice-of-all-things-hearer,Name a Voice of All Things hearer,other,medium,609,Voice of All Things Hearers,,,wiki
+animal-that-ate-a-devil-fruit,Name an animal that ate a Devil Fruit,other,hard,1164,Animals with Devil Fruit Abilities,,,wiki
+who-escaped-impel-down,Name someone who escaped Impel Down,other,medium,78,Prison Escape Team,,,wiki
+dressrosa-resident,Name a Dressrosa resident,place,medium,608,Dressrosa Residents,,,wiki
+resident-of-flower-capital,Name a resident of Flower Capital,place,hard,892,Flower Capital Residents,,,wiki
+spider-miles-resident,Name a Spider Miles resident,place,medium,608,Spider Miles Residents,,,wiki
+from-alubarna,Name someone from Alubarna,place,hard,125,Alubarna Residents,,,wiki
+from-amazon-lily,Name someone from Amazon Lily,place,hard,409,Amazon Lily Residents,,,wiki
+from-arabasta,Name someone from Arabasta,place,hard,67,Arabasta Residents,,,wiki
+from-drum-island,Name someone from Drum Island,place,medium,81,Drum Island Residents,,,wiki
+from-east-blue,Name someone from East Blue,place,medium,21,East Blue Residents,,,wiki
+from-egghead,Name someone from Egghead,place,medium,1089,Egghead Residents,,,wiki
+from-elbaph,Name someone from Elbaph,place,medium,837,Elbaph Residents,,,wiki
+from-fish-man-island,Name someone from Fish-Man Island,place,medium,527,Fish-Man Island Characters,,,wiki
+from-foosha-village,Name someone from Foosha Village,place,easy,0,Foosha Village Characters,,,wiki
+from-god-valley,Name someone from God Valley,place,medium,957,God Valley Residents,,,wiki
+from-impel-down,Name someone from Impel Down,place,medium,151,Impel Down Staff|Impel Down Prisoners|Impel Down Level 6 Prisoners,,,wiki
+from-loguetown,Name someone from Loguetown,place,medium,48,Loguetown Residents,,,wiki
+from-marineford,Name someone from Marineford,place,medium,68,Marineford Residents,,,wiki
+from-newkama,Name someone from Newkama,place,medium,438,Newkama|Newkama Land Residents,,,wiki
+from-north-blue,Name someone from North Blue,place,medium,0,North Blue Residents,,,wiki
+from-onigashima,Name someone from Onigashima,place,medium,954,Onigashima Residents,,,wiki
+from-paradise,Name someone from Paradise,place,medium,392,Paradise Residents,,,wiki
+from-rainbase,Name someone from Rainbase,place,hard,106,Rainbase Residents,,,wiki
+from-sabaody-archipelago,Name someone from Sabaody Archipelago,place,medium,392,Sabaody Archipelago Residents,,,wiki
+from-skypiea,Name someone from Skypiea,place,medium,163,Shandia|Skypiea Characters|Jaya Residents,,,wiki
+from-syrup-village,Name someone from Syrup Village,place,medium,0,Syrup Village Characters,,,wiki
+from-the-fish-man-district,Name someone from the Fish-Man District,place,medium,527,Fish-Man District Characters,,,wiki
+from-the-land-of-gods-skypiea,Name someone from the Land of Gods (Skypiea),place,hard,1158,Land of Gods Residents,,,wiki
+from-the-new-world,Name someone from the New World,place,hard,632,New World Residents,,,wiki
+from-the-south-blue,Name someone from the South Blue,place,medium,81,South Blue Residents,,,wiki
+from-wano-country,Name someone from Wano Country,place,medium,909,Wano Country Residents,,,wiki
+from-water-7,Name someone from Water 7,place,hard,237,Water 7 Residents,,,wiki
+from-west-blue,Name someone from West Blue,place,medium,127,West Blue Residents,,,wiki
+from-whole-cake-island,Name someone from Whole Cake Island,place,hard,786,Whole Cake Island Residents,,,wiki
+from-zou,Name someone from Zou,place,medium,739,Zou Residents,,,wiki
+held-or-living-on-punk-hazard,Name someone held or living on Punk Hazard,place,hard,579,Punk Hazard Prisoners|Punk Hazard Residents,,,wiki
+centaur,Name a centaur,race,hard,593,Centaurs,,,wiki
+deity,Name a deity,race,medium,189,Deities,,,wiki
+hybrid-human-snake-neck-or-longarm,"Name a hybrid (human, snake-neck or longarm)",race,hard,786,Human Hybrids|Snakeneck Hybrids|Longarm Hybrids,,,wiki
+part-ancient-giant,Name a Part-Ancient Giant,race,hard,1172,Part-Ancient Giants,,,wiki
+sea-king,Name a Sea King,race,hard,55,Sea Kings,,,wiki
+world-noble-celestial-dragon,Name a World Noble (Celestial Dragon),race,medium,391,World Nobles|Mary Geoise Residents,,,wiki
+daimyo-of-wano,Name a daimyo of Wano,rank,medium,910,Daimyo,,,wiki
+donquixote-elite-officer-or-diamante-army-member,Name a Donquixote elite officer or Diamante Army member,rank,medium,632,Elite Officers|Diamante Army,,,wiki
+king-queen-or-ruler-past-or-present,"Name a king, queen or ruler, past or present",rank,medium,187,Kings|Former Kings|Rulers|Former Rulers|Queens|Queens Regnant,,,wiki
+marine-admiral-admiral-vice-admiral-or-rear-admiral,"Name a Marine admiral (Admiral, Vice Admiral or Rear Admiral)",rank,easy,151,Admirals|Marine Vice Admirals|Marine Rear Admirals,,,wiki
+marine-base-commander,Name a Marine base commander,rank,medium,421,Marine Base Commanders,,,wiki
+marine-commodore-or-commander,Name a Marine Commodore or Commander,rank,medium,0,Marine Commodores|Marine Commanders,,,wiki
+marine-vice-admiral,Name a Marine Vice Admiral,rank,medium,151,Marine Vice Admirals,,,wiki
+pirate-admiral,Name a Pirate Admiral,rank,medium,425,Pirate Admirals,,,wiki
+pirate-captain-past-or-present,"Name a Pirate Captain, past or present",rank,easy,0,Pirate Captains|Former Pirate Captains,,,wiki
+pirate-officer-past-or-present,"Name a pirate officer, past or present",rank,medium,31,Pirate Officers|Former Pirate Officers,,,wiki
+revolutionary-army-commander-or-deputy,Name a Revolutionary Army commander or deputy,rank,medium,880,Revolutionary Army Commanders|Revolutionary Army Deputy Commanders,,,wiki
+totto-land-minister,Name a Totto Land Minister,rank,hard,789,Totto Land Ministers,,,wiki
+bandit-or-kidnapper,Name a bandit or kidnapper,role,hard,0,Bandits|Kidnappers,,,wiki
+bounty-hunter-past-or-present,"Name a bounty hunter, past or present",role,medium,64,Bounty Hunters|Former Bounty Hunters,,,wiki
+former-assassin,Name a former assassin,role,easy,230,Former Assassins,,,wiki
+gangster-or-yakuza,Name a gangster or yakuza,role,medium,394,Gangsters|Yakuza,,,wiki
+maul-user,Name a maul user,role,hard,1123,Maul Users,,,wiki
+pirate-apprentice,Name a pirate apprentice,role,medium,736,Pirate Apprentices,,,wiki
+pistol-user,Name a pistol user,role,medium,0,Pistol Users,,,wiki
+police-officer,Name a police officer,role,hard,882,Police,,,wiki
+queen,Name a queen,role,hard,778,Queens,,,wiki
+religious-worker,Name a religious worker,role,medium,421,Religious Workers,,,wiki
+royal-guard-past-or-present,"Name a Royal Guard, past or present",role,medium,430,Former Royal Guards|Royal Guards,,,wiki
+scythe-user,Name a scythe user,role,hard,809,Scythe Users,,,wiki
+servant-past-or-present,"Name a servant, past or present",role,hard,411,Servants|Former Servants,,,wiki
+ship-navigator,Name a ship navigator,role,medium,151,Navigators,,,wiki
+shopkeeper,Name a shopkeeper,role,hard,0,Shopkeepers,,,wiki
+smith,Name a smith,role,hard,894,Smiths,,,wiki
+staff-officer,Name a staff officer,role,hard,634,Staff Officers,,,wiki
+trident-user,Name a trident user,role,easy,431,Trident Users,,,wiki
+wano-government-official,Name a Wano government official,role,medium,893,Wano Government Officials,,,wiki
+artificial-devil-fruit-user,Name an artificial Devil Fruit user,role,hard,1094,Artificial Devil Fruit Users,,,wiki
+inanimate-zoan-user,Name an Inanimate Zoan user,role,hard,1160,Inanimate Zoan Users,,,wiki
+undercover-operator,Name an undercover operator,role,medium,0,Undercover Operators,,,wiki
+underworld-broker,Name an underworld broker,role,hard,570,Brokers,,,wiki
+underworld-emperor,Name an Underworld Emperor,role,hard,828,Underworld Emperors,,,wiki
+cover-story-antagonist,Name a Cover Story antagonist,saga,medium,225,Cover Story Antagonists,,,wiki
+dressrosa-saga-antagonist,Name a Dressrosa saga antagonist,saga,medium,575,Dressrosa Saga Antagonists,,,wiki
+final-saga-antagonist,Name a Final Saga antagonist,saga,medium,1086,Final Saga Antagonists,,,wiki
+fish-man-island-saga-antagonist,Name a Fish-Man Island saga antagonist,saga,medium,517,Fish-Man Island Saga Antagonists,,,wiki
+summit-war-saga-antagonist,Name a Summit War saga antagonist,saga,medium,385,Summit War Saga Antagonists,,,wiki
+villain-from-a-flashback-story,Name a villain from a flashback story,saga,medium,79,Flashback Antagonists,,,wiki
+villain-from-the-arabasta-saga,Name a villain from the Arabasta Saga,saga,easy,62,Arabasta Saga Antagonists,,,wiki
+villain-from-the-east-blue-saga,Name a villain from the East Blue Saga,saga,easy,0,East Blue Saga Antagonists,,,wiki
+villain-from-the-skypiea-saga,Name a villain from the Skypiea Saga,saga,medium,146,Sky Island Saga Antagonists,,,wiki
+wano-country-saga-antagonist,Name a Wano Country saga antagonist,saga,easy,890,Wano Country Saga Antagonists,,,wiki
+water-7-saga-antagonist,Name a Water 7 saga antagonist,saga,easy,207,Water 7 Saga Antagonists,,,wiki
+whole-cake-island-saga-antagonist,Name a Whole Cake Island saga antagonist,saga,medium,747,Whole Cake Island Saga Antagonists,,,wiki
+donquixote-pirates-toy,Name a Donquixote Pirates toy,status,hard,632,Donquixote Pirates Slaves|Toys,,,wiki
+former-impel-down-prisoner,Name a former Impel Down prisoner,status,easy,103,Former Impel Down Prisoners|Former Impel Down Level 6 Prisoners,,,wiki
+former-king,Name a former king,status,hard,884,Former Kings,,,wiki
+former-mary-geoise-slave,Name a former Mary Geoise slave,status,medium,540,Former Mary Geoise Slaves,,,wiki
+former-mercenary,Name a former mercenary,status,hard,880,Former Mercenaries,,,wiki
+former-minister,Name a former minister,status,hard,783,Former Ministers,,,wiki
+former-pirate-past-or-present,"Name a former pirate, past or present",status,medium,0,Former Pirates|Former Pirate Captains|Former Pirate Officers,,,wiki
+former-prince,Name a former prince,status,medium,632,Former Princes,,,wiki
+former-princess,Name a former princess,status,hard,879,Former Princesses,,,wiki
+former-slave,Name a former slave,status,medium,0,Former Slaves,,,wiki
+former-thief,Name a former thief,status,easy,456,Former Thieves,,,wiki
+prisoner-mine-prisoner,Name a Prisoner Mine prisoner,status,medium,910,Prisoner Mine Prisoners|Beasts Pirates Slaves,,,wiki
+prisoner-of-the-marines-past-or-present,"Name a prisoner of the Marines, past or present",status,medium,31,Marine Prisoners|Former Marine Prisoners,,,wiki
+prisoner-past-or-present,"Name a prisoner, past or present",status,medium,343,Former Prisoners|Prisoners,,,wiki
+cp9-agent-who-fights-with-six-powers,Name a CP9 agent who fights with Six Powers,technique,medium,260,,rob-lucci|kaku|blueno|jabra|fukurou,,claude
+big-mom-pirates-sweet-commander,Name a Big Mom Pirates Sweet Commander,title,medium,783,,charlotte-katakuri|charlotte-cracker|charlotte-smoothie|charlotte-oven|charlotte-perospero,,claude
+donquixote-pirates-executive,Name a Donquixote Pirates executive,title,medium,629,,trebol|diamante|pica|vergo|machvise,,claude
+whitebeard-pirates-division-commander,Name a Whitebeard Pirates division commander,title,hard,151,,polo-marco|jozu|vista|izou|portgas-d-ace|haruta|atmos|blamenco|fossa,,claude
+worst-generation-captain,Name a Worst Generation captain,title,easy,392,,monkey-d-luffy|trafalgar-d-water-law|eustass-kid|x-drake|scratchmen-apoo|jewelry-bonney|basil-hawkins|capone-bege,,claude
+yonko-commander-past-or-present,"Name a Yonko commander, past or present",title,medium,151,,polo-marco|jozu|vista|izou|portgas-d-ace|charlotte-katakuri|charlotte-cracker|charlotte-smoothie|charlotte-oven|charlotte-perospero|king|queen|jack|ulti|page-one,,claude
