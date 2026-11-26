@@ -296,7 +296,7 @@
     for (const q of combos.list) if (!seen.has(q.text)) { seen.add(q.text); playable.push(q); }
     // How hard a prompt is: lots of right answers = easy; few answers, two conditions or
     // name/letter puzzles = hard. A prompt can set difficulty: "easy" | "medium" | "hard" itself.
-    for (const q of playable) if (!q.difficulty) q.difficulty = rateDifficulty(q);
+    for (const q of playable) if (!q.difficulty) q.difficulty = rateDifficulty(q, data);
     // tiers are worked out the first time a prompt is actually used
     for (const q of playable) {
       let cache = null;
@@ -306,14 +306,18 @@
   }
 
   const NAME_FIELDS = /^name_|^will_of_d$/;
-  function rateDifficulty(q) {
+  function rateDifficulty(q, data) {
     const n = q.answers.length;
     const conds = [...(q.where || []), ...((q.anyOf || [])[0] || [])];
     const wordy = conds.some(([f]) => NAME_FIELDS.test(f)) || /letter|initial/i.test(q.text);
     let level = n >= 40 ? 0 : n >= 15 ? 1 : 2;
-    // identity prompts ("Name a member of the Straw Hat Pirates") are easy once enough well-known
-    // characters can answer, even if the group is small: easyAt = that many answers in the pool
-    if (q.easyAt && n >= q.easyAt) level = 0;
+    // identity prompts ("Name a member of the Straw Hat Pirates") are easy once enough WELL-KNOWN
+    // (difficulty "easy") characters can answer, even if the group is small. Counting every answer
+    // would make any crew with 6 obscure members easy on the medium and hard settings.
+    if (q.easyAt && data) {
+      const known = q.answers.filter(id => ((data.byId.get(id) || {}).difficulty || "hard") === "easy").length;
+      if (known >= q.easyAt) level = 0;
+    }
     if (q.combo || conds.length >= 2) level += 1;
     if (wordy) level += 1;
     return ["easy", "medium", "hard"][Math.min(2, level)];

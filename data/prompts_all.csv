@@ -1565,8 +1565,6 @@ Name a character who appeared in the first 50 manga chapters,single,debut-ch,204
 Name a character who appeared in the first 100 manga chapters,single,debut-ch,246,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
 Name a character who appeared in the first 300 manga chapters,single,debut-ch,457,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Tony Tony Chopper
 Name a character who appeared in the first 600 manga chapters,single,debut-ch,838,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Tony Tony Chopper
-Name a Revolutionary Army leader,single,bank:bond,6,yes,Sabo | Emporio Ivankov | Monkey D. Dragon | Morley | Belo Betty
-Name someone who sailed with Gol D. Roger,single,bank:bond,8,yes,Buggy | Shanks | Kouzuki Oden | Silvers Rayleigh | Benn Beckman
 Name a Big Mom Pirates member,single,bank:crew,19,yes,Charlotte Linlin | Pekoms | Tamago | Streusen | Napoleon
 Name a Blackbeard Pirates member,single,bank:crew,7,yes,Marshall D. Teach | Peachbeard | Stronger | Camel | Kikipatsu
 Name a Buggy Pirates member,single,bank:crew,7,yes,Buggy | Galdino | Cabaji | Richie | Mohji
@@ -1584,7 +1582,6 @@ Name a Tontatta Pirate,single,bank:crew,18,yes,Leo | Kabu | Bian | Flapper | Inh
 "Name a Whitebeard Pirate, past or present",single,bank:crew,29,yes,Portgas D. Ace | Edward Newgate | Kouzuki Oden | Marshall D. Teach | Izou
 Name one of Big Mom's Homies,single,bank:crew,13,yes,Napoleon | Zeus | Kingbaum | Prometheus | Hera
 Name a Charlotte family member,single,bank:family,13,yes,Charlotte Linlin | Capone Bege | Aladine | Pound | Charlotte De-Chat
-Name a child of Big Mom,single,bank:family,10,yes,Charlotte Lola | Charlotte Cracker | Charlotte Pudding | Charlotte Katakuri | Charlotte Perospero
 Name a Donquixote family member,single,bank:family,5,yes,Donquixote Doflamingo | Donquixote Rosinante | Donquixote Mjosgard | Donquixote Homing | Donquixote Shivercalero
 Name a Kouzuki family member,single,bank:family,11,yes,Kouzuki Oden | Kouzuki Momonosuke | Kurozumi Kanjuro | Kurozumi Orochi | Kouzuki Toki
 Name a Kouzuki family subordinate,single,bank:family,19,yes,Izou | Kakunoshin | Jujiro | Kojuro | Kurosawa
@@ -1594,9 +1591,7 @@ Name a Riku family member,single,bank:family,5,yes,Rebecca | Viola | Kyros | Rik
 Name a Shimotsuki family member,single,bank:family,12,yes,Roronoa Zoro | Shimotsuki Ryuma | Shimotsuki Furiko | Shimotsuki Ushimaru | Roronoa Arashi
 Name a Vinsmoke child,single,bank:family,5,yes,Sanji | Vinsmoke Reiju | Vinsmoke Niji | Vinsmoke Yonji | Vinsmoke Ichiji
 Name a Vinsmoke family member,single,bank:family,6,yes,Sanji | Vinsmoke Reiju | Vinsmoke Niji | Vinsmoke Yonji | Vinsmoke Ichiji
-Name someone Whitebeard called a son,single,bank:family,6,yes,Portgas D. Ace | Izou | Polo Marco | Jozu | Vista
-Name someone who raised a Straw Hat,single,bank:family,5,yes,Monkey D. Garp | Zeff | Bell-mère | Curly Dadan | Kureha
-Name a Shichibukai who ate a Devil Fruit,single,bank:fruit,6,yes,Crocodile | Donquixote Doflamingo | Bartholomew Kuma | Buggy | Gecko Moria
+Name a Shichibukai who ate a Devil Fruit,single,bank:fruit,8,yes,Trafalgar D. Water Law | Crocodile | Donquixote Doflamingo | Bartholomew Kuma | Buggy
 Name a Straw Hat who never ate a Devil Fruit,single,bank:fruit,6,yes,Roronoa Zoro | Sanji | Nami | Usopp | Franky
 Name a 153rd Branch Marine,single,bank:org,7,yes,Koby | Helmeppo | Morgan | Ripper | Rokkaku
 Name a Baroque Works agent,single,bank:org,5,yes,Nico Robin | Crocodile | Lassoo | Karoo | Banchi
@@ -1614,7 +1609,6 @@ Name a member of the Arabasta Rebel Army,single,bank:org,7,yes,Nefertari Vivi | 
 Name a Mimawarigumi member,single,bank:org,6,yes,Gurutaro | Gangaru | Himuro | Hotei | Garudan
 Name a Pacifista or Clone,single,bank:org,7,yes,Bartholomew Kuma | Stussy | S-Hawk | S-Shark | S-Bear
 Name an Oniwabanshu member,single,bank:org,7,yes,Raizo | Shinobu | Fukurokuju | Daikoku | Hanzo
-Name someone born in the East Blue who isn't a Straw Hat,single,bank:origin,6,yes,Koby | Helmeppo | Alvida | Bell-mère | Morgan
 Name a Corrida Colosseum fighter,single,bank:other,21,yes,Monkey D. Luffy | Bartolomeo | Bellamy | Sai | Chinjao
 Name a bazooka user,single,bank:other,15,yes,Nefertari Vivi | Wapol | Absalom | Fisher Tiger | Babe
 Name a blade user,single,bank:other,7,yes,Nefertari Vivi | Jango | Hody Jones | Yamanba | Charlotte Compo
@@ -1728,12 +1722,9 @@ Name a former thief,single,bank:status,10,yes,Monkey D. Luffy | Portgas D. Ace |
 Name a Prisoner Mine prisoner,single,bank:status,13,yes,Monkey D. Luffy | Caribou | Eustass Kid | Hyougoro | Kawamatsu
 "Name a prisoner of the Marines, past or present",single,bank:status,46,yes,Roronoa Zoro | Caesar Clown | Kaidou | Hatchan | Monkey D. Dragon
 "Name a prisoner, past or present",single,bank:status,18,yes,Sanji | Bartholomew Kuma | Monkey D. Garp | Gecko Moria | Koby
-Name a CP9 agent who fights with Six Powers,single,bank:technique,5,yes,Kaku | Rob Lucci | Blueno | Jabra | Fukurou
-Name a Big Mom Pirates Sweet Commander,single,bank:title,5,yes,Charlotte Cracker | Charlotte Katakuri | Charlotte Perospero | Charlotte Smoothie | Charlotte Oven
-Name a Donquixote Pirates executive,single,bank:title,5,yes,Diamante | Vergo | Pica | Machvise | Trebol
-Name a Whitebeard Pirates division commander,single,bank:title,9,yes,Portgas D. Ace | Izou | Polo Marco | Jozu | Vista
-Name a Worst Generation captain,single,bank:title,8,yes,Monkey D. Luffy | Trafalgar D. Water Law | X Drake | Scratchmen Apoo | Basil Hawkins
-"Name a Yonko commander, past or present",single,bank:title,15,yes,Portgas D. Ace | Queen | Izou | Jack | King
+Name a CP9 agent who fights with Six Powers,single,bank:technique,8,yes,Kaku | Rob Lucci | Kalifa | Blueno | Jabra
+Name a Whitebeard Pirates division commander,single,bank:title,17,yes,Portgas D. Ace | Kouzuki Oden | Izou | Polo Marco | Jozu
+Name a Worst Generation captain,single,bank:title,10,yes,Monkey D. Luffy | Trafalgar D. Water Law | X Drake | Marshall D. Teach | Scratchmen Apoo
 Name a character with an eyepatch,tag (unused),tags:look,0,no,
 Name a character who only appears in filler,tag (unused),tags:meta,0,no,
 Name a character who wears a monocle,tag (unused),tags:look-face,0,no,
@@ -5034,82 +5025,82 @@ Name a Final Saga character who has died,combination,combo:status,18,yes,Neferta
 Name a Final Saga character with an epithet,combination,combo:epithet,14,yes,Loki | Manmayer Gunko | Emet | Marlon | Hanafuda
 Name a Final Saga character with fewer than 10 letters in their full name,combination,combo:name,94,yes,Loki | Kujaku | Harald | Hibari | Pomsky
 Name a Final Saga character with 5 letters or fewer in their full name,combination,combo:name,48,yes,Loki | S-Hawk | Urban | Hound | Doll
-Name a Arabasta Saga character with Black hair,combination,combo:hair,22,yes,Nico Robin | Portgas D. Ace | Crocodile | Galdino | Gem
-Name a Arabasta Saga character with Blond hair,combination,combo:hair,8,yes,Brogy | Mikita | Igaram | Babe | Yorki
-Name a Arabasta Saga character with Brown hair,combination,combo:hair,8,yes,Tony Tony Chopper | Bogard | Shine | Aswa | Maidy
-Name a Arabasta Saga character with White hair,combination,combo:hair,8,yes,Edward Newgate | Crocus | Kureha | Mr. 7 | Hiriluk
-Name a Arabasta Saga character who ate a Paramecia Devil Fruit,combination,combo:fruit,10,yes,Nico Robin | Edward Newgate | Bentham | Daz Bonez | Galdino
-Name a Arabasta Saga character who ate a Zoan Devil Fruit,combination,combo:fruit,6,yes,Tony Tony Chopper | Pell | Dalton | Lassoo | Chaka
-Name a Arabasta Saga character who never ate a Devil Fruit,combination,combo:fruit,95,yes,Monkey D. Garp | Nefertari Vivi | Dorry | Brogy | Igaram
-Name a Arabasta Saga character who can use Observation Haki,combination,combo:haki,5,yes,Portgas D. Ace | Crocodile | Edward Newgate | Monkey D. Garp | Crocus
-Name a Arabasta Saga character who fights with a sword,combination,combo:weapon,13,yes,Dorry | Pell | Chaka | Bogard | Miss Catherina
-Name a Arabasta Saga character who fights as a Swordsman,combination,combo:style,12,yes,Dorry | Pell | Chaka | Bogard | Miss Catherina
-Name a Arabasta Saga character who fights as an Explosives,combination,combo:style,5,yes,Monkey D. Garp | Lassoo | Hiriluk | Miss Friday | Mr. 13
-Name a Arabasta Saga character who's rarely seen without a hat,combination,combo:tag,12,yes,Tony Tony Chopper | Portgas D. Ace | Mikita | Pell | Marianne
-Name a Arabasta Saga character with long hair,combination,combo:tag,6,yes,Nico Robin | Nefertari Vivi | Hina | Nefertari Cobra | Erik
-Name a Arabasta Saga character who fought alongside Luffy,combination,combo:tag,5,yes,Portgas D. Ace | Crocodile | Bentham | Galdino | Nefertari Vivi
-Name a Arabasta Saga character beaten by a Straw Hat other than Luffy,combination,combo:tag,10,yes,Bentham | Daz Bonez | Mikita | Lassoo | Zala
-Name a Arabasta Saga character who towers over everyone,combination,combo:tag,6,yes,Edward Newgate | Dorry | Brogy | Raideen | Island Eater
-Name a Arabasta Saga character with a tattoo,combination,combo:tag,6,yes,Portgas D. Ace | Edward Newgate | Daz Bonez | Gem | Yorki
-Name a Arabasta Saga character who is an animal,combination,combo:tag,15,yes,Tony Tony Chopper | Lassoo | Karoo | Matsuge | Hasami
-Name a Arabasta Saga character with a visible scar,combination,combo:tag,5,yes,Crocodile | Edward Newgate | Monkey D. Garp | Pell | Makko
-Name a Arabasta Saga character with a wild or unusual hairstyle,combination,combo:tag,7,yes,Galdino | Igaram | Crocus | Akumai | Kuromarimo
-Name a Arabasta Saga character who is a doctor,combination,combo:tag,6,yes,Tony Tony Chopper | Crocus | Kureha | Hiriluk | Ho
-Name a Arabasta Saga character with a beard,combination,combo:tag,6,yes,Monkey D. Garp | Dorry | Brogy | Crocus | Nefertari Cobra
-Name a Arabasta Saga character with facial hair,combination,combo:tag,9,yes,Edward Newgate | Monkey D. Garp | Dorry | Brogy | Dalton
-Name a Arabasta Saga character who never loses their cool,combination,combo:tag,6,yes,Nico Robin | Crocodile | Daz Bonez | Zala | Bogard
-Name a Arabasta Saga character who is very arrogant,combination,combo:tag,5,yes,Crocodile | Wapol | Chess | Puppu | Kuromarimo
-Name a Arabasta Saga character who fought Luffy,combination,combo:tag,6,yes,Crocodile | Monkey D. Garp | Galdino | Wapol | Mikita
-Name a Arabasta Saga character Luffy beat in a fight,combination,combo:tag,5,yes,Crocodile | Galdino | Wapol | Mr. 9 | Kuromarimo
-Name a Arabasta Saga character with a unique laugh,combination,combo:tag,6,yes,Edward Newgate | Dorry | Brogy | Mikita | Kureha
-Name a Arabasta Saga character who used to be a pirate,combination,combo:tag,6,yes,Portgas D. Ace | Nefertari Vivi | Wapol | Crocus | Yorki
-Name a Arabasta Saga character who was locked up in Impel Down,combination,combo:tag,5,yes,Portgas D. Ace | Crocodile | Bentham | Daz Bonez | Galdino
-Name a Arabasta Saga character who is royalty,combination,combo:tag,8,yes,Bentham | Nefertari Vivi | Wapol | Dalton | Nefertari Cobra
-Name a Arabasta Saga character who escaped from prison,combination,combo:tag,7,yes,Crocodile | Daz Bonez | Galdino | Zala | Babe
-Name a Arabasta Saga character who plays music,combination,combo:tag,6,yes,Igaram | Yorki | BEZ | Minamiyama Semashi | RENmaru
-Name a Arabasta Saga character who starred in a manga cover story,combination,combo:tag,6,yes,Wapol | Zala | Babe | Drophy | Marianne
-Name a Arabasta Saga character who can transform,combination,combo:tag,6,yes,Tony Tony Chopper | Pell | Dalton | Lassoo | Chaka
-Name a Arabasta Saga character from a kingdom,combination,combo:tag,13,yes,Nefertari Vivi | Pell | Dalton | Igaram | Chaka
-Name a Arabasta Saga character who wears a coat draped over their shoulders,combination,combo:tag,5,yes,Crocodile | Edward Newgate | Monkey D. Garp | Chaka | Bogard
-Name a Arabasta Saga character who can turn into an animal,combination,combo:tag,6,yes,Tony Tony Chopper | Pell | Dalton | Lassoo | Chaka
-Name a Arabasta Saga character who protects an island or its people,combination,combo:tag,7,yes,Edward Newgate | Nefertari Vivi | Pell | Dalton | Igaram
-Name a Arabasta Saga character with A in their initials,combination,combo:name,6,yes,Portgas D. Ace | Akumai | Agotogi | Aswa | Louis Arnote
-Name a Arabasta Saga character with C in their initials,combination,combo:name,12,yes,Tony Tony Chopper | Crocodile | Chaka | Crocus | Nefertari Cobra
-Name a Arabasta Saga character with S in their initials,combination,combo:name,7,yes,Stomp | Mr. Shimizu | Shine | Miss Saturday | Samurai Batts
-Name a Arabasta Saga character with D in their initials,combination,combo:name,6,yes,Daz Bonez | Dorry | Dalton | Drophy | Miss Father's Day
-Name a Arabasta Saga character with K in their initials,combination,combo:name,9,yes,Karoo | Kureha | Kuromarimo | Kentauros | Koala Mercenaries
-Name a Arabasta Saga character with G in their initials,combination,combo:name,6,yes,Monkey D. Garp | Galdino | Gem | Tsumegeri Guards | Tomato Gang
-Name a Arabasta Saga character with B in their initials,combination,combo:name,12,yes,Bentham | Daz Bonez | Brogy | Babe | Bogard
-Name a Arabasta Saga character with M in their initials,combination,combo:name,21,yes,Monkey D. Garp | Mikita | Marianne | Miss Catherina | Matsuge
-Name a Arabasta Saga character with N in their initials,combination,combo:name,7,yes,Nico Robin | Edward Newgate | Nefertari Vivi | Nefertari Cobra | Nefertari Titi
-Name a Arabasta Saga character with P in their initials,combination,combo:name,6,yes,Portgas D. Ace | Pell | Puppu | Mr. 7 (Previous) | Potsun
-Name a Arabasta Saga character with H in their initials,combination,combo:name,7,yes,Hina | Hasami | Hiriluk | Marine Headquarters Court | Hikoichi
-Name a Arabasta Saga character with R in their initials,combination,combo:name,5,yes,Nico Robin | Raideen | Robson | RENmaru | RYU-HEY
-Name a Arabasta Saga character with T in their initials,combination,combo:name,10,yes,Tony Tony Chopper | Tsumegeri Guards | Nefertari Titi | Terracotta | Toto
-Name a Arabasta Saga character with L in their initials,combination,combo:name,6,yes,Lassoo | Love | Laboon | Mr. Love | Thalassa Lucas
-Name a Arabasta Saga character with the letter W in their name,combination,combo:name,5,yes,Edward Newgate | Wapol | Cowboy | Aswa | Mr. Mellow
-Name a Arabasta Saga character with the letter Y in their name,combination,combo:name,21,yes,Tony Tony Chopper | Monkey D. Garp | Dorry | Brogy | Drophy
-Name a Arabasta Saga character with the letter Z in their name,combination,combo:name,5,yes,Daz Bonez | Zala | Koza | Mr. Shimizu | BEZ
-Name a Arabasta Saga character with the letter K in their name,combination,combo:name,23,yes,Monkey D. Garp | Mikita | Chaka | Karoo | Kureha
-Name a Arabasta Saga character with the letter V in their name,combination,combo:name,6,yes,Nefertari Vivi | Mr. 7 (Previous) | Ivan X | Love | Mr. Love
-Name a Arabasta Saga character from the West Blue,combination,combo:sea,6,yes,Nico Robin | Daz Bonez | Mikita | Hina | Banchi
-Name a Arabasta Saga character from the Grand Line,combination,combo:sea,58,yes,Tony Tony Chopper | Crocodile | Edward Newgate | Nefertari Vivi | Dorry
-Name a Arabasta Saga character born in January,combination,combo:birthday,7,yes,Portgas D. Ace | Daz Bonez | Lassoo | Miss Monday | Kuromarimo
-Name a Arabasta Saga character born in December,combination,combo:birthday,7,yes,Tony Tony Chopper | Igaram | Drophy | Akumai | Mr. Shimizu
-Name a Arabasta Saga character born in November,combination,combo:birthday,5,yes,Karoo | Mr. 11 | Raideen | Brontosaurus | Negikuma Maria
-Name a Arabasta Saga character born in June,combination,combo:birthday,6,yes,Dalton | Babe | Crocus | Miss Father's Day | Toto
-Name a Arabasta Saga character born in February,combination,combo:birthday,6,yes,Nico Robin | Nefertari Vivi | Brogy | Mikita | Nefertari Cobra
-Name a Arabasta Saga character born in April,combination,combo:birthday,5,yes,Edward Newgate | Chaka | Marianne | Yorki | Island Eater
-Name a Arabasta Saga character born in September,combination,combo:birthday,5,yes,Crocodile | Mr. 9 | Kureha | Terracotta | Laboon
-Name a Arabasta Saga character taller than 3 meters,combination,combo:height,5,yes,Edward Newgate | Dorry | Brogy | Island Eater | Laboon
-Name a Arabasta Saga character shorter than 1.7 meters,combination,combo:height,9,yes,Tony Tony Chopper | Nefertari Vivi | Drophy | Marianne | Karoo
-Name a Arabasta Saga character with a bounty over 100 million,combination,combo:bounty,8,yes,Nico Robin | Portgas D. Ace | Crocodile | Edward Newgate | Monkey D. Garp
-Name a Arabasta Saga character with a bounty over 1 billion,combination,combo:bounty,5,yes,Crocodile | Edward Newgate | Monkey D. Garp | Dorry | Brogy
-Name a Arabasta Saga character who has died,combination,combo:status,10,yes,Portgas D. Ace | Edward Newgate | Nefertari Cobra | Tsumegeri Guards | Mr. 7 (Previous)
-Name a Arabasta Saga character with an epithet,combination,combo:epithet,23,yes,Tony Tony Chopper | Nico Robin | Portgas D. Ace | Crocodile | Edward Newgate
-Name a Arabasta Saga character with fewer than 10 letters in their full name,combination,combo:name,79,yes,Nico Robin | Crocodile | Bentham | Daz Bonez | Galdino
-Name a Arabasta Saga character with 5 letters or fewer in their full name,combination,combo:name,39,yes,Dorry | Brogy | Wapol | Gem | Pell
-Name a Arabasta Saga character with more than 15 letters in their full name,combination,combo:name,5,yes,Marine Headquarters Court | Koala Mercenaries | Goldfish Princess | Minamiyama Semashi | Headband Catfish Village Elder
+Name an Arabasta Saga character with Black hair,combination,combo:hair,22,yes,Nico Robin | Portgas D. Ace | Crocodile | Galdino | Gem
+Name an Arabasta Saga character with Blond hair,combination,combo:hair,8,yes,Brogy | Mikita | Igaram | Babe | Yorki
+Name an Arabasta Saga character with Brown hair,combination,combo:hair,8,yes,Tony Tony Chopper | Bogard | Shine | Aswa | Maidy
+Name an Arabasta Saga character with White hair,combination,combo:hair,8,yes,Edward Newgate | Crocus | Kureha | Mr. 7 | Hiriluk
+Name an Arabasta Saga character who ate a Paramecia Devil Fruit,combination,combo:fruit,10,yes,Nico Robin | Edward Newgate | Bentham | Daz Bonez | Galdino
+Name an Arabasta Saga character who ate a Zoan Devil Fruit,combination,combo:fruit,6,yes,Tony Tony Chopper | Pell | Dalton | Lassoo | Chaka
+Name an Arabasta Saga character who never ate a Devil Fruit,combination,combo:fruit,95,yes,Monkey D. Garp | Nefertari Vivi | Dorry | Brogy | Igaram
+Name an Arabasta Saga character who can use Observation Haki,combination,combo:haki,5,yes,Portgas D. Ace | Crocodile | Edward Newgate | Monkey D. Garp | Crocus
+Name an Arabasta Saga character who fights with a sword,combination,combo:weapon,13,yes,Dorry | Pell | Chaka | Bogard | Miss Catherina
+Name an Arabasta Saga character who fights as a Swordsman,combination,combo:style,12,yes,Dorry | Pell | Chaka | Bogard | Miss Catherina
+Name an Arabasta Saga character who fights as an Explosives,combination,combo:style,5,yes,Monkey D. Garp | Lassoo | Hiriluk | Miss Friday | Mr. 13
+Name an Arabasta Saga character who's rarely seen without a hat,combination,combo:tag,12,yes,Tony Tony Chopper | Portgas D. Ace | Mikita | Pell | Marianne
+Name an Arabasta Saga character with long hair,combination,combo:tag,6,yes,Nico Robin | Nefertari Vivi | Hina | Nefertari Cobra | Erik
+Name an Arabasta Saga character who fought alongside Luffy,combination,combo:tag,5,yes,Portgas D. Ace | Crocodile | Bentham | Galdino | Nefertari Vivi
+Name an Arabasta Saga character beaten by a Straw Hat other than Luffy,combination,combo:tag,10,yes,Bentham | Daz Bonez | Mikita | Lassoo | Zala
+Name an Arabasta Saga character who towers over everyone,combination,combo:tag,6,yes,Edward Newgate | Dorry | Brogy | Raideen | Island Eater
+Name an Arabasta Saga character with a tattoo,combination,combo:tag,6,yes,Portgas D. Ace | Edward Newgate | Daz Bonez | Gem | Yorki
+Name an Arabasta Saga character who is an animal,combination,combo:tag,15,yes,Tony Tony Chopper | Lassoo | Karoo | Matsuge | Hasami
+Name an Arabasta Saga character with a visible scar,combination,combo:tag,5,yes,Crocodile | Edward Newgate | Monkey D. Garp | Pell | Makko
+Name an Arabasta Saga character with a wild or unusual hairstyle,combination,combo:tag,7,yes,Galdino | Igaram | Crocus | Akumai | Kuromarimo
+Name an Arabasta Saga character who is a doctor,combination,combo:tag,6,yes,Tony Tony Chopper | Crocus | Kureha | Hiriluk | Ho
+Name an Arabasta Saga character with a beard,combination,combo:tag,6,yes,Monkey D. Garp | Dorry | Brogy | Crocus | Nefertari Cobra
+Name an Arabasta Saga character with facial hair,combination,combo:tag,9,yes,Edward Newgate | Monkey D. Garp | Dorry | Brogy | Dalton
+Name an Arabasta Saga character who never loses their cool,combination,combo:tag,6,yes,Nico Robin | Crocodile | Daz Bonez | Zala | Bogard
+Name an Arabasta Saga character who is very arrogant,combination,combo:tag,5,yes,Crocodile | Wapol | Chess | Puppu | Kuromarimo
+Name an Arabasta Saga character who fought Luffy,combination,combo:tag,6,yes,Crocodile | Monkey D. Garp | Galdino | Wapol | Mikita
+Name an Arabasta Saga character Luffy beat in a fight,combination,combo:tag,5,yes,Crocodile | Galdino | Wapol | Mr. 9 | Kuromarimo
+Name an Arabasta Saga character with a unique laugh,combination,combo:tag,6,yes,Edward Newgate | Dorry | Brogy | Mikita | Kureha
+Name an Arabasta Saga character who used to be a pirate,combination,combo:tag,6,yes,Portgas D. Ace | Nefertari Vivi | Wapol | Crocus | Yorki
+Name an Arabasta Saga character who was locked up in Impel Down,combination,combo:tag,5,yes,Portgas D. Ace | Crocodile | Bentham | Daz Bonez | Galdino
+Name an Arabasta Saga character who is royalty,combination,combo:tag,8,yes,Bentham | Nefertari Vivi | Wapol | Dalton | Nefertari Cobra
+Name an Arabasta Saga character who escaped from prison,combination,combo:tag,7,yes,Crocodile | Daz Bonez | Galdino | Zala | Babe
+Name an Arabasta Saga character who plays music,combination,combo:tag,6,yes,Igaram | Yorki | BEZ | Minamiyama Semashi | RENmaru
+Name an Arabasta Saga character who starred in a manga cover story,combination,combo:tag,6,yes,Wapol | Zala | Babe | Drophy | Marianne
+Name an Arabasta Saga character who can transform,combination,combo:tag,6,yes,Tony Tony Chopper | Pell | Dalton | Lassoo | Chaka
+Name an Arabasta Saga character from a kingdom,combination,combo:tag,13,yes,Nefertari Vivi | Pell | Dalton | Igaram | Chaka
+Name an Arabasta Saga character who wears a coat draped over their shoulders,combination,combo:tag,5,yes,Crocodile | Edward Newgate | Monkey D. Garp | Chaka | Bogard
+Name an Arabasta Saga character who can turn into an animal,combination,combo:tag,6,yes,Tony Tony Chopper | Pell | Dalton | Lassoo | Chaka
+Name an Arabasta Saga character who protects an island or its people,combination,combo:tag,7,yes,Edward Newgate | Nefertari Vivi | Pell | Dalton | Igaram
+Name an Arabasta Saga character with A in their initials,combination,combo:name,6,yes,Portgas D. Ace | Akumai | Agotogi | Aswa | Louis Arnote
+Name an Arabasta Saga character with C in their initials,combination,combo:name,12,yes,Tony Tony Chopper | Crocodile | Chaka | Crocus | Nefertari Cobra
+Name an Arabasta Saga character with S in their initials,combination,combo:name,7,yes,Stomp | Mr. Shimizu | Shine | Miss Saturday | Samurai Batts
+Name an Arabasta Saga character with D in their initials,combination,combo:name,6,yes,Daz Bonez | Dorry | Dalton | Drophy | Miss Father's Day
+Name an Arabasta Saga character with K in their initials,combination,combo:name,9,yes,Karoo | Kureha | Kuromarimo | Kentauros | Koala Mercenaries
+Name an Arabasta Saga character with G in their initials,combination,combo:name,6,yes,Monkey D. Garp | Galdino | Gem | Tsumegeri Guards | Tomato Gang
+Name an Arabasta Saga character with B in their initials,combination,combo:name,12,yes,Bentham | Daz Bonez | Brogy | Babe | Bogard
+Name an Arabasta Saga character with M in their initials,combination,combo:name,21,yes,Monkey D. Garp | Mikita | Marianne | Miss Catherina | Matsuge
+Name an Arabasta Saga character with N in their initials,combination,combo:name,7,yes,Nico Robin | Edward Newgate | Nefertari Vivi | Nefertari Cobra | Nefertari Titi
+Name an Arabasta Saga character with P in their initials,combination,combo:name,6,yes,Portgas D. Ace | Pell | Puppu | Mr. 7 (Previous) | Potsun
+Name an Arabasta Saga character with H in their initials,combination,combo:name,7,yes,Hina | Hasami | Hiriluk | Marine Headquarters Court | Hikoichi
+Name an Arabasta Saga character with R in their initials,combination,combo:name,5,yes,Nico Robin | Raideen | Robson | RENmaru | RYU-HEY
+Name an Arabasta Saga character with T in their initials,combination,combo:name,10,yes,Tony Tony Chopper | Tsumegeri Guards | Nefertari Titi | Terracotta | Toto
+Name an Arabasta Saga character with L in their initials,combination,combo:name,6,yes,Lassoo | Love | Laboon | Mr. Love | Thalassa Lucas
+Name an Arabasta Saga character with the letter W in their name,combination,combo:name,5,yes,Edward Newgate | Wapol | Cowboy | Aswa | Mr. Mellow
+Name an Arabasta Saga character with the letter Y in their name,combination,combo:name,21,yes,Tony Tony Chopper | Monkey D. Garp | Dorry | Brogy | Drophy
+Name an Arabasta Saga character with the letter Z in their name,combination,combo:name,5,yes,Daz Bonez | Zala | Koza | Mr. Shimizu | BEZ
+Name an Arabasta Saga character with the letter K in their name,combination,combo:name,23,yes,Monkey D. Garp | Mikita | Chaka | Karoo | Kureha
+Name an Arabasta Saga character with the letter V in their name,combination,combo:name,6,yes,Nefertari Vivi | Mr. 7 (Previous) | Ivan X | Love | Mr. Love
+Name an Arabasta Saga character from the West Blue,combination,combo:sea,6,yes,Nico Robin | Daz Bonez | Mikita | Hina | Banchi
+Name an Arabasta Saga character from the Grand Line,combination,combo:sea,58,yes,Tony Tony Chopper | Crocodile | Edward Newgate | Nefertari Vivi | Dorry
+Name an Arabasta Saga character born in January,combination,combo:birthday,7,yes,Portgas D. Ace | Daz Bonez | Lassoo | Miss Monday | Kuromarimo
+Name an Arabasta Saga character born in December,combination,combo:birthday,7,yes,Tony Tony Chopper | Igaram | Drophy | Akumai | Mr. Shimizu
+Name an Arabasta Saga character born in November,combination,combo:birthday,5,yes,Karoo | Mr. 11 | Raideen | Brontosaurus | Negikuma Maria
+Name an Arabasta Saga character born in June,combination,combo:birthday,6,yes,Dalton | Babe | Crocus | Miss Father's Day | Toto
+Name an Arabasta Saga character born in February,combination,combo:birthday,6,yes,Nico Robin | Nefertari Vivi | Brogy | Mikita | Nefertari Cobra
+Name an Arabasta Saga character born in April,combination,combo:birthday,5,yes,Edward Newgate | Chaka | Marianne | Yorki | Island Eater
+Name an Arabasta Saga character born in September,combination,combo:birthday,5,yes,Crocodile | Mr. 9 | Kureha | Terracotta | Laboon
+Name an Arabasta Saga character taller than 3 meters,combination,combo:height,5,yes,Edward Newgate | Dorry | Brogy | Island Eater | Laboon
+Name an Arabasta Saga character shorter than 1.7 meters,combination,combo:height,9,yes,Tony Tony Chopper | Nefertari Vivi | Drophy | Marianne | Karoo
+Name an Arabasta Saga character with a bounty over 100 million,combination,combo:bounty,8,yes,Nico Robin | Portgas D. Ace | Crocodile | Edward Newgate | Monkey D. Garp
+Name an Arabasta Saga character with a bounty over 1 billion,combination,combo:bounty,5,yes,Crocodile | Edward Newgate | Monkey D. Garp | Dorry | Brogy
+Name an Arabasta Saga character who has died,combination,combo:status,10,yes,Portgas D. Ace | Edward Newgate | Nefertari Cobra | Tsumegeri Guards | Mr. 7 (Previous)
+Name an Arabasta Saga character with an epithet,combination,combo:epithet,23,yes,Tony Tony Chopper | Nico Robin | Portgas D. Ace | Crocodile | Edward Newgate
+Name an Arabasta Saga character with fewer than 10 letters in their full name,combination,combo:name,79,yes,Nico Robin | Crocodile | Bentham | Daz Bonez | Galdino
+Name an Arabasta Saga character with 5 letters or fewer in their full name,combination,combo:name,39,yes,Dorry | Brogy | Wapol | Gem | Pell
+Name an Arabasta Saga character with more than 15 letters in their full name,combination,combo:name,5,yes,Marine Headquarters Court | Koala Mercenaries | Goldfish Princess | Minamiyama Semashi | Headband Catfish Village Elder
 Name a Fish-Man Island Saga character with Black hair,combination,combo:hair,18,yes,Caribou | Aladine | Hyouzou | Hody Jones | Vander Decken IX
 Name a Fish-Man Island Saga character with Blond hair,combination,combo:hair,9,yes,Pekoms | Kadar | Otohime | Drip | Minister of the Left
 Name a Fish-Man Island Saga character with Brown hair,combination,combo:hair,10,yes,Koala | Charlotte Pudding | Manboshi | Pike | Muti
@@ -5425,115 +5416,115 @@ Name a Sky Island Saga character who has died,combination,combo:status,14,yes,Ja
 Name a Sky Island Saga character with an epithet,combination,combo:epithet,29,yes,Donquixote Doflamingo | Bartholomew Kuma | Marshall D. Teach | Sengoku | Polo Marco
 Name a Sky Island Saga character with fewer than 10 letters in their full name,combination,combo:name,72,yes,Sengoku | Polo Marco | Bellamy | Tsuru | Doc Q
 Name a Sky Island Saga character with 5 letters or fewer in their full name,combination,combo:name,34,yes,Tsuru | Doc Q | Jozu | Enel | Ohm
-Name a East Blue Saga character with Green hair,combination,combo:hair,7,yes,Roronoa Zoro | Sham | Brannew | Cabaji | Gaimon
-Name a East Blue Saga character with Black hair,combination,combo:hair,41,yes,Monkey D. Luffy | Usopp | Monkey D. Dragon | Dracule Mihawk | Gol D. Roger
-Name a East Blue Saga character with Blond hair,combination,combo:hair,18,yes,Sanji | Helmeppo | Zeff | Yasopp | Chew
-Name a East Blue Saga character with Brown hair,combination,combo:hair,27,yes,John Giant | Craven | Merlin | Ripper | Mashikaku
-Name a East Blue Saga character with Purple hair,combination,combo:hair,6,yes,Pudding Pudding | Koze and Packy | Ideaman | Ninjin | Hocker
-Name a East Blue Saga character with Blue hair,combination,combo:hair,5,yes,Buggy | Nojiko | Shimotsuki Kuina | Damian | Jackie
-Name a East Blue Saga character with Gray hair,combination,combo:hair,10,yes,Hatchan | Jango | Krieg | Benn Beckman | Gally
-Name a East Blue Saga character with White hair,combination,combo:hair,8,yes,Smoker | Silvers Rayleigh | Scopper Gaban | Merry | Pearl
-Name a East Blue Saga character with Bald hair,combination,combo:hair,8,yes,Bonk Punch | Sekken De Tearai | Kagikko | Sekken De Tearai Jr. | Gachayama Gachao
-Name a East Blue Saga character who ate a Paramecia Devil Fruit,combination,combo:fruit,5,yes,Monkey D. Luffy | Buggy | Alvida | Lip Shark | Artur Bacca
-Name a East Blue Saga character who never ate a Devil Fruit,combination,combo:fruit,226,yes,Roronoa Zoro | Sanji | Nami | Usopp | Shanks
-Name a East Blue Saga character who can use Observation Haki,combination,combo:haki,13,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Usopp | Shanks
-Name a East Blue Saga character who can use Armament Haki,combination,combo:haki,15,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Shanks | Smoker
-Name a East Blue Saga character who can use Conqueror's Haki,combination,combo:haki,7,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Shanks | Gol D. Roger
-Name a East Blue Saga character who fights with a sword,combination,combo:weapon,28,yes,Roronoa Zoro | Shanks | Hatchan | Dracule Mihawk | Gol D. Roger
-Name a East Blue Saga character who fights with a gun,combination,combo:weapon,6,yes,Krieg | Benn Beckman | Lucky Roux | Yasopp | Bell-mère
-Name a East Blue Saga character who fights as a Swordsman,combination,combo:style,28,yes,Roronoa Zoro | Shanks | Hatchan | Dracule Mihawk | Gol D. Roger
-Name a East Blue Saga character who's rarely seen without a hat,combination,combo:tag,10,yes,Monkey D. Luffy | Buggy | Dracule Mihawk | Arlong | Jango
-Name a East Blue Saga character with long hair,combination,combo:tag,7,yes,Nami | Buggy | Monkey D. Dragon | Arlong | Building Snake
-Name a East Blue Saga character who wears an open shirt,combination,combo:tag,5,yes,Monkey D. Luffy | Shanks | Dracule Mihawk | Arlong | Meista
-Name a East Blue Saga character who's often shirtless,combination,combo:tag,8,yes,Monkey D. Luffy | Usopp | Shanks | Smoker | Dracule Mihawk
-Name a East Blue Saga character beaten by a Straw Hat other than Luffy,combination,combo:tag,7,yes,Hatchan | Kuroobi | Fullbody | Sham | Cabaji
-Name a East Blue Saga character with gills,combination,combo:tag,9,yes,Hatchan | Arlong | Kuroobi | Chew | Kaneshiro
-Name a East Blue Saga character who lives underwater,combination,combo:tag,9,yes,Hatchan | Arlong | Kuroobi | Chew | Kaneshiro
-Name a East Blue Saga character with a tattoo,combination,combo:tag,13,yes,Nami | Hatchan | Monkey D. Dragon | Arlong | Kuroobi
-Name a East Blue Saga character who is an animal,combination,combo:tag,13,yes,Richie | Chouchou | Pinky | Dareyorimo Tsuyoi | Cocox
-Name a East Blue Saga character with a visible scar,combination,combo:tag,12,yes,Monkey D. Luffy | Roronoa Zoro | Shanks | Smoker | Koby
-Name a East Blue Saga character with a mentor who also appears,combination,combo:tag,6,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Shanks | Koby
-Name a East Blue Saga character with a wild or unusual hairstyle,combination,combo:tag,5,yes,Helmeppo | Cabaji | Bell-mère | Mohji | Merry
-Name a East Blue Saga character with a ponytail,combination,combo:tag,6,yes,Kuroobi | Bell-mère | Scopper Gaban | Craven | Meista
-Name a East Blue Saga character with a beard,combination,combo:tag,8,yes,Dracule Mihawk | Silvers Rayleigh | Scopper Gaban | Gaimon | Kalik Meidara
-Name a East Blue Saga character with a goatee,combination,combo:tag,6,yes,Sanji | Higuma | Nezumi | Patty | Meista
-Name a East Blue Saga character with facial hair,combination,combo:tag,17,yes,Sanji | Dracule Mihawk | Gol D. Roger | Silvers Rayleigh | Zeff
-Name a East Blue Saga character who is extremely muscular,combination,combo:tag,7,yes,Roronoa Zoro | Krieg | Morgan | Building Snake | Kalik Meidara
-Name a East Blue Saga character who never loses their cool,combination,combo:tag,9,yes,Shanks | Monkey D. Dragon | Dracule Mihawk | Silvers Rayleigh | Kuroobi
-Name a East Blue Saga character with a scar on their face,combination,combo:tag,12,yes,Monkey D. Luffy | Roronoa Zoro | Shanks | Smoker | Koby
-Name a East Blue Saga character who is very arrogant,combination,combo:tag,10,yes,Buggy | Arlong | Alvida | Krieg | Fullbody
-Name a East Blue Saga character who fought Luffy,combination,combo:tag,14,yes,Buggy | Smoker | Dracule Mihawk | Arlong | Jango
-Name a East Blue Saga character Luffy beat in a fight,combination,combo:tag,11,yes,Buggy | Arlong | Jango | Alvida | Krieg
-Name a East Blue Saga character who used to be a pirate,combination,combo:tag,11,yes,Hatchan | Koby | Silvers Rayleigh | Jango | Alvida
-Name a East Blue Saga character who smokes,combination,combo:tag,5,yes,Sanji | Smoker | Benn Beckman | Yosaku | Bell-mère
-Name a East Blue Saga character with fins,combination,combo:tag,9,yes,Hatchan | Arlong | Kuroobi | Chew | Kaneshiro
-Name a East Blue Saga character who cooks,combination,combo:tag,14,yes,Sanji | Hatchan | Zeff | Lucky Roux | Buchi
-Name a East Blue Saga character with a famous named sword,combination,combo:tag,5,yes,Roronoa Zoro | Shanks | Dracule Mihawk | Gol D. Roger | Tashigi
-Name a East Blue Saga character with a mustache,combination,combo:tag,7,yes,Dracule Mihawk | Gol D. Roger | Zeff | Gally | Genzo
-Name a East Blue Saga character who was adopted or raised by someone else,combination,combo:tag,5,yes,Monkey D. Luffy | Sanji | Nami | Shanks | Nojiko
-Name a East Blue Saga character whose child also appears,combination,combo:tag,5,yes,Monkey D. Dragon | Gol D. Roger | Yasopp | Bell-mère | Morgan
-Name a East Blue Saga character who wears a uniform,combination,combo:tag,6,yes,Helmeppo | Genzo | Nezumi | Lines | Pudding Pudding
-Name a East Blue Saga character from a small village,combination,combo:tag,9,yes,Monkey D. Luffy | Roronoa Zoro | Nami | Usopp | Bell-mère
-Name a East Blue Saga character who wears sunglasses,combination,combo:tag,5,yes,Jango | Brannew | Johnny | Scopper Gaban | Building Snake
-Name a East Blue Saga character who fights dirty,combination,combo:tag,6,yes,Usopp | Krieg | Sham | Cabaji | Buchi
-Name a East Blue Saga character who's famously cowardly,combination,combo:tag,6,yes,Usopp | Buggy | Koby | Helmeppo | Higuma
-Name a East Blue Saga character whose sibling also appears,combination,combo:tag,5,yes,Sanji | Nami | Shanks | Buchi | Nojiko
-Name a East Blue Saga character who is a celebrity in their world,combination,combo:tag,8,yes,Monkey D. Luffy | Buggy | Shanks | Monkey D. Dragon | Dracule Mihawk
-Name a East Blue Saga character Luffy saved,combination,combo:tag,7,yes,Roronoa Zoro | Sanji | Nami | Koby | Genzo
-Name a East Blue Saga character who lives on a ship,combination,combo:tag,6,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
-Name a East Blue Saga character with a dream they say out loud,combination,combo:tag,8,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
-Name a East Blue Saga character who's greedy,combination,combo:tag,5,yes,Nami | Buggy | Nezumi | Craven | Nagels
-Name a East Blue Saga character with A in their initials,combination,combo:name,16,yes,Arlong | Alvida | Artur Bacca | Koze and Packy | Don Axe
-Name a East Blue Saga character with C in their initials,combination,combo:name,15,yes,Cabaji | Chew | Chouchou | Craven | Carne
-Name a East Blue Saga character with S in their initials,combination,combo:name,29,yes,Sanji | Shanks | Smoker | Silvers Rayleigh | Sham
-Name a East Blue Saga character with W in their initials,combination,combo:name,5,yes,Woop Slap | Will | Super White Bear | Tightrope Walking Funan Bros | Wadataira
-Name a East Blue Saga character with D in their initials,combination,combo:name,13,yes,Monkey D. Dragon | Dracule Mihawk | Don Axe | Dareyorimo Tsuyoi | Sekken De Tearai
-Name a East Blue Saga character with I in their initials,combination,combo:name,7,yes,Ideaman | Immortal | Mikio Itoo | Ipponmatsu | Ipponume
-Name a East Blue Saga character with Y in their initials,combination,combo:name,12,yes,Yasopp | Yosaku | Salma and Yasmine | Nugire Yainu | Yu
-Name a East Blue Saga character with K in their initials,combination,combo:name,23,yes,Koby | Krieg | Kuroobi | Kuro | Kalik Meidara
-Name a East Blue Saga character with G in their initials,combination,combo:name,13,yes,Gol D. Roger | Gin | John Giant | Scopper Gaban | Gally
-Name a East Blue Saga character with B in their initials,combination,combo:name,21,yes,Buggy | Benn Beckman | Brannew | Bell-mère | Buchi
-Name a East Blue Saga character with M in their initials,combination,combo:name,35,yes,Monkey D. Luffy | Monkey D. Dragon | Dracule Mihawk | Morgan | Mohji
-Name a East Blue Saga character with N in their initials,combination,combo:name,16,yes,Nami | Nezumi | Nagels | Nojiko | Nako
-Name a East Blue Saga character with P in their initials,combination,combo:name,21,yes,Pandaman | Patty | Pearl | Bonk Punch | Pudding Pudding
-Name a East Blue Saga character with H in their initials,combination,combo:name,13,yes,Hatchan | Helmeppo | Higuma | Hailey | Heppoko
-Name a East Blue Saga character with J in their initials,combination,combo:name,9,yes,Jango | John Giant | Johnny | Jackie | Jill
-Name a East Blue Saga character with R in their initials,combination,combo:name,16,yes,Roronoa Zoro | Gol D. Roger | Silvers Rayleigh | Lucky Roux | Richie
-Name a East Blue Saga character with T in their initials,combination,combo:name,15,yes,Tashigi | Lord of the Coast | Take | Tamanegi | Dareyorimo Tsuyoi
-Name a East Blue Saga character with F in their initials,combination,combo:name,6,yes,Fullbody | Fata | Funkorogasun | Fred | Tightrope Walking Funan Bros
-Name a East Blue Saga character with L in their initials,combination,combo:name,13,yes,Monkey D. Luffy | Lucky Roux | Lip Shark | Lines | Limejuice
-Name a East Blue Saga character with U in their initials,combination,combo:name,5,yes,Usopp | Ukkari | Umeno Nazawa | Usagihebi | Nakatsugawa Usopp
-Name a East Blue Saga character with the letter W in their name,combination,combo:name,17,yes,Dracule Mihawk | Brannew | Chew | Umeno Nazawa | Haraguroya's Owner
-Name a East Blue Saga character with the letter Y in their name,combination,combo:name,47,yes,Monkey D. Luffy | Buggy | Monkey D. Dragon | Koby | Silvers Rayleigh
-Name a East Blue Saga character with the letter X in their name,combination,combo:name,6,yes,Lucky Roux | Don Axe | Cocox | Roxanne | Julian Hatt XIII
-Name a East Blue Saga character with the letter Z in their name,combination,combo:name,19,yes,Roronoa Zoro | Zeff | Genzo | Nezumi | Koze and Packy
-Name a East Blue Saga character with the letter K in their name,combination,combo:name,72,yes,Monkey D. Luffy | Shanks | Smoker | Monkey D. Dragon | Dracule Mihawk
-Name a East Blue Saga character with the letter V in their name,combination,combo:name,7,yes,Silvers Rayleigh | Alvida | Craven | Oliva | Vaun
-Name a East Blue Saga character with the letter J in their name,combination,combo:name,15,yes,Sanji | Jango | John Giant | Cabaji | Johnny
-Name a East Blue Saga character from the Grand Line,combination,combo:sea,38,yes,Buggy | Smoker | Dracule Mihawk | Silvers Rayleigh | Arlong
-Name a East Blue Saga character from the East Blue,combination,combo:sea,91,yes,Monkey D. Luffy | Roronoa Zoro | Nami | Usopp | Hatchan
-Name a East Blue Saga character from the Calm Belt,combination,combo:sea,7,yes,Mottled | Birdy | Googly-Eyed | Topknot | Cassandra
-Name a East Blue Saga character from the North Blue,combination,combo:sea,8,yes,Sanji | Fullbody | Benn Beckman | Kalik Meidara | Nagels
-Name a East Blue Saga character born in January,combination,combo:birthday,5,yes,Boodle | Merry | Ipponmatsu | Roxanne | Domo-kun and Nnke-kun
-Name a East Blue Saga character born in December,combination,combo:birthday,9,yes,Gol D. Roger | Jango | Bell-mère | Nezumi | Lines
-Name a East Blue Saga character born in May,combination,combo:birthday,11,yes,Monkey D. Luffy | Koby | Silvers Rayleigh | Arlong | John Giant
-Name a East Blue Saga character born in November,combination,combo:birthday,10,yes,Roronoa Zoro | Benn Beckman | Yosaku | Johnny | Higuma
-Name a East Blue Saga character born in March,combination,combo:birthday,11,yes,Sanji | Shanks | Smoker | Dracule Mihawk | Alvida
-Name a East Blue Saga character born in June,combination,combo:birthday,5,yes,Genzo | Ripper | Rokkaku | Rika | Chabo
-Name a East Blue Saga character born in August,combination,combo:birthday,8,yes,Buggy | Hatchan | Yasopp | Gaimon | Kaya
-Name a East Blue Saga character born in February,combination,combo:birthday,9,yes,Buchi | Pandaman | Ukkari | Carne | Makino
-Name a East Blue Saga character born in April,combination,combo:birthday,9,yes,Usopp | Zeff | Gin | Sham | Kuro
-Name a East Blue Saga character born in September,combination,combo:birthday,12,yes,Krieg | Fullbody | Brannew | Cabaji | Shimotsuki Kuina
-Name a East Blue Saga character born in October,combination,combo:birthday,7,yes,Monkey D. Dragon | Tashigi | Kuroobi | Mohji | Mornin
-Name a East Blue Saga character born in July,combination,combo:birthday,12,yes,Nami | Helmeppo | Lucky Roux | Richie | Pearl
-Name a East Blue Saga character shorter than 1.7 meters,combination,combo:height,10,yes,Koby | Gaimon | Chouchou | Kaya | Shimotsuki Kuina
-Name a East Blue Saga character with a bounty over 100 million,combination,combo:bounty,13,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
-Name a East Blue Saga character with a bounty over 1 billion,combination,combo:bounty,7,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Buggy | Shanks
-Name a East Blue Saga character who has died,combination,combo:status,13,yes,Gol D. Roger | Bell-mère | Higuma | Pudding Pudding | Shimotsuki Kuina
-Name a East Blue Saga character with an epithet,combination,combo:epithet,57,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
-Name a East Blue Saga character with fewer than 10 letters in their full name,combination,combo:name,160,yes,Sanji | Nami | Usopp | Buggy | Shanks
-Name a East Blue Saga character with 5 letters or fewer in their full name,combination,combo:name,58,yes,Sanji | Nami | Usopp | Buggy | Koby
-Name a East Blue Saga character with more than 15 letters in their full name,combination,combo:name,9,yes,Minatomo (East Blue) | Shimotsuki Koushirou | Haraguroya's Owner | Dareyorimo Tsuyoi | Sekken De Tearai Jr.
+Name an East Blue Saga character with Green hair,combination,combo:hair,7,yes,Roronoa Zoro | Sham | Brannew | Cabaji | Gaimon
+Name an East Blue Saga character with Black hair,combination,combo:hair,41,yes,Monkey D. Luffy | Usopp | Monkey D. Dragon | Dracule Mihawk | Gol D. Roger
+Name an East Blue Saga character with Blond hair,combination,combo:hair,18,yes,Sanji | Helmeppo | Zeff | Yasopp | Chew
+Name an East Blue Saga character with Brown hair,combination,combo:hair,27,yes,John Giant | Craven | Merlin | Ripper | Mashikaku
+Name an East Blue Saga character with Purple hair,combination,combo:hair,6,yes,Pudding Pudding | Koze and Packy | Ideaman | Ninjin | Hocker
+Name an East Blue Saga character with Blue hair,combination,combo:hair,5,yes,Buggy | Nojiko | Shimotsuki Kuina | Damian | Jackie
+Name an East Blue Saga character with Gray hair,combination,combo:hair,10,yes,Hatchan | Jango | Krieg | Benn Beckman | Gally
+Name an East Blue Saga character with White hair,combination,combo:hair,8,yes,Smoker | Silvers Rayleigh | Scopper Gaban | Merry | Pearl
+Name an East Blue Saga character with Bald hair,combination,combo:hair,8,yes,Bonk Punch | Sekken De Tearai | Kagikko | Sekken De Tearai Jr. | Gachayama Gachao
+Name an East Blue Saga character who ate a Paramecia Devil Fruit,combination,combo:fruit,5,yes,Monkey D. Luffy | Buggy | Alvida | Lip Shark | Artur Bacca
+Name an East Blue Saga character who never ate a Devil Fruit,combination,combo:fruit,226,yes,Roronoa Zoro | Sanji | Nami | Usopp | Shanks
+Name an East Blue Saga character who can use Observation Haki,combination,combo:haki,13,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Usopp | Shanks
+Name an East Blue Saga character who can use Armament Haki,combination,combo:haki,15,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Shanks | Smoker
+Name an East Blue Saga character who can use Conqueror's Haki,combination,combo:haki,7,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Shanks | Gol D. Roger
+Name an East Blue Saga character who fights with a sword,combination,combo:weapon,28,yes,Roronoa Zoro | Shanks | Hatchan | Dracule Mihawk | Gol D. Roger
+Name an East Blue Saga character who fights with a gun,combination,combo:weapon,6,yes,Krieg | Benn Beckman | Lucky Roux | Yasopp | Bell-mère
+Name an East Blue Saga character who fights as a Swordsman,combination,combo:style,28,yes,Roronoa Zoro | Shanks | Hatchan | Dracule Mihawk | Gol D. Roger
+Name an East Blue Saga character who's rarely seen without a hat,combination,combo:tag,10,yes,Monkey D. Luffy | Buggy | Dracule Mihawk | Arlong | Jango
+Name an East Blue Saga character with long hair,combination,combo:tag,7,yes,Nami | Buggy | Monkey D. Dragon | Arlong | Building Snake
+Name an East Blue Saga character who wears an open shirt,combination,combo:tag,5,yes,Monkey D. Luffy | Shanks | Dracule Mihawk | Arlong | Meista
+Name an East Blue Saga character who's often shirtless,combination,combo:tag,8,yes,Monkey D. Luffy | Usopp | Shanks | Smoker | Dracule Mihawk
+Name an East Blue Saga character beaten by a Straw Hat other than Luffy,combination,combo:tag,7,yes,Hatchan | Kuroobi | Fullbody | Sham | Cabaji
+Name an East Blue Saga character with gills,combination,combo:tag,9,yes,Hatchan | Arlong | Kuroobi | Chew | Kaneshiro
+Name an East Blue Saga character who lives underwater,combination,combo:tag,9,yes,Hatchan | Arlong | Kuroobi | Chew | Kaneshiro
+Name an East Blue Saga character with a tattoo,combination,combo:tag,13,yes,Nami | Hatchan | Monkey D. Dragon | Arlong | Kuroobi
+Name an East Blue Saga character who is an animal,combination,combo:tag,13,yes,Richie | Chouchou | Pinky | Dareyorimo Tsuyoi | Cocox
+Name an East Blue Saga character with a visible scar,combination,combo:tag,12,yes,Monkey D. Luffy | Roronoa Zoro | Shanks | Smoker | Koby
+Name an East Blue Saga character with a mentor who also appears,combination,combo:tag,6,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Shanks | Koby
+Name an East Blue Saga character with a wild or unusual hairstyle,combination,combo:tag,5,yes,Helmeppo | Cabaji | Bell-mère | Mohji | Merry
+Name an East Blue Saga character with a ponytail,combination,combo:tag,6,yes,Kuroobi | Bell-mère | Scopper Gaban | Craven | Meista
+Name an East Blue Saga character with a beard,combination,combo:tag,8,yes,Dracule Mihawk | Silvers Rayleigh | Scopper Gaban | Gaimon | Kalik Meidara
+Name an East Blue Saga character with a goatee,combination,combo:tag,6,yes,Sanji | Higuma | Nezumi | Patty | Meista
+Name an East Blue Saga character with facial hair,combination,combo:tag,17,yes,Sanji | Dracule Mihawk | Gol D. Roger | Silvers Rayleigh | Zeff
+Name an East Blue Saga character who is extremely muscular,combination,combo:tag,7,yes,Roronoa Zoro | Krieg | Morgan | Building Snake | Kalik Meidara
+Name an East Blue Saga character who never loses their cool,combination,combo:tag,9,yes,Shanks | Monkey D. Dragon | Dracule Mihawk | Silvers Rayleigh | Kuroobi
+Name an East Blue Saga character with a scar on their face,combination,combo:tag,12,yes,Monkey D. Luffy | Roronoa Zoro | Shanks | Smoker | Koby
+Name an East Blue Saga character who is very arrogant,combination,combo:tag,10,yes,Buggy | Arlong | Alvida | Krieg | Fullbody
+Name an East Blue Saga character who fought Luffy,combination,combo:tag,14,yes,Buggy | Smoker | Dracule Mihawk | Arlong | Jango
+Name an East Blue Saga character Luffy beat in a fight,combination,combo:tag,11,yes,Buggy | Arlong | Jango | Alvida | Krieg
+Name an East Blue Saga character who used to be a pirate,combination,combo:tag,11,yes,Hatchan | Koby | Silvers Rayleigh | Jango | Alvida
+Name an East Blue Saga character who smokes,combination,combo:tag,5,yes,Sanji | Smoker | Benn Beckman | Yosaku | Bell-mère
+Name an East Blue Saga character with fins,combination,combo:tag,9,yes,Hatchan | Arlong | Kuroobi | Chew | Kaneshiro
+Name an East Blue Saga character who cooks,combination,combo:tag,14,yes,Sanji | Hatchan | Zeff | Lucky Roux | Buchi
+Name an East Blue Saga character with a famous named sword,combination,combo:tag,5,yes,Roronoa Zoro | Shanks | Dracule Mihawk | Gol D. Roger | Tashigi
+Name an East Blue Saga character with a mustache,combination,combo:tag,7,yes,Dracule Mihawk | Gol D. Roger | Zeff | Gally | Genzo
+Name an East Blue Saga character who was adopted or raised by someone else,combination,combo:tag,5,yes,Monkey D. Luffy | Sanji | Nami | Shanks | Nojiko
+Name an East Blue Saga character whose child also appears,combination,combo:tag,5,yes,Monkey D. Dragon | Gol D. Roger | Yasopp | Bell-mère | Morgan
+Name an East Blue Saga character who wears a uniform,combination,combo:tag,6,yes,Helmeppo | Genzo | Nezumi | Lines | Pudding Pudding
+Name an East Blue Saga character from a small village,combination,combo:tag,9,yes,Monkey D. Luffy | Roronoa Zoro | Nami | Usopp | Bell-mère
+Name an East Blue Saga character who wears sunglasses,combination,combo:tag,5,yes,Jango | Brannew | Johnny | Scopper Gaban | Building Snake
+Name an East Blue Saga character who fights dirty,combination,combo:tag,6,yes,Usopp | Krieg | Sham | Cabaji | Buchi
+Name an East Blue Saga character who's famously cowardly,combination,combo:tag,6,yes,Usopp | Buggy | Koby | Helmeppo | Higuma
+Name an East Blue Saga character whose sibling also appears,combination,combo:tag,5,yes,Sanji | Nami | Shanks | Buchi | Nojiko
+Name an East Blue Saga character who is a celebrity in their world,combination,combo:tag,8,yes,Monkey D. Luffy | Buggy | Shanks | Monkey D. Dragon | Dracule Mihawk
+Name an East Blue Saga character Luffy saved,combination,combo:tag,7,yes,Roronoa Zoro | Sanji | Nami | Koby | Genzo
+Name an East Blue Saga character who lives on a ship,combination,combo:tag,6,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
+Name an East Blue Saga character with a dream they say out loud,combination,combo:tag,8,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
+Name an East Blue Saga character who's greedy,combination,combo:tag,5,yes,Nami | Buggy | Nezumi | Craven | Nagels
+Name an East Blue Saga character with A in their initials,combination,combo:name,16,yes,Arlong | Alvida | Artur Bacca | Koze and Packy | Don Axe
+Name an East Blue Saga character with C in their initials,combination,combo:name,15,yes,Cabaji | Chew | Chouchou | Craven | Carne
+Name an East Blue Saga character with S in their initials,combination,combo:name,29,yes,Sanji | Shanks | Smoker | Silvers Rayleigh | Sham
+Name an East Blue Saga character with W in their initials,combination,combo:name,5,yes,Woop Slap | Will | Super White Bear | Tightrope Walking Funan Bros | Wadataira
+Name an East Blue Saga character with D in their initials,combination,combo:name,13,yes,Monkey D. Dragon | Dracule Mihawk | Don Axe | Dareyorimo Tsuyoi | Sekken De Tearai
+Name an East Blue Saga character with I in their initials,combination,combo:name,7,yes,Ideaman | Immortal | Mikio Itoo | Ipponmatsu | Ipponume
+Name an East Blue Saga character with Y in their initials,combination,combo:name,12,yes,Yasopp | Yosaku | Salma and Yasmine | Nugire Yainu | Yu
+Name an East Blue Saga character with K in their initials,combination,combo:name,23,yes,Koby | Krieg | Kuroobi | Kuro | Kalik Meidara
+Name an East Blue Saga character with G in their initials,combination,combo:name,13,yes,Gol D. Roger | Gin | John Giant | Scopper Gaban | Gally
+Name an East Blue Saga character with B in their initials,combination,combo:name,21,yes,Buggy | Benn Beckman | Brannew | Bell-mère | Buchi
+Name an East Blue Saga character with M in their initials,combination,combo:name,35,yes,Monkey D. Luffy | Monkey D. Dragon | Dracule Mihawk | Morgan | Mohji
+Name an East Blue Saga character with N in their initials,combination,combo:name,16,yes,Nami | Nezumi | Nagels | Nojiko | Nako
+Name an East Blue Saga character with P in their initials,combination,combo:name,21,yes,Pandaman | Patty | Pearl | Bonk Punch | Pudding Pudding
+Name an East Blue Saga character with H in their initials,combination,combo:name,13,yes,Hatchan | Helmeppo | Higuma | Hailey | Heppoko
+Name an East Blue Saga character with J in their initials,combination,combo:name,9,yes,Jango | John Giant | Johnny | Jackie | Jill
+Name an East Blue Saga character with R in their initials,combination,combo:name,16,yes,Roronoa Zoro | Gol D. Roger | Silvers Rayleigh | Lucky Roux | Richie
+Name an East Blue Saga character with T in their initials,combination,combo:name,15,yes,Tashigi | Lord of the Coast | Take | Tamanegi | Dareyorimo Tsuyoi
+Name an East Blue Saga character with F in their initials,combination,combo:name,6,yes,Fullbody | Fata | Funkorogasun | Fred | Tightrope Walking Funan Bros
+Name an East Blue Saga character with L in their initials,combination,combo:name,13,yes,Monkey D. Luffy | Lucky Roux | Lip Shark | Lines | Limejuice
+Name an East Blue Saga character with U in their initials,combination,combo:name,5,yes,Usopp | Ukkari | Umeno Nazawa | Usagihebi | Nakatsugawa Usopp
+Name an East Blue Saga character with the letter W in their name,combination,combo:name,17,yes,Dracule Mihawk | Brannew | Chew | Umeno Nazawa | Haraguroya's Owner
+Name an East Blue Saga character with the letter Y in their name,combination,combo:name,47,yes,Monkey D. Luffy | Buggy | Monkey D. Dragon | Koby | Silvers Rayleigh
+Name an East Blue Saga character with the letter X in their name,combination,combo:name,6,yes,Lucky Roux | Don Axe | Cocox | Roxanne | Julian Hatt XIII
+Name an East Blue Saga character with the letter Z in their name,combination,combo:name,19,yes,Roronoa Zoro | Zeff | Genzo | Nezumi | Koze and Packy
+Name an East Blue Saga character with the letter K in their name,combination,combo:name,72,yes,Monkey D. Luffy | Shanks | Smoker | Monkey D. Dragon | Dracule Mihawk
+Name an East Blue Saga character with the letter V in their name,combination,combo:name,7,yes,Silvers Rayleigh | Alvida | Craven | Oliva | Vaun
+Name an East Blue Saga character with the letter J in their name,combination,combo:name,15,yes,Sanji | Jango | John Giant | Cabaji | Johnny
+Name an East Blue Saga character from the Grand Line,combination,combo:sea,38,yes,Buggy | Smoker | Dracule Mihawk | Silvers Rayleigh | Arlong
+Name an East Blue Saga character from the East Blue,combination,combo:sea,91,yes,Monkey D. Luffy | Roronoa Zoro | Nami | Usopp | Hatchan
+Name an East Blue Saga character from the Calm Belt,combination,combo:sea,7,yes,Mottled | Birdy | Googly-Eyed | Topknot | Cassandra
+Name an East Blue Saga character from the North Blue,combination,combo:sea,8,yes,Sanji | Fullbody | Benn Beckman | Kalik Meidara | Nagels
+Name an East Blue Saga character born in January,combination,combo:birthday,5,yes,Boodle | Merry | Ipponmatsu | Roxanne | Domo-kun and Nnke-kun
+Name an East Blue Saga character born in December,combination,combo:birthday,9,yes,Gol D. Roger | Jango | Bell-mère | Nezumi | Lines
+Name an East Blue Saga character born in May,combination,combo:birthday,11,yes,Monkey D. Luffy | Koby | Silvers Rayleigh | Arlong | John Giant
+Name an East Blue Saga character born in November,combination,combo:birthday,10,yes,Roronoa Zoro | Benn Beckman | Yosaku | Johnny | Higuma
+Name an East Blue Saga character born in March,combination,combo:birthday,11,yes,Sanji | Shanks | Smoker | Dracule Mihawk | Alvida
+Name an East Blue Saga character born in June,combination,combo:birthday,5,yes,Genzo | Ripper | Rokkaku | Rika | Chabo
+Name an East Blue Saga character born in August,combination,combo:birthday,8,yes,Buggy | Hatchan | Yasopp | Gaimon | Kaya
+Name an East Blue Saga character born in February,combination,combo:birthday,9,yes,Buchi | Pandaman | Ukkari | Carne | Makino
+Name an East Blue Saga character born in April,combination,combo:birthday,9,yes,Usopp | Zeff | Gin | Sham | Kuro
+Name an East Blue Saga character born in September,combination,combo:birthday,12,yes,Krieg | Fullbody | Brannew | Cabaji | Shimotsuki Kuina
+Name an East Blue Saga character born in October,combination,combo:birthday,7,yes,Monkey D. Dragon | Tashigi | Kuroobi | Mohji | Mornin
+Name an East Blue Saga character born in July,combination,combo:birthday,12,yes,Nami | Helmeppo | Lucky Roux | Richie | Pearl
+Name an East Blue Saga character shorter than 1.7 meters,combination,combo:height,10,yes,Koby | Gaimon | Chouchou | Kaya | Shimotsuki Kuina
+Name an East Blue Saga character with a bounty over 100 million,combination,combo:bounty,13,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
+Name an East Blue Saga character with a bounty over 1 billion,combination,combo:bounty,7,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Buggy | Shanks
+Name an East Blue Saga character who has died,combination,combo:status,13,yes,Gol D. Roger | Bell-mère | Higuma | Pudding Pudding | Shimotsuki Kuina
+Name an East Blue Saga character with an epithet,combination,combo:epithet,57,yes,Monkey D. Luffy | Roronoa Zoro | Sanji | Nami | Usopp
+Name an East Blue Saga character with fewer than 10 letters in their full name,combination,combo:name,160,yes,Sanji | Nami | Usopp | Buggy | Shanks
+Name an East Blue Saga character with 5 letters or fewer in their full name,combination,combo:name,58,yes,Sanji | Nami | Usopp | Buggy | Koby
+Name an East Blue Saga character with more than 15 letters in their full name,combination,combo:name,9,yes,Minatomo (East Blue) | Shimotsuki Koushirou | Haraguroya's Owner | Dareyorimo Tsuyoi | Sekken De Tearai Jr.
 Name a Water 7 Saga character with Black hair,combination,combo:hair,26,yes,Kuzan | Rob Lucci | Sakazuki | Blueno | Foxy
 Name a Water 7 Saga character with Blond hair,combination,combo:hair,5,yes,Kalifa | Paulie | Corgi | Gram | Mizuira
 Name a Water 7 Saga character with Brown hair,combination,combo:hair,12,yes,Onigumo | Doberman | Yamakaji | Thatch | Tilestone

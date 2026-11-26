@@ -1,6 +1,4 @@
 key,prompt,group,difficulty,min_ep,categories,answers,remove,source
-revolutionary-army-leader,Name a Revolutionary Army leader,bond,medium,438,,monkey-d-dragon|sabo|emporio-ivankov|morley|lindbergh|belo-betty,,claude
-who-sailed-with-gol-d-roger,Name someone who sailed with Gol D. Roger,bond,easy,48,,silvers-rayleigh|crocus|buggy|shanks|benn-beckman|yasopp|lucky-roux|kouzuki-oden,,claude
 big-mom-pirates-member,Name a Big Mom Pirates member,crew,medium,571,Big Mom Pirates,,,wiki
 blackbeard-pirates-member,Name a Blackbeard Pirates member,crew,medium,917,Blackbeard Pirates,,,wiki
 buggy-pirates-member,Name a Buggy Pirates member,crew,medium,0,Buggy Pirates,,,wiki
@@ -18,7 +16,6 @@ tontatta-pirate,Name a Tontatta Pirate,crew,hard,641,Tontatta Pirates,,,wiki
 whitebeard-pirate-past-or-present,"Name a Whitebeard Pirate, past or present",crew,easy,95,Whitebeard Pirates Division Commanders|Whitebeard Pirates|Former Whitebeard Pirates,,,wiki
 one-of-big-mom-s-homies,Name one of Big Mom's Homies,crew,hard,786,Homies,,,wiki
 charlotte-family-member,Name a Charlotte family member,family,medium,795,Charlotte Family,,,wiki
-child-of-big-mom,Name a child of Big Mom,family,easy,783,,charlotte-katakuri|charlotte-smoothie|charlotte-cracker|charlotte-perospero|charlotte-pudding|charlotte-lola|charlotte-oven|charlotte-daifuku|charlotte-galette|charlotte-opera,,claude
 donquixote-family-member,Name a Donquixote family member,family,medium,699,Donquixote Family,,,wiki
 kouzuki-family-member,Name a Kouzuki family member,family,medium,910,Kouzuki Family|Former Kouzuki Family Subordinates,,,wiki
 kouzuki-family-subordinate,Name a Kouzuki family subordinate,family,hard,909,Kouzuki Family Subordinates,,,wiki
@@ -28,9 +25,7 @@ riku-family-member,Name a Riku family member,family,medium,650,Riku Family,,,wik
 shimotsuki-family-member,Name a Shimotsuki family member,family,medium,0,Shimotsuki Family,,,wiki
 vinsmoke-child,Name a Vinsmoke child,family,medium,810,,vinsmoke-ichiji|vinsmoke-niji|vinsmoke-yonji|vinsmoke-reiju|sanji,,claude
 vinsmoke-family-member,Name a Vinsmoke family member,family,medium,787,Modified Humans|Vinsmoke Family,,,wiki
-whitebeard-called-a-son,Name someone Whitebeard called a son,family,easy,151,,polo-marco|portgas-d-ace|jozu|vista|thatch|izou,,claude
-who-raised-a-straw-hat,Name someone who raised a Straw Hat,family,easy,100,,curly-dadan|zeff|monkey-d-garp|bell-mere|kureha,,claude
-shichibukai-who-ate-a-devil-fruit,Name a Shichibukai who ate a Devil Fruit,fruit,easy,0,,crocodile|donquixote-doflamingo|bartholomew-kuma|buggy|gecko-moria|boa-hancock,,claude
+shichibukai-who-ate-a-devil-fruit,Name a Shichibukai who ate a Devil Fruit,fruit,easy,0,,bartholomew-kuma|boa-hancock|buggy|crocodile|donquixote-doflamingo|gecko-moria|marshall-d-teach|trafalgar-d-water-law,,claude
 straw-hat-who-never-ate-a-devil-fruit,Name a Straw Hat who never ate a Devil Fruit,fruit,easy,0,,roronoa-zoro|nami|usopp|sanji|franky|jinbe,,claude
 153rd-branch-marine,Name a 153rd Branch Marine,org,medium,0,153rd Branch Marines,,,wiki
 baroque-works-agent,Name a Baroque Works agent,org,medium,103,Baroque Works,,,wiki
@@ -51,7 +46,6 @@ mimawarigumi-member,Name a Mimawarigumi member,org,hard,951,Mimawarigumi,,,wiki
 pacifista-or-clone,Name a Pacifista or Clone,org,hard,1094,Pacifista|Clones,,,wiki
 revolutionary-army-member,Name a Revolutionary Army member,org,medium,633,Revolutionaries,,,wiki
 oniwabanshu-member,Name an Oniwabanshu member,org,hard,925,Kouzuki Family Oniwabanshu,,,wiki
-born-in-the-east-blue-who-isn-t-a-straw-hat,Name someone born in the East Blue who isn't a Straw Hat,origin,easy,0,,koby|helmeppo|morgan|alvida|bell-mere|nojiko,,claude
 b-or-c-block-participant,Name a Corrida Colosseum fighter,other,hard,632,B Block Participants|C Block Participants,,,wiki
 bazooka-user,Name a bazooka user,other,medium,103,Bazooka Users,,,wiki
 blade-user,Name a blade user,other,hard,834,Blade Users,,,wiki
@@ -167,9 +161,6 @@ former-thief,Name a former thief,status,easy,456,Former Thieves,,,wiki
 prisoner-mine-prisoner,Name a Prisoner Mine prisoner,status,medium,910,Prisoner Mine Prisoners|Beasts Pirates Slaves,,,wiki
 prisoner-of-the-marines-past-or-present,"Name a prisoner of the Marines, past or present",status,medium,31,Marine Prisoners|Former Marine Prisoners,,,wiki
 prisoner-past-or-present,"Name a prisoner, past or present",status,medium,343,Former Prisoners|Prisoners,,,wiki
-cp9-agent-who-fights-with-six-powers,Name a CP9 agent who fights with Six Powers,technique,medium,260,,rob-lucci|kaku|blueno|jabra|fukurou,,claude
-big-mom-pirates-sweet-commander,Name a Big Mom Pirates Sweet Commander,title,medium,783,,charlotte-katakuri|charlotte-cracker|charlotte-smoothie|charlotte-oven|charlotte-perospero,,claude
-donquixote-pirates-executive,Name a Donquixote Pirates executive,title,medium,629,,trebol|diamante|pica|vergo|machvise,,claude
-whitebeard-pirates-division-commander,Name a Whitebeard Pirates division commander,title,hard,151,,polo-marco|jozu|vista|izou|portgas-d-ace|haruta|atmos|blamenco|fossa,,claude
-worst-generation-captain,Name a Worst Generation captain,title,easy,392,,monkey-d-luffy|trafalgar-d-water-law|eustass-kid|x-drake|scratchmen-apoo|jewelry-bonney|basil-hawkins|capone-bege,,claude
-yonko-commander-past-or-present,"Name a Yonko commander, past or present",title,medium,151,,polo-marco|jozu|vista|izou|portgas-d-ace|charlotte-katakuri|charlotte-cracker|charlotte-smoothie|charlotte-oven|charlotte-perospero|king|queen|jack|ulti|page-one,,claude
+cp9-agent-who-fights-with-six-powers,Name a CP9 agent who fights with Six Powers,technique,medium,260,,rob-lucci|kaku|blueno|jabra|fukurou|kalifa|kumadori|nero,,claude
+whitebeard-pirates-division-commander,Name a Whitebeard Pirates division commander,title,hard,151,Whitebeard Pirates Division Commanders,,,wiki
+worst-generation-captain,Name a Worst Generation captain,title,easy,392,,monkey-d-luffy|trafalgar-d-water-law|eustass-kid|x-drake|scratchmen-apoo|jewelry-bonney|basil-hawkins|capone-bege|urouge|marshall-d-teach,,claude
